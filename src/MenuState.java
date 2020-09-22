@@ -24,11 +24,9 @@ public class MenuState extends State {
 	public MenuState(final Handler handler) {
 		super(handler);
 		menuOptions = new ArrayList<>();
-		menuOptions.add("Item 1");
-		menuOptions.add("longer name menu option");
-		menuOptions.add("short");
-		menuOptions.add("hey guys its me");
-		menuOptions.add("Item 5");
+		menuOptions.add("Start");
+		menuOptions.add("Config");
+		menuOptions.add("Some other fake option");
 		initSounds();
 		menuFont = Assets.serif;
 		screenOverlay = new ScreenOverlay(handler);
