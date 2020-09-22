@@ -135,12 +135,15 @@ public class Inventory {
             Rectangle itemName;
             if (i % 2 == 0) {
                 itemName = new Rectangle(regularItemsCol1);
+                itemName.height /= 8;
+                itemName.y += i / 2 * (itemFontMetrics.getHeight() * 1.5);
+                GeneralUtils.drawCenteredString(g, regularItems.get(i), itemName, scaleFont(regularItems.get(i), regularItemsCol1, g, itemFont));
             } else {
                 itemName = new Rectangle(regularItemsCol2);
+                itemName.height /= 8;
+                itemName.y += i / 2 * (itemFontMetrics.getHeight() * 1.5);
+                GeneralUtils.drawCenteredString(g, regularItems.get(i), itemName, scaleFont(regularItems.get(i), regularItemsCol2, g, itemFont));
             }
-            itemName.height /= 8;
-            itemName.y += i / 2 * (itemFontMetrics.getHeight() * 1.5);
-            GeneralUtils.drawCenteredString(g, regularItems.get(i), itemName, itemFont);
         }
 
     }
@@ -165,6 +168,17 @@ public class Inventory {
         System.out.println(headerFontMetrics.getHeight());
         System.out.println(itemFont.getSize());
         System.out.println(itemFontMetrics.getHeight());
+    }
+
+    public Font scaleFont(String text, Rectangle rect, Graphics g, Font font) {
+        FontMetrics metrics = g.getFontMetrics(font);
+        int textWidth = metrics.stringWidth(text);
+        while (textWidth > rect.width - 10 * xScale && font.getSize() > 1) {
+            metrics = g.getFontMetrics(font);
+            textWidth = metrics.stringWidth(text);
+            font = font.deriveFont(font.getSize() - 1.0f);
+        }
+        return font;
     }
 
     private void drawInventoryHeaders(Graphics g) {
