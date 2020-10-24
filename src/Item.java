@@ -1,18 +1,58 @@
+import java.awt.image.BufferedImage;
 
+public class Item {
 
-import java.awt.*;
+    private String itemName;
+    private String itemType;
+    private String description;
+    private String uniqueName;
+    private BufferedImage previewImage;
 
-public abstract class Item {
-
-    private Handler handler;
-    private int id;
-    public Item(Handler handler, int id) {
-        this.handler = handler;
-        this.id = id;
+    public Item(String itemName, String itemType, String description, String uniqueName, BufferedImage previewImage) {
+        this.itemName = itemName;
+        this.itemType = itemType;
+        this.description = description;
+        this.uniqueName = uniqueName;
+        this.previewImage = previewImage;
     }
 
+    public String getItemName() {
+        return itemName;
+    }
 
-    public abstract void tick();
+    public String getItemType() {
+        return itemType;
+    }
 
-    public abstract void render(Graphics graphics);
+    public String getDescription() {
+        return description;
+    }
+
+    public String getUniqueName() {
+        return uniqueName;
+    }
+
+    public BufferedImage getPreviewImage() {
+        return previewImage;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUniqueName(String uniqueName) {
+        this.uniqueName = uniqueName;
+    }
+
+    public void setPreviewImage(BufferedImage previewImage) {
+        this.previewImage = previewImage;
+    }
 }

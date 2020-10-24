@@ -4,7 +4,7 @@ public class Handler {
 	private Game game;
 	private World world;
 	private Flags flags;
-	private boolean playerFrozen = false, isInMenu = false;
+	private boolean playerFrozen = false, isInMenu = false, gamePaused = false;
 	private int worldNumber = 1;
 
 	public Handler(Game game)
@@ -87,5 +87,21 @@ public class Handler {
 
 	public ScreenOverlay getScreenOverlay() {
 		return game.getScreenOverlay();
+	}
+
+	public boolean isInMenu() {
+		return isInMenu;
+	}
+
+	public void setInMenu(boolean inMenu) {
+		isInMenu = inMenu;
+	}
+
+	public boolean isGamePaused() {
+		return gamePaused;
+	}
+
+	public void setGamePaused(boolean gamePaused) {
+		this.gamePaused = gamePaused;
 	}
 }

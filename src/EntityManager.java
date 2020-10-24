@@ -22,13 +22,19 @@ public class EntityManager {
 	}
 
 	public void tick() {
-		for (int i = 0; i < entities.size(); i++) {
-			e = entities.get(i);
-			e.tick();
-			if (!e.isActive())
-				entities.remove(e);
-		}
 		entities.sort(renderSorter);
+		if (!handler.isGamePaused()) {
+			for (int i = 0; i < entities.size(); i++) {
+				e = entities.get(i);
+				e.tick();
+				if (!e.isActive())
+					entities.remove(e);
+			}
+		} else {
+			if (handler.isInMenu()) {
+				player.tick();
+			}
+		}
 	}
 
 	public void render(Graphics g) {

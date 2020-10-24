@@ -3,8 +3,7 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Creature {
 	private static boolean down = false, up = false, left = false, right = false;
-	private boolean interactedWith = false, inventoryOpen;
-	private ItemManager itemManager;
+	private boolean interactedWith = false, textboxOpen;
 	private Inventory inventory;
 	//Animations	
 	private Animation animDown, animUp, animLeft, animRight;
@@ -13,8 +12,7 @@ public class Player extends Creature {
 	//Font
 	Font f;
 
-	public Player(Handler handler, float x, float y)
-	{
+	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 
 		bounds.x = 16;
@@ -35,7 +33,6 @@ public class Player extends Creature {
 		f = new Font("overlay", Font.ITALIC|Font.BOLD, 16);
 
 		//Items
-		itemManager = new ItemManager(handler, this);
 		inventory = new Inventory(handler, this);
 	}
 
@@ -43,7 +40,6 @@ public class Player extends Creature {
 	public void tick() {
 		currentPlayerRectangle();
 		if (!handler.isPlayerFrozen()) {
-
 			//Animations
 			animDown.tick();
 			animLeft.tick();
@@ -57,8 +53,14 @@ public class Player extends Creature {
 			handler.getGameCamera().centerOnEntity(this);
 			checkInteraction();
 		}
-		itemManager.tick();
 		inventory.tick();
+	}
+
+	public void interactedWith() {
+		//Player should never be interacted with
+		interactedWith = true;
+		System.out.println("Interaction with " + this);
+		interactedWith = false;
 	}
 
 	@Override
@@ -102,16 +104,21 @@ public class Player extends Creature {
 	public void postRender(Graphics g) {
 		screenOverlay.drawVision(g);
 		inventory.render(g);
+		drawTextboxes(g);
 		g.setColor(Color.WHITE);
+		g.setFont(f);
 		g.drawString("Current (x,y): (" + handler.getWorld().getEntityManager().getPlayer().x + ", "
 				+ handler.getWorld().getEntityManager().getPlayer().y + ")", 16, handler.getHeight() - 16);
 	}
 
-	private void currentPlayerRectangle()
-	{
+	private void currentPlayerRectangle() {
 		playerRec = new Rectangle((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 				bounds.width, bounds.height);
+	}
+
+	private void drawTextboxes(Graphics g) {
+
 	}
 
 	private void checkInteraction() {
@@ -194,13 +201,7 @@ public class Player extends Creature {
 		}
 	}
 
-	private void autoMove()
-	{
-
-	}
-
-	private BufferedImage getCurrentAnimationFrame()
-	{
+	private BufferedImage getCurrentAnimationFrame() {
 		if(xMove<0)
 		{
 			left = true; right = false; up = false; down = false;
@@ -233,14 +234,6 @@ public class Player extends Creature {
 
 	}
 
-	public void interactedWith()
-	{
-		//Player should never be interacted with
-		interactedWith = true;
-		System.out.println("Interaction with " + this);
-		interactedWith = false;
-	}
-
 	public boolean isInteracting()
 	{
 		return interactedWith;
@@ -249,8 +242,7 @@ public class Player extends Creature {
 		return playerRec;
 	}
 
-	public static String getDirection()
-	{
+	public static String getDirection() {
 		if(up)
 			return "up";
 		if(down)
@@ -261,21 +253,21 @@ public class Player extends Creature {
 	}
 
 	public void setDirection(String dir) {
-		if(dir.equals("up")) {
+		if (dir.equals("up")) {
 			up = true; down = false; left = false; right = false;
 		}
-		if(dir.equals("down")) {
+		if (dir.equals("down")) {
 			down = true; left = false; right = false; up = false;
 		}
-		if(dir.equals("left")) {
+		if (dir.equals("left")) {
 			left = true; down = false; up = false; right = false;
 		}
-		if(dir.equals("right")) {
+		if (dir.equals("right")) {
 			right = true; up = false; down = false; left = false;
 		}
 	}
 
-	public ItemManager getItemManager() {
-		return itemManager;
+	public Inventory getInventory() {
+		return inventory;
 	}
 }

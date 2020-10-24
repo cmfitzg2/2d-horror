@@ -4,7 +4,7 @@ public class Ghoul extends Creature {
 
     private Animation animDown, animUp, animLeft, animRight;
     private boolean down = false, up = false, left = false, right = false;
-    private float playerX = 0, playerY = 0, adjustedX, adjustedY, outerDistanceThreshold = 96, innerDistanceThreshold = 0.5f;
+    private float playerX = 0, playerY = 0, adjustedX, adjustedY, outerDistanceThreshold = 128, innerDistanceThreshold = 0.5f;
 
     public Ghoul(Handler handler, float x, float y, int width, int height) {
         super(handler, x, y, width, height);

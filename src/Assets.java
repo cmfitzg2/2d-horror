@@ -8,35 +8,36 @@ import java.io.File;
 import java.io.IOException;
 
 public class Assets {
-	
+
 	private static final int width = 32, height = 32, biggerWidth = 48, biggerHeight = 48;
-	public static final int textboxWidth = 228, textboxHeight = 96, paintingWidth = 815, paintingHeight = 820;
-	
+	public static final int paintingWidth = 815, paintingHeight = 820;
 	public static BufferedImage dirt, grass, stone, tree, water, black, gray, darkStoneWall,
-								playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal;
-	public static BufferedImage wall, artFrameSmall, gallerySolace;
-	public static BufferedImage textbox, textbox_player;
-	public static BufferedImage inventory, inventoryHighlight;
+			playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal;
+	public static BufferedImage wall, artFrame, artFrameSmall, artFrameSmallEmpty;
+	public static BufferedImage gallerySolace, galleryProphet;
+	public static BufferedImage textbox, textboxOptions;
+	public static BufferedImage inventory, inventoryHighlight, keyPreview;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
 	public static BufferedImage[] reflection_down, reflection_up, reflection_left, reflection_right;
 	public static BufferedImage[] ghoulDown, ghoulLeft, ghoulRight, ghoulUp;
 	public static BufferedImage[] tunnelVision;
-	public static Font sans, serif, philosopher;
-	public static void init(){
+	public static Font sans, serif, philosopher, textboxDefault;
+	public static void init() {
 		try {
-		    //create the font to use. Specify the size!
-		    sans = Font.createFont(Font.TRUETYPE_FONT, new File("sans.ttf")).deriveFont(36f);
-		    serif = Font.createFont(Font.TRUETYPE_FONT, new File("serif.ttf")).deriveFont(36f);
+			//create the font to use. Specify the size!
+			sans = Font.createFont(Font.TRUETYPE_FONT, new File("sans.ttf")).deriveFont(36f);
+			serif = Font.createFont(Font.TRUETYPE_FONT, new File("serif.ttf")).deriveFont(36f);
 			philosopher = Font.createFont(Font.TRUETYPE_FONT, new File("philosopher.ttf")).deriveFont(36f);
+			textboxDefault = Font.createFont(Font.TRUETYPE_FONT, new File("uwch.ttf")).deriveFont(128f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		    //register the font
-		    ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("sans.ttf")));
-		    ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("serif.ttf")));
+			//register the font
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("sans.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("serif.ttf")));
 		} catch (IOException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		} catch(FontFormatException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
 
 		SpriteSheet reflectionSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characterclone.png"));
@@ -45,8 +46,8 @@ public class Assets {
 		SpriteSheet ghoulSheet = new SpriteSheet(ImageLoader.loadImage("/textures/ghoul.png"));
 		SpriteSheet inventoryActiveSheet = new SpriteSheet(ImageLoader.loadImage("/textures/inventory-active-header.png"));
 
-		textbox_player = ImageLoader.loadImage("/textures/tb1.png");
 		textbox = ImageLoader.loadImage("/textures/tb.png");
+		textboxOptions = ImageLoader.loadImage("/textures/tb-options.png");
 
 		activeInventoryHeader = new BufferedImage[3];
 		activeInventoryHeader[0] = inventoryActiveSheet.crop(0, 0, 268, 70);
@@ -54,27 +55,28 @@ public class Assets {
 		activeInventoryHeader[2] = inventoryActiveSheet.crop(535, 0, 268, 70);
 		inventory = ImageLoader.loadImage("/textures/inventory.png");
 		inventoryHighlight = ImageLoader.loadImage("/textures/inventory-highlight.png");
+		keyPreview = ImageLoader.loadImage("/textures/inventory/key.png");
 
 		player_down = new BufferedImage[4]; 		//4 = frame count
 		player_up = new BufferedImage[4];
 		player_left = new BufferedImage[4];
 		player_right = new BufferedImage[4];
-		
+
 		player_down[0] = playerSheet.crop(0, 0, width, height);
 		player_down[1] = playerSheet.crop(width, 0, width, height);
 		player_down[2] = playerSheet.crop(width*2, 0, width, height);
 		player_down[3] = playerSheet.crop(width*3, 0, width, height);
-		
+
 		player_up[0] = playerSheet.crop(0, height, width, height);
 		player_up[1] = playerSheet.crop(width, height, width, height);
 		player_up[2] = playerSheet.crop(width*2, height, width, height);
 		player_up[3] = playerSheet.crop(width*3, height, width, height);
-		
+
 		player_left[0] = playerSheet.crop(0, height*2, width, height);
 		player_left[1] = playerSheet.crop(width, height*2, width, height);
 		player_left[2] = playerSheet.crop(width*2, height*2, width, height);
 		player_left[3] = playerSheet.crop(width*3, height*2, width, height);
-		
+
 		player_right[0] = playerSheet.crop(0, height*3, width, height);
 		player_right[1] = playerSheet.crop(width, height*3, width, height);
 		player_right[2] = playerSheet.crop(width*2, height*3, width, height);
@@ -145,16 +147,22 @@ public class Assets {
 		darkStoneWall = sheet.crop(0, height, width, height);
 
 		wall = ImageLoader.loadImage("/textures/wall.png");
-		gallerySolace = ImageLoader.loadImage("/textures/gallery/Solace.png");
+		artFrame = ImageLoader.loadImage("/textures/artFrame.png");
 		artFrameSmall = ImageLoader.loadImage("/textures/artFrameSmall.png");
+		artFrameSmallEmpty = ImageLoader.loadImage("/textures/artFrameSmallEmpty.png");
+
+		gallerySolace = ImageLoader.loadImage("/textures/gallery/Solace.png");
+		galleryProphet = ImageLoader.loadImage("/textures/gallery/Prophet.png");
 	}
-	public static int getTextboxHeight()
-	{
-		return textboxHeight;
-	}
-	
-	public static int getTextboxWidth()
-	{
-		return textboxWidth;
+
+	public static BufferedImage getArtworkByName(String name) {
+		switch (name) {
+			case "Solace":
+				return gallerySolace;
+			case "Prophet":
+				return galleryProphet;
+			default:
+				return artFrame;
+		}
 	}
 }

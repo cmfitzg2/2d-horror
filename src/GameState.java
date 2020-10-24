@@ -104,8 +104,7 @@ public class GameState extends State {
 		}
 	}
 
-	public void playMusic()
-	{
+	public void playMusic() {
 		playStarted = true;
 		overworldMusic = Applet.newAudioClip(getClass().getResource("/sounds/ocean.au"));
 		overworldMusicLoop = Applet.newAudioClip(getClass().getResource("/sounds/ocean.au"));
@@ -114,8 +113,7 @@ public class GameState extends State {
 		startTime = System.currentTimeMillis();
 	}
 
-	public static void stopMusic()
-	{
+	public static void stopMusic() {
 		playStarted = false;
 		overworldMusic.stop();
 	}
