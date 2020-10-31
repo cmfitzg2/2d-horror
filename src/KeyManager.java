@@ -7,7 +7,9 @@ public class KeyManager implements KeyListener{
 
 	private boolean[] keys;
 	public boolean up, down, left, right, z, shift, x, c, esc, enter, one, two, three, four, five, six;
-	private boolean stillHoldingZ, stillHoldingC, stillHoldingEsc, stillHoldingUp, stillHoldingDown, stillHoldingLeft, stillHoldingRight, stillholdingEnter, stillHolding1, stillHolding2, stillHolding3, stillHolding4, stillHolding5, stillHolding6;
+	private boolean stillHoldingZ, stillHoldingX, stillHoldingC, stillHoldingEsc, stillholdingEnter,
+			stillHoldingUp, stillHoldingDown, stillHoldingLeft, stillHoldingRight,
+			stillHolding1, stillHolding2, stillHolding3, stillHolding4, stillHolding5, stillHolding6;
 
 	public KeyManager()
 	{
@@ -49,6 +51,9 @@ public class KeyManager implements KeyListener{
 			keys[e.getKeyCode()] = false;
 		if(e.getKeyCode() == KeyEvent.VK_Z)
 			stillHoldingZ = false;
+		if (e.getKeyCode() == KeyEvent.VK_X) {
+			stillHoldingX = false;
+		}
 		if(e.getKeyCode() == KeyEvent.VK_C)
 			stillHoldingC = false;
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
@@ -97,6 +102,14 @@ public class KeyManager implements KeyListener{
 	public void setStillHoldingZ(boolean stillHoldingZ)
 	{
 		this.stillHoldingZ = stillHoldingZ;
+	}
+
+	public boolean isStillHoldingX() {
+		return stillHoldingX;
+	}
+
+	public void setStillHoldingX(boolean stillHoldingX) {
+		this.stillHoldingX = stillHoldingX;
 	}
 
 	public boolean isStillHoldingC()

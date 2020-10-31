@@ -61,6 +61,13 @@ public class TextboxHandler {
 
 	public void tick() {
 		if (!textFinished) {
+			if (handler.getKeyManager().x && !handler.getKeyManager().isStillHoldingX()) {
+				handler.getKeyManager().setStillHoldingX(true);
+				textFinished = true;
+				while (!currentTextbox.getCurrentText(currentLine + 1).isEmpty()) {
+					currentLine++;
+				}
+			}
 			String lineText = currentTextbox.getCurrentText(currentLine);
 			if (index > lineText.length()) {
 				if (!currentTextbox.getCurrentText(currentLine + 1).isEmpty()) {
@@ -124,45 +131,26 @@ public class TextboxHandler {
 
 	public void render(Graphics g) {
 		if (firstTime) {
-			metrics = g.getFontMetrics(font);
-			if (metrics.getHeight() < textboxRect.height / 3) {
-				font = FontUtils.scaleFontUpVertically(new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3), g, font);
-			} else {
-				font = FontUtils.scaleFontDownVertically(new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3), g, font);
-			}
-			//scale to char minimum
-			metrics = g.getFontMetrics(font);
-			if (metrics.stringWidth(" ") * minimumLineLength > textboxRect.getWidth()) {
-				while (metrics.stringWidth(" ") * minimumLineLength > textboxRect.getWidth()) {
-					font = font.deriveFont(font.getSize() - 1.0f);
-					metrics = g.getFontMetrics(font);
-				}
-			}
-			createTextboxes(g);
-			topRect.y += topRect.height / 2 + metrics.getAscent() / 2;
-			midRect.y += midRect.height / 2 + metrics.getAscent() / 2;
-			botRect.y += botRect.height / 2 + metrics.getAscent() / 2;
-			optionsIncrement = metrics.getHeight();
-			if (options != null) {
-				xStartOptions = handler.getWidth() / 12;
-				yStartOptions = handler.getHeight() / 4;
-				minimumOptionsLength = getLongestStringLength(options) + 3;
-			}
-
-			firstTime = false;
+			initGraphics(g);
 		}
 		g.drawImage(Assets.textbox, xStart, yStart, xEnd - xStart, yEnd - yStart, null);
 		g.setFont(font);
 		g.setColor(fontColor);
-		if (currentLine == 1) {
-			g.drawString(currentText, topRect.x, topRect.y);
-		} else if (currentLine == 2) {
-			g.drawString(currentTextbox.getLineOne(), topRect.x, topRect.y);
-			g.drawString(currentText, midRect.x, midRect.y);
-		} else if (currentLine == 3) {
+		if (textFinished) {
 			g.drawString(currentTextbox.getLineOne(), topRect.x, topRect.y);
 			g.drawString(currentTextbox.getLineTwo(), midRect.x, midRect.y);
-			g.drawString(currentText, botRect.x, botRect.y);
+			g.drawString(currentTextbox.getLineThree(), botRect.x, botRect.y);
+		} else {
+			if (currentLine == 1) {
+				g.drawString(currentText, topRect.x, topRect.y);
+			} else if (currentLine == 2) {
+				g.drawString(currentTextbox.getLineOne(), topRect.x, topRect.y);
+				g.drawString(currentText, midRect.x, midRect.y);
+			} else if (currentLine == 3) {
+				g.drawString(currentTextbox.getLineOne(), topRect.x, topRect.y);
+				g.drawString(currentTextbox.getLineTwo(), midRect.x, midRect.y);
+				g.drawString(currentText, botRect.x, botRect.y);
+			}
 		}
 		if (viewingOptions) {
 			g.drawImage(Assets.textboxOptions, xStartOptions, yStartOptions, minimumOptionsLength * metrics.stringWidth(" "), optionsIncrement * options.length + metrics.getAscent() / 2, null);
@@ -173,6 +161,35 @@ public class TextboxHandler {
 			g.setFont(Assets.philosopher.deriveFont((float) font.getSize()));
 			g.drawString(">", xStartOptions + (int) (metrics.stringWidth(">") * 0.25), yStartOptions + (optionsIndex + 1) * optionsIncrement);
 		}
+	}
+
+	private void initGraphics(Graphics g) {
+		metrics = g.getFontMetrics(font);
+		if (metrics.getHeight() < textboxRect.height / 3) {
+			font = FontUtils.scaleFontUpVertically(new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3), g, font);
+		} else {
+			font = FontUtils.scaleFontDownVertically(new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3), g, font);
+		}
+		//scale to char minimum
+		metrics = g.getFontMetrics(font);
+		if (metrics.stringWidth(" ") * minimumLineLength > textboxRect.getWidth()) {
+			while (metrics.stringWidth(" ") * minimumLineLength > textboxRect.getWidth()) {
+				font = font.deriveFont(font.getSize() - 1.0f);
+				metrics = g.getFontMetrics(font);
+			}
+		}
+		createTextboxes(g);
+		topRect.y += topRect.height / 2 + metrics.getAscent() / 2;
+		midRect.y += midRect.height / 2 + metrics.getAscent() / 2;
+		botRect.y += botRect.height / 2 + metrics.getAscent() / 2;
+		optionsIncrement = metrics.getHeight();
+		if (options != null) {
+			xStartOptions = handler.getWidth() / 12;
+			yStartOptions = handler.getHeight() / 4;
+			minimumOptionsLength = getLongestStringLength(options) + 3;
+		}
+
+		firstTime = false;
 	}
 
 	private void createTextboxes(Graphics g) {

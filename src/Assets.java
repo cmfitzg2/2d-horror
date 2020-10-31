@@ -14,7 +14,11 @@ public class Assets {
 	public static BufferedImage dirt, grass, stone, tree, water, black, gray, darkStoneWall,
 			playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal;
 	public static BufferedImage wall, artFrame, artFrameSmall, artFrameSmallEmpty;
-	public static BufferedImage gallerySolace, galleryProphet;
+	public static BufferedImage galleryAbyss, galleryApparition, galleryBlight, galleryButcher, galleryCaptivity,
+			galleryCipher, galleryCondemnation, galleryDeluge, galleryDissonance, galleryDuty, galleryFacade,
+			galleryHarbinger, galleryHarrower, galleryHolocaust, galleryManifestation, galleryMoribund, galleryOblation,
+			galleryPerdition, galleryProcession, galleryProphet, galleryRevelry, gallerySenescence, gallerySolace,
+			gallerySuffering, gallerySynchronicity, galleryTorment, galleryVilomah;
 	public static BufferedImage textbox, textboxOptions;
 	public static BufferedImage inventory, inventoryHighlight, keyPreview;
 	public static BufferedImage[] activeInventoryHeader;
@@ -151,8 +155,33 @@ public class Assets {
 		artFrameSmall = ImageLoader.loadImage("/textures/artFrameSmall.png");
 		artFrameSmallEmpty = ImageLoader.loadImage("/textures/artFrameSmallEmpty.png");
 
-		gallerySolace = ImageLoader.loadImage("/textures/gallery/Solace.png");
+		galleryAbyss = ImageLoader.loadImage("/textures/gallery/Abyss.png");
+		galleryApparition = ImageLoader.loadImage("/textures/gallery/Apparition.png");
+		galleryBlight = ImageLoader.loadImage("/textures/gallery/Blight.png");
+		galleryButcher = ImageLoader.loadImage("/textures/gallery/Butcher.png");
+		galleryCaptivity = ImageLoader.loadImage("/textures/gallery/Captivity.png");
+		galleryCipher = ImageLoader.loadImage("/textures/gallery/Cipher.png");
+		galleryCondemnation = ImageLoader.loadImage("/textures/gallery/Condemnation.png");
+		galleryDeluge = ImageLoader.loadImage("/textures/gallery/Deluge.png");
+		galleryDissonance = ImageLoader.loadImage("/textures/gallery/Dissonance.png");
+		galleryDuty = ImageLoader.loadImage("/textures/gallery/Duty.png");
+		galleryFacade = ImageLoader.loadImage("/textures/gallery/Facade.png");
+		galleryHarbinger = ImageLoader.loadImage("/textures/gallery/Harbinger.png");
+		galleryHarrower = ImageLoader.loadImage("/textures/gallery/Harrower.png");
+		galleryHolocaust = ImageLoader.loadImage("/textures/gallery/Holocaust.png");
+		galleryManifestation = ImageLoader.loadImage("/textures/gallery/Manifestation.png");
+		galleryMoribund = ImageLoader.loadImage("/textures/gallery/Moribund.png");
+		galleryOblation = ImageLoader.loadImage("/textures/gallery/Oblation.png");
+		galleryPerdition = ImageLoader.loadImage("/textures/gallery/Perdition.png");
+		galleryProcession = ImageLoader.loadImage("/textures/gallery/Procession.png");
 		galleryProphet = ImageLoader.loadImage("/textures/gallery/Prophet.png");
+		galleryRevelry = ImageLoader.loadImage("/textures/gallery/Revelry.png");
+		gallerySenescence = ImageLoader.loadImage("/textures/gallery/Senescence.png");
+		gallerySolace = ImageLoader.loadImage("/textures/gallery/Solace.png");
+		gallerySuffering = ImageLoader.loadImage("/textures/gallery/Suffering.png");
+		gallerySynchronicity = ImageLoader.loadImage("/textures/gallery/Synchronicity.png");
+		galleryTorment = ImageLoader.loadImage("/textures/gallery/Torment.png");
+		galleryVilomah = ImageLoader.loadImage("/textures/gallery/Vilomah.png");
 	}
 
 	public static BufferedImage getArtworkByName(String name) {

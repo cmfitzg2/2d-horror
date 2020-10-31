@@ -48,7 +48,7 @@ public class ArtFrameSmall extends StaticEntity {
                         } else {
                             message = "Take the painting?";
                         }
-                        textboxHandler = new TextboxHandler(handler, textboxFont, message, options, 1, null);
+                        textboxHandler = new TextboxHandler(handler, textboxFont, message, options, 2, null);
                     }
                 }
             }

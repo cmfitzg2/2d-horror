@@ -91,10 +91,10 @@ public class Player extends Creature {
 
 
 			//collison box viewer
-		g.setColor(Color.RED);
+/*		g.setColor(Color.RED);
 		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
-				bounds.width, bounds.height);
+				bounds.width, bounds.height);*/
 
 			g.setFont(f);
 		}

@@ -39,14 +39,14 @@ public class World {
 	}
 	
 	public void tick() {
-		if(firstTime) {
-			if(world1_1) {
+		if (firstTime) {
+			if (world1_1) {
 				entityManager.addEntity(new Ghoul(handler, 875, 575, 96, 96));
-				entityManager.addEntity(new ArtFrameSmall(handler, 72, 8, 48, 48, "Solace", "A painting that appears to show one entity comforting another."));
+				entityManager.addEntity(new ArtFrameSmall(handler, 72, 8, 48, 48, "Solace", null));
 				entityManager.addEntity(new ArtFrameSmall(handler, 136, 8, 48, 48, "Prophet", null));
 				firstTime = false;
 			}
-			if(world2_1) {
+			if (world2_1) {
 				firstTime = false;
 			}
 		}

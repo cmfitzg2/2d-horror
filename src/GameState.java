@@ -75,11 +75,11 @@ public class GameState extends State {
 		} else if(handler.getWorldNumber() == 2) {
 			world2.render(graphics);
 			if (justTransitioned) {
-				handler.getWorld().getEntityManager().getPlayer().setX(1130);
+				handler.getWorld().getEntityManager().getPlayer().setX(2458);
 				handler.getWorld().getEntityManager().getPlayer().setY(304);
 				justTransitioned = false;
 			}
-			graphics.drawRect((int) (1200 - handler.getGameCamera().getxOffset()),(int) (320 - handler.getGameCamera().getyOffset()),10,64);
+			graphics.drawRect((int) (2528 - handler.getGameCamera().getxOffset()),(int) (320 - handler.getGameCamera().getyOffset()),10,64);
 		}
 		graphics.setColor(Color.WHITE);
 		graphics.setColor(Color.BLACK);
@@ -100,7 +100,7 @@ public class GameState extends State {
 		if(handler.getWorldNumber() == 1) {
 			loadZoneWest = new Rectangle((int) -handler.getGameCamera().getxOffset(),(int) (511 - handler.getGameCamera().getyOffset()),10,64);
 		} else if(handler.getWorldNumber() == 2) {
-			loadZoneEast = new Rectangle((int) (1200 - handler.getGameCamera().getxOffset()),(int) (320 - handler.getGameCamera().getyOffset()),10,64);
+			loadZoneEast = new Rectangle((int) (2528 - handler.getGameCamera().getxOffset()),(int) (320 - handler.getGameCamera().getyOffset()),10,64);
 		}
 	}
 
