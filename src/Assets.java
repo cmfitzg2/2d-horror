@@ -20,7 +20,12 @@ public class Assets {
 			galleryPerdition, galleryProcession, galleryProphet, galleryRevelry, gallerySenescence, gallerySolace,
 			gallerySuffering, gallerySynchronicity, galleryTorment, galleryVilomah;
 	public static BufferedImage textbox, textboxOptions;
-	public static BufferedImage inventory, inventoryHighlight, keyPreview;
+	public static BufferedImage inventory, inventoryHighlight, keyPreview, abyssPreview, apparitionPreview,
+			blightPreview, butcherPreview, captivityPreview, cipherPreview, condemnationPreview, delugePreview,
+			dissonancePreview, dutyPreview, facadePreview, harbingerPreview, harrowerPreview, holocaustPreview,
+			manifestationPreview, moribundPreview, oblationPreview, perditionPreview, processionPreview, prophetPreview,
+			revelryPreview, senescencePreview, solacePreview, sufferingPreview, synchronicityPreview, tormentPreview,
+			vilomahPreview;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
 	public static BufferedImage[] reflection_down, reflection_up, reflection_left, reflection_right;
@@ -59,6 +64,7 @@ public class Assets {
 		activeInventoryHeader[2] = inventoryActiveSheet.crop(535, 0, 268, 70);
 		inventory = ImageLoader.loadImage("/textures/inventory.png");
 		inventoryHighlight = ImageLoader.loadImage("/textures/inventory-highlight.png");
+
 		keyPreview = ImageLoader.loadImage("/textures/inventory/key.png");
 
 		player_down = new BufferedImage[4]; 		//4 = frame count
@@ -182,6 +188,34 @@ public class Assets {
 		gallerySynchronicity = ImageLoader.loadImage("/textures/gallery/Synchronicity.png");
 		galleryTorment = ImageLoader.loadImage("/textures/gallery/Torment.png");
 		galleryVilomah = ImageLoader.loadImage("/textures/gallery/Vilomah.png");
+
+		abyssPreview = ImageLoader.loadImage("/textures/inventory/Abyss.png");
+		apparitionPreview = ImageLoader.loadImage("/textures/inventory/Apparition.png");
+		blightPreview = ImageLoader.loadImage("/textures/inventory/Blight.png");
+		butcherPreview = ImageLoader.loadImage("/textures/inventory/Butcher.png");
+		captivityPreview = ImageLoader.loadImage("/textures/inventory/Captivity.png");
+		cipherPreview = ImageLoader.loadImage("/textures/inventory/Cipher.png");
+		condemnationPreview = ImageLoader.loadImage("/textures/inventory/Condemnation.png");
+		delugePreview = ImageLoader.loadImage("/textures/inventory/Deluge.png");
+		dissonancePreview = ImageLoader.loadImage("/textures/inventory/Dissonance.png");
+		dutyPreview = ImageLoader.loadImage("/textures/inventory/Duty.png");
+		facadePreview = ImageLoader.loadImage("/textures/inventory/Facade.png");
+		harbingerPreview = ImageLoader.loadImage("/textures/inventory/Harbinger.png");
+		harrowerPreview = ImageLoader.loadImage("/textures/inventory/Harrower.png");
+		holocaustPreview = ImageLoader.loadImage("/textures/inventory/Holocaust.png");
+		manifestationPreview = ImageLoader.loadImage("/textures/inventory/Manifestation.png");
+		moribundPreview = ImageLoader.loadImage("/textures/inventory/Moribund.png");
+		oblationPreview = ImageLoader.loadImage("/textures/inventory/Oblation.png");
+		perditionPreview = ImageLoader.loadImage("/textures/inventory/Perdition.png");
+		processionPreview = ImageLoader.loadImage("/textures/inventory/Procession.png");
+		prophetPreview = ImageLoader.loadImage("/textures/inventory/Prophet.png");
+		revelryPreview = ImageLoader.loadImage("/textures/inventory/Revelry.png");
+		senescencePreview = ImageLoader.loadImage("/textures/inventory/Senescence.png");
+		solacePreview = ImageLoader.loadImage("/textures/inventory/Solace.png");
+		sufferingPreview = ImageLoader.loadImage("/textures/inventory/Suffering.png");
+		synchronicityPreview = ImageLoader.loadImage("/textures/inventory/Synchronicity.png");
+		tormentPreview = ImageLoader.loadImage("/textures/inventory/Torment.png");
+		vilomahPreview = ImageLoader.loadImage("/textures/inventory/Vilomah.png");
 	}
 
 	public static BufferedImage getArtworkByName(String name) {

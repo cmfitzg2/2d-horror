@@ -42,8 +42,8 @@ public class World {
 		if (firstTime) {
 			if (world1_1) {
 				entityManager.addEntity(new Ghoul(handler, 875, 575, 96, 96));
-				entityManager.addEntity(new ArtFrameSmall(handler, 72, 8, 48, 48, "Solace", null));
-				entityManager.addEntity(new ArtFrameSmall(handler, 136, 8, 48, 48, "Prophet", null));
+				entityManager.addEntity(new ArtFrameSmall(handler, 72, 8, 48, 48, "Solace", null, Assets.solacePreview));
+				entityManager.addEntity(new ArtFrameSmall(handler, 136, 8, 48, 48, "Prophet", null, Assets.prophetPreview));
 				firstTime = false;
 			}
 			if (world2_1) {

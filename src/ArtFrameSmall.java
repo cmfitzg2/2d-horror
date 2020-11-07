@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class ArtFrameSmall extends StaticEntity {
     private String paintingName;
@@ -6,12 +7,13 @@ public class ArtFrameSmall extends StaticEntity {
     private Font textboxFont;
     String[] options = {"Yes", "No"};
     String description = "A painting taken from an art gallery";
+    BufferedImage previewImage;
     TextboxHandler textboxHandler;
     Inventory inventory;
     private boolean viewingTextbox;
     private boolean empty, open;
 
-    public ArtFrameSmall(Handler handler, float x, float y, int width, int height, String paintingName, String description) {
+    public ArtFrameSmall(Handler handler, float x, float y, int width, int height, String paintingName, String description, BufferedImage previewImage) {
         super(handler, x, y, width, height);
         bounds.x = 0;
         bounds.y = 0;
@@ -21,6 +23,7 @@ public class ArtFrameSmall extends StaticEntity {
         if (description != null && !description.isEmpty()) {
             this.description = description;
         }
+        this.previewImage = previewImage;
         inventory = handler.getPlayer().getInventory();
         textboxFont = Assets.textboxDefault.deriveFont(Font.ITALIC, 28.0f);
     }
@@ -69,13 +72,14 @@ public class ArtFrameSmall extends StaticEntity {
         if (option.equals("Yes")) {
             if (!inventory.contains("Painting")) {
                 //we are definitely taking the painting from the wall
-                inventory.addItem(new Item("Painting", Inventory.REGULAR_ITEM, description, paintingName, null));
+                inventory.addItem(new Item("Painting", Inventory.REGULAR_ITEM, description, paintingName, previewImage));
                 empty = true;
             } else {
                 Item inventoryPainting = inventory.getItemByGenericName("Painting", Inventory.REGULAR_ITEM);
                 if (null != inventoryPainting) {
                     String inventoryPaintingName = inventoryPainting.getUniqueName();
                     String inventoryPaintingDescription = inventoryPainting.getDescription();
+                    BufferedImage inventoryPreviewImage = inventoryPainting.getPreviewImage();
                     if (empty) {
                         //putting the painting in our inventory onto this empty frame
                         description = inventoryPaintingDescription;
@@ -85,7 +89,9 @@ public class ArtFrameSmall extends StaticEntity {
                         //swapping the one in our inventory with this one
                         inventoryPainting.setUniqueName(paintingName);
                         inventoryPainting.setDescription(description);
+                        inventoryPainting.setPreviewImage(previewImage);
                         description = inventoryPaintingDescription;
+                        previewImage = inventoryPreviewImage;
                     }
                     paintingName = inventoryPaintingName;
                 }
