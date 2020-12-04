@@ -2,8 +2,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Player extends Creature {
-	private static boolean down = false, up = false, left = false, right = false;
-	private boolean interactedWith = false, textboxOpen;
+	private static boolean down, up, left, right;
+	private boolean interactedWith, textboxOpen, transparent;
 	private Inventory inventory;
 	//Animations	
 	private Animation animDown, animUp, animLeft, animRight;
@@ -72,16 +72,40 @@ public class Player extends Creature {
 	public void render(Graphics g) {
 		if (handler.isPlayerFrozen()) {
 			if (!handler.getFlags().isViewingArt()) {
-				if (up)
-					g.drawImage(Assets.playerUpNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-				else if (down)
-					g.drawImage(Assets.playerDownNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-				else if (left)
-					g.drawImage(Assets.playerLeftNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-				else if (right)
-					g.drawImage(Assets.playerRightNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				if (up) {
+					if (!transparent) {
+						g.drawImage(Assets.playerUpNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					} else {
+						g.drawImage(Assets.playerUpTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					}
+				}
+				else if (down) {
+					if (!transparent) {
+						g.drawImage(Assets.playerDownNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					} else {
+						g.drawImage(Assets.playerDownTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					}
+				}
+				else if (left) {
+					if (!transparent) {
+						g.drawImage(Assets.playerLeftNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					} else {
+						g.drawImage(Assets.playerLeftTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					}
+				}
+				else if (right) {
+					if (!transparent) {
+						g.drawImage(Assets.playerRightNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					} else {
+						g.drawImage(Assets.playerRightTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					}
+				}
 				else {
-					g.drawImage(Assets.playerDownNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					if (!transparent) {
+						g.drawImage(Assets.playerDownNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					} else {
+						g.drawImage(Assets.playerDownTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+					}
 				}
 			} else {
 				g.drawImage(Assets.wall, 0, 0, handler.getWidth(), handler.getHeight(), null);
@@ -202,52 +226,59 @@ public class Player extends Creature {
 	}
 
 	private BufferedImage getCurrentAnimationFrame() {
-		if(xMove<0)
-		{
+		if (xMove < 0) {
 			left = true; right = false; up = false; down = false;
 			return animLeft.getCurrentFrame();
-		}
-		else if(xMove>0)
-		{
+		} else if (xMove > 0) {
 			right = true; left = false; up = false; down = false;
 			return animRight.getCurrentFrame();
-		}
-		else if(yMove<0)
-		{
+		} else if (yMove < 0) {
 			up = true; left = false; right = false; down = false;
 			return animUp.getCurrentFrame();
-		}
-		else if(yMove>0)
-		{
+		} else if (yMove > 0) {
 			down = true; left = false; up = false; right = false;
 			return animDown.getCurrentFrame();
 		}
 		//not moving
-		else if(right)
-			return Assets.playerRightNormal;
-		else if(up)
-			return Assets.playerUpNormal;
-		else if(left)
-			return Assets.playerLeftNormal;
-		else
-			return Assets.playerDownNormal;
-
+		else {
+			if (!transparent) {
+				if (right) {
+					return Assets.playerRightNormal;
+				} else if (up) {
+					return Assets.playerUpNormal;
+				} else if (left) {
+					return Assets.playerLeftNormal;
+				} else {
+					return Assets.playerDownNormal;
+				}
+			} else {
+				if (right) {
+					return Assets.playerRightTransparent;
+				} else if (up) {
+					return Assets.playerUpTransparent;
+				} else if (left) {
+					return Assets.playerLeftTransparent;
+				} else {
+					return Assets.playerDownTransparent;
+				}
+			}
+		}
 	}
 
-	public boolean isInteracting()
-	{
+	public boolean isInteracting() {
 		return interactedWith;
 	}
-	public static Rectangle getPlayerRec() {
+
+	public Rectangle getPlayerRec() {
 		return playerRec;
 	}
 
 	public static String getDirection() {
-		if(up)
+		if (up)
 			return "up";
-		if(down)
+		if (down)
 			return "down";
-		if(left)
+		if (left)
 			return "left";
 		else return "right";
 	}
@@ -269,5 +300,13 @@ public class Player extends Creature {
 
 	public Inventory getInventory() {
 		return inventory;
+	}
+
+	public boolean isTransparent() {
+		return transparent;
+	}
+
+	public void setTransparent(boolean transparent) {
+		this.transparent = transparent;
 	}
 }

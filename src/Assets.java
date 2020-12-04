@@ -12,7 +12,8 @@ public class Assets {
 	private static final int width = 32, height = 32, biggerWidth = 48, biggerHeight = 48;
 	public static final int paintingWidth = 815, paintingHeight = 820;
 	public static BufferedImage dirt, grass, stone, tree, water, black, gray, darkStoneWall,
-			playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal;
+			playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal,
+			playerDownTransparent, playerUpTransparent, playerLeftTransparent, playerRightTransparent;
 	public static BufferedImage wall, artFrame, artFrameSmall, artFrameSmallEmpty;
 	public static BufferedImage galleryAbyss, galleryApparition, galleryBlight, galleryButcher, galleryCaptivity,
 			galleryCipher, galleryCondemnation, galleryDeluge, galleryDissonance, galleryDuty, galleryFacade,
@@ -26,6 +27,7 @@ public class Assets {
 			manifestationPreview, moribundPreview, oblationPreview, perditionPreview, processionPreview, prophetPreview,
 			revelryPreview, senescencePreview, solacePreview, sufferingPreview, synchronicityPreview, tormentPreview,
 			vilomahPreview;
+	public static BufferedImage hole;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
 	public static BufferedImage[] reflection_down, reflection_up, reflection_left, reflection_right;
@@ -52,6 +54,7 @@ public class Assets {
 		SpriteSheet reflectionSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characterclone.png"));
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
 		SpriteSheet playerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Charactersheet.png"));
+		SpriteSheet playerSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/Charactersheet-transparent.png"));
 		SpriteSheet ghoulSheet = new SpriteSheet(ImageLoader.loadImage("/textures/ghoul.png"));
 		SpriteSheet inventoryActiveSheet = new SpriteSheet(ImageLoader.loadImage("/textures/inventory-active-header.png"));
 
@@ -96,6 +99,11 @@ public class Assets {
 		playerLeftNormal = player_left[0];
 		playerRightNormal = player_right[0];
 		playerUpNormal = player_up[0];
+
+		playerDownTransparent = playerSheetTransparent.crop(0, 0, width, height);
+		playerUpTransparent = playerSheetTransparent.crop(0, height, width, height);
+		playerLeftTransparent = playerSheetTransparent.crop(0, height * 2, width, height);
+		playerRightTransparent = playerSheetTransparent.crop(0, height * 3, width, height);
 
 		reflection_down = new BufferedImage[4];
 		reflection_up = new BufferedImage[4];
@@ -216,6 +224,8 @@ public class Assets {
 		synchronicityPreview = ImageLoader.loadImage("/textures/inventory/Synchronicity.png");
 		tormentPreview = ImageLoader.loadImage("/textures/inventory/Torment.png");
 		vilomahPreview = ImageLoader.loadImage("/textures/inventory/Vilomah.png");
+
+		hole = ImageLoader.loadImage("/textures/hole.png");
 	}
 
 	public static BufferedImage getArtworkByName(String name) {

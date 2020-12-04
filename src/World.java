@@ -19,19 +19,19 @@ public class World {
 	public World(Handler handler, String path) {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
-		
+
 		if(path.equals("world1.txt")) {
 			firstTime = true;
 			world1_1 = true;
 			world2_1 = false;
 		}
-		
+
 		if(path.equals("world2.txt")) {
 			firstTime = true;
 			world1_1 = false;
 			world2_1 = true;
 		}
-		
+
 		loadWorld(path);
 		//entityManager.getPlayer().setX(spawnX);
 		//entityManager.getPlayer().setY(spawnY);
@@ -41,9 +41,10 @@ public class World {
 	public void tick() {
 		if (firstTime) {
 			if (world1_1) {
-				entityManager.addEntity(new Ghoul(handler, 875, 575, 96, 96));
+				//entityManager.addEntity(new Ghoul(handler, 875, 575, 96, 96));
 				entityManager.addEntity(new ArtFrameSmall(handler, 72, 8, 48, 48, "Solace", null, Assets.solacePreview));
 				entityManager.addEntity(new ArtFrameSmall(handler, 136, 8, 48, 48, "Prophet", null, Assets.prophetPreview));
+				entityManager.addEntity(new Hole(handler, 420, 420, 64, 64));
 				firstTime = false;
 			}
 			if (world2_1) {
@@ -59,10 +60,8 @@ public class World {
 		int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILEHEIGHT);
 		int yEnd = (int) Math.min(height, (handler.getGameCamera().getyOffset() + handler.getHeight()) / Tile.TILEHEIGHT + 1);
 		
-		for(int y=yStart; y<yEnd; y++)
-		{
-			for(int x=xStart; x<xEnd; x++)
-			{
+		for(int y=yStart; y<yEnd; y++) {
+			for(int x=xStart; x<xEnd; x++) {
 				getTile(x,y).render(g, (int) (x*Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
 										(int) (y*Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 			}

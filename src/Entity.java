@@ -11,6 +11,7 @@ public abstract class Entity {
 	protected int width, height;
 	protected boolean active = true;
 	protected Rectangle bounds;
+	protected boolean solid = true;
 	
 	public Entity(Handler handler, float x, float y, int width, int height) {
 		this.handler = handler;
@@ -47,21 +48,19 @@ public abstract class Entity {
 		}
 	}
 	
-	public boolean checkEntityCollisions(float xOffset, float yOffset)
-	{
-		for(Entity e : handler.getWorld().getEntityManager().getEntities())
-		{
-			if(e.equals(this))
+	public boolean checkEntityCollisions(float xOffset, float yOffset) {
+		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
+			if (e.equals(this)) {
 				continue;
-			if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset)))
+			}
+			if (e.solid && e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))) {
 				return true;
+			}
 		}
-		
 		return false;
 	}
 	
-	public Rectangle getCollisionBounds(float xOffset, float yOffset)
-	{
+	public Rectangle getCollisionBounds(float xOffset, float yOffset) {
 		return new Rectangle((int) (x+bounds.x+xOffset), (int) (y+bounds.y+yOffset), bounds.width, bounds.height);
 	}
 
