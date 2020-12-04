@@ -39,14 +39,14 @@ public class Assets {
 	public static void init() {
 		try {
 			//create the font to use. Specify the size!
-			sans = Font.createFont(Font.TRUETYPE_FONT, new File("sans.ttf")).deriveFont(36f);
-			serif = Font.createFont(Font.TRUETYPE_FONT, new File("serif.ttf")).deriveFont(36f);
-			philosopher = Font.createFont(Font.TRUETYPE_FONT, new File("philosopher.ttf")).deriveFont(36f);
-			textboxDefault = Font.createFont(Font.TRUETYPE_FONT, new File("uwch.ttf")).deriveFont(128f);
+			sans = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")).deriveFont(36f);
+			serif = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/serif.ttf")).deriveFont(36f);
+			philosopher = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/philosopher.ttf")).deriveFont(36f);
+			textboxDefault = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")).deriveFont(128f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			//register the font
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("sans.ttf")));
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("serif.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/serif.ttf")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch(FontFormatException e) {

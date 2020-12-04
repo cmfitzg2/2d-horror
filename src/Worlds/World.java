@@ -8,7 +8,7 @@ import Tiles.Tile;
 import java.awt.Graphics;
 import Utils.Utils;
 
-public class World {
+public abstract class World {
 	private Handler handler;
 	private int width, height, spawnX, spawnY;
 	private int[][] tiles;
@@ -19,18 +19,17 @@ public class World {
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
-
-	public World(Handler handler, String path) {
+	public World(Handler handler, String path, int id) {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		loadWorld(path);
 	}
 	
-	public void tick() {
+	public abstract void tick();
 
-	}
-	
-	public void render(Graphics g) {
+	public abstract void render(Graphics g);
+
+	public void renderTiles(Graphics g) {
 		int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILEWIDTH);
 		int xEnd = (int) Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth()) / Tile.TILEWIDTH + 1);
 		int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILEHEIGHT);
