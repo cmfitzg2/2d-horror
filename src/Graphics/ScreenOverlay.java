@@ -17,12 +17,12 @@ public class ScreenOverlay {
 		gameHeight = handler.getGame().getHeight();
 	}
 	
-	public void overlayScreen(Graphics graphics, Color c) {
-		graphics.setColor(c);
-		graphics.fillRect(0, 0, gameWidth, gameHeight);
+	public void overlayScreen(Graphics g, Color c) {
+		g.setColor(c);
+		g.fillRect(0, 0, gameWidth, gameHeight);
 	}
 
-	public void drawVision(Graphics graphics) {
+	public void drawVision(Graphics g) {
 		if (!handler.getFlags().isVisionLimited() || handler.getFlags().isViewingArt()) {
 			return;
 		}
@@ -65,18 +65,18 @@ public class ScreenOverlay {
 		}
 
 		if (handler.getFlags().isVisionLimited()) {
-			overlayScreen(graphics, new Color(0, 0, 120, 100));
-			graphics.drawImage(Assets.tunnelVision[Assets.tunnelVision.length - 1], xDrawFrom, yDrawFrom, xScale, yScale, null);
+			overlayScreen(g, new Color(0, 0, 120, 100));
+			g.drawImage(Assets.tunnelVision[Assets.tunnelVision.length - 1], xDrawFrom, yDrawFrom, xScale, yScale, null);
 		}
 	}
 
-	public void drawArt(Graphics graphics, BufferedImage art) {
+	public void drawArt(Graphics g, BufferedImage art) {
 		int scale = 1;
 		if (!handler.getFlags().isViewingArt()) {
 			return;
 		}
 		//this texture looks alright even when it's stretched so let's not worry about constraints and just fill the window
-		graphics.drawImage(Assets.wall, 0, 0, handler.getWidth(), handler.getHeight(), null);
+		g.drawImage(Assets.wall, 0, 0, handler.getWidth(), handler.getHeight(), null);
 
 		//find the smaller dimension and constrain it to that one
 		if (handler.getWidth() < handler.getHeight()) {
@@ -88,7 +88,7 @@ public class ScreenOverlay {
 				scale++;
 			}
 		}
-		graphics.drawImage(art, handler.getWidth() / 2 - (Assets.paintingWidth / (2 * scale)),
+		g.drawImage(art, handler.getWidth() / 2 - (Assets.paintingWidth / (2 * scale)),
 				handler.getHeight() / 2 - (Assets.paintingHeight / (2 * scale)),
 				Assets.paintingWidth / scale, Assets.paintingHeight / scale, null);
 

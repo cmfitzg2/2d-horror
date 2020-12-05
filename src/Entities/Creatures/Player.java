@@ -1,11 +1,14 @@
 package Entities.Creatures;
 
 import Entities.Entity;
+import Entities.EntityManager;
 import Game.Handler;
 import Items.Inventory;
 import Graphics.Animation;
 import Graphics.Assets;
 import Graphics.ScreenOverlay;
+import Worlds.World;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -139,8 +142,8 @@ public class Player extends Creature {
 		drawTextboxes(g);
 		g.setColor(Color.WHITE);
 		g.setFont(f);
-		g.drawString("Current (x,y): (" + handler.getWorld().getEntityManager().getPlayer().x + ", "
-				+ handler.getWorld().getEntityManager().getPlayer().y + ")", 16, handler.getHeight() - 16);
+		g.drawString("Current (x,y): (" + handler.getActiveWorld().getEntityManager().getPlayer().x + ", "
+				+ handler.getActiveWorld().getEntityManager().getPlayer().y + ")", 16, handler.getHeight() - 16);
 	}
 
 	private void currentPlayerRectangle() {
@@ -215,7 +218,7 @@ public class Player extends Creature {
 				if (!handler.getKeyManager().isStillHoldingZ()) {
 					handler.getKeyManager().setStillHoldingZ(true);
 
-					for (Entity e : handler.getWorld().getEntityManager().getEntities()) {
+					for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
 						if (e.equals(this)) {                   //an entity cannot interact with itself
 							continue;
 						}

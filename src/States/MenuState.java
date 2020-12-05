@@ -89,26 +89,26 @@ public class MenuState extends State {
 	}
 
 	@Override
-	public void render(Graphics graphics) {
-		fm = graphics.getFontMetrics(menuFont);
+	public void render(Graphics g) {
+		fm = g.getFontMetrics(menuFont);
 		verticalSpace = fm.getAscent() * 3;
-		graphics.setColor(Color.WHITE);
+		g.setColor(Color.WHITE);
 		if ((fadeOut || fadeIn) && !fadeFinished) {
-			GeneralUtils.drawCenteredString(graphics, "spooky game", new Rectangle(0, 0, handler.getWidth(), handler.getHeight()), menuFont);
+			GeneralUtils.drawCenteredString(g, "spooky game", new Rectangle(0, 0, handler.getWidth(), handler.getHeight()), menuFont);
 		}
 
 		if (fadeFinished) {
 			for (int i = 0; i < menuOptions.size(); i++) {
 				Rectangle r = new Rectangle(0, 0, handler.getWidth(), handler.getHeight() + calculateYOffset(i));
 				if (i == yIndex) {
-					graphics.setColor(Color.YELLOW);
+					g.setColor(Color.YELLOW);
 					Rectangle cursor = new Rectangle(r);
 					cursor.x -= fm.stringWidth(menuOptions.get(i)) / 2 + fm.stringWidth(">");
-					GeneralUtils.drawCenteredString(graphics, ">", cursor, menuFont);
-					GeneralUtils.drawCenteredString(graphics, menuOptions.get(i), r, menuFont);
+					GeneralUtils.drawCenteredString(g, ">", cursor, menuFont);
+					GeneralUtils.drawCenteredString(g, menuOptions.get(i), r, menuFont);
 				} else {
-					graphics.setColor(Color.WHITE);
-					GeneralUtils.drawCenteredString(graphics, menuOptions.get(i), r, menuFont);
+					g.setColor(Color.WHITE);
+					GeneralUtils.drawCenteredString(g, menuOptions.get(i), r, menuFont);
 				}
 			}
 		}
@@ -117,7 +117,7 @@ public class MenuState extends State {
 			if (alpha > 0) {
 				alpha--;
 				if (alpha >= 0)
-					screenOverlay.overlayScreen(graphics, new Color(0, 0, 0, alpha));
+					screenOverlay.overlayScreen(g, new Color(0, 0, 0, alpha));
 			} else {
 				fadeOut = true;
 				fadeIn = false;
@@ -130,9 +130,9 @@ public class MenuState extends State {
 				musicControl.setValue(volume > -80 ? volume : -80);
 			}
 			if (alpha < 256) {
-				screenOverlay.overlayScreen(graphics, new Color(0, 0, 0, alpha));
+				screenOverlay.overlayScreen(g, new Color(0, 0, 0, alpha));
 			} else {
-				screenOverlay.overlayScreen(graphics, new Color(0, 0, 0, 255));
+				screenOverlay.overlayScreen(g, new Color(0, 0, 0, 255));
 				if (fadeFinished) {
 					State.setState(handler.getGame().gameState);
 					music.stop();
@@ -142,7 +142,7 @@ public class MenuState extends State {
 		if (alpha >= 255 && !fadeFinished) {
 			fadeOut = false;
 			fadeFinished = true;
-			screenOverlay.overlayScreen(graphics, new Color(0, 0, 0, 255));
+			screenOverlay.overlayScreen(g, new Color(0, 0, 0, 255));
 		}
 	}
 

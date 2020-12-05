@@ -24,8 +24,8 @@ public class Ghoul extends Creature {
 
     @Override
     public void tick() {
-        playerX = handler.getWorld().getEntityManager().getPlayer().getX();
-        playerY = handler.getWorld().getEntityManager().getPlayer().getY();
+        playerX = handler.getActiveWorld().getEntityManager().getPlayer().getX();
+        playerY = handler.getActiveWorld().getEntityManager().getPlayer().getY();
         adjustedX = x + (float) width / 4;
         adjustedY = y + (float) height / 4;
 

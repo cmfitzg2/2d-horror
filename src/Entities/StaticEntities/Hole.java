@@ -80,7 +80,7 @@ public class Hole extends StaticEntity {
 
     @Override
     public void die() {
-        handler.getWorld().getEntityManager().removeEntity(this);
+        handler.getActiveWorld().getEntityManager().removeEntity(this);
     }
 
     @Override

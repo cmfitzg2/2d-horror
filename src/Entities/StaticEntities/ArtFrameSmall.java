@@ -19,6 +19,7 @@ public class ArtFrameSmall extends StaticEntity {
     Inventory inventory;
     private boolean viewingTextbox;
     private boolean empty, open;
+    private boolean firstTime = true;
 
     public ArtFrameSmall(Handler handler, float x, float y, int width, int height, String paintingName, String description, BufferedImage previewImage) {
         super(handler, x, y, width, height);
@@ -31,12 +32,15 @@ public class ArtFrameSmall extends StaticEntity {
             this.description = description;
         }
         this.previewImage = previewImage;
-        inventory = handler.getPlayer().getInventory();
         textboxFont = Assets.textboxDefault.deriveFont(Font.ITALIC, 28.0f);
     }
 
     @Override
     public void tick() {
+        if (firstTime) {
+            inventory = handler.getPlayer().getInventory();
+            firstTime = false;
+        }
         if (open) {
             if (viewingTextbox) {
                 textboxHandler.tick();

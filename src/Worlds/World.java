@@ -4,30 +4,36 @@ import Entities.Creatures.Player;
 import Entities.EntityManager;
 import Game.Handler;
 import Tiles.Tile;
-
 import java.awt.Graphics;
 import Utils.Utils;
 
 public abstract class World {
-	private Handler handler;
-	private int width, height, spawnX, spawnY;
+	protected Handler handler;
+	private int width, height, id, spawnX, spawnY;
 	private int[][] tiles;
+	private String path;
 	private boolean firstTime = true;
 	//Entities
-	private EntityManager entityManager;
-	
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-	public World(Handler handler, String path, int id) {
+	protected EntityManager entityManager;
+
+	public World(Handler handler, String path, int id, Player player) {
 		this.handler = handler;
-		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		this.id = id;
+		this.path = path;
+		if (null != player) {
+			handler.setPlayer(player);
+			entityManager = new EntityManager(handler, player);
+		} else {
+			entityManager = new EntityManager(handler, handler.getPlayer());
+		}
 		loadWorld(path);
 	}
 	
 	public abstract void tick();
 
 	public abstract void render(Graphics g);
+
+	public abstract void checkLoadZones();
 
 	public void renderTiles(Graphics g) {
 		int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILEWIDTH);
@@ -62,20 +68,22 @@ public abstract class World {
 		spawnY = Utils.parseInt(tokens[3]);
 		
 		tiles = new int[width][height];
-		for(int y=0; y<height; y++) {
-			for(int x=0; x<width; x++) {
-				tiles[x][y] = Utils.parseInt(tokens[(x + y*width) + 4]);
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
 			}
 		}
 	}
 	
-	public int getWidth()
-	{
+	public int getWidth() {
 		return width;
 	}
 	
-	public int getHeight()
-	{
+	public int getHeight() {
 		return height;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 }

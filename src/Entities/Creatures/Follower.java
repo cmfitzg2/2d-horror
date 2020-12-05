@@ -28,8 +28,8 @@ public class Follower extends Creature {
 
 	@Override
 	public void tick() {
-		playerX = handler.getWorld().getEntityManager().getPlayer().getX();
-		playerY = handler.getWorld().getEntityManager().getPlayer().getY();
+		playerX = handler.getActiveWorld().getEntityManager().getPlayer().getX();
+		playerY = handler.getActiveWorld().getEntityManager().getPlayer().getY();
 
 		xMove = 0;
 		yMove = 0;

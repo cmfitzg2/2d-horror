@@ -1,33 +1,31 @@
 package States;
 
-import Entities.Creatures.Player;
-import Entities.EntityManager;
 import Game.Handler;
 import java.awt.Graphics;
 import Graphics.ScreenOverlay;
 import Worlds.World1;
+import Worlds.WorldManager;
 
 public class GameState extends State {
 	private ScreenOverlay screenOverlay;
-	//Entities
-	private EntityManager entityManager;
+
+	//Worlds
+	private WorldManager worldManager;
 
 	public GameState(Handler handler) {
 		super(handler);
-		World1 world1 = new World1(handler, "res/worlds/world1.txt", 3);
 		screenOverlay = new ScreenOverlay(handler);
-		handler.setWorld(world1);
-		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		worldManager = new WorldManager(handler, new World1(handler, "res/worlds/world1.txt", 1));
+		handler.setWorldManager(worldManager);
 	}
 
 	@Override
 	public void tick() {
-		entityManager.tick();
+		worldManager.tick();
 	}
 
 	@Override
-	public void render(Graphics graphics) {
-		entityManager.render(graphics);
+	public void render(Graphics g) {
+		worldManager.render(g);
 	}
-
 }

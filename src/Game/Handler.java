@@ -1,19 +1,21 @@
 package Game;
 
 import Entities.Creatures.Player;
-import Game.Game;
 import Graphics.GameCamera;
 import Graphics.ScreenOverlay;
 import Input.KeyManager;
 import Input.MouseManager;
 import Worlds.World;
+import Worlds.WorldManager;
 
 public class Handler {
 	private Game game;
-	private World world;
+	private World activeWorld;
 	private Flags flags;
 	private boolean playerFrozen = false, isInMenu = false, gamePaused = false;
 	private int worldNumber = 1;
+	private WorldManager worldManager;
+	private Player player;
 
 	public Handler(Game game)
 	{
@@ -63,12 +65,12 @@ public class Handler {
 		this.game = game;
 	}
 
-	public World getWorld() {
-		return world;
+	public World getActiveWorld() {
+		return activeWorld;
 	}
 
-	public void setWorld(World world) {
-		this.world = world;
+	public void setActiveWorld(World world) {
+		this.activeWorld = world;
 	}
 
 	public int getWorldNumber()
@@ -89,10 +91,6 @@ public class Handler {
 		this.flags = flags;
 	}
 
-	public Player getPlayer() {
-		return world.getEntityManager().getPlayer();
-	}
-
 	public ScreenOverlay getScreenOverlay() {
 		return game.getScreenOverlay();
 	}
@@ -111,5 +109,21 @@ public class Handler {
 
 	public void setGamePaused(boolean gamePaused) {
 		this.gamePaused = gamePaused;
+	}
+
+	public WorldManager getWorldManager() {
+		return worldManager;
+	}
+
+	public void setWorldManager(WorldManager worldManager) {
+		this.worldManager = worldManager;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 }

@@ -21,7 +21,7 @@ public class Game implements Runnable {
 	private boolean running = false;
 
 	private BufferStrategy bufferStrategy;
-	private Graphics graphics;
+	private Graphics g;
 
 	//Screen fading
 	public ScreenOverlay screenOverlay;
@@ -87,38 +87,38 @@ public class Game implements Runnable {
 			display.getCanvas().createBufferStrategy(3);
 			return;
 		}
-		graphics = bufferStrategy.getDrawGraphics();
+		g = bufferStrategy.getDrawGraphics();
 		//clear screen
-		graphics.clearRect(0, 0, width, height);
+		g.clearRect(0, 0, width, height);
 
 		//draw
 		if(State.getState() != null)
-			State.getState().render(graphics);
+			State.getState().render(g);
 		else
 			System.out.println("no state");
 		if(fadeOut) {
 			alpha++;
 			if(alpha<=255) {
-				screenOverlay.overlayScreen(graphics, new Color(0, 0, 0, alpha));
+				screenOverlay.overlayScreen(g, new Color(0, 0, 0, alpha));
 			}
 			else {
-				screenOverlay.overlayScreen(graphics, new Color(0, 0, 0, 255));
+				screenOverlay.overlayScreen(g, new Color(0, 0, 0, 255));
 			}
 		}
 
 		if(fadeIn) {
 			alpha--;
 			if(alpha>=0) {
-				screenOverlay.overlayScreen(graphics, new Color(0, 0, 0, alpha));
+				screenOverlay.overlayScreen(g, new Color(0, 0, 0, alpha));
 			}
 			else {
-				screenOverlay.overlayScreen(graphics, new Color(0, 0, 0, 0));
+				screenOverlay.overlayScreen(g, new Color(0, 0, 0, 0));
 			}
 		}
 
 		//done drawing
 		bufferStrategy.show();
-		graphics.dispose();
+		g.dispose();
 	}
 	@Override
 	public void run()

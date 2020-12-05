@@ -314,29 +314,29 @@ public class Inventory {
         return null;
     }
 
-    public void render(Graphics graphics) {
+    public void render(Graphics g) {
         if (firstTime) {
             firstTime = false;
-            initFonts(graphics);
+            initFonts(g);
         }
         if (isOpen) {
             //debug
-            graphics.drawImage(Assets.inventory, 0, 0, handler.getWidth(), handler.getHeight(), null);
-            graphics.setColor(Color.CYAN);
-            graphics.drawRect(headersRect.x, headersRect.y, headersRect.width, headersRect.height);
-            graphics.setColor(Color.GREEN);
-            graphics.drawRect(itemsRect.x, itemsRect.y, itemsRect.width, itemsRect.height);
-            graphics.setColor(Color.MAGENTA);
-            graphics.drawRect(pictureRectBorderless.x, pictureRectBorderless.y, pictureRectBorderless.width, pictureRectBorderless.height);
-            graphics.setColor(Color.yellow);
-            graphics.drawRect(descriptionRect.x, descriptionRect.y, descriptionRect.width, descriptionRect.height);
+            g.drawImage(Assets.inventory, 0, 0, handler.getWidth(), handler.getHeight(), null);
+            g.setColor(Color.CYAN);
+            g.drawRect(headersRect.x, headersRect.y, headersRect.width, headersRect.height);
+            g.setColor(Color.GREEN);
+            g.drawRect(itemsRect.x, itemsRect.y, itemsRect.width, itemsRect.height);
+            g.setColor(Color.MAGENTA);
+            g.drawRect(pictureRectBorderless.x, pictureRectBorderless.y, pictureRectBorderless.width, pictureRectBorderless.height);
+            g.setColor(Color.yellow);
+            g.drawRect(descriptionRect.x, descriptionRect.y, descriptionRect.width, descriptionRect.height);
 
             //business logic
-            drawSectionHeaders(graphics);
+            drawSectionHeaders(g);
             if (!regularItems.isEmpty() || !keyItems.isEmpty()) {
-                drawText(graphics);
-                writeItemDescription(graphics);
-                drawItemPreview(graphics, pictureRectBorderless);
+                drawText(g);
+                writeItemDescription(g);
+                drawItemPreview(g, pictureRectBorderless);
             }
         }
     }
