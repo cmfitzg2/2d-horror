@@ -23,7 +23,6 @@ public class World1 extends World {
         checkLoadZones();
         if (entityManager.getPlayer().getX() > 1000 && entityManager.getPlayer().getY() > 1000) {
             World world2 = handler.getWorldManager().getWorld(2);
-            handler.setActiveWorld(world2);
             handler.getWorldManager().setActiveWorld(world2);
         }
     }
