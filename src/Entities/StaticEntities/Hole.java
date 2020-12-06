@@ -48,6 +48,7 @@ public class Hole extends StaticEntity {
             if (justStartedFalling) {
                 GeneralUtils.levelFadeOut(handler);
                 justStartedFalling = false;
+                Assets.woodBreak.play();
             }
             if (fallFrames - frameCounter >= 0) {
                 handler.getPlayer().setY(handler.getPlayer().getY() + 7);

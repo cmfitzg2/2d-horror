@@ -1,7 +1,11 @@
 package Graphics;
 
 import Utils.ImageLoader;
+import sun.applet.AppletAudioClip;
 
+import javax.sound.sampled.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -36,7 +40,28 @@ public class Assets {
 	public static BufferedImage[] ghoulDown, ghoulLeft, ghoulRight, ghoulUp;
 	public static BufferedImage[] tunnelVision;
 	public static Font sans, serif, philosopher, textboxDefault;
+	public static AudioClip menuMove, woodBreak;
+	public static Clip menuMusic;
 	public static void init() {
+		initSounds();
+		initFonts();
+		initSpriteSheets();
+		initStandaloneImages();
+	}
+
+	private static void initSounds() {
+		menuMove = Applet.newAudioClip(Assets.class.getResource("/sounds/menuMove.au"));
+		woodBreak = Applet.newAudioClip(Assets.class.getResource("/sounds/woodBreak.au"));
+		try {
+			menuMusic = AudioSystem.getClip();
+			AudioInputStream ais1 = AudioSystem.getAudioInputStream(new File("res/music/desolate.au"));
+			menuMusic.open(ais1);
+		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void initFonts() {
 		try {
 			//create the font to use. Specify the size!
 			sans = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")).deriveFont(36f);
@@ -47,31 +72,53 @@ public class Assets {
 			//register the font
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")));
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/serif.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/philosopher.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch(FontFormatException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static void initSpriteSheets() {
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
+		dirt = sheet.crop(0,0,width,height);
+		grass = sheet.crop(width, 0, width, height);
+		stone = sheet.crop(width*2, 0, width, height);
+		tree = sheet.crop(width*3, 0, width, height);
+		water = sheet.crop(0, height*2, width, height);
+		black = sheet.crop(width * 2, height * 3, width, height);
+		gray = sheet.crop(width*2, height*2, width, height);
+		darkStoneWall = sheet.crop(0, height, width, height);
 
 		SpriteSheet reflectionSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characterclone.png"));
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
+		reflection_down = new BufferedImage[4];
+		reflection_up = new BufferedImage[4];
+		reflection_left = new BufferedImage[4];
+		reflection_right = new BufferedImage[4];
+
+		reflection_down[0] = reflectionSheet.crop(0, 0, width, height);
+		reflection_down[1] = reflectionSheet.crop(width, 0, width, height);
+		reflection_down[2] = reflectionSheet.crop(width*2, 0, width, height);
+		reflection_down[3] = reflectionSheet.crop(width*3, 0, width, height);
+
+		reflection_up[0] = reflectionSheet.crop(0, height, width, height);
+		reflection_up[1] = reflectionSheet.crop(width, height, width, height);
+		reflection_up[2] = reflectionSheet.crop(width*2, height, width, height);
+		reflection_up[3] = reflectionSheet.crop(width*3, height, width, height);
+
+		reflection_left[0] = reflectionSheet.crop(0, height*2, width, height);
+		reflection_left[1] = reflectionSheet.crop(width, height*2, width, height);
+		reflection_left[2] = reflectionSheet.crop(width*2, height*2, width, height);
+		reflection_left[3] = reflectionSheet.crop(width*3, height*2, width, height);
+
+		reflection_right[0] = reflectionSheet.crop(0, height*3, width, height);
+		reflection_right[1] = reflectionSheet.crop(width, height*3, width, height);
+		reflection_right[2] = reflectionSheet.crop(width*2, height*3, width, height);
+		reflection_right[3] = reflectionSheet.crop(width*3, height*3, width, height);
+
 		SpriteSheet playerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Charactersheet.png"));
-		SpriteSheet playerSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/Charactersheet-transparent.png"));
-		SpriteSheet ghoulSheet = new SpriteSheet(ImageLoader.loadImage("/textures/ghoul.png"));
-		SpriteSheet inventoryActiveSheet = new SpriteSheet(ImageLoader.loadImage("/textures/inventory-active-header.png"));
-
-		textbox = ImageLoader.loadImage("/textures/tb.png");
-		textboxOptions = ImageLoader.loadImage("/textures/tb-options.png");
-
-		activeInventoryHeader = new BufferedImage[3];
-		activeInventoryHeader[0] = inventoryActiveSheet.crop(0, 0, 268, 70);
-		activeInventoryHeader[1] = inventoryActiveSheet.crop(268, 0, 268, 70);
-		activeInventoryHeader[2] = inventoryActiveSheet.crop(535, 0, 268, 70);
-		inventory = ImageLoader.loadImage("/textures/inventory.png");
-		inventoryHighlight = ImageLoader.loadImage("/textures/inventory-highlight.png");
-
-		keyPreview = ImageLoader.loadImage("/textures/inventory/key.png");
-
 		player_down = new BufferedImage[4]; 		//4 = frame count
 		player_up = new BufferedImage[4];
 		player_left = new BufferedImage[4];
@@ -102,36 +149,13 @@ public class Assets {
 		playerRightNormal = player_right[0];
 		playerUpNormal = player_up[0];
 
+		SpriteSheet playerSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/Charactersheet-transparent.png"));
 		playerDownTransparent = playerSheetTransparent.crop(0, 0, width, height);
 		playerUpTransparent = playerSheetTransparent.crop(0, height, width, height);
 		playerLeftTransparent = playerSheetTransparent.crop(0, height * 2, width, height);
 		playerRightTransparent = playerSheetTransparent.crop(0, height * 3, width, height);
 
-		reflection_down = new BufferedImage[4];
-		reflection_up = new BufferedImage[4];
-		reflection_left = new BufferedImage[4];
-		reflection_right = new BufferedImage[4];
-
-		reflection_down[0] = reflectionSheet.crop(0, 0, width, height);
-		reflection_down[1] = reflectionSheet.crop(width, 0, width, height);
-		reflection_down[2] = reflectionSheet.crop(width*2, 0, width, height);
-		reflection_down[3] = reflectionSheet.crop(width*3, 0, width, height);
-
-		reflection_up[0] = reflectionSheet.crop(0, height, width, height);
-		reflection_up[1] = reflectionSheet.crop(width, height, width, height);
-		reflection_up[2] = reflectionSheet.crop(width*2, height, width, height);
-		reflection_up[3] = reflectionSheet.crop(width*3, height, width, height);
-
-		reflection_left[0] = reflectionSheet.crop(0, height*2, width, height);
-		reflection_left[1] = reflectionSheet.crop(width, height*2, width, height);
-		reflection_left[2] = reflectionSheet.crop(width*2, height*2, width, height);
-		reflection_left[3] = reflectionSheet.crop(width*3, height*2, width, height);
-
-		reflection_right[0] = reflectionSheet.crop(0, height*3, width, height);
-		reflection_right[1] = reflectionSheet.crop(width, height*3, width, height);
-		reflection_right[2] = reflectionSheet.crop(width*2, height*3, width, height);
-		reflection_right[3] = reflectionSheet.crop(width*3, height*3, width, height);
-
+		SpriteSheet ghoulSheet = new SpriteSheet(ImageLoader.loadImage("/textures/ghoul.png"));
 		ghoulDown = new BufferedImage[3];
 		ghoulDown[0] = ghoulSheet.crop(0, 0, biggerWidth, biggerHeight);
 		ghoulDown[1] = ghoulSheet.crop(biggerWidth, 0, biggerWidth, biggerHeight);
@@ -152,19 +176,25 @@ public class Assets {
 		ghoulUp[1] = ghoulSheet.crop(biggerWidth, biggerHeight * 3, biggerWidth, biggerHeight);
 		ghoulUp[2] = ghoulSheet.crop(biggerWidth * 2, biggerHeight * 3, biggerWidth, biggerHeight);
 
+		SpriteSheet inventoryActiveSheet = new SpriteSheet(ImageLoader.loadImage("/textures/inventory-active-header.png"));
+		activeInventoryHeader = new BufferedImage[3];
+		activeInventoryHeader[0] = inventoryActiveSheet.crop(0, 0, 268, 70);
+		activeInventoryHeader[1] = inventoryActiveSheet.crop(268, 0, 268, 70);
+		activeInventoryHeader[2] = inventoryActiveSheet.crop(535, 0, 268, 70);
+	}
+
+	private static void initStandaloneImages() {
+		textbox = ImageLoader.loadImage("/textures/tb.png");
+		textboxOptions = ImageLoader.loadImage("/textures/tb-options.png");
+		inventory = ImageLoader.loadImage("/textures/inventory.png");
+		inventoryHighlight = ImageLoader.loadImage("/textures/inventory-highlight.png");
+
+		keyPreview = ImageLoader.loadImage("/textures/inventory/key.png");
+
 		tunnelVision = new BufferedImage[46];
-		for (int i = 0, j = 20; i < tunnelVision.length; i++, j+=2) {
+		for (int i = 0, j = 20; i < tunnelVision.length; i++, j += 2) {
 			tunnelVision[i] = ImageLoader.loadImage("/textures/reduced-vision/vision-" + j + "-75.png");
 		}
-
-		dirt = sheet.crop(0,0,width,height);
-		grass = sheet.crop(width, 0, width, height);
-		stone = sheet.crop(width*2, 0, width, height);
-		tree = sheet.crop(width*3, 0, width, height);
-		water = sheet.crop(0, height*2, width, height);
-		black = sheet.crop(width * 2, height * 3, width, height);
-		gray = sheet.crop(width*2, height*2, width, height);
-		darkStoneWall = sheet.crop(0, height, width, height);
 
 		wall = ImageLoader.loadImage("/textures/wall.png");
 		artFrame = ImageLoader.loadImage("/textures/artFrame.png");
@@ -228,16 +258,5 @@ public class Assets {
 		vilomahPreview = ImageLoader.loadImage("/textures/inventory/Vilomah.png");
 
 		hole = ImageLoader.loadImage("/textures/hole.png");
-	}
-
-	public static BufferedImage getArtworkByName(String name) {
-		switch (name) {
-			case "Solace":
-				return gallerySolace;
-			case "Prophet":
-				return galleryProphet;
-			default:
-				return artFrame;
-		}
 	}
 }

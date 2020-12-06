@@ -6,7 +6,8 @@ import Variables.Handler;
 import Worlds.World;
 
 import java.awt.*;
-import java.util.HashMap;
+import java.awt.image.BufferedImage;
+import Graphics.Assets;
 
 public class GeneralUtils {
 
@@ -42,5 +43,16 @@ public class GeneralUtils {
         handler.getWorldManager().setActiveWorld(newWorld);
         newWorld.getEntityManager().getPlayer().setX(newX);
         newWorld.getEntityManager().getPlayer().setY(newY);
+    }
+
+    public static BufferedImage getArtworkByName(String name) {
+        switch (name) {
+            case "Solace":
+                return Assets.gallerySolace;
+            case "Prophet":
+                return Assets.galleryProphet;
+            default:
+                return Assets.artFrame;
+        }
     }
 }

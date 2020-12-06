@@ -1,10 +1,7 @@
 package States;
 
 import javax.sound.sampled.*;
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.*;
-import java.io.File;
 import java.util.ArrayList;
 import Variables.Handler;
 import Graphics.Assets;
@@ -13,14 +10,11 @@ import Utils.GeneralUtils;
 
 public class MenuState extends State {
 	private Clip music;
-	private AudioClip menuMove;
 	private int alpha = 255;
 	private int yIndex;
 	private ScreenOverlay screenOverlay;
 	private Font menuFont;
 	private FontMetrics fm;
-	private int fontHeight;
-	private int fontWidth;
 	private int verticalSpace;
 	private java.util.List<String> menuOptions;
 	private boolean firstTime = true, fadeIn = false, fadeOut = false, fadeFinished = false;
@@ -62,19 +56,24 @@ public class MenuState extends State {
 				if (!handler.getKeyManager().isStillHoldingUp()) {
 					handler.getKeyManager().setStillHoldingUp(true);
 					moveCursor("up");
-					menuMove.play();
+					Assets.menuMove.play();
 				}
-			}
-			if (handler.getKeyManager().down) {
+			} else if (handler.getKeyManager().down) {
 				if (!handler.getKeyManager().isStillHoldingDown()) {
 					handler.getKeyManager().setStillHoldingDown(true);
 					moveCursor("down");
-					menuMove.play();
+					Assets.menuMove.play();
 				}
 			}
 			if (handler.getKeyManager().enter) {
 				if (!handler.getKeyManager().isStillholdingEnter()) {
 					handler.getKeyManager().setStillholdingEnter(true);
+					fadeOut = true;
+					alpha = 0;
+				}
+			} else if (handler.getKeyManager().z) {
+				if (!handler.getKeyManager().isStillHoldingZ()) {
+					handler.getKeyManager().setStillHoldingZ(true);
 					fadeOut = true;
 					alpha = 0;
 				}
@@ -189,10 +188,7 @@ public class MenuState extends State {
 
 	private void initSounds() {
 		try {
-			menuMove = Applet.newAudioClip(getClass().getResource("/sounds/menumove.au"));
-			music = AudioSystem.getClip();
-			AudioInputStream ais1 = AudioSystem.getAudioInputStream(new File("res/music/desolate.au"));
-			music.open(ais1);
+			music = Assets.menuMusic;
 			musicControl = (FloatControl) music.getControl(FloatControl.Type.MASTER_GAIN);
 			musicControl.setValue(0);
 			music.loop(Clip.LOOP_CONTINUOUSLY);

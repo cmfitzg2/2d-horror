@@ -1,5 +1,6 @@
 package Entities.StaticEntities;
 
+import Utils.GeneralUtils;
 import Variables.Handler;
 import Items.Inventory;
 import Items.Item;
@@ -137,7 +138,7 @@ public class ArtFrameSmall extends StaticEntity {
     public void postRender(Graphics g) {
         if (open) {
             if (!empty) {
-                handler.getScreenOverlay().drawArt(g, Assets.getArtworkByName(paintingName));
+                handler.getScreenOverlay().drawArt(g, GeneralUtils.getArtworkByName(paintingName));
             } else {
                 handler.getScreenOverlay().drawArt(g, Assets.artFrame);
             }
