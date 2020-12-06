@@ -1,6 +1,6 @@
 package Entities.Creatures;
 
-import Game.Handler;
+import Variables.Handler;
 import Graphics.Animation;
 import Graphics.Assets;
 

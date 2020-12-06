@@ -1,7 +1,7 @@
 package Entities.Creatures;
 
 import Entities.Entity;
-import Game.Handler;
+import Variables.Handler;
 import Tiles.Tile;
 
 public abstract class Creature extends Entity {

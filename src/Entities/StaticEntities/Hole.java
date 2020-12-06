@@ -1,19 +1,25 @@
 package Entities.StaticEntities;
 
-import Game.Handler;
+import Utils.GeneralUtils;
+import Variables.Handler;
 import Graphics.Assets;
+import Worlds.World;
+
 import java.awt.*;
 
 public class Hole extends StaticEntity {
 
     private boolean intersected = false, justStartedFalling = true;
     private int fallFrames = 45, frameCounter = 0;
-    private int alphaThreshold = 255 / fallFrames, alpha = 0;
-    private float originalY;
     private Rectangle area;
+    private World destination;
+    private float newX, newY;
 
-    public Hole(Handler handler, float x, float y, int width, int height) {
+    public Hole(Handler handler, float x, float y, int width, int height, World destination, float newX, float newY) {
         super(handler, x, y, width, height);
+        this.destination = destination;
+        this.newX = newX;
+        this.newY = newY;
         area = new Rectangle((int) x + width / 2 - width / 32 , (int) y + height / 2 - height / 32, width / 32, height / 32);
         solid = false;
     }
@@ -22,15 +28,13 @@ public class Hole extends StaticEntity {
     public void preRender(Graphics g) {
         if (intersected) {
             g.drawImage(Assets.hole, (int) (x - handler.getGameCamera().getxOffset()),
-                    (int) (originalY - handler.getGameCamera().getyOffset()), null);
+                    (int) (y - handler.getGameCamera().getyOffset()), null);
         }
     }
 
     @Override
     public void postRender(Graphics g) {
-        if (intersected) {
-            handler.getScreenOverlay().overlayScreen(g, new Color(0, 0, 0, alpha));
-        }
+
     }
 
     @Override
@@ -42,33 +46,19 @@ public class Hole extends StaticEntity {
         }
         if (intersected) {
             if (justStartedFalling) {
-                // render order happens in order of Y, and since we're overlaying the screen,
-                // we need to take priority over other entity screen overlays
-                // this is stupid though and i should probably standardize this in one class
-                originalY = y;
-                y = handler.getHeight() + 20;
+                GeneralUtils.levelFadeOut(handler);
                 justStartedFalling = false;
             }
             if (fallFrames - frameCounter >= 0) {
                 handler.getPlayer().setY(handler.getPlayer().getY() + 7);
-                if (alpha + alphaThreshold > 255) {
-                    alpha = 255;
-                } else {
-                    alpha += alphaThreshold;
-                }
                 frameCounter++;
             } else {
-                alpha = 255;
-                //handler.setWorld();
-            }
-            if (handler.getKeyManager().z) {
                 intersected = false;
                 handler.getPlayer().setTransparent(false);
                 justStartedFalling = true;
-                y = originalY;
-                alpha = 0;
                 frameCounter = 0;
-                handler.setPlayerFrozen(false);
+                GeneralUtils.stopLevelFadeOut(handler, destination, newX, newY);
+                GeneralUtils.levelFadeIn(handler);
             }
         }
     }

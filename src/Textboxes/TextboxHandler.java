@@ -1,6 +1,6 @@
 package Textboxes;
 
-import Game.Handler;
+import Variables.Handler;
 
 import java.awt.*;
 import java.util.ArrayList;

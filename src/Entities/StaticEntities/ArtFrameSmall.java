@@ -1,6 +1,6 @@
 package Entities.StaticEntities;
 
-import Game.Handler;
+import Variables.Handler;
 import Items.Inventory;
 import Items.Item;
 import Textboxes.TextboxHandler;

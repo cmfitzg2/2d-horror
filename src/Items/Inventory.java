@@ -1,7 +1,7 @@
 package Items;
 
 import Entities.Creatures.Player;
-import Game.Handler;
+import Variables.Handler;
 import Input.KeyManager;
 import Graphics.Assets;
 import Utils.FontUtils;

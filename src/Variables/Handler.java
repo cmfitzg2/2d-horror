@@ -1,6 +1,7 @@
-package Game;
+package Variables;
 
 import Entities.Creatures.Player;
+import Game.Game;
 import Graphics.GameCamera;
 import Graphics.ScreenOverlay;
 import Input.KeyManager;

@@ -1,6 +1,6 @@
 package Worlds;
 
-import Game.Handler;
+import Variables.Handler;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -16,6 +16,7 @@ public class WorldManager {
         worlds = new HashMap<>();
         worlds.put(1, world1);
         worlds.put(2, new World2(handler, "res/worlds/world2.txt", 2));
+        worlds.put(3, new World3(handler, "res/worlds/world3.txt", 3));
         setActiveWorld(world1);
     }
 
@@ -34,6 +35,7 @@ public class WorldManager {
     public void setActiveWorld(World activeWorld) {
         this.activeWorld = activeWorld;
         handler.setActiveWorld(activeWorld);
+        activeWorld.transitioningTo = true;
     }
 
     public World getWorld(int id) {

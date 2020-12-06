@@ -1,6 +1,6 @@
 package Entities;
 
-import Game.Handler;
+import Variables.Handler;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

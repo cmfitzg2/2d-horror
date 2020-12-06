@@ -1,4 +1,4 @@
-package Game;
+package Variables;
 
 public class Flags {
     private boolean visionLimited, viewingArt;

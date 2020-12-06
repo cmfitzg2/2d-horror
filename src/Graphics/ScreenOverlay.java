@@ -1,6 +1,6 @@
 package Graphics;
 
-import Game.Handler;
+import Variables.Handler;
 
 import java.awt.Color;
 import java.awt.Graphics;

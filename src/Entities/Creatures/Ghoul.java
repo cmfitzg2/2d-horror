@@ -2,7 +2,7 @@ package Entities.Creatures;
 
 import java.awt.*;
 
-import Game.Handler;
+import Variables.Handler;
 import Graphics.Animation;
 import Graphics.Assets;
 

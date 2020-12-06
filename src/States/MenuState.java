@@ -6,7 +6,7 @@ import java.applet.AudioClip;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
-import Game.Handler;
+import Variables.Handler;
 import Graphics.Assets;
 import Graphics.ScreenOverlay;
 import Utils.GeneralUtils;

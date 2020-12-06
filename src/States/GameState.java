@@ -1,6 +1,6 @@
 package States;
 
-import Game.Handler;
+import Variables.Handler;
 import java.awt.Graphics;
 import Graphics.ScreenOverlay;
 import Worlds.World1;

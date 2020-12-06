@@ -1,13 +1,11 @@
 package Entities.Creatures;
 
 import Entities.Entity;
-import Entities.EntityManager;
-import Game.Handler;
+import Variables.Handler;
 import Items.Inventory;
 import Graphics.Animation;
 import Graphics.Assets;
 import Graphics.ScreenOverlay;
-import Worlds.World;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -61,9 +59,9 @@ public class Player extends Creature {
 		getInput();
 		if (!handler.isPlayerFrozen()) {
 			move();
-			handler.getGameCamera().centerOnEntity(this);
 			checkInteraction();
 		}
+		handler.getGameCamera().centerOnEntity(this);
 		inventory.tick();
 	}
 

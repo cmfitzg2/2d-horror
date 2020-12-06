@@ -1,7 +1,7 @@
 package Graphics;
 
 import Entities.Entity;
-import Game.Handler;
+import Variables.Handler;
 import Tiles.Tile;
 
 public class GameCamera

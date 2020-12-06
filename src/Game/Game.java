@@ -10,6 +10,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import Graphics.*;
 import States.State;
+import Utils.GeneralUtils;
+import Variables.Flags;
+import Variables.Handler;
 
 public class Game implements Runnable {
 
@@ -25,9 +28,8 @@ public class Game implements Runnable {
 
 	//Screen fading
 	public ScreenOverlay screenOverlay;
-	public int alpha = 0;
-	private boolean fadeOut = false;
-	private boolean fadeIn = true;
+	public int alpha = 0, alphaThreshold = 0;
+	private boolean fadeOut = false, fadeIn = false, finishedFadingIn = false, finishedFadingOut = false;
 
 	//States
 	public State gameState;
@@ -71,6 +73,7 @@ public class Game implements Runnable {
 
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
+		GeneralUtils.levelFadeIn(handler);
 		State.setState(menuState);
 	}
 
@@ -96,30 +99,34 @@ public class Game implements Runnable {
 			State.getState().render(g);
 		else
 			System.out.println("no state");
-		if(fadeOut) {
-			alpha++;
-			if(alpha<=255) {
-				screenOverlay.overlayScreen(g, new Color(0, 0, 0, alpha));
-			}
-			else {
-				screenOverlay.overlayScreen(g, new Color(0, 0, 0, 255));
-			}
-		}
 
-		if(fadeIn) {
-			alpha--;
-			if(alpha>=0) {
-				screenOverlay.overlayScreen(g, new Color(0, 0, 0, alpha));
-			}
-			else {
-				screenOverlay.overlayScreen(g, new Color(0, 0, 0, 0));
-			}
-		}
+		//fade the screen in & out after rendering everything else
+		checkScreenFade();
 
 		//done drawing
 		bufferStrategy.show();
 		g.dispose();
 	}
+
+	private void checkScreenFade() {
+		if (fadeOut) {
+			alpha += alphaThreshold;
+			if (alpha > 255) {
+				alpha = 255;
+				finishedFadingOut = true;
+			}
+			screenOverlay.overlayScreen(g, new Color(0, 0, 0, alpha));
+		}
+		if (fadeIn) {
+			alpha -= alphaThreshold;
+			if (alpha < 0) {
+				alpha = 0;
+				finishedFadingIn = true;
+			}
+			screenOverlay.overlayScreen(g, new Color(0, 0, 0, alpha));
+		}
+	}
+
 	@Override
 	public void run()
 	{
@@ -195,18 +202,22 @@ public class Game implements Runnable {
 		}
 	}
 
-	public void setFadeIn(boolean fade) {
-		this.fadeIn = fade;
+	public void fadeIn(int frameCount) {
+		setFadeIn(true);
+		finishedFadingIn = false;
 		alpha = 255;
+		alphaThreshold = 255 / frameCount;
 	}
 
 	public boolean isFadeIn() {
 		return fadeIn;
 	}
 
-	public void setFadeOut(boolean fade){
-		this.fadeOut = fade;
+	public void fadeOut(int frameCount){
+		setFadeOut(true);
+		finishedFadingOut = false;
 		alpha = 0;
+		alphaThreshold = 255 / frameCount;
 	}
 
 	public boolean isFadeOut() {
@@ -215,5 +226,39 @@ public class Game implements Runnable {
 
 	public ScreenOverlay getScreenOverlay() {
 		return screenOverlay;
+	}
+
+	public void setFadeOut(boolean fadeOut) {
+		if (fadeOut) {
+			handler.setPlayerFrozen(true);
+		} else {
+			handler.setPlayerFrozen(false);
+		}
+		this.fadeOut = fadeOut;
+	}
+
+	public void setFadeIn(boolean fadeIn) {
+		if (fadeIn) {
+			handler.setPlayerFrozen(true);
+		} else {
+			handler.setPlayerFrozen(false);
+		}
+		this.fadeIn = fadeIn;
+	}
+
+	public boolean isFinishedFadingIn() {
+		return finishedFadingIn;
+	}
+
+	public void setFinishedFadingIn(boolean finishedFadingIn) {
+		this.finishedFadingIn = finishedFadingIn;
+	}
+
+	public boolean isFinishedFadingOut() {
+		return finishedFadingOut;
+	}
+
+	public void setFinishedFadingOut(boolean finishedFadingOut) {
+		this.finishedFadingOut = finishedFadingOut;
 	}
 }
