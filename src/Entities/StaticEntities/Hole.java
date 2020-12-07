@@ -20,7 +20,6 @@ public class Hole extends StaticEntity {
         this.destination = destination;
         this.newX = newX;
         this.newY = newY;
-        area = new Rectangle((int) x + width / 2 - width / 32 , (int) y + height / 2 - height / 32, width / 32, height / 32);
         solid = false;
     }
 
@@ -39,6 +38,9 @@ public class Hole extends StaticEntity {
 
     @Override
     public void tick() {
+        area = new Rectangle((int) x + width / 2 - width / 16 - (int) handler.getGameCamera().getxOffset(),
+                (int) y + height / 2 - height / 16 - (int) handler.getGameCamera().getyOffset(),
+                width / 16, height / 16);
         if (handler.getPlayer().getPlayerRec().intersects(area)) {
             handler.setPlayerFrozen(true);
             handler.getPlayer().setTransparent(true);
@@ -66,6 +68,7 @@ public class Hole extends StaticEntity {
 
     @Override
     public void render(Graphics g) {
+        g.setColor(Color.RED);
         g.fillRect(area.x, area.y, area.width, area.height);
     }
 
