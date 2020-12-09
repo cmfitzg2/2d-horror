@@ -20,8 +20,8 @@ public class World2 extends World {
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new ArtFrameSmall(handler, 72, 8, 48, 48, "Solace", null, Assets.solacePreview));
-        entityManager.addEntity(new ArtFrameSmall(handler, 136, 8, 48, 48, "Prophet", null, Assets.prophetPreview));
+        entityManager.addEntity(new ArtFrameSmall(handler, 72, 8, 48, 48, "Solace", null, Assets.solaceInventory));
+        entityManager.addEntity(new ArtFrameSmall(handler, 136, 8, 48, 48, "Prophet", null, Assets.prophetInventory));
         entityManager.addEntity(new Hole(handler, 420, 420, 64, 64, handler.getWorldManager().getWorld(1), 100, 100));
     }
 }

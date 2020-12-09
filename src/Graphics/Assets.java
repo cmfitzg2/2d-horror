@@ -26,13 +26,13 @@ public class Assets {
 			galleryHarbinger, galleryHarrower, galleryHolocaust, galleryManifestation, galleryMoribund, galleryOblation,
 			galleryPerdition, galleryProcession, galleryProphet, galleryRevelry, gallerySenescence, gallerySolace,
 			gallerySuffering, gallerySynchronicity, galleryTorment, galleryVilomah;
-	public static BufferedImage textbox, textboxOptions;
-	public static BufferedImage inventory, inventoryHighlight, keyPreview, abyssPreview, apparitionPreview,
-			blightPreview, butcherPreview, captivityPreview, cipherPreview, condemnationPreview, delugePreview,
-			dissonancePreview, dutyPreview, facadePreview, harbingerPreview, harrowerPreview, holocaustPreview,
-			manifestationPreview, moribundPreview, oblationPreview, perditionPreview, processionPreview, prophetPreview,
-			revelryPreview, senescencePreview, solacePreview, sufferingPreview, synchronicityPreview, tormentPreview,
-			vilomahPreview;
+	public static BufferedImage textbox, textboxOptions, portrait;
+	public static BufferedImage inventory, inventoryHighlight, keyInventory, abyssInventory, apparitionInventory,
+			blightInventory, butcherInventory, captivityInventory, cipherInventory, condemnationInventory, delugeInventory,
+			dissonanceInventory, dutyInventory, facadeInventory, harbingerInventory, harrowerInventory, holocaustInventory,
+			manifestationInventory, moribundInventory, oblationInventory, perditionInventory, processionInventory, prophetInventory,
+			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
+			vilomahInventory;
 	public static BufferedImage hole;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -54,7 +54,7 @@ public class Assets {
 		woodBreak = Applet.newAudioClip(Assets.class.getResource("/sounds/woodBreak.au"));
 		try {
 			menuMusic = AudioSystem.getClip();
-			AudioInputStream ais1 = AudioSystem.getAudioInputStream(new File("res/music/desolate.au"));
+			AudioInputStream ais1 = AudioSystem.getAudioInputStream(new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/music/desolate.au"));
 			menuMusic.open(ais1);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
@@ -64,16 +64,16 @@ public class Assets {
 	private static void initFonts() {
 		try {
 			//create the font to use. Specify the size!
-			sans = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")).deriveFont(36f);
-			serif = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/serif.ttf")).deriveFont(36f);
-			philosopher = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/philosopher.ttf")).deriveFont(36f);
-			textboxDefault = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")).deriveFont(128f);
+			sans = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/sans.ttf")).deriveFont(36f);
+			serif = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/serif.ttf")).deriveFont(36f);
+			philosopher = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/philosopher.ttf")).deriveFont(36f);
+			textboxDefault = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/uwch.ttf")).deriveFont(128f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			//register the font
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")));
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/serif.ttf")));
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/philosopher.ttf")));
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/sans.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/serif.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/philosopher.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/uwch.ttf")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch(FontFormatException e) {
@@ -186,10 +186,11 @@ public class Assets {
 	private static void initStandaloneImages() {
 		textbox = ImageLoader.loadImage("/textures/tb.png");
 		textboxOptions = ImageLoader.loadImage("/textures/tb-options.png");
+		portrait = ImageLoader.loadImage("/textures/portrait.png");
 		inventory = ImageLoader.loadImage("/textures/inventory.png");
 		inventoryHighlight = ImageLoader.loadImage("/textures/inventory-highlight.png");
 
-		keyPreview = ImageLoader.loadImage("/textures/inventory/key.png");
+		keyInventory = ImageLoader.loadImage("/textures/inventory/key.png");
 
 		tunnelVision = new BufferedImage[46];
 		for (int i = 0, j = 20; i < tunnelVision.length; i++, j += 2) {
@@ -229,33 +230,33 @@ public class Assets {
 		galleryTorment = ImageLoader.loadImage("/textures/gallery/Torment.png");
 		galleryVilomah = ImageLoader.loadImage("/textures/gallery/Vilomah.png");
 
-		abyssPreview = ImageLoader.loadImage("/textures/inventory/Abyss.png");
-		apparitionPreview = ImageLoader.loadImage("/textures/inventory/Apparition.png");
-		blightPreview = ImageLoader.loadImage("/textures/inventory/Blight.png");
-		butcherPreview = ImageLoader.loadImage("/textures/inventory/Butcher.png");
-		captivityPreview = ImageLoader.loadImage("/textures/inventory/Captivity.png");
-		cipherPreview = ImageLoader.loadImage("/textures/inventory/Cipher.png");
-		condemnationPreview = ImageLoader.loadImage("/textures/inventory/Condemnation.png");
-		delugePreview = ImageLoader.loadImage("/textures/inventory/Deluge.png");
-		dissonancePreview = ImageLoader.loadImage("/textures/inventory/Dissonance.png");
-		dutyPreview = ImageLoader.loadImage("/textures/inventory/Duty.png");
-		facadePreview = ImageLoader.loadImage("/textures/inventory/Facade.png");
-		harbingerPreview = ImageLoader.loadImage("/textures/inventory/Harbinger.png");
-		harrowerPreview = ImageLoader.loadImage("/textures/inventory/Harrower.png");
-		holocaustPreview = ImageLoader.loadImage("/textures/inventory/Holocaust.png");
-		manifestationPreview = ImageLoader.loadImage("/textures/inventory/Manifestation.png");
-		moribundPreview = ImageLoader.loadImage("/textures/inventory/Moribund.png");
-		oblationPreview = ImageLoader.loadImage("/textures/inventory/Oblation.png");
-		perditionPreview = ImageLoader.loadImage("/textures/inventory/Perdition.png");
-		processionPreview = ImageLoader.loadImage("/textures/inventory/Procession.png");
-		prophetPreview = ImageLoader.loadImage("/textures/inventory/Prophet.png");
-		revelryPreview = ImageLoader.loadImage("/textures/inventory/Revelry.png");
-		senescencePreview = ImageLoader.loadImage("/textures/inventory/Senescence.png");
-		solacePreview = ImageLoader.loadImage("/textures/inventory/Solace.png");
-		sufferingPreview = ImageLoader.loadImage("/textures/inventory/Suffering.png");
-		synchronicityPreview = ImageLoader.loadImage("/textures/inventory/Synchronicity.png");
-		tormentPreview = ImageLoader.loadImage("/textures/inventory/Torment.png");
-		vilomahPreview = ImageLoader.loadImage("/textures/inventory/Vilomah.png");
+		abyssInventory = ImageLoader.loadImage("/textures/inventory/Abyss.png");
+		apparitionInventory = ImageLoader.loadImage("/textures/inventory/Apparition.png");
+		blightInventory = ImageLoader.loadImage("/textures/inventory/Blight.png");
+		butcherInventory = ImageLoader.loadImage("/textures/inventory/Butcher.png");
+		captivityInventory = ImageLoader.loadImage("/textures/inventory/Captivity.png");
+		cipherInventory = ImageLoader.loadImage("/textures/inventory/Cipher.png");
+		condemnationInventory = ImageLoader.loadImage("/textures/inventory/Condemnation.png");
+		delugeInventory = ImageLoader.loadImage("/textures/inventory/Deluge.png");
+		dissonanceInventory = ImageLoader.loadImage("/textures/inventory/Dissonance.png");
+		dutyInventory = ImageLoader.loadImage("/textures/inventory/Duty.png");
+		facadeInventory = ImageLoader.loadImage("/textures/inventory/Facade.png");
+		harbingerInventory = ImageLoader.loadImage("/textures/inventory/Harbinger.png");
+		harrowerInventory = ImageLoader.loadImage("/textures/inventory/Harrower.png");
+		holocaustInventory = ImageLoader.loadImage("/textures/inventory/Holocaust.png");
+		manifestationInventory = ImageLoader.loadImage("/textures/inventory/Manifestation.png");
+		moribundInventory = ImageLoader.loadImage("/textures/inventory/Moribund.png");
+		oblationInventory = ImageLoader.loadImage("/textures/inventory/Oblation.png");
+		perditionInventory = ImageLoader.loadImage("/textures/inventory/Perdition.png");
+		processionInventory = ImageLoader.loadImage("/textures/inventory/Procession.png");
+		prophetInventory = ImageLoader.loadImage("/textures/inventory/Prophet.png");
+		revelryInventory = ImageLoader.loadImage("/textures/inventory/Revelry.png");
+		senescenceInventory = ImageLoader.loadImage("/textures/inventory/Senescence.png");
+		solaceInventory = ImageLoader.loadImage("/textures/inventory/Solace.png");
+		sufferingInventory = ImageLoader.loadImage("/textures/inventory/Suffering.png");
+		synchronicityInventory = ImageLoader.loadImage("/textures/inventory/Synchronicity.png");
+		tormentInventory = ImageLoader.loadImage("/textures/inventory/Torment.png");
+		vilomahInventory = ImageLoader.loadImage("/textures/inventory/Vilomah.png");
 
 		hole = ImageLoader.loadImage("/textures/hole.png");
 	}

@@ -3,6 +3,7 @@ package Textboxes;
 import Variables.Handler;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import Graphics.Assets;
@@ -27,8 +28,10 @@ public class TextboxHandler {
 	private java.util.List<Textbox> textboxes;
 	private Textbox currentTextbox;
 	private int frameCount = 1, textSpeed;
+	private BufferedImage portrait;
+	private int portraitWidth, portraitHeight, portraitXStart, portraitYStart;
 
-	public TextboxHandler(Handler handler, Font font, String message, String[] options, int textSpeed, Color fontColor) {
+	public TextboxHandler(Handler handler, Font font, String message, String[] options, int textSpeed, Color fontColor, BufferedImage portrait) {
 		this.handler = handler;
 		this.message = message;
 		this.options = options;
@@ -39,6 +42,7 @@ public class TextboxHandler {
 		} else {
 			this.fontColor = Color.WHITE;
 		}
+		this.portrait = portrait;
 		initParams();
 		words = message.split(" ");
 		textboxLines = new HashMap<>();
@@ -60,6 +64,12 @@ public class TextboxHandler {
 		topRect = new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3);
 		midRect = new Rectangle(textboxRect.x, textboxRect.y + textboxRect.height / 3, textboxRect.width, textboxRect.height / 3);
 		botRect = new Rectangle(textboxRect.x, textboxRect.y + textboxRect.height * 2 / 3, textboxRect.width, textboxRect.height / 3);
+		if (null != portrait) {
+			portraitWidth = textboxRect.width / 4;
+			portraitHeight = topRect.height + midRect.height + botRect.height;
+			portraitXStart = textboxRect.x;
+			portraitYStart = textboxRect.y;
+		}
 		if (handler.getWidth() < 1000) {
 			minimumLineLength = 20;
 		}
@@ -140,6 +150,9 @@ public class TextboxHandler {
 			initGraphics(g);
 		}
 		g.drawImage(Assets.textbox, xStart, yStart, xEnd - xStart, yEnd - yStart, null);
+		if (portrait != null) {
+			g.drawImage(portrait, portraitXStart, portraitYStart, portraitWidth, portraitHeight, null);
+		}
 		g.setFont(font);
 		g.setColor(fontColor);
 		if (textFinished) {
@@ -184,12 +197,21 @@ public class TextboxHandler {
 				metrics = g.getFontMetrics(font);
 			}
 		}
-		createTextboxes(g);
 		topRect.y += topRect.height / 2 + metrics.getAscent() / 2;
 		midRect.y += midRect.height / 2 + metrics.getAscent() / 2;
 		botRect.y += botRect.height / 2 + metrics.getAscent() / 2;
-		optionsIncrement = metrics.getHeight();
+		if (null != portrait) {
+			topRect.width = topRect.width - portraitWidth - (int) (xScale * xOffsetText);
+			topRect.x += portraitWidth + xScale * xOffsetText;
+			midRect.width = midRect.width - portraitWidth - (int) (xScale * xOffsetText);
+			midRect.x += portraitWidth + xScale * xOffsetText;
+			botRect.width = botRect.width - portraitWidth - (int) (xScale * xOffsetText);
+			botRect.x += portraitWidth + xScale * xOffsetText;
+		}
+		createTextboxes(g);
+
 		if (options != null) {
+			optionsIncrement = metrics.getHeight();
 			xStartOptions = handler.getWidth() / 12;
 			yStartOptions = handler.getHeight() / 4;
 			minimumOptionsLength = getLongestStringLength(options) + 3;
@@ -222,7 +244,7 @@ public class TextboxHandler {
 					line = new StringBuilder(word);
 					if (lineNumber >= 3) {
 						lineNumber = 0;
-						textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), textboxLines.get(botRect)));
+						textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), textboxLines.get(botRect), portrait));
 					}
 				} else {
 					line.append(word).append(" ");
@@ -242,7 +264,7 @@ public class TextboxHandler {
 				line = new StringBuilder(word + " ");
 				if (lineNumber >= 3) {
 					lineNumber = 0;
-					textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), textboxLines.get(botRect)));
+					textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), textboxLines.get(botRect), portrait));
 				}
 			}
 		}
@@ -250,13 +272,13 @@ public class TextboxHandler {
 		if (!line.toString().isEmpty()) {
 			if (lineNumber == 0) {
 				textboxLines.put(topRect, line.toString());
-				textboxes.add(new Textbox(textboxLines.get(topRect), "", ""));
+				textboxes.add(new Textbox(textboxLines.get(topRect), "", "", portrait));
 			} else if (lineNumber == 1) {
 				textboxLines.put(midRect, line.toString());
-				textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), ""));
+				textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), "", portrait));
 			} else if (lineNumber == 2) {
 				textboxLines.put(botRect, line.toString());
-				textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), textboxLines.get(botRect)));
+				textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), textboxLines.get(botRect), portrait));
 			}
 		}
 		currentTextbox = textboxes.get(0);
