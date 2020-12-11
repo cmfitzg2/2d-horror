@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Hole extends StaticEntity {
 
-    private boolean intersected = false, justStartedFalling = true;
+    private boolean intersected = false, justStartedFalling = true, broken = false;
     private int fallFrames = 45, frameCounter = 0;
     private Rectangle area;
     private World destination;
@@ -25,7 +25,7 @@ public class Hole extends StaticEntity {
 
     @Override
     public void preRender(Graphics g) {
-        if (intersected) {
+        if (broken) {
             g.drawImage(Assets.hole, (int) (x - handler.getGameCamera().getxOffset()),
                     (int) (y - handler.getGameCamera().getyOffset()), null);
         }
@@ -38,9 +38,9 @@ public class Hole extends StaticEntity {
 
     @Override
     public void tick() {
-        area = new Rectangle((int) x + width / 2 - width / 16 - (int) handler.getGameCamera().getxOffset(),
-                (int) y + height / 2 - height / 16 - (int) handler.getGameCamera().getyOffset(),
-                width / 16, height / 16);
+        area = new Rectangle((int) x + width / 2 - width / 4 - (int) handler.getGameCamera().getxOffset(),
+                (int) y + height / 2 - height / 4 - (int) handler.getGameCamera().getyOffset(),
+                width / 2, height / 2);
         if (handler.getPlayer().getPlayerRec().intersects(area)) {
             handler.setPlayerFrozen(true);
             handler.getPlayer().setTransparent(true);
@@ -50,6 +50,7 @@ public class Hole extends StaticEntity {
             if (justStartedFalling) {
                 GeneralUtils.levelFadeOut(handler);
                 justStartedFalling = false;
+                broken = true;
                 Assets.woodBreak.play();
             }
             if (fallFrames - frameCounter >= 0) {
