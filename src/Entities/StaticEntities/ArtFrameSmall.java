@@ -27,6 +27,7 @@ public class ArtFrameSmall extends StaticEntity {
         bounds.y = 0;
         bounds.width = 48;
         bounds.height = 48;
+        this.uniqueName = uniqueName;
         if (description != null && !description.isEmpty()) {
             this.description = description;
         }

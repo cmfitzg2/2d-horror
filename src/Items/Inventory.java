@@ -29,7 +29,7 @@ public class Inventory {
     private float xScale, yScale;
     private final int borderWidth = 10;
 
-    public Inventory(Handler handler, Player player) {
+    public Inventory(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
         regularItems = new ArrayList<>();
@@ -58,11 +58,15 @@ public class Inventory {
                 if (!handler.getFlags().isViewingArt()) {
                     if (isOpen) {
                         //closing the menu
+                        Assets.closeInventory.stop();
+                        Assets.closeInventory.play();
                         handler.setPlayerFrozen(false);
                         handler.setInMenu(false);
                         handler.setGamePaused(false);
                     } else {
                         //opening the menu
+                        Assets.openInventory.stop();
+                        Assets.openInventory.play();
                         handler.setPlayerFrozen(true);
                         handler.setInMenu(true);
                         handler.setGamePaused(true);

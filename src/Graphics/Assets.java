@@ -1,8 +1,6 @@
 package Graphics;
 
 import Utils.ImageLoader;
-import sun.applet.AppletAudioClip;
-
 import javax.sound.sampled.*;
 import java.applet.Applet;
 import java.applet.AudioClip;
@@ -40,7 +38,7 @@ public class Assets {
 	public static BufferedImage[] ghoulDown, ghoulLeft, ghoulRight, ghoulUp;
 	public static BufferedImage[] tunnelVision;
 	public static Font sans, serif, philosopher, textboxDefault;
-	public static AudioClip menuMove, woodBreak;
+	public static AudioClip menuMove, woodBreak, openInventory, closeInventory;
 	public static Clip menuMusic;
 	public static void init() {
 		initSounds();
@@ -52,9 +50,11 @@ public class Assets {
 	private static void initSounds() {
 		menuMove = Applet.newAudioClip(Assets.class.getResource("/sounds/menuMove.au"));
 		woodBreak = Applet.newAudioClip(Assets.class.getResource("/sounds/woodBreak.au"));
+		openInventory = Applet.newAudioClip(Assets.class.getResource("/sounds/openInventory.au"));
+		closeInventory = Applet.newAudioClip(Assets.class.getResource("/sounds/closeInventory.au"));
 		try {
 			menuMusic = AudioSystem.getClip();
-			AudioInputStream ais1 = AudioSystem.getAudioInputStream(new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/music/desolate.au"));
+			AudioInputStream ais1 = AudioSystem.getAudioInputStream(new File("res/music/desolate.au"));
 			menuMusic.open(ais1);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
@@ -64,19 +64,17 @@ public class Assets {
 	private static void initFonts() {
 		try {
 			//create the font to use. Specify the size!
-			sans = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/sans.ttf")).deriveFont(36f);
-			serif = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/serif.ttf")).deriveFont(36f);
-			philosopher = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/philosopher.ttf")).deriveFont(36f);
-			textboxDefault = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/uwch.ttf")).deriveFont(128f);
+			sans = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")).deriveFont(36f);
+			serif = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/serif.ttf")).deriveFont(36f);
+			philosopher = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/philosopher.ttf")).deriveFont(36f);
+			textboxDefault = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")).deriveFont(128f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			//register the font
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/sans.ttf")));
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/serif.ttf")));
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/philosopher.ttf")));
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/fonts/uwch.ttf")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch(FontFormatException e) {
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/serif.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/philosopher.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")));
+		} catch (IOException | FontFormatException e) {
 			e.printStackTrace();
 		}
 	}
