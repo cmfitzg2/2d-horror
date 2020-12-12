@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import Graphics.*;
 import States.State;
+import Textboxes.EntityMessages;
 import Utils.GeneralUtils;
 import Variables.Flags;
 import Variables.Handler;
@@ -45,6 +46,9 @@ public class Game implements Runnable {
 	//Handler
 	private Handler handler;
 
+	//NPC messages
+	private EntityMessages entityMessages;
+
 	private Flags flags;
 
 	public Game(String title, int width, int height) {
@@ -65,6 +69,8 @@ public class Game implements Runnable {
 		Assets.init();
 
 		handler = new Handler(this);
+		entityMessages = new EntityMessages();
+		handler.setEntityMessages(entityMessages);
 		flags = new Flags(handler);
 		handler.setFlags(flags);
 		handler.getFlags().setVisionLimited(true);

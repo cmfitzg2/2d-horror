@@ -15,8 +15,8 @@ public class Hole extends StaticEntity {
     private World destination;
     private float newX, newY;
 
-    public Hole(Handler handler, float x, float y, int width, int height, World destination, float newX, float newY) {
-        super(handler, x, y, width, height);
+    public Hole(Handler handler, float x, float y, int width, int height, String uniqueName, World destination, float newX, float newY) {
+        super(handler, x, y, width, height, uniqueName);
         this.destination = destination;
         this.newX = newX;
         this.newY = newY;

@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ArtFrameSmall extends StaticEntity {
-    private String paintingName;
     private String message;
     private Font textboxFont;
     String[] options = {"Yes", "No"};
@@ -22,13 +21,12 @@ public class ArtFrameSmall extends StaticEntity {
     private boolean empty, open;
     private boolean firstTime = true;
 
-    public ArtFrameSmall(Handler handler, float x, float y, int width, int height, String paintingName, String description, BufferedImage previewImage) {
-        super(handler, x, y, width, height);
+    public ArtFrameSmall(Handler handler, float x, float y, int width, int height, String uniqueName, String description, BufferedImage previewImage) {
+        super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = 48;
         bounds.height = 48;
-        this.paintingName = paintingName;
         if (description != null && !description.isEmpty()) {
             this.description = description;
         }
@@ -84,7 +82,7 @@ public class ArtFrameSmall extends StaticEntity {
         if (option.equals("Yes")) {
             if (!inventory.contains("Painting")) {
                 //we are definitely taking the painting from the wall
-                inventory.addItem(new Item("Painting", Inventory.REGULAR_ITEM, description, paintingName, previewImage));
+                inventory.addItem(new Item("Painting", Inventory.REGULAR_ITEM, description, uniqueName, previewImage));
                 empty = true;
             } else {
                 Item inventoryPainting = inventory.getItemByGenericName("Painting", Inventory.REGULAR_ITEM);
@@ -95,17 +93,17 @@ public class ArtFrameSmall extends StaticEntity {
                     if (empty) {
                         //putting the painting in our inventory onto this empty frame
                         description = inventoryPaintingDescription;
-                        inventory.removeItem(paintingName, Inventory.REGULAR_ITEM);
+                        inventory.removeItem(uniqueName, Inventory.REGULAR_ITEM);
                         empty = false;
                     } else {
                         //swapping the one in our inventory with this one
-                        inventoryPainting.setUniqueName(paintingName);
+                        inventoryPainting.setUniqueName(uniqueName);
                         inventoryPainting.setDescription(description);
                         inventoryPainting.setPreviewImage(previewImage);
                         description = inventoryPaintingDescription;
                         previewImage = inventoryPreviewImage;
                     }
-                    paintingName = inventoryPaintingName;
+                    uniqueName = inventoryPaintingName;
                 }
             }
         }
@@ -138,7 +136,7 @@ public class ArtFrameSmall extends StaticEntity {
     public void postRender(Graphics g) {
         if (open) {
             if (!empty) {
-                handler.getScreenOverlay().drawArt(g, GeneralUtils.getArtworkByName(paintingName));
+                handler.getScreenOverlay().drawArt(g, GeneralUtils.getArtworkByName(uniqueName));
             } else {
                 handler.getScreenOverlay().drawArt(g, Assets.artFrame);
             }

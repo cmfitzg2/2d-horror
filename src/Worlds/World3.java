@@ -16,6 +16,6 @@ public class World3 extends World {
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new Hole(handler, 420, 420, 64, 64, handler.getWorldManager().getWorld(2), 100, 100));
+        entityManager.addEntity(new Hole(handler, 420, 420, 64, 64, "Hole 3", handler.getWorldManager().getWorld(2), 100, 100));
     }
 }

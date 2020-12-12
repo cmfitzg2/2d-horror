@@ -12,8 +12,8 @@ public class Follower extends Creature {
 	private int id = 0;
 	private float playerX = 0, playerY = 0, distanceThreshold = 64;
 
-	public Follower(Handler handler, float x, float y) {
-		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+	public Follower(Handler handler, float x, float y, String uniqueName) {
+		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, uniqueName);
 		bounds.x = 16;
 		bounds.y = 32;
 		bounds.width = 32;

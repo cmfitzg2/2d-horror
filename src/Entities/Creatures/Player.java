@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Creature {
 	private static boolean down, up, left, right;
-	private boolean interactedWith, textboxOpen, transparent;
+	private boolean interactedWith, transparent;
 	private Inventory inventory;
 	//Animations	
 	private Animation animDown, animUp, animLeft, animRight;
@@ -21,8 +21,8 @@ public class Player extends Creature {
 	//Font
 	Font f;
 
-	public Player(Handler handler, float x, float y) {
-		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+	public Player(Handler handler, float x, float y, String uniqueName) {
+		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, uniqueName);
 
 		bounds.x = 16;
 		bounds.y = 32;

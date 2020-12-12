@@ -14,15 +14,17 @@ public abstract class Entity {
 	protected boolean active = true;
 	protected Rectangle bounds;
 	protected boolean solid = true;
+	protected String uniqueName;
 	
-	public Entity(Handler handler, float x, float y, int width, int height) {
+	public Entity(Handler handler, float x, float y, int width, int height, String uniqueName) {
 		this.handler = handler;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.uniqueName = uniqueName;
 		health = DEFAULT_HEALTH;
-		
+
 		bounds = new Rectangle(0, 0, width, height);
 	}
 	
@@ -40,8 +42,7 @@ public abstract class Entity {
 	
 	public abstract boolean isInteracting();
 	
-	public void hurt(int amt)
-	{
+	public void hurt(int amt) {
 		health -= amt;
 		if(health<=0)
 		{
@@ -51,7 +52,7 @@ public abstract class Entity {
 	}
 	
 	public boolean checkEntityCollisions(float xOffset, float yOffset) {
-		for(Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
+		for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
 			if (e.equals(this)) {
 				continue;
 			}
@@ -112,5 +113,13 @@ public abstract class Entity {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getUniqueName() {
+		return uniqueName;
+	}
+
+	public void setUniqueName(String uniqueName) {
+		this.uniqueName = uniqueName;
 	}
 }
