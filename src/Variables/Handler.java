@@ -6,12 +6,14 @@ import Graphics.GameCamera;
 import Graphics.ScreenOverlay;
 import Input.KeyManager;
 import Input.MouseManager;
+import Textboxes.EntityMessages;
 import Worlds.World;
 import Worlds.WorldManager;
 
 public class Handler {
 	private Game game;
 	private World activeWorld;
+	private EntityMessages entityMessages;
 	private Flags flags;
 	private boolean playerFrozen = false, isInMenu = false, gamePaused = false;
 	private int worldNumber = 1;
@@ -82,6 +84,14 @@ public class Handler {
 	public void setWorldNumber(int worldNumber)
 	{
 		this.worldNumber = worldNumber;
+	}
+
+	public EntityMessages getEntityMessages() {
+		return entityMessages;
+	}
+
+	public void setEntityMessages(EntityMessages entityMessages) {
+		this.entityMessages = entityMessages;
 	}
 
 	public Flags getFlags() {

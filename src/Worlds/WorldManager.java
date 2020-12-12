@@ -15,8 +15,8 @@ public class WorldManager {
         this.handler = handler;
         worlds = new HashMap<>();
         worlds.put(1, world1);
-        worlds.put(2, new World2(handler, "res/worlds/world2.txt", 2));
-        worlds.put(3, new World3(handler, "res/worlds/world3.txt", 3));
+        worlds.put(2, new World2(handler, "C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/worlds/world2.txt", 2));
+        worlds.put(3, new World3(handler, "C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/worlds/world3.txt", 3));
         setActiveWorld(world1);
     }
 
