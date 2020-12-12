@@ -3,10 +3,12 @@ package Entities.StaticEntities;
 import Entities.Entity;
 import Variables.Handler;
 
-abstract class StaticEntity extends Entity {
+public abstract class StaticEntity extends Entity
+{
 
-	StaticEntity(Handler handler, float x, float y, int width, int height, String uniqueName) {
-		super(handler, x, y, width, height, uniqueName);
+	public StaticEntity(Handler handler, float x, float y, int width, int height)
+	{
+		super(handler, x, y, width, height);
 	}
-	boolean isInteracting;
+	public boolean isInteracting;
 }

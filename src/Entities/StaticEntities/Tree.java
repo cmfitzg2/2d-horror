@@ -7,8 +7,8 @@ import Graphics.Assets;
 
 public class Tree extends StaticEntity {
 
-    public Tree(Handler handler, float x, float y, int width, int height, String uniqueName) {
-        super(handler, x, y, width, height, uniqueName);
+    public Tree(Handler handler, float x, float y, int width, int height) {
+        super(handler, x, y, width, height);
         bounds.x = 30;
         bounds.y = (int) (height/1.5f);
         bounds.width = width/2;

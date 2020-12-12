@@ -15,7 +15,7 @@ public class GameState extends State {
 	public GameState(Handler handler) {
 		super(handler);
 		screenOverlay = new ScreenOverlay(handler);
-		worldManager = new WorldManager(handler, new World1(handler, "C:\\Users\\CFitzgerald\\dev\\personal\\out\\production\\2d-horror\\res/worlds/world1.txt", 1));
+		worldManager = new WorldManager(handler, new World1(handler, "res/worlds/world1.txt", 1));
 		handler.setWorldManager(worldManager);
 	}
 

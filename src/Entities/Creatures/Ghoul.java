@@ -12,8 +12,8 @@ public class Ghoul extends Creature {
     private boolean down = false, up = false, left = false, right = false;
     private float playerX = 0, playerY = 0, adjustedX, adjustedY, outerDistanceThreshold = 128, innerDistanceThreshold = 0.5f;
 
-    public Ghoul(Handler handler, float x, float y, int width, int height, String uniqueName) {
-        super(handler, x, y, width, height, uniqueName);
+    public Ghoul(Handler handler, float x, float y, int width, int height) {
+        super(handler, x, y, width, height);
         bounds.y = (int) (height / 1.5f);
         bounds.height = (int) (height - height / 1.5f);
         animDown = new Animation(200, Assets.ghoulDown);

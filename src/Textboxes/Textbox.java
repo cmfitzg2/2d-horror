@@ -1,17 +1,13 @@
 package Textboxes;
 
-import java.awt.image.BufferedImage;
-
 public class Textbox {
 
     private String lineOne, lineTwo, lineThree;
-    private BufferedImage portrait;
 
-    public Textbox(String lineOne, String lineTwo, String lineThree, BufferedImage portrait) {
+    public Textbox(String lineOne, String lineTwo, String lineThree) {
         this.lineOne = lineOne;
         this.lineTwo = lineTwo;
         this.lineThree = lineThree;
-        this.portrait = portrait;
     }
 
     public String getLineOne() {
@@ -24,10 +20,6 @@ public class Textbox {
 
     public String getLineThree() {
         return lineThree;
-    }
-
-    public BufferedImage getPortrait() {
-        return portrait;
     }
 
     public String getCurrentText(int currentLine) {
