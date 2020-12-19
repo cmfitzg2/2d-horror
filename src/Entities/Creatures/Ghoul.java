@@ -109,6 +109,11 @@ public class Ghoul extends Creature {
     }
 
     @Override
+    public void finalRender(Graphics g) {
+
+    }
+
+    @Override
     public void die() {
 
     }

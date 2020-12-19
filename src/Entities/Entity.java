@@ -31,6 +31,8 @@ public abstract class Entity {
 	public abstract void preRender(Graphics g);
 
 	public abstract void postRender(Graphics g);
+
+	public abstract void finalRender(Graphics g);
 	
 	public abstract void tick();
 	

@@ -62,7 +62,7 @@ public class ArtFrameSmall extends StaticEntity {
                         } else {
                             message = "Take the painting?";
                         }
-                        textboxHandler = new TextboxHandler(handler, textboxFont, message, options, 2, Color.WHITE, Assets.portrait);
+                        textboxHandler = new TextboxHandler(handler, textboxFont, message, options, 2, Color.WHITE, Assets.portrait, 100);
                     }
                 }
             }
@@ -109,7 +109,6 @@ public class ArtFrameSmall extends StaticEntity {
             }
         }
         handler.getFlags().setViewingArt(false);
-        handler.setPlayerFrozen(false);
         open = false;
         isInteracting = false;
         viewingTextbox = false;
@@ -145,6 +144,11 @@ public class ArtFrameSmall extends StaticEntity {
                 textboxHandler.render(g);
             }
         }
+    }
+
+    @Override
+    public void finalRender(Graphics g) {
+
     }
 
     @Override

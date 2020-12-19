@@ -37,6 +37,11 @@ public class Hole extends StaticEntity {
     }
 
     @Override
+    public void finalRender(Graphics g) {
+
+    }
+
+    @Override
     public void tick() {
         area = new Rectangle((int) x + width / 2 - width / 4 - (int) handler.getGameCamera().getxOffset(),
                 (int) y + height / 2 - height / 4 - (int) handler.getGameCamera().getyOffset(),

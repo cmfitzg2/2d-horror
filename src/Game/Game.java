@@ -69,7 +69,7 @@ public class Game implements Runnable {
 		Assets.init();
 
 		handler = new Handler(this);
-		entityMessages = new EntityMessages();
+		entityMessages = new EntityMessages(handler);
 		handler.setEntityMessages(entityMessages);
 		flags = new Flags(handler);
 		handler.setFlags(flags);

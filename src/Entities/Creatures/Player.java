@@ -144,6 +144,11 @@ public class Player extends Creature {
                 + handler.getActiveWorld().getEntityManager().getPlayer().y + ")", 16, handler.getHeight() - 16);
     }
 
+    @Override
+    public void finalRender(Graphics g) {
+
+    }
+
     private void currentPlayerRectangle() {
         playerRec = new Rectangle((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
                 (int) (y + bounds.y - handler.getGameCamera().getyOffset()),

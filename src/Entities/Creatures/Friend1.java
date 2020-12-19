@@ -1,24 +1,25 @@
 package Entities.Creatures;
 
-import Variables.Handler;
 import Graphics.Animation;
 import Graphics.Assets;
+import Textboxes.TextboxHandler;
+import Variables.Handler;
 
-import java.awt.Graphics;
+import java.awt.*;
 
-public class Follower extends Creature {
+public class Friend1 extends Creature {
 	private Animation animDown, animUp, animLeft, animRight;
 	private boolean down = false, up = false, left = false, right = false, interactedWith = false;
-	private int id = 0;
-	private float playerX = 0, playerY = 0, distanceThreshold = 64;
+	private int id = 0, messageNumber = 1;
+	private float playerX = 0, playerY = 0;
+	TextboxHandler textboxHandler;
 
-	public Follower(Handler handler, float x, float y, String uniqueName) {
+	public Friend1(Handler handler, float x, float y, String uniqueName) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, uniqueName);
 		bounds.x = 16;
 		bounds.y = 32;
 		bounds.width = 32;
 		bounds.height = 32;
-
 		//Animations
 		animDown = new Animation(250, Assets.reflection_down);
 		animLeft = new Animation(250, Assets.reflection_left);
@@ -35,28 +36,17 @@ public class Follower extends Creature {
 		yMove = 0;
 		speed = 1.5f;
 
-		//decide when to move here
-		if (playerX < x && Math.abs(playerX - x) > distanceThreshold) {
-			xMove = -speed;
-		}
-		if (playerX > x && Math.abs(playerX - x) > distanceThreshold) {
-			xMove = speed;
-		}
-		if (playerY < y && Math.abs(playerY - y) > distanceThreshold) {
-			yMove = -speed;
-		}
-		if (playerY > y && Math.abs(playerY - y) > distanceThreshold) {
-			yMove = speed;
-		}
-
 		if (xMove !=0 || yMove !=0) {
 			animDown.tick();
 			animLeft.tick();
 			animUp.tick();
 			animRight.tick();
+			moveX();
+			moveY();
+		}
 
-			moveX(true);
-			moveY(true);
+		if (null != textboxHandler && textboxHandler.isActive() && !textboxHandler.isFinished()) {
+			textboxHandler.tick();
 		}
 	}
 
@@ -100,7 +90,11 @@ public class Follower extends Creature {
 
 	@Override
 	public void interactedWith() {
-		interactedWith = true;
+		textboxHandler = new TextboxHandler(handler, Assets.serif,
+				handler.getEntityMessages().getTextboxMessage(uniqueName, messageNumber),
+				null, 2, Color.WHITE, null, 50);
+		textboxHandler.setActive(true);
+		messageNumber = 2;
 	}
 
 	@Override
@@ -120,6 +114,8 @@ public class Follower extends Creature {
 
 	@Override
 	public void finalRender(Graphics g) {
-
+		if (null != textboxHandler && textboxHandler.isActive() && !textboxHandler.isFinished()) {
+			textboxHandler.render(g);
+		}
 	}
 }

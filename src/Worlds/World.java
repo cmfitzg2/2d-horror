@@ -125,4 +125,8 @@ public abstract class World {
 	protected abstract void checkLoadZones();
 
 	protected abstract void addEntities();
+
+	public int getId() {
+		return id;
+	}
 }

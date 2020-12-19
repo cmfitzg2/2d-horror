@@ -14,8 +14,7 @@ public abstract class Creature extends Entity {
 	protected float speed, runSpeed;
 	protected float xMove, yMove;
 
-	public Creature(Handler handler, float x, float y, int width, int height, String uniqueName)
-	{
+	public Creature(Handler handler, float x, float y, int width, int height, String uniqueName) {
 		super(handler, x, y, width, height, uniqueName);
 		speed = DEFAULT_SPEED;
 		runSpeed = RUN_SPEED;
@@ -23,12 +22,13 @@ public abstract class Creature extends Entity {
 		yMove = 0;
 	}
 
-	public void move()
-	{
-		if(!checkEntityCollisions(xMove, 0f))
+	public void move() {
+		if (!checkEntityCollisions(xMove, 0f)) {
 			moveX();
-		if(!checkEntityCollisions(0f, yMove))
+		}
+		if (!checkEntityCollisions(0f, yMove)) {
 			moveY();
+		}
 
 	}
 

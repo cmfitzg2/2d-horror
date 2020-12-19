@@ -10,13 +10,13 @@ import Graphics.Assets;
 import Utils.FontUtils;
 
 public class TextboxHandler {
-	private int textboxWidth = 1600, textboxHeight = 675, currentLine = 1, index, textboxNum, optionsIndex;
+	private int textboxWidth = 1600, textboxHeight = 675, currentLine = 1, index, textboxNum, optionsIndex, sizeConstraint;
 	private int xStart, yStart, xEnd, yEnd, xOffsetText = 25, yOffsetText = 25, minimumLineLength = 45, minimumOptionsLength;
 	private int xStartOptions, yStartOptions, optionsIncrement;
 	private float xScale, yScale;
 	private String currentText = "";
 	private Rectangle textboxRect, topRect, midRect, botRect;
-	boolean textFinished = false, viewingOptions = false, finished = false;
+	boolean textFinished = false, viewingOptions = false, finished = false, active = false, scaledUp = false;
 	private String message, optionSelected = "";
 	private String[] options, words;
 	private Font font;
@@ -31,7 +31,18 @@ public class TextboxHandler {
 	private BufferedImage portrait;
 	private int portraitWidth, portraitHeight, portraitXStart, portraitYStart;
 
-	public TextboxHandler(Handler handler, Font font, String message, String[] options, int textSpeed, Color fontColor, BufferedImage portrait) {
+	/**
+	 * object for dealing with the generic functionality of a textbox
+	 * @param handler game handler
+	 * @param font the font to use in the textbox
+	 * @param message the text to parse & show
+	 * @param options a list of player-selectable options shown in a menu after text finishes
+	 * @param textSpeed number of frames to wait per letter scrolled
+	 * @param fontColor the font color
+	 * @param portrait optional portrait to show inside of textbox
+	 * @param sizeConstraint [1, 100] - divided by 100 and multiplied to font size. can only be used to constrain (e.g., reduce how much the font is shrunk or grown by default).
+	 */
+	public TextboxHandler(Handler handler, Font font, String message, String[] options, int textSpeed, Color fontColor, BufferedImage portrait, int sizeConstraint) {
 		this.handler = handler;
 		this.message = message;
 		this.options = options;
@@ -43,6 +54,12 @@ public class TextboxHandler {
 			this.fontColor = Color.WHITE;
 		}
 		this.portrait = portrait;
+		this.sizeConstraint = sizeConstraint;
+		if (this.sizeConstraint < 1) {
+			this.sizeConstraint = 1;
+		} else if (this.sizeConstraint > 100) {
+			this.sizeConstraint = 100;
+		}
 		initParams();
 		words = message.split(" ");
 		textboxLines = new HashMap<>();
@@ -76,7 +93,14 @@ public class TextboxHandler {
 	}
 
 	public void tick() {
+		if (firstTime) {
+			return;
+		}
 		if (!textFinished) {
+			//need to set the hold on this even when we're not using it
+			if (handler.getKeyManager().z) {
+				handler.getKeyManager().setStillHoldingZ(true);
+			}
 			if (handler.getKeyManager().x && !handler.getKeyManager().isStillHoldingX()) {
 				handler.getKeyManager().setStillHoldingX(true);
 				textFinished = true;
@@ -102,6 +126,10 @@ public class TextboxHandler {
 			}
 			frameCount++;
 		} else {
+			//need to set the hold on this even when we're not using it
+			if (handler.getKeyManager().x) {
+				handler.getKeyManager().setStillHoldingX(true);
+			}
 			if (handler.getKeyManager().z && !handler.getKeyManager().isStillHoldingZ()) {
 				handler.getKeyManager().setStillHoldingZ(true);
 				if (textboxes.size() > textboxNum + 1) {
@@ -118,9 +146,11 @@ public class TextboxHandler {
 						} else {
 							optionSelected = options[optionsIndex];
 							finished = true;
+							handler.setPlayerFrozen(false);
 						}
 					} else {
 						finished = true;
+						handler.setPlayerFrozen(false);
 					}
 				}
 			} else if (handler.getKeyManager().down && !handler.getKeyManager().isStillHoldingDown()) {
@@ -148,6 +178,7 @@ public class TextboxHandler {
 	public void render(Graphics g) {
 		if (firstTime) {
 			initGraphics(g);
+			firstTime = false;
 		}
 		g.drawImage(Assets.textbox, xStart, yStart, xEnd - xStart, yEnd - yStart, null);
 		if (portrait != null) {
@@ -184,11 +215,16 @@ public class TextboxHandler {
 
 	private void initGraphics(Graphics g) {
 		metrics = g.getFontMetrics(font);
-		if (metrics.getHeight() < textboxRect.height / 3) {
+		boolean scaleUp = metrics.getHeight() < textboxRect.height / 3;
+		int initialSize = font.getSize();
+		if (scaleUp) {
 			font = FontUtils.scaleFontUpVertically(new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3), g, font);
 		} else {
 			font = FontUtils.scaleFontDownVertically(new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3), g, font);
 		}
+		//only scale the font up or down as a restriction
+		font = font.deriveFont(initialSize + (Math.abs(font.getSize() - initialSize) * sizeConstraint / 100f));
+
 		//scale to char minimum
 		metrics = g.getFontMetrics(font);
 		if (metrics.stringWidth(" ") * minimumLineLength > textboxRect.getWidth()) {
@@ -216,8 +252,6 @@ public class TextboxHandler {
 			yStartOptions = handler.getHeight() / 4;
 			minimumOptionsLength = getLongestStringLength(options) + 3;
 		}
-
-		firstTime = false;
 	}
 
 	private void createTextboxes(Graphics g) {
@@ -313,6 +347,15 @@ public class TextboxHandler {
 
 	public boolean isFinished() {
 		return finished;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+		handler.setPlayerFrozen(true);
 	}
 }
 

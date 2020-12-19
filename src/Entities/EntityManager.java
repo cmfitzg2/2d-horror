@@ -49,8 +49,11 @@ public class EntityManager {
 		for (Entity e : entities) {
 			e.render(g);
 		}
-		for (Entity e: entities) {
+		for (Entity e : entities) {
 			e.postRender(g);
+		}
+		for (Entity e : entities) {
+			e.finalRender(g);
 		}
 	}
 
