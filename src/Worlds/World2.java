@@ -1,6 +1,8 @@
 package Worlds;
 
+import Entities.Creatures.Creature;
 import Entities.Creatures.Friend1;
+import Entities.Entity;
 import Entities.StaticEntities.ArtFrameSmall;
 import Entities.StaticEntities.Hole;
 import Variables.Handler;
@@ -25,5 +27,15 @@ public class World2 extends World {
         entityManager.addEntity(new ArtFrameSmall(handler, 136, 8, 48, 48, "Prophet", null, Assets.prophetInventory));
         entityManager.addEntity(new Hole(handler, 420, 420, 64, 64, "Hole 2", handler.getWorldManager().getWorld(1), 100, 100));
         entityManager.addEntity(new Friend1(handler, 200, 100, "Friend1"));
+    }
+
+    @Override
+    protected void load() {
+        handler.getFlags().setVisionLimited(false);
+        for (Entity e : entityManager.getEntities()) {
+            if (e instanceof Creature) {
+
+            }
+        }
     }
 }

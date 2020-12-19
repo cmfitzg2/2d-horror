@@ -18,6 +18,15 @@ public class Assets {
 	public static BufferedImage dirt, grass, stone, tree, water, black, gray, darkStoneWall,
 			playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal,
 			playerDownTransparent, playerUpTransparent, playerLeftTransparent, playerRightTransparent;
+	public static BufferedImage brickTopLeft, brickTopMiddle, brickTopRight, brickMiddleLeft, brickMiddleMiddle,
+			brickMiddleRight, brickBottomLeft, brickBottomMiddle, brickBottomRight;
+	public static BufferedImage roofBackLeft, roofBackMiddle, roofBackRight, roofMiddleLeft, roofMiddleMiddle,
+			roofMiddleRight, roofFrontLeft, roofFrontMiddle, roofFrontRight, lowerRoofLeft, lowerRoofRight;
+	//these are named for where edges are on the flat pieces
+	public static BufferedImage roofPivotBottomRight, roofPivotBottomLeft, roofPivotTopRight, roofPivotTopLeft;
+	public static BufferedImage roofFlatLeftBottomRight, roofFlatLeftRight, roofFlatTopLeftBottom, roofFlatTopBottom,
+			roofFlatTopRightBottom, roofFlatTopLeft, roofFlatTop, roofFlatTopRight, roofFlatLeftBottom, roofFlatBottom,
+			roofFlatRightBottom, roofFlatLeft, roofFlat, roofFlatRight;
 	public static BufferedImage wall, artFrame, artFrameSmall, artFrameSmallEmpty;
 	public static BufferedImage galleryAbyss, galleryApparition, galleryBlight, galleryButcher, galleryCaptivity,
 			galleryCipher, galleryCondemnation, galleryDeluge, galleryDissonance, galleryDuty, galleryFacade,
@@ -89,6 +98,47 @@ public class Assets {
 		black = sheet.crop(width * 2, height * 3, width, height);
 		gray = sheet.crop(width*2, height*2, width, height);
 		darkStoneWall = sheet.crop(0, height, width, height);
+
+		SpriteSheet housesSheet = new SpriteSheet(ImageLoader.loadImage("/textures/oga/LPC-Base-Assets/tiles/houses-sheet.png"));
+		brickTopLeft = housesSheet.crop(0, 0, width, height);
+		brickTopMiddle = housesSheet.crop(width, 0, width, height);
+		brickTopRight = housesSheet.crop(width * 2, 0, width, height);
+		brickMiddleLeft = housesSheet.crop(0, height, width, height);
+		brickMiddleMiddle = housesSheet.crop(width, height, width, height);
+		brickMiddleRight = housesSheet.crop(width * 2, height, width, height);
+		brickBottomLeft = housesSheet.crop(0, height * 2, width, height);
+		brickBottomMiddle = housesSheet.crop(width, height * 2, width, height);
+		brickBottomRight = housesSheet.crop(width * 2, height * 2, width, height);
+
+		roofBackLeft = housesSheet.crop(0, height * 3, width, height);
+		roofBackMiddle = housesSheet.crop(width, height * 3, width, height);
+		roofBackRight = housesSheet.crop(width * 2, height * 3, width, height);
+		roofMiddleLeft = housesSheet.crop(0, height * 4, width, height);
+		roofMiddleMiddle = housesSheet.crop(width, height * 4, width, height);
+		roofMiddleRight = housesSheet.crop(width * 2, height * 4, width, height);
+		roofFrontLeft = housesSheet.crop(0, height * 5, width, height);
+		roofFrontMiddle = housesSheet.crop(width, height * 5, width, height);
+		roofFrontRight = housesSheet.crop(width * 2, height * 5, width, height);
+		lowerRoofLeft = housesSheet.crop(0, height * 6, width, height);
+		lowerRoofRight = housesSheet.crop(width * 2, height * 6, width, height);
+		roofPivotBottomRight = housesSheet.crop(width * 3, 0, width, height);
+		roofPivotBottomLeft = housesSheet.crop(width * 4, 0, width, height);
+		roofPivotTopRight = housesSheet.crop(width * 3, height, width, height);
+		roofPivotTopLeft = housesSheet.crop(width * 4, height, width, height);
+		roofFlatLeftBottomRight = housesSheet.crop(width * 3, height * 2, width, height);
+		roofFlatLeftRight = housesSheet.crop(width * 4, height * 2, width, height);
+		roofFlatTopLeftBottom = housesSheet.crop(width * 3, height * 3, width, height);
+		roofFlatTopBottom = housesSheet.crop(width * 4, height * 3, width, height);
+		roofFlatTopRightBottom = housesSheet.crop(width * 5, height * 3, width, height);
+		roofFlatTopLeft = housesSheet.crop(width * 3, height * 4, width, height);
+		roofFlatTop = housesSheet.crop(width * 4, height * 4, width, height);
+		roofFlatTopRight = housesSheet.crop(width * 5, height * 4, width, height);
+		roofFlatLeftBottom = housesSheet.crop(width * 3, height * 5, width, height);
+		roofFlatBottom = housesSheet.crop(width * 4, height * 5, width, height);
+		roofFlatRightBottom = housesSheet.crop(width * 5, height * 5, width, height);
+		roofFlatLeft = housesSheet.crop(width * 3, height * 6, width, height);
+		roofFlat = housesSheet.crop(width * 4, height * 6, width, height);
+		roofFlatRight = housesSheet.crop(width * 5, height * 6, width, height);
 
 		SpriteSheet reflectionSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characterclone.png"));
 		reflection_down = new BufferedImage[4];

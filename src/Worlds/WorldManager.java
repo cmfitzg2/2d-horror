@@ -35,6 +35,8 @@ public class WorldManager {
     public void setActiveWorld(World activeWorld) {
         this.activeWorld = activeWorld;
         handler.setActiveWorld(activeWorld);
+        activeWorld.load();
+        activeWorld.resetEntityMessages();
         activeWorld.transitioningTo = true;
     }
 

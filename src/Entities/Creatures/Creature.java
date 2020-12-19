@@ -13,6 +13,7 @@ public abstract class Creature extends Entity {
 
 	protected float speed, runSpeed;
 	protected float xMove, yMove;
+	protected int messageNumber = 1;
 
 	public Creature(Handler handler, float x, float y, int width, int height, String uniqueName) {
 		super(handler, x, y, width, height, uniqueName);
@@ -140,4 +141,11 @@ public abstract class Creature extends Entity {
 		this.yMove = yMove;
 	}
 
+	public int getMessageNumber() {
+		return messageNumber;
+	}
+
+	public void setMessageNumber(int messageNumber) {
+		this.messageNumber = messageNumber;
+	}
 }

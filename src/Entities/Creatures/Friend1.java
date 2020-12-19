@@ -10,7 +10,6 @@ import java.awt.*;
 public class Friend1 extends Creature {
 	private Animation animDown, animUp, animLeft, animRight;
 	private boolean down = false, up = false, left = false, right = false, interactedWith = false;
-	private int id = 0, messageNumber = 1;
 	private float playerX = 0, playerY = 0;
 	TextboxHandler textboxHandler;
 

@@ -1,6 +1,7 @@
-package Tiles;
+package Tiles.Interior;
 
 import Graphics.Assets;
+import Tiles.Tile;
 
 public class DarkStoneWallTile extends Tile {
 

@@ -56,7 +56,7 @@ public class Hole extends StaticEntity {
                 GeneralUtils.levelFadeOut(handler);
                 justStartedFalling = false;
                 if (!broken) {
-                    Assets.woodBreak.play();
+                    //Assets.woodBreak.play();
                     broken = true;
                 }
             }

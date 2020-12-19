@@ -1,6 +1,8 @@
 package Worlds;
 
+import Entities.Creatures.Creature;
 import Entities.Creatures.Player;
+import Entities.Entity;
 import Entities.EntityManager;
 import Variables.Handler;
 import Tiles.Tile;
@@ -96,7 +98,7 @@ public abstract class World {
 
 	private void loadWorld(String path) {
 		String file = Utils.loadFileAsString(path);
-		String[] tokens = file.split("\\s+");
+		String[] tokens = file.split("\t");
 		width = Utils.parseInt(tokens[0]);
 		height = Utils.parseInt(tokens[1]);
 		spawnX = Utils.parseInt(tokens[2]);
@@ -106,6 +108,14 @@ public abstract class World {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
+			}
+		}
+	}
+
+	protected void resetEntityMessages() {
+		for (Entity e : entityManager.getEntities()) {
+			if (e instanceof Creature) {
+				((Creature) e).setMessageNumber(1);
 			}
 		}
 	}
@@ -125,6 +135,8 @@ public abstract class World {
 	protected abstract void checkLoadZones();
 
 	protected abstract void addEntities();
+
+	protected abstract void load();
 
 	public int getId() {
 		return id;
