@@ -27,6 +27,7 @@ public class Assets {
 	public static BufferedImage roofFlatLeftBottomRight, roofFlatLeftRight, roofFlatTopLeftBottom, roofFlatTopBottom,
 			roofFlatTopRightBottom, roofFlatTopLeft, roofFlatTop, roofFlatTopRight, roofFlatLeftBottom, roofFlatBottom,
 			roofFlatRightBottom, roofFlatLeft, roofFlat, roofFlatRight;
+	public static BufferedImage closedDoorOne, closedDoorTwo, doorwayArch, windowOne, windowTwo, stairs, chimney;
 	public static BufferedImage wall, artFrame, artFrameSmall, artFrameSmallEmpty;
 	public static BufferedImage galleryAbyss, galleryApparition, galleryBlight, galleryButcher, galleryCaptivity,
 			galleryCipher, galleryCondemnation, galleryDeluge, galleryDissonance, galleryDuty, galleryFacade,
@@ -139,6 +140,13 @@ public class Assets {
 		roofFlatLeft = housesSheet.crop(width * 3, height * 6, width, height);
 		roofFlat = housesSheet.crop(width * 4, height * 6, width, height);
 		roofFlatRight = housesSheet.crop(width * 5, height * 6, width, height);
+
+		closedDoorOne = housesSheet.crop(width * 5, 0, width, height + height / 2);
+		closedDoorTwo = housesSheet.crop(width * 5, height + height / 2, width, height + height / 2);
+		windowOne = housesSheet.crop(width * 6, 0, width, 44);
+		windowTwo = housesSheet.crop(width * 6, 44, width, height);
+		stairs = housesSheet.crop(width * 6, 44 + height, width, height - height / 4);
+		chimney = housesSheet.crop(width * 6, 44 + height + (height - height / 4), width, 45);
 
 		SpriteSheet reflectionSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characterclone.png"));
 		reflection_down = new BufferedImage[4];
@@ -307,5 +315,6 @@ public class Assets {
 		vilomahInventory = ImageLoader.loadImage("/textures/inventory/Vilomah.png");
 
 		hole = ImageLoader.loadImage("/textures/hole.png");
+		doorwayArch = ImageLoader.loadImage("/textures/oga/LPC-Base-Assets/tiles/doorwayArch.png");
 	}
 }

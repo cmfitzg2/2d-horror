@@ -63,7 +63,7 @@ public abstract class World {
 		}
 	}
 
-	protected void transitionFrom(World newWorld, float newX, float newY) {
+	public void transitionFrom(World newWorld, float newX, float newY) {
 		if (!handler.getGame().isFadeOut()) {
 			GeneralUtils.levelFadeOut(handler);
 		} else if (handler.getGame().isFinishedFadingOut()) {
