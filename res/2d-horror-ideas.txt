@@ -18,13 +18,15 @@ early game - character building, but how??
 		-each character could have a reason to want to go, even though MC is the only one that matters
 
 i think each event should take place in such a way that MC + the character can speak / interact but can't reach eachother (something like jailbars?)
+-puzzles with spooky boys who embody the stage serving as the obstacle
 
 denial
 	character:
 		-wants to go because they want to prove it's all bullshit
+		-should be the least interesting / player-invested character since we're killing them first
 		-"this is so stupid"
 		-"you guys will seriously believe anything"
-		-should be the least interesting / player-invested character since we're killing them first
+
 	event:
 		-player has to tap button / click to keep Denial from dying to some inevitable threat (holding wall up that crushes, guillotine, etc).
 		-can't be won, eventually the event will happen in spite of player's efforts
@@ -67,6 +69,7 @@ depression
 		-"beats spending the night with myself"
 		could be funny, make a lot of depressing sarcastic quips (aka red flags!!! for depression!!!)
 		"is there anything scarier than really knowing yourself? only the alternative I guess."
+		"I know myself fine. That's the problem."
 
 	event:
 		-suicide, player unwittingly contributes to it 
@@ -95,3 +98,159 @@ post-game:
 	-character wakes up from this delusion
 	-attends funeral for Acceptance?
 	-other stages of grief are real friends in real world and they're all fine?
+
+
+
+
+
+working script
+MC (thinking): "..."
+MC (thinking): "I wonder if it's time to wake up."
+MC (thinking): "I hate this feeling. It's the uncertainty of it."
+MC (thinking): "If I open my eyes and it's bright in my room, it'll be time to get up."
+MC (thinking): "If it's still dark, I'll have to find a way to get back to sleep."
+MC (thinking): "Why is it that I don't know whether it's morning or still night before I open my eyes?"
+MC (thinking): "I wonder if most people know when it's time to get up based on how they feel."
+MC (thinking): "I mean, sleep is a biological process, right?" 
+MC (thinking): "I feel full after I eat. I feel sated when I drink."
+MC (thinking): "When I'm cold, it feels good to warm up. When I'm hot, it feels good to cool down."
+MC (thinking): "But when I wake up, I'm still tired. There's no relief."
+MC (thinking): "I think I used to wake up feeling refreshed. I did, didn't I?"
+MC (thinking): "I wonder when that stopped."
+MC (thinking): "I guess it was probably gradual. I'm sure I would've noticed if it was all at once."
+MC (thinking): "Gosh, that should probably alarm me more, shouldn't it? I wonder what else I've lost without noticing."
+MC (thinking): "..."
+MC (thinking): "Well, I followed that train of thought a little too far. At this point, I don't think I'll be getting back to sleep no matter what time it is."
+MC (thinking): "Guess I'd better hope it's morning then."
+>fade in to MC's room, MC in bed, it's morning
+MC (thinking): "..."
+MC (thinking): "I think I'm disappointed anyway."
+>player gains control, can move around house
+>eventually leave
+
+Acceptance: "Hey MC!"
+MC (thinking): "Sounds like Acceptance is already here. I don't know why, but today I really feel relieved to hear his voice again." 
+>Acceptance approaches
+MC: "Hey, it's good to see you again."
+Acceptance: "Good to see me again? You know we do this every day right?"
+Acceptance: "But hey -- good to see you too!"
+Acceptance: "You alright? You look like you haven't slept much."
+MC: "Yeah, I feel like it too."
+Acceptance: "That sucks."
+Acceptance: "Well, you know I'm not normally one for platitudes, but hey, it *is* Friday!"
+Acceptance: "Let's just knock this day out. Maybe we can do something fun after school to clear your head."
+MC: "That sounds good. Let's get this over with then."
+>Acceptance walks off screen, player regains control
+>eventually head to school
+
+>Acceptance is inside
+Acceptance: "There you are! We're a little early, but everyone's already in there. Let's go."
+>Acceptance enters classroom
+>MC follows
+>Cut to classroom, 5 friend group talking
+>Scripted event? MC walks up
+
+Anger: "Hey MC. You look like literal garbage."
+Bargaining: "That... seems unnecessary to say."
+Depression: "I'm gonna go with Anger on this one."
+Depression: "I spend a lot of time around garbage, and this definitely feels reminiscent."
+MC: "Yeah, I've just been really tired lately. Can't seem to think clearly."
+Denial: "Happens to everyone sometimes. You'll get over it."
+Denial: "Besides, you don't look that bad."
+Bargaining: "I'm sure you're trying to be nice, Denial, but that comes off as .. a little unsympathetic."
+Denial "Whatever."
+Anger: "If it's sympathy you're after, I'm sorry that you look like literal trash."
+Depression: "I wish you'd talk to me like that."
+Bargaining: "You probably shouldn't talk to anyone like that."
+Anger: "Don't be such a thin skinned baby for once, Bargaining."
+Depression: "Back off. Don't be mean to Bargaining."
+Acceptance: "You know, I bet all this isn't helping MC feel much better."
+MC: "It's a little nice. I can't really keep up right now, so it all kind of just blends together into white noise."
+Depression: "About time one of you joined me as the second basket case of the group."
+Bargaining: "You joke about your mental health a lot, Depression. You should take that stuff seriously."
+Anger: "Yeah, please don't make any jokes Depression, Bargaining might start crying."
+Bargaining: "It's serious!"
+Denial: "It really isn't."
+Acceptance: "No, it is. Take care of yourself, Depression."
+Acceptance: "Actually, MC and I were hoping to do something after school. You wanna join us?"
+Depression: "You know how much I like being a third wheel."
+MC: "No, seriously, come with us. We like having you around."
+Depression: "You're gonna make me blush."
+Depression: "Alright, sure, I'm up for whatever. Beats spending the night with myself."
+Depression: "What's the plan anyway?"
+Acceptance: "Well, I haven't given it much thought."
+Acceptance: "What do you guys think about heading up to (THE PLACE)?"
+MC: "..."
+MC: "You haven't given it much thought and that's what pops into your head?"
+Depression: "Didn't think we'd be getting the group's third basket case so soon."
+Acceptance: "I know, I know. But people say that place has.. special properties."
+MC: "'Special properties'?"
+Acceptance: "Yeah. Like it can help you to find yourself."
+Denial: "You really buy into that crap?"
+Acceptance: "I'm not totally sure. I just want to help MC out of his rut, and if the rumors are true, this could help."
+Acceptance: "And Depression, I suspect you might also benefit."
+Depression: "I know myself fine. That's the problem."
+Denial: "You're missing the point. Even if you didn't, going there wouldn't help. It's just an urban legend."
+Denial: "Anger, can you talk some sense into these people?"
+Anger: "I've tried. I've been calling them idiots for years, and they're still idiots."
+Depression: "I can hear your voice shaking."
+Anger: "Idiot."
+Acceptance: "Don't be like that. You should come too."
+Anger: "Why would I? If you idiots want to waste your Friday night, be my guest, but I have a life."
+Depression: "Scared you'll lose it?"
+Anger: "Will you shut up about it?"
+Acceptance: "Come on, you know he's teasing you. Just come with us. You can help keep us safe."
+Anger: "..."
+Anger: "Fine, whatever."
+Anger: "If this place does help you to find yourself, I want to be there when you all realize you're idiots."
+Depression: "Way ahead of you."
+Acceptance: "Well, this is shaping up to be quite the night. I'm more excited than nervous now."
+MC: "What about you, Bargaining? You've been quiet."
+Bargaining: "..."
+Bargaining: "I don't know guys. I really don't think it's such a good idea to go."
+Bargaining: "That place is supposed to be really sketchy. Can't we do our soul-searching at home?"
+Bargaining: "We could just go hang out at my place. I'll make us food."
+Anger: "Shut up and just say no already. You're such a wuss."
+Depression: "You've got nothing to be worried about. If a monster wants to eat one of us, they'll definitely start with Anger."
+Depression: "That should give you some time to escape."
+Acceptance: "It's up to you. We'd love to have you, but I won't pressure you to do something you don't want to do."
+Depression: "I will. Come with us!"
+Bargaining: "..."
+Bargaining: "If you really want me to, I guess I will."
+Depression: "See Acceptance? Pressuring people works."
+Acceptance: "Guess so."
+Acceptance: "Well Denial, you're officially the odd man out."
+Denial: "Yeah, *I'm* the odd one in this group."
+Denial: (Sigh).
+Denial: "Yeah, whatever, alright." 
+Denial: "I know it'll be a wasted night, but at least I won't be the one who didn't do something that even Bargaining did."
+Depression: "Don't worry, Bargaining. I'm the low bar in every other situation."
+Acceptance: "Looks like our plans are made then! Let's just make it to the end of the day now, MC."
+MC: "Yep. Back to plan A."
+>text is finally over
+>teacher comes in, characters go to their seats.
+Teacher: "Alright, let's get started. We're going to pick up where we left off yesterday."
+Teacher: "Logarithms are pretty simple if you understand exponents. They're really just a different way ..."
+>screen fades to black
+
+MC (thinking): "..."
+MC (thinking): "...Huh?"
+MC (thinking): "It's that same feeling again as this morning. Did I fall asleep?"
+>screen fades in
+Teacher: "...will go over Euler's constant as it relates to logarithms on Monday."
+Teacher: "Until then, have a safe and fun weekend."
+>teacher leaves. it's fine.
+MC (thinking): "..That's not good. Did I really sleep through the entire lesson?"
+MC (thinking): "Well, I'm definitely screwed in this class. But I guess that's one way to make it to the end of the day."
+MC (thinking): "Still though, why am I so exhausted? I don't feel any less tired than before."
+>all the students leave except Acceptance
+>Acceptance approaches
+Acceptance: "Seems like math didn't cheer you up. You look even worse than this morning."
+MC: "Yeah, I ended up sleeping through the whole class."
+Acceptance: "That's not like you. You still up for tonight?"
+MC: "For sure. The last thing I want to do is just go home feeling like this."
+Acceptance: "Great. We'll meet you outside."
+>Acceptance leaves
+>player regains control
+>eventually leaves
+

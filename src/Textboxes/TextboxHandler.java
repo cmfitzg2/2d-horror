@@ -30,6 +30,7 @@ public class TextboxHandler {
 	private int frameCount = 1, textSpeed;
 	private BufferedImage portrait;
 	private int portraitWidth, portraitHeight, portraitXStart, portraitYStart;
+	private boolean allowFastText;
 
 	/**
 	 * object for dealing with the generic functionality of a textbox
@@ -42,7 +43,8 @@ public class TextboxHandler {
 	 * @param portrait optional portrait to show inside of textbox
 	 * @param sizeConstraint [1, 100] - divided by 100 and multiplied to font size. can only be used to constrain (e.g., reduce how much the font is shrunk or grown by default).
 	 */
-	public TextboxHandler(Handler handler, Font font, String message, String[] options, int textSpeed, Color fontColor, BufferedImage portrait, int sizeConstraint) {
+	public TextboxHandler(Handler handler, Font font, String message, String[] options, int textSpeed, Color fontColor,
+						  BufferedImage portrait, int sizeConstraint, boolean allowFastText) {
 		this.handler = handler;
 		this.message = message;
 		this.options = options;
@@ -60,6 +62,7 @@ public class TextboxHandler {
 		} else if (this.sizeConstraint > 100) {
 			this.sizeConstraint = 100;
 		}
+		this.allowFastText = allowFastText;
 		initParams();
 		words = message.split(" ");
 		textboxLines = new HashMap<>();
@@ -101,7 +104,7 @@ public class TextboxHandler {
 			if (handler.getKeyManager().z) {
 				handler.getKeyManager().setStillHoldingZ(true);
 			}
-			if (handler.getKeyManager().x && !handler.getKeyManager().isStillHoldingX()) {
+			if (handler.getKeyManager().x && !handler.getKeyManager().isStillHoldingX() && allowFastText) {
 				handler.getKeyManager().setStillHoldingX(true);
 				textFinished = true;
 				while (!currentTextbox.getCurrentText(currentLine + 1).isEmpty()) {
@@ -127,7 +130,7 @@ public class TextboxHandler {
 			frameCount++;
 		} else {
 			//need to set the hold on this even when we're not using it
-			if (handler.getKeyManager().x) {
+			if (handler.getKeyManager().x && allowFastText) {
 				handler.getKeyManager().setStillHoldingX(true);
 			}
 			if (handler.getKeyManager().z && !handler.getKeyManager().isStillHoldingZ()) {
@@ -280,6 +283,19 @@ public class TextboxHandler {
 						lineNumber = 0;
 						textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), textboxLines.get(botRect), portrait));
 					}
+				} else if (word.equals("\r")) {
+					if (lineNumber == 0) {
+						textboxLines.put(topRect, line.toString());
+						textboxes.add(new Textbox(textboxLines.get(topRect), "", "", portrait));
+					} else if (lineNumber == 1) {
+						textboxLines.put(midRect, line.toString());
+						textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), "", portrait));
+					} else if (lineNumber == 2) {
+						textboxLines.put(botRect, line.toString());
+						textboxes.add(new Textbox(textboxLines.get(topRect), textboxLines.get(midRect), textboxLines.get(botRect), portrait));
+					}
+					lineNumber = 0;
+					line = new StringBuilder(word);
 				} else {
 					line.append(word).append(" ");
 				}

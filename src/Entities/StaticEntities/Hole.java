@@ -68,8 +68,8 @@ public class Hole extends StaticEntity {
                 handler.getPlayer().setTransparent(false);
                 justStartedFalling = true;
                 frameCounter = 0;
-                GeneralUtils.stopLevelFadeOut(handler, destination, newX, newY);
-                GeneralUtils.levelFadeIn(handler);
+                GeneralUtils.stopLevelFadeOut(handler, destination, newX, newY, true);
+                GeneralUtils.levelFadeIn(handler, 40);
             }
         }
     }

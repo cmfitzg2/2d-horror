@@ -15,7 +15,7 @@ public abstract class World {
 	private int width, height, id, spawnX, spawnY;
 	private int[][] tiles;
 	private String path;
-	private boolean firstTime = true;
+	protected boolean firstTime = true, fadeIn = true;
 	public boolean transitioningTo = true, transitioningFrom = false;
 	//Entities
 	protected EntityManager entityManager;
@@ -38,7 +38,9 @@ public abstract class World {
 	protected void tick() {
 		if (firstTime) {
 			addEntities();
-			GeneralUtils.levelFadeIn(handler);
+			if (fadeIn) {
+				GeneralUtils.levelFadeIn(handler, -1);
+			}
 			firstTime = false;
 		}
 		entityManager.tick();
@@ -54,11 +56,11 @@ public abstract class World {
 	}
 
 	private void transitionTo() {
-		if (!handler.getGame().isFadeIn()) {
-			GeneralUtils.levelFadeIn(handler);
+		if (!handler.getGame().isFadeIn() && fadeIn) {
+			GeneralUtils.levelFadeIn(handler, -1);
 		}
 		if (handler.getGame().isFadeIn() && handler.getGame().isFinishedFadingIn()) {
-			GeneralUtils.stopLevelFadeIn(handler);
+			GeneralUtils.stopLevelFadeIn(handler, false);
 			transitioningTo = false;
 		}
 	}
@@ -67,7 +69,7 @@ public abstract class World {
 		if (!handler.getGame().isFadeOut()) {
 			GeneralUtils.levelFadeOut(handler);
 		} else if (handler.getGame().isFinishedFadingOut()) {
-			GeneralUtils.stopLevelFadeOut(handler, newWorld, newX, newY);
+			GeneralUtils.stopLevelFadeOut(handler, newWorld, newX, newY, false);
 			transitioningTo = true;
 		}
 	}

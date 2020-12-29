@@ -1,5 +1,6 @@
 package Worlds;
 
+import Cutscenes.CutsceneManager;
 import Entities.Creatures.Friend1;
 import Entities.Creatures.Player;
 import Entities.StaticEntities.ArtFrameSmall;
@@ -30,5 +31,12 @@ public class World1 extends World {
     @Override
     protected void load() {
         handler.getFlags().setVisionLimited(true);
+        if (handler.getFlags().isPrologue()) {
+            fadeIn = false;
+            handler.getFlags().setCutsceneActive(true);
+            CutsceneManager cutsceneManager = handler.getCutsceneManager();
+            cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(1));
+            handler.setPlayerFrozen(true);
+        }
     }
 }

@@ -24,22 +24,25 @@ public class GeneralUtils {
                 && mouseManager.isLeftPressed());
     }
 
-    public static void levelFadeIn(Handler handler) {
-        handler.getGame().fadeIn(GeneralConstants.levelTransitionFrames);
-    }
-
-    public static void stopLevelFadeIn(Handler handler) {
-        handler.getGame().setFadeIn(false);
-        handler.getGame().setFinishedFadingIn(false);
+    public static void levelFadeIn(Handler handler, int transitionFrames) {
+        if (transitionFrames <= 0) {
+            transitionFrames = GeneralConstants.levelTransitionFrames;
+        }
+        handler.getGame().fadeIn(transitionFrames);
     }
 
     public static void levelFadeOut(Handler handler) {
         handler.getGame().fadeOut(GeneralConstants.levelTransitionFrames);
     }
 
-    public static void stopLevelFadeOut(Handler handler, World newWorld, float newX, float newY) {
+    public static void stopLevelFadeIn(Handler handler, boolean setPlayerFrozen) {
+        handler.getGame().setFadeIn(false, setPlayerFrozen);
+        handler.getGame().setFinishedFadingIn(false);
+    }
+
+    public static void stopLevelFadeOut(Handler handler, World newWorld, float newX, float newY, boolean setPlayerFrozen) {
         handler.getGame().setFinishedFadingOut(false);
-        handler.getGame().setFadeOut(false);
+        handler.getGame().setFadeOut(false, setPlayerFrozen);
         handler.getWorldManager().setActiveWorld(newWorld);
         newWorld.getEntityManager().getPlayer().setX(newX);
         newWorld.getEntityManager().getPlayer().setY(newY);

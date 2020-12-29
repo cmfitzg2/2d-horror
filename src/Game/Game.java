@@ -79,7 +79,9 @@ public class Game implements Runnable {
 
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		GeneralUtils.levelFadeIn(handler);
+		if (!handler.getFlags().isPrologue()) {
+			GeneralUtils.levelFadeIn(handler, -1);
+		}
 		State.setState(menuState);
 	}
 
@@ -209,7 +211,7 @@ public class Game implements Runnable {
 	}
 
 	public void fadeIn(int frameCount) {
-		setFadeIn(true);
+		setFadeIn(true, true);
 		finishedFadingIn = false;
 		alpha = 255;
 		alphaThreshold = 255 / frameCount;
@@ -220,7 +222,7 @@ public class Game implements Runnable {
 	}
 
 	public void fadeOut(int frameCount){
-		setFadeOut(true);
+		setFadeOut(true, true);
 		finishedFadingOut = false;
 		alpha = 0;
 		alphaThreshold = 255 / frameCount;
@@ -234,21 +236,13 @@ public class Game implements Runnable {
 		return screenOverlay;
 	}
 
-	public void setFadeOut(boolean fadeOut) {
-		if (fadeOut) {
-			handler.setPlayerFrozen(true);
-		} else {
-			handler.setPlayerFrozen(false);
-		}
+	public void setFadeOut(boolean fadeOut, boolean setPlayerFrozen) {
+		handler.setPlayerFrozen(setPlayerFrozen);
 		this.fadeOut = fadeOut;
 	}
 
-	public void setFadeIn(boolean fadeIn) {
-		if (fadeIn) {
-			handler.setPlayerFrozen(true);
-		} else {
-			handler.setPlayerFrozen(false);
-		}
+	public void setFadeIn(boolean fadeIn, boolean setPlayerFrozen) {
+		handler.setPlayerFrozen(setPlayerFrozen);
 		this.fadeIn = fadeIn;
 	}
 

@@ -1,5 +1,6 @@
 package Variables;
 
+import Cutscenes.CutsceneManager;
 import Entities.Creatures.Player;
 import Game.Game;
 import Graphics.GameCamera;
@@ -18,6 +19,7 @@ public class Handler {
 	private boolean playerFrozen = false, isInMenu = false, gamePaused = false;
 	private int worldNumber = 1;
 	private WorldManager worldManager;
+	private CutsceneManager cutsceneManager;
 	private Player player;
 
 	public Handler(Game game)
@@ -136,5 +138,13 @@ public class Handler {
 
 	public void setPlayer(Player player) {
 		this.player = player;
+	}
+
+	public CutsceneManager getCutsceneManager() {
+		return cutsceneManager;
+	}
+
+	public void setCutsceneManager(CutsceneManager cutsceneManager) {
+		this.cutsceneManager = cutsceneManager;
 	}
 }

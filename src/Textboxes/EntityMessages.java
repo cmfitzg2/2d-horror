@@ -23,9 +23,9 @@ public class EntityMessages {
                 switch (handler.getActiveWorld().getId()) {
                     case 1:
                         if (messageNumber == 1) {
-                            return "hey it's me friend 1! just wondering when you think we might be able to get out of here? hope to hear back soon! \n love, friend 1. \n P.S. ur gay";
+                            return "hey it's me friend 1! \r just wondering when you think we might be able to get out of here? \r hope to hear back soon! \r love, friend 1. \r P.S. ur gay";
                         } else {
-                            return "leave me alone lmao \n \n \n lata bitch";
+                            return "leave me alone lmao \r lata bitch";
                         }
                     case 2:
                         if (messageNumber == 1) {
