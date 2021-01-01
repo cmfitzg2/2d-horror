@@ -70,6 +70,9 @@ depression
 		could be funny, make a lot of depressing sarcastic quips (aka red flags!!! for depression!!!)
 		"is there anything scarier than really knowing yourself? only the alternative I guess."
 		"I know myself fine. That's the problem."
+		-rough around the edges, disheveled
+		-frequently self-deprecates, but will defend others (especially Bargaining)
+		-actually kind of alpha, doesn't back down from threats etc., is just depressed.
 
 	event:
 		-suicide, player unwittingly contributes to it 
@@ -104,6 +107,7 @@ post-game:
 
 
 working script
+>black screen, only textbox is visible
 MC (thinking): "..."
 MC (thinking): "I wonder if it's time to wake up."
 MC (thinking): "I hate this feeling. It's the uncertainty of it."
@@ -159,7 +163,7 @@ Denial: "Happens to everyone sometimes. You'll get over it."
 Denial: "Besides, you don't look that bad."
 Bargaining: "I'm sure you're trying to be nice, Denial, but that comes off as .. a little unsympathetic."
 Denial "Whatever."
-Anger: "If it's sympathy you're after, I'm sorry that you look like literal trash."
+Anger: "If it's sympathy you're after, I'm sorry that you look like literal garbage."
 Depression: "I wish you'd talk to me like that."
 Bargaining: "You probably shouldn't talk to anyone like that."
 Anger: "Don't be such a thin skinned baby for once, Bargaining."
@@ -239,7 +243,7 @@ MC (thinking): "It's that same feeling again as this morning. Did I fall asleep?
 >screen fades in
 Teacher: "...will go over Euler's constant as it relates to logarithms on Monday."
 Teacher: "Until then, have a safe and fun weekend."
->teacher leaves. it's fine.
+>teacher leaves. it's fine. this is a thing that happens in school, the teacher just leaves.
 MC (thinking): "..That's not good. Did I really sleep through the entire lesson?"
 MC (thinking): "Well, I'm definitely screwed in this class. But I guess that's one way to make it to the end of the day."
 MC (thinking): "Still though, why am I so exhausted? I don't feel any less tired than before."
