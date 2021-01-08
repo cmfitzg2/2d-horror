@@ -12,7 +12,7 @@ import Utils.GeneralUtils;
 
 public abstract class World {
 	protected Handler handler;
-	private int width, height, id, spawnX, spawnY;
+	private int width, height, id;
 	private int[][] tiles;
 	private String path;
 	protected boolean firstTime = true, fadeIn = true;
@@ -103,13 +103,10 @@ public abstract class World {
 		String[] tokens = file.split("\t");
 		width = Utils.parseInt(tokens[0]);
 		height = Utils.parseInt(tokens[1]);
-		spawnX = Utils.parseInt(tokens[2]);
-		spawnY = Utils.parseInt(tokens[3]);
-
 		tiles = new int[width][height];
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
+				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 2]);
 			}
 		}
 	}

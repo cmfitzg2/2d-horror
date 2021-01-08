@@ -125,6 +125,14 @@ public abstract class Creature extends Entity {
 		this.speed = speed;
 	}
 
+	public float getRunSpeed() {
+		return runSpeed;
+	}
+
+	public void setRunSpeed(float runSpeed) {
+		this.runSpeed = runSpeed;
+	}
+
 	public float getxMove() {
 		return xMove;
 	}

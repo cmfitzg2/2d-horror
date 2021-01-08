@@ -12,8 +12,9 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Creature {
     private static boolean down, up, left, right;
-    private boolean interactedWith, transparent;
+    private boolean interactedWith, transparent, lockX, lockY, headOnly;
     private Inventory inventory;
+    public static float defaultSpeed = 4.0f, defaultRunSpeed = 8.0f;
     //Animations
     private Animation animDown, animUp, animLeft, animRight;
     public static Rectangle playerRec, interactionRectangle;
@@ -43,11 +44,14 @@ public class Player extends Creature {
 
         //Items
         inventory = new Inventory(handler);
+
+        runSpeed = defaultRunSpeed;
+        speed = defaultSpeed;
     }
 
     @Override
     public void tick() {
-        currentPlayerRectangle();
+        playerRec = currentPlayerRectangle();
         if (!handler.isPlayerFrozen()) {
             //Animations
             animDown.tick();
@@ -79,38 +83,49 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics g) {
+        handler.getGameCamera().centerOnEntity(this);
         if (handler.isPlayerFrozen()) {
             if (!handler.getFlags().isViewingArt()) {
                 if (up) {
-                    if (!transparent) {
+                    if (headOnly) {
+                        g.drawImage(Assets.headUp, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+                    } else if (!transparent) {
                         g.drawImage(Assets.playerUpNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
                     } else {
                         g.drawImage(Assets.playerUpTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
                     }
                 }
                 else if (down) {
-                    if (!transparent) {
+                    if (headOnly) {
+                        g.drawImage(Assets.headDown, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+                    } else if (!transparent) {
                         g.drawImage(Assets.playerDownNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
                     } else {
                         g.drawImage(Assets.playerDownTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
                     }
                 }
                 else if (left) {
-                    if (!transparent) {
+                    if (headOnly) {
+                        g.drawImage(Assets.headLeft, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+                    } else if (!transparent) {
                         g.drawImage(Assets.playerLeftNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
                     } else {
                         g.drawImage(Assets.playerLeftTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
                     }
                 }
                 else if (right) {
-                    if (!transparent) {
+                    if (headOnly) {
+                        g.drawImage(Assets.headRight, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+                    } else if (!transparent) {
                         g.drawImage(Assets.playerRightNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
                     } else {
                         g.drawImage(Assets.playerRightTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
                     }
                 }
                 else {
-                    if (!transparent) {
+                    if (headOnly) {
+                        g.drawImage(Assets.headDown, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+                    } else if (!transparent) {
                         g.drawImage(Assets.playerDownNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
                     } else {
                         g.drawImage(Assets.playerDownTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
@@ -140,8 +155,9 @@ public class Player extends Creature {
         drawTextboxes(g);
         g.setColor(Color.WHITE);
         g.setFont(f);
-        g.drawString("Current (x,y): (" + handler.getActiveWorld().getEntityManager().getPlayer().x + ", "
-                + handler.getActiveWorld().getEntityManager().getPlayer().y + ")", 16, handler.getHeight() - 16);
+        g.drawString("Current (x,y): (" + x + ", " + y + ")", 16, handler.getHeight() - 16);
+        playerRec = currentPlayerRectangle();
+        g.drawRect(playerRec.x, playerRec.y, playerRec.width, playerRec.height);
     }
 
     @Override
@@ -149,8 +165,8 @@ public class Player extends Creature {
 
     }
 
-    private void currentPlayerRectangle() {
-        playerRec = new Rectangle((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
+    private Rectangle currentPlayerRectangle() {
+        return new Rectangle((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
                 (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
                 bounds.width, bounds.height);
     }
@@ -193,30 +209,39 @@ public class Player extends Creature {
         if (!handler.isPlayerFrozen()) {
             xMove = 0;
             yMove = 0;
-            runSpeed = 8.0f;
-            speed = 4.0f;
 
-            if (handler.getKeyManager().up)
-                if (handler.getKeyManager().shift)
-                    yMove = -runSpeed;
-                else
-                    yMove = -speed;
-            if (handler.getKeyManager().down)
-                if (handler.getKeyManager().shift)
-                    yMove = runSpeed;
-                else
-                    yMove = speed;
-            if (handler.getKeyManager().left)
-                if (handler.getKeyManager().shift)
-                    xMove = -runSpeed;
-                else
-                    xMove = -speed;
-            if (handler.getKeyManager().right)
-                if (handler.getKeyManager().shift)
-                    xMove = runSpeed;
-                else
-                    xMove = speed;
-
+            if (!lockY) {
+                if (handler.getKeyManager().up) {
+                    if (handler.getKeyManager().shift) {
+                        yMove = -runSpeed;
+                    } else {
+                        yMove = -speed;
+                    }
+                }
+                if (handler.getKeyManager().down) {
+                    if (handler.getKeyManager().shift) {
+                        yMove = runSpeed;
+                    } else {
+                        yMove = speed;
+                    }
+                }
+            }
+            if (!lockX) {
+                if (handler.getKeyManager().left) {
+                    if (handler.getKeyManager().shift) {
+                        xMove = -runSpeed;
+                    } else {
+                        xMove = -speed;
+                    }
+                }
+                if (handler.getKeyManager().right) {
+                    if (handler.getKeyManager().shift) {
+                        xMove = runSpeed;
+                    } else {
+                        xMove = speed;
+                    }
+                }
+            }
             if (handler.getKeyManager().z) {
                 if (!handler.getKeyManager().isStillHoldingZ()) {
                     handler.getKeyManager().setStillHoldingZ(true);
@@ -242,27 +267,51 @@ public class Player extends Creature {
     private BufferedImage getCurrentAnimationFrame() {
         if (xMove < 0) {
             left = true; right = false; up = false; down = false;
+            if (headOnly) {
+                return Assets.headLeft;
+            }
             return animLeft.getCurrentFrame();
         } else if (xMove > 0) {
             right = true; left = false; up = false; down = false;
+            if (headOnly) {
+                return Assets.headRight;
+            }
             return animRight.getCurrentFrame();
         } else if (yMove < 0) {
             up = true; left = false; right = false; down = false;
+            if (headOnly) {
+                return Assets.headUp;
+            }
             return animUp.getCurrentFrame();
         } else if (yMove > 0) {
             down = true; left = false; up = false; right = false;
+            if (headOnly) {
+                return Assets.headDown;
+            }
             return animDown.getCurrentFrame();
         }
         //not moving
         else {
             if (!transparent) {
                 if (right) {
+                    if (headOnly) {
+                        return Assets.headRight;
+                    }
                     return Assets.playerRightNormal;
                 } else if (up) {
+                    if (headOnly) {
+                        return Assets.headUp;
+                    }
                     return Assets.playerUpNormal;
                 } else if (left) {
+                    if (headOnly) {
+                        return Assets.headLeft;
+                    }
                     return Assets.playerLeftNormal;
                 } else {
+                    if (headOnly) {
+                        return Assets.headDown;
+                    }
                     return Assets.playerDownNormal;
                 }
             } else {
@@ -322,5 +371,29 @@ public class Player extends Creature {
 
     public void setTransparent(boolean transparent) {
         this.transparent = transparent;
+    }
+
+    public boolean isLockX() {
+        return lockX;
+    }
+
+    public void setLockX(boolean lockX) {
+        this.lockX = lockX;
+    }
+
+    public boolean isLockY() {
+        return lockY;
+    }
+
+    public void setLockY(boolean lockY) {
+        this.lockY = lockY;
+    }
+
+    public boolean isHeadOnly() {
+        return headOnly;
+    }
+
+    public void setHeadOnly(boolean headOnly) {
+        this.headOnly = headOnly;
     }
 }

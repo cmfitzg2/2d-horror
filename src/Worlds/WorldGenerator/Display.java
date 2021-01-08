@@ -1,9 +1,7 @@
-package Graphics;
+package Worlds.WorldGenerator;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 public class Display {
 	private JFrame frame;
@@ -24,8 +22,8 @@ public class Display {
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setUndecorated(true);
 		frame.setLocationRelativeTo(null);
+		frame.setLocation(frame.getLocation().x + 200, frame.getLocation().y);
 		frame.setVisible(true);
 
 		canvas = new Canvas();
@@ -33,19 +31,15 @@ public class Display {
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setFocusable(false);
-		canvas.setBackground(Color.BLACK);
-
 		frame.add(canvas);
 		frame.pack();
 	}
 
-	public Canvas getCanvas()
-	{
+	public Canvas getCanvas() {
 		return canvas;
 	}
 
-	public JFrame getFrame()
-	{
+	public JFrame getFrame() {
 		return frame;
 	}
 }

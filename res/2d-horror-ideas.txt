@@ -21,6 +21,7 @@ i think each event should take place in such a way that MC + the character can s
 -puzzles with spooky boys who embody the stage serving as the obstacle
 
 denial
+	name: daniel? anagram of denial lol
 	character:
 		-wants to go because they want to prove it's all bullshit
 		-should be the least interesting / player-invested character since we're killing them first
@@ -33,6 +34,7 @@ denial
 		-autoclicker -> you can't cheat death, you'll never move on like this, etc.
 
 anger
+	name: ira? literally latin for anger
 	character:
 		-wants to go because 
 			-they want to prove they already know themselves fine?
@@ -64,6 +66,7 @@ bargaining
 			-
 
 depression
+	name: tristan? trist- prefix meaning sadness
 	character:
 		-wants to go because they have nothing else going on, who cares
 		-"beats spending the night with myself"
@@ -82,6 +85,7 @@ depression
 			-Depresison already wants to commit, doesn't need to be the *only* solution.
 
 acceptance
+	name: noah? biblical name, meaning comfort or rest
 	character:
 		-this could be a real person in MC's life, the one who has died, and who MC is going through grief for
 		-wants to go because they want to help MC

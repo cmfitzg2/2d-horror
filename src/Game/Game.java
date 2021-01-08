@@ -73,7 +73,6 @@ public class Game implements Runnable {
 		handler.setEntityMessages(entityMessages);
 		flags = new Flags(handler);
 		handler.setFlags(flags);
-		handler.getFlags().setVisionLimited(true);
 		gameCamera = new GameCamera(handler, 0,0);
 		screenOverlay = new ScreenOverlay(handler);
 
@@ -119,7 +118,7 @@ public class Game implements Runnable {
 	private void checkScreenFade() {
 		if (fadeOut) {
 			alpha += alphaThreshold;
-			if (alpha > 255) {
+			if (alpha >= 255) {
 				alpha = 255;
 				finishedFadingOut = true;
 			}

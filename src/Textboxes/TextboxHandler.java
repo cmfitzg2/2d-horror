@@ -2,6 +2,7 @@ package Textboxes;
 
 import Variables.Handler;
 
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import Graphics.Assets;
 import Utils.FontUtils;
 
 public class TextboxHandler {
-	private int textboxWidth = 1600, textboxHeight = 675, currentLine = 1, index, textboxNum, optionsIndex, sizeConstraint;
+	private int textboxWidth = 1600, textboxHeight = 675, currentLine = 1, index, textboxNum, optionsIndex, soundIndex, sizeConstraint;
 	private int xStart, yStart, xEnd, yEnd, xOffsetText = 25, yOffsetText = 25, minimumLineLength = 45, minimumOptionsLength;
 	private int xStartOptions, yStartOptions, optionsIncrement;
 	private float xScale, yScale;
@@ -31,6 +32,7 @@ public class TextboxHandler {
 	private BufferedImage portrait;
 	private int portraitWidth, portraitHeight, portraitXStart, portraitYStart;
 	private boolean allowFastText;
+	private AudioClip[] sounds = new AudioClip[3];
 
 	/**
 	 * object for dealing with the generic functionality of a textbox
@@ -44,7 +46,7 @@ public class TextboxHandler {
 	 * @param sizeConstraint [1, 100] - divided by 100 and multiplied to font size. can only be used to constrain (e.g., reduce how much the font is shrunk or grown by default).
 	 */
 	public TextboxHandler(Handler handler, Font font, String message, String[] options, int textSpeed, Color fontColor,
-						  BufferedImage portrait, int sizeConstraint, boolean allowFastText) {
+						  BufferedImage portrait, AudioClip sound, int sizeConstraint, boolean allowFastText) {
 		this.handler = handler;
 		this.message = message;
 		this.options = options;
@@ -56,6 +58,15 @@ public class TextboxHandler {
 			this.fontColor = Color.WHITE;
 		}
 		this.portrait = portrait;
+		if (null != sound) {
+			for (int i = 0; i < sounds.length; i++) {
+				sounds[i] = sound;
+			}
+		} else {
+			for (int i = 0; i < sounds.length; i++) {
+				sounds[i] = Assets.textTest2;
+			}
+		}
 		this.sizeConstraint = sizeConstraint;
 		if (this.sizeConstraint < 1) {
 			this.sizeConstraint = 1;
@@ -126,6 +137,16 @@ public class TextboxHandler {
 			if (frameCount % textSpeed == 0) {
 				index++;
 				frameCount = 0;
+				if (index < lineText.length() && lineText.charAt(index) != ' ' && lineText.charAt(index) != '\\' && (index > 0
+						&& !(lineText.charAt(index) == 'r' && lineText.charAt(index - 1) == '\\')
+						&& !(lineText.charAt(index) == 'n' && lineText.charAt(index - 1) == '\\'))) {
+					sounds[soundIndex].stop();
+					sounds[soundIndex].play();
+					soundIndex++;
+					if (soundIndex >= sounds.length) {
+						soundIndex = 0;
+					}
+				}
 			}
 			frameCount++;
 		} else {

@@ -35,7 +35,7 @@ public class Door1 extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-
+        g.drawRect(enterDoor.x, enterDoor.y, enterDoor.width, enterDoor.height);
     }
 
     @Override
@@ -45,8 +45,8 @@ public class Door1 extends StaticEntity {
 
     @Override
     public void tick() {
-        enterDoor = new Rectangle((int) x - 1  - (int) handler.getGameCamera().getxOffset(),
-                (int) y - 1  - (int) handler.getGameCamera().getyOffset(), width + 2, height + 2);
+        enterDoor = new Rectangle((int) x - 3  - (int) handler.getGameCamera().getxOffset(),
+                (int) y - 3  - (int) handler.getGameCamera().getyOffset(), width + 6, height + 20);
         if (handler.getPlayer().getPlayerRec().intersects(enterDoor)) {
             handler.getActiveWorld().transitionFrom(destination, newX, newY);
         }

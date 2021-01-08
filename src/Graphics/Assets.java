@@ -15,7 +15,7 @@ public class Assets {
 
 	private static final int width = 32, height = 32, biggerWidth = 48, biggerHeight = 48;
 	public static final int paintingWidth = 815, paintingHeight = 820;
-	public static BufferedImage dirt, grass, stone, tree, water, black, gray, darkStoneWall,
+	public static BufferedImage dirt, grass, stone, water, black, gray, darkStoneWall, woodFloor,
 			playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal,
 			playerDownTransparent, playerUpTransparent, playerLeftTransparent, playerRightTransparent;
 	public static BufferedImage brickTopLeft, brickTopMiddle, brickTopRight, brickMiddleLeft, brickMiddleMiddle,
@@ -28,6 +28,10 @@ public class Assets {
 			roofFlatTopRightBottom, roofFlatTopLeft, roofFlatTop, roofFlatTopRight, roofFlatLeftBottom, roofFlatBottom,
 			roofFlatRightBottom, roofFlatLeft, roofFlat, roofFlatRight;
 	public static BufferedImage closedDoorOne, closedDoorTwo, doorwayArch, windowOne, windowTwo, stairs, chimney;
+	public static BufferedImage bedOne, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
+	public static BufferedImage windowLight;
+	public static BufferedImage yellowLight;
+	public static BufferedImage headDown, headUp, headLeft, headRight;
 	public static BufferedImage wall, artFrame, artFrameSmall, artFrameSmallEmpty;
 	public static BufferedImage galleryAbyss, galleryApparition, galleryBlight, galleryButcher, galleryCaptivity,
 			galleryCipher, galleryCondemnation, galleryDeluge, galleryDissonance, galleryDuty, galleryFacade,
@@ -48,7 +52,7 @@ public class Assets {
 	public static BufferedImage[] ghoulDown, ghoulLeft, ghoulRight, ghoulUp;
 	public static BufferedImage[] tunnelVision;
 	public static Font sans, serif, philosopher, textboxDefault;
-	public static AudioClip menuMove, woodBreak, openInventory, closeInventory;
+	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2;
 	public static Clip menuMusic;
 	public static void init() {
 		initSounds();
@@ -62,6 +66,8 @@ public class Assets {
 		woodBreak = Applet.newAudioClip(Assets.class.getResource("/sounds/woodBreak.au"));
 		openInventory = Applet.newAudioClip(Assets.class.getResource("/sounds/openInventory.au"));
 		closeInventory = Applet.newAudioClip(Assets.class.getResource("/sounds/closeInventory.au"));
+		textTest = Applet.newAudioClip(Assets.class.getResource("/sounds/text-test.au"));
+		textTest2  = Applet.newAudioClip(Assets.class.getResource("/sounds/text-test-2.au"));
 		try {
 			menuMusic = AudioSystem.getClip();
 			AudioInputStream ais1 = AudioSystem.getAudioInputStream(new File("res/music/desolate.au"));
@@ -90,17 +96,17 @@ public class Assets {
 	}
 
 	private static void initSpriteSheets() {
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/sheet.png"));
 		dirt = sheet.crop(0,0,width,height);
 		grass = sheet.crop(width, 0, width, height);
 		stone = sheet.crop(width*2, 0, width, height);
-		tree = sheet.crop(width*3, 0, width, height);
-		water = sheet.crop(0, height*2, width, height);
-		black = sheet.crop(width * 2, height * 3, width, height);
-		gray = sheet.crop(width*2, height*2, width, height);
+		water = sheet.crop(width * 3, 0, width, height);
 		darkStoneWall = sheet.crop(0, height, width, height);
+		woodFloor = sheet.crop(width, height, width, height);
+		black = sheet.crop(width * 2, height, width, height);
+		gray = sheet.crop(width * 3, height, width, height);
 
-		SpriteSheet housesSheet = new SpriteSheet(ImageLoader.loadImage("/textures/oga/LPC-Base-Assets/tiles/houses-sheet.png"));
+		SpriteSheet housesSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/houses-sheet.png"));
 		brickTopLeft = housesSheet.crop(0, 0, width, height);
 		brickTopMiddle = housesSheet.crop(width, 0, width, height);
 		brickTopRight = housesSheet.crop(width * 2, 0, width, height);
@@ -141,12 +147,20 @@ public class Assets {
 		roofFlat = housesSheet.crop(width * 4, height * 6, width, height);
 		roofFlatRight = housesSheet.crop(width * 5, height * 6, width, height);
 
-		closedDoorOne = housesSheet.crop(width * 5, 0, width, height + height / 2);
-		closedDoorTwo = housesSheet.crop(width * 5, height + height / 2, width, height + height / 2);
-		windowOne = housesSheet.crop(width * 6, 0, width, 44);
-		windowTwo = housesSheet.crop(width * 6, 44, width, height);
-		stairs = housesSheet.crop(width * 6, 44 + height, width, height - height / 4);
-		chimney = housesSheet.crop(width * 6, 44 + height + (height - height / 4), width, 45);
+		SpriteSheet staticEntities = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/sheet.png"));
+		windowOne = staticEntities.crop(0, 0, width, 44);
+		windowTwo = staticEntities.crop(0, 44, width, height);
+		stairs = staticEntities.crop(0, 44 + height, width, height - height / 4);
+		chimney = staticEntities.crop(0, 44 + height + (height - height / 4), width, 30);
+		closedDoorOne = staticEntities.crop(0, 44 + height + (height - height / 4) + 30, width, height + height / 2);
+		closedDoorTwo = staticEntities.crop(0, 44 + height + (height - height / 4) + 30 + height + (height / 2), width, 46);
+
+		SpriteSheet chairsBedSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/chairs-bed-sheet.png"));
+		bedOne = chairsBedSheet.crop(0, 0, 48, 81);
+		chairOneDown = chairsBedSheet.crop(48, 0, 26, 32);
+		chairOneUp = chairsBedSheet.crop(48, 32, 26, 24);
+		chairOneRight = chairsBedSheet.crop(48, 56, 26, 32);
+		chairOneLeft = chairsBedSheet.crop(48, 88, 26, 32);
 
 		SpriteSheet reflectionSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characterclone.png"));
 		reflection_down = new BufferedImage[4];
@@ -204,6 +218,12 @@ public class Assets {
 		playerLeftNormal = player_left[0];
 		playerRightNormal = player_right[0];
 		playerUpNormal = player_up[0];
+
+		SpriteSheet headSheet = new SpriteSheet(ImageLoader.loadImage("/textures/player-head-sheet.png"));
+		headDown = headSheet.crop(0, 0, width, height);
+		headUp = headSheet.crop(0, height, width, height);
+		headLeft = headSheet.crop(0, height * 2, width, height);
+		headRight = headSheet.crop(0, height * 3, width, height);
 
 		SpriteSheet playerSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/Charactersheet-transparent.png"));
 		playerDownTransparent = playerSheetTransparent.crop(0, 0, width, height);
@@ -316,5 +336,7 @@ public class Assets {
 
 		hole = ImageLoader.loadImage("/textures/hole.png");
 		doorwayArch = ImageLoader.loadImage("/textures/oga/LPC-Base-Assets/tiles/doorwayArch.png");
+		windowLight = ImageLoader.loadImage("/textures/static-entities/window-light.png");
+		yellowLight = ImageLoader.loadImage("/textures/effects/light-yellow.png");
 	}
 }
