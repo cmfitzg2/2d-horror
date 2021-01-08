@@ -1,6 +1,2 @@
 *.class
-*.project
-*.classpath
-*.iml
 /out
-*.idea/
