@@ -1,36 +1,35 @@
 package Worlds.WorldGenerator;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
-import java.io.File;
+import java.awt.image.BufferedImage;
 
-public class WorldView extends JFrame implements Runnable, MouseListener, MouseMotionListener {
+public class WorldView implements Runnable, MouseListener, MouseMotionListener {
 
     private BufferStrategy bs;
     private Graphics g;
+    private Canvas canvas;
     private Display display;
-    ImageIcon currentWorld;
-    private JLabel world;
+    private BufferedImage[][] tiles;
+    private BufferedImage currentImage;
+    private int mouseX, mouseY;
     int width, height;
+    private boolean leftPressed, rightPressed;
 
     public WorldView() {
-        super("Current World");
-        world = new JLabel();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        width = ConfigWindow.width < (int) (3 / 4.0f * screenSize.width) ? ConfigWindow.width : (int) (3 / 4.0f * screenSize.width);
-        height = ConfigWindow.height < (int) (3 / 4.0f * screenSize.width) ? ConfigWindow.width : (int) (3 / 4.0f * screenSize.width);
-        setSize(width, height);
-        setVisible(true);
-        display = new Display("World", width * 2, height * 2);
-        Canvas canvas = display.getCanvas();
-        JScrollPane jsp = new JScrollPane(world);
-        jsp.add(canvas);
-        getContentPane().add(jsp);
+        width = Math.min(ConfigWindow.width, (int) (3 / 4.0f * screenSize.width));
+        height = Math.min(ConfigWindow.height, (int) (3 / 4.0f * screenSize.height));
+        tiles = new BufferedImage[Math.max(ConfigWindow.width, (int) (3 / 4.0f * screenSize.width)) / 32]
+                [Math.max(ConfigWindow.height, (int) (3 / 4.0f * screenSize.height)) / 32];
+        display = new Display("World", width, height);
+        canvas = display.getCanvas();
+        canvas.setPreferredSize(new Dimension(width, height));
+        canvas.setMaximumSize(new Dimension(width, height));
+        canvas.setMinimumSize(new Dimension(width, height));
         g = canvas.getGraphics();
         display.getFrame().addMouseListener(this);
         display.getFrame().addMouseMotionListener(this);
@@ -40,15 +39,27 @@ public class WorldView extends JFrame implements Runnable, MouseListener, MouseM
         t.start();
     }
 
-    public void setCurrentWorld(ImageIcon currentWorld) {
-        world.setIcon(currentWorld);
-        invalidate();
-        revalidate();
-        repaint();
-    }
-
     private void drawWorld() throws Exception {
-        g.drawImage(ImageIO.read(new File("C:\\Users\\narwhal\\Desktop\\dev\\2d-horror\\res\\textures\\tile-sheets\\houses-sheet.png")), 0, 0, width * 2, height * 2, null);
+        bs = display.getCanvas().getBufferStrategy();
+        if (bs == null) {
+            display.getCanvas().createBufferStrategy(3);
+            return;
+        }
+        g = bs.getDrawGraphics();
+        //clear screen
+        g.clearRect(0, 0, width, height);
+
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
+                if (tiles[i][j] != null) {
+                    g.drawImage(tiles[i][j],32 * i, 32 * j, null);
+                }
+            }
+        }
+        g.setColor(Color.GREEN);
+        g.drawRect(32 * (mouseX / 32), 32 * (mouseY / 32), 32, 32);
+        bs.show();
+        g.dispose();
     }
 
     @Override
@@ -58,12 +69,23 @@ public class WorldView extends JFrame implements Runnable, MouseListener, MouseM
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            leftPressed = true;
+            tiles[mouseX / 32][mouseY / 32] = currentImage;
+        }
+        if (e.getButton() == MouseEvent.BUTTON3) {
+            rightPressed = true;
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            leftPressed = false;
+        }
+        if (e.getButton() == MouseEvent.BUTTON3) {
+            rightPressed = false;
+        }
     }
 
     @Override
@@ -83,7 +105,8 @@ public class WorldView extends JFrame implements Runnable, MouseListener, MouseM
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        mouseX = e.getX();
+        mouseY = e.getY();
     }
 
     @Override
@@ -108,5 +131,9 @@ public class WorldView extends JFrame implements Runnable, MouseListener, MouseM
             }
 
         }
+    }
+
+    public void setCurrentImage(BufferedImage currentImage) {
+        this.currentImage = currentImage;
     }
 }

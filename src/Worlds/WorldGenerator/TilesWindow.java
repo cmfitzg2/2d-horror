@@ -7,6 +7,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -32,7 +33,7 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
         int index = 0;
         for (BufferedImage image : images.keySet()) {
             width += image.getWidth();
-            height = image.getHeight() > height ? image.getHeight() : height;
+            height = Math.max(image.getHeight(), height);
             //need to keep these in the same order sadly
             infoFileArray[index] = images.get(image);
             imageArray[index] = image;
@@ -50,7 +51,6 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
         tiles = initArray();
         setIds();
         worldView = new WorldView();
-        worldView.init();
     }
 
     private void drawTiles() {
@@ -115,7 +115,7 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
             currentWidth += imageArray[i].getWidth();
             i++;
         }
-        currentImage = imageArray[i].getSubimage(32 * ((mouseX - currentWidth) / 32), 32 * (mouseY / 32), 32, 32);
+        worldView.setCurrentImage(imageArray[i].getSubimage(32 * ((mouseX - currentWidth) / 32), 32 * (mouseY / 32), 32, 32));
         currentId = tiles[mouseX / 32][mouseY / 32];
     }
 
@@ -147,10 +147,8 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
 
     private int[][] initArray() {
         int[][] tiles = new int[width / 32][height / 32];
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
-                tiles[i][j] = -1;
-            }
+        for (int[] tile : tiles) {
+            Arrays.fill(tile, -1);
         }
         return tiles;
     }
@@ -174,13 +172,5 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
             }
             xIndex += image.getWidth() / 32;
         }
-    }
-
-    public BufferedImage getCurrentImage() {
-        return currentImage;
-    }
-
-    public int getCurrentId() {
-        return currentId;
     }
 }
