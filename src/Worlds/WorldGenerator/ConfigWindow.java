@@ -18,15 +18,14 @@ public class ConfigWindow implements ActionListener {
     private JTextField heightField = new JTextField();
     private JLabel tilesheetDirLabel = new JLabel("Tilesheet dir: ");
     private JTextField tilesheetDirField = new JTextField();
-    private JLabel outputDirLabel = new JLabel("Output dir: ");
+    private JLabel outputDirLabel = new JLabel("Output file: ");
     private JTextField outputDirField = new JTextField();
-    private JLabel filenameDirLabel = new JLabel("Filename: ");
-    private JTextField filenameDirField = new JTextField();
     private JButton generateButton = new JButton("Generate");
     private JButton generateWorldButton = new JButton("Output World File");
     private JPanel configPanelMain = new JPanel();
     private HashMap<BufferedImage, File> tileSheets;
     private TilesWindow tilesWindow;
+    private WorldView worldView;
     public static int width, height;
 
     public ConfigWindow() {
@@ -37,6 +36,7 @@ public class ConfigWindow implements ActionListener {
         configWindow = new JFrame("World Generator");
         configWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         generateButton.addActionListener(this);
+        generateWorldButton.addActionListener(this);
         generateButton.setMnemonic(KeyEvent.VK_ENTER);
         generateButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
         configPanelMain.setLayout(new BoxLayout(configPanelMain, BoxLayout.Y_AXIS));
@@ -48,8 +48,6 @@ public class ConfigWindow implements ActionListener {
         configPanelMain.add(tilesheetDirField);
         configPanelMain.add(outputDirLabel);
         configPanelMain.add(outputDirField);
-        configPanelMain.add(filenameDirLabel);
-        configPanelMain.add(filenameDirField);
         configPanelMain.add(generateButton);
         configWindow.add(configPanelMain);
         configWindow.setSize(350, 250);
@@ -68,6 +66,8 @@ public class ConfigWindow implements ActionListener {
                 generateWorldButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
                 configPanelMain.add(generateWorldButton);
                 configWindow.setSize(350, 280);
+            } else {
+                //update
             }
             width = Integer.parseInt(widthField.getText()) * 32;
             height = Integer.parseInt(heightField.getText()) * 32;
@@ -88,7 +88,8 @@ public class ConfigWindow implements ActionListener {
                         }
                     }
                     if (null == tilesWindow) {
-                        tilesWindow = new TilesWindow(tileSheets);
+                        worldView = new WorldView();
+                        tilesWindow = new TilesWindow(tileSheets, worldView);
                         configWindow.setLocationRelativeTo(null);
                         configWindow.setLocation(configWindow.getLocation().x - 200, configWindow.getLocation().y);
                     }
@@ -96,6 +97,11 @@ public class ConfigWindow implements ActionListener {
                 } catch (Exception e1) {
 
                 }
+            }
+        }
+        if (e.getSource().equals(generateWorldButton)) {
+            if (null != worldView) {
+                worldView.generateWorld(outputDirField.getText());
             }
         }
     }

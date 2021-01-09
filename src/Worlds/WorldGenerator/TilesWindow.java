@@ -24,9 +24,9 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
     private File[] infoFileArray;
     private  BufferedImage[] imageArray;
     public static BufferedImage currentImage;
-    public static int currentId = -1;
+    private int activeX, activeY;
 
-    public TilesWindow(HashMap<BufferedImage, File> images) throws Exception {
+    public TilesWindow(HashMap<BufferedImage, File> images, WorldView worldView) throws Exception {
         this.tileSheets = images;
         infoFileArray = new File[images.size()];
         imageArray = new BufferedImage[images.size()];
@@ -50,7 +50,7 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
         t.start();
         tiles = initArray();
         setIds();
-        worldView = new WorldView();
+        this.worldView = worldView;
     }
 
     private void drawTiles() {
@@ -67,11 +67,10 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
             g.drawImage(image, xStart, 0, null);
             xStart += image.getWidth();
         }
-        g.setColor(Color.GREEN);
+        g.setColor(Color.WHITE);
         g.drawRect(32 * (mouseX / 32), 32 * (mouseY / 32), 32, 32);
-        if (currentImage != null) {
-            g.drawImage(currentImage, 0, 0, 64, 64, null);
-        }
+        g.setColor(Color.GREEN);
+        g.drawRect(activeX, activeY, 32, 32);
         bs.show();
         g.dispose();
     }
@@ -116,7 +115,9 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
             i++;
         }
         worldView.setCurrentImage(imageArray[i].getSubimage(32 * ((mouseX - currentWidth) / 32), 32 * (mouseY / 32), 32, 32));
-        currentId = tiles[mouseX / 32][mouseY / 32];
+        worldView.setCurrentId(tiles[mouseX / 32][mouseY / 32]);
+        activeX = 32 * (mouseX / 32);
+        activeY = 32 * (mouseY / 32);
     }
 
     @Override
@@ -172,5 +173,9 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
             }
             xIndex += image.getWidth() / 32;
         }
+    }
+
+    public void update(String tilesheetDir) {
+
     }
 }
