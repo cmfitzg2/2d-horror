@@ -40,6 +40,7 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
             index++;
         }
         display = new Display("Tiles", width, height);
+        display.getFrame().setLocation(20, 20);
         Canvas canvas = display.getCanvas();
         g = canvas.getGraphics();
         display.getFrame().addMouseListener(this);

@@ -39,8 +39,8 @@ public class WorldView implements Runnable, MouseListener, MouseMotionListener {
         height += 32 - height % 32;
         tiles = new BufferedImage[ConfigWindow.width / 32][ConfigWindow.height / 32];
         tileIds = new int[tiles.length][tiles[0].length];
-
         display = new Display("World", width, height);
+        display.getFrame().setLocationRelativeTo(null);
         canvas = display.getCanvas();
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
@@ -94,6 +94,9 @@ public class WorldView implements Runnable, MouseListener, MouseMotionListener {
         }
         g.setColor(Color.GREEN);
         g.drawRect(32 * (mouseX / 32), 32 * (mouseY / 32), 32, 32);
+        g.setColor(Color.RED);
+        g.drawString("Width: " + xOffset / 32 + " / " + ((ConfigWindow.width - width) / 32)
+                + "   Height: " + yOffset / 32 + " / " + ((ConfigWindow.height - height) / 32), 20, 20);
         bs.show();
         g.dispose();
     }
