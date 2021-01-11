@@ -34,9 +34,13 @@ public class WorldView implements Runnable, MouseListener, MouseMotionListener {
     public WorldView() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         width = Math.min(ConfigWindow.width, (int) (3 / 4.0f * screenSize.width));
-        width += 32 - width % 32;
+        if (ConfigWindow.width > (int) (3 / 4.0f * screenSize.width)) {
+            width += 32 - width % 32;
+        }
         height = Math.min(ConfigWindow.height, (int) (3 / 4.0f * screenSize.height));
-        height += 32 - height % 32;
+        if (ConfigWindow.height > (int) (3 / 4.0f * screenSize.height)) {
+            height += 32 - height % 32;
+        }
         tiles = new BufferedImage[ConfigWindow.width / 32][ConfigWindow.height / 32];
         tileIds = new int[tiles.length][tiles[0].length];
         display = new Display("World", width, height);
@@ -95,8 +99,14 @@ public class WorldView implements Runnable, MouseListener, MouseMotionListener {
         g.setColor(Color.GREEN);
         g.drawRect(32 * (mouseX / 32), 32 * (mouseY / 32), 32, 32);
         g.setColor(Color.RED);
-        g.drawString("Width: " + xOffset / 32 + " / " + ((ConfigWindow.width - width) / 32)
-                + "   Height: " + yOffset / 32 + " / " + ((ConfigWindow.height - height) / 32), 20, 20);
+        String currentPos = "";
+        if (ConfigWindow.width > width) {
+            currentPos = "Width: " + xOffset / 32 + " / " + ((ConfigWindow.width - width) / 32) + "    ";
+        }
+        if (ConfigWindow.height > height) {
+            currentPos += "Height: " + yOffset / 32 + " / " + ((ConfigWindow.height - height) / 32);
+        }
+        g.drawString(currentPos, 20, 20);
         bs.show();
         g.dispose();
     }
@@ -140,7 +150,10 @@ public class WorldView implements Runnable, MouseListener, MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        mouseX = e.getX();
+        mouseY = e.getY();
+        tiles[mouseX / 32 + xOffset / 32][mouseY / 32 + yOffset / 32] = currentImage;
+        tileIds[mouseX / 32 + xOffset / 32][mouseY / 32 + yOffset / 32] = currentId;
     }
 
     @Override
