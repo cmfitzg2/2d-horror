@@ -20,7 +20,7 @@ public class World3 extends World {
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new Hole(handler, 420, 420, 64, 64, "Hole 3", handler.getWorldManager().getWorld(2), 100, 100));
+        entityManager.addEntity(new Hole(handler, 420, 420, 64, 64, "Hole 3", handler.getWorldManager().getWorld(2), 900, 900));
         entityManager.addEntity(new Door1(handler, 960, 9 * Tile.TILEHEIGHT, 64, 96, "Door1", handler.getWorldManager().getWorld(2), 900, 900, true, true));
         entityManager.addEntity(new Window1(handler, 858, 9 * Tile.TILEHEIGHT - 12, 64, 88, "Window1-1"));
         entityManager.addEntity(new Window1(handler, 770, 9 * Tile.TILEHEIGHT - 12, 64, 88, "Window1-2"));

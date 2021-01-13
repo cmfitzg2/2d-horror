@@ -15,8 +15,8 @@ public class Prologue implements Cutscene {
     private KeyManager keyManager;
     private int messageNum = 1;
     private boolean textbox1 = true, textbox2 = false;
-    private final String messageOne = "... \r " +
-            "I wonder if it's time to wake up. \r " +
+    private final String messageOne = "... \r ";
+/*            "I wonder if it's time to wake up. \r " +
             "I hate this feeling. It's the uncertainty of it. \r " +
             "If I open my eyes and it's bright in my room, it'll be time to get up. \r " +
             "If it's still dark, I'll have to find a way to get back to sleep. \r " +
@@ -32,7 +32,7 @@ public class Prologue implements Cutscene {
             "Gosh, that should probably alarm me more, shouldn't it? I wonder what else I've lost without noticing. \r " +
             "... \r " +
             "Well, I followed that train of thought a little too far. \n At this point, I don't think I'll be getting back to sleep no matter what time it is. \r " +
-            "Guess I'd better hope it's morning then.";
+            "Guess I'd better hope it's morning then.";*/
     private final String messageTwo = "... \r " +
             "I think I'm disappointed anyway.";
 

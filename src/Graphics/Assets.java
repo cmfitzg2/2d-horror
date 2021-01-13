@@ -2,6 +2,7 @@ package Graphics;
 
 import Utils.ImageLoader;
 import javax.sound.sampled.*;
+import javax.swing.*;
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.Font;
@@ -20,6 +21,10 @@ public class Assets {
 			playerDownTransparent, playerUpTransparent, playerLeftTransparent, playerRightTransparent;
 	public static BufferedImage brickTopLeft, brickTopMiddle, brickTopRight, brickMiddleLeft, brickMiddleMiddle,
 			brickMiddleRight, brickBottomLeft, brickBottomMiddle, brickBottomRight;
+	public static BufferedImage houseWallTopLeft, houseWallTopMiddle, houseWallTopRight, houseWallMiddleLeft, houseWallMiddleMiddle,
+			houseWallMiddleRight, houseWallBottomLeft, houseWallBottomMiddle, houseWallBottomRight;
+	public static BufferedImage wallBorderTopLeft, wallBorderTopRight, wallBorderMiddleLeft, wallBorderMiddleRight,
+			wallBorderBottomLeft, wallBorderBottomMiddle, wallBorderBottomRight;
 	public static BufferedImage roofBackLeft, roofBackMiddle, roofBackRight, roofMiddleLeft, roofMiddleMiddle,
 			roofMiddleRight, roofFrontLeft, roofFrontMiddle, roofFrontRight, lowerRoofLeft, lowerRoofRight;
 	//these are named for where edges are on the flat pieces
@@ -29,7 +34,7 @@ public class Assets {
 			roofFlatRightBottom, roofFlatLeft, roofFlat, roofFlatRight;
 	public static BufferedImage closedDoorOne, closedDoorTwo, doorwayArch, windowOne, windowTwo, stairs, chimney;
 	public static BufferedImage bedOne, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
-	public static BufferedImage windowLight;
+	public static BufferedImage windowLight, tableLampOff, tableLampOn;
 	public static BufferedImage yellowLight;
 	public static BufferedImage headDown, headUp, headLeft, headRight;
 	public static BufferedImage wall, artFrame, artFrameSmall, artFrameSmallEmpty;
@@ -116,6 +121,25 @@ public class Assets {
 		brickBottomLeft = housesSheet.crop(0, height * 2, width, height);
 		brickBottomMiddle = housesSheet.crop(width, height * 2, width, height);
 		brickBottomRight = housesSheet.crop(width * 2, height * 2, width, height);
+
+		SpriteSheet houseWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/house-wall-sheet.png"));
+		houseWallTopLeft = houseWallSheet.crop(0, 0, width, height);
+		houseWallTopMiddle = houseWallSheet.crop(width, 0, width, height);
+		houseWallTopRight = houseWallSheet.crop(width * 2, 0, width, height);
+		houseWallMiddleLeft = houseWallSheet.crop(0, height, width, height);
+		houseWallMiddleMiddle = houseWallSheet.crop(width, height, width, height);
+		houseWallMiddleRight = houseWallSheet.crop(width * 2, height, width, height);
+		houseWallBottomLeft = houseWallSheet.crop(0, height * 2, width, height);
+		houseWallBottomMiddle = houseWallSheet.crop(width, height * 2, width, height);
+		houseWallBottomRight = houseWallSheet.crop(width * 2, height * 2, width, height);
+
+		wallBorderTopLeft = houseWallSheet.crop(width * 3, 0, width, height);
+		wallBorderTopRight = houseWallSheet.crop(width * 5, 0, width, height);
+		wallBorderMiddleLeft = houseWallSheet.crop(width * 3, height, width, height);
+		wallBorderMiddleRight = houseWallSheet.crop(width * 5, height, width, height);
+		wallBorderBottomLeft = houseWallSheet.crop(width * 3, height * 2, width, height);
+		wallBorderBottomMiddle = houseWallSheet.crop(width * 4, height * 2, width, height);
+		wallBorderBottomRight = houseWallSheet.crop(width * 5, height * 2, width, height);
 
 		roofBackLeft = housesSheet.crop(0, height * 3, width, height);
 		roofBackMiddle = housesSheet.crop(width, height * 3, width, height);
@@ -224,6 +248,10 @@ public class Assets {
 		headUp = headSheet.crop(0, height, width, height);
 		headLeft = headSheet.crop(0, height * 2, width, height);
 		headRight = headSheet.crop(0, height * 3, width, height);
+
+		SpriteSheet tableLampSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/table-lamp.png"));
+		tableLampOff = tableLampSheet.crop(0, 0, width, 50);
+		tableLampOn = tableLampSheet.crop(width, 0, width, 50);
 
 		SpriteSheet playerSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/Charactersheet-transparent.png"));
 		playerDownTransparent = playerSheetTransparent.crop(0, 0, width, height);

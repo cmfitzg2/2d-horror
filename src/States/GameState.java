@@ -21,7 +21,7 @@ public class GameState extends State {
 		screenOverlay = new ScreenOverlay(handler);
 		cutsceneManager = new CutsceneManager(handler);
 		handler.setCutsceneManager(cutsceneManager);
-		worldManager = new WorldManager(handler, new World1(handler, "res/worlds/world4.txt", 1));
+		worldManager = new WorldManager(handler, new World1(handler, "res/worlds/world1.txt", 1));
 		handler.setWorldManager(worldManager);
 	}
 

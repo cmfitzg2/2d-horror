@@ -5,25 +5,26 @@ import Variables.Handler;
 
 import java.awt.*;
 
-public class WindowLight extends StaticEntity {
+public class TableLamp extends StaticEntity {
 
-    public WindowLight(Handler handler, float x, float y, int width, int height, String uniqueName) {
+    private boolean lit = false;
+
+    public TableLamp(Handler handler, float x, float y, int width, int height, String uniqueName) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
-        bounds.y = 0;
+        bounds.y = 48;
         bounds.width = width;
-        bounds.height = height;
+        bounds.height = (int) (height * (2 / 3.0f) - 28);
     }
 
     @Override
     public void preRender(Graphics g) {
-        g.drawImage(Assets.windowLight, (int) (x - handler.getGameCamera().getxOffset()),
-                (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+
     }
 
     @Override
     public void postRender(Graphics g) {
-        if (!handler.getFlags().isViewingArt()) {
+        if (lit) {
             g.drawImage(Assets.yellowLight, (int) (x - handler.getGameCamera().getxOffset() - 32),
                     (int) (y - handler.getGameCamera().getyOffset() - 32), 128, 128, null);
         }
@@ -41,7 +42,13 @@ public class WindowLight extends StaticEntity {
 
     @Override
     public void render(Graphics g) {
-
+        if (lit) {
+            g.drawImage(Assets.tableLampOn, (int) (x - handler.getGameCamera().getxOffset()),
+                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        } else {
+            g.drawImage(Assets.tableLampOff, (int) (x - handler.getGameCamera().getxOffset()),
+                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        }
     }
 
     @Override
@@ -51,7 +58,7 @@ public class WindowLight extends StaticEntity {
 
     @Override
     public void interactedWith() {
-
+        lit = !lit;
     }
 
     @Override

@@ -157,7 +157,7 @@ public class Player extends Creature {
         g.setFont(f);
         g.drawString("Current (x,y): (" + x + ", " + y + ")", 16, handler.getHeight() - 16);
         playerRec = currentPlayerRectangle();
-        g.drawRect(playerRec.x, playerRec.y, playerRec.width, playerRec.height);
+        //g.drawRect(playerRec.x, playerRec.y, playerRec.width, playerRec.height);
     }
 
     @Override

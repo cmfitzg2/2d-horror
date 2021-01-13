@@ -4,6 +4,7 @@ import Tiles.Interior.*;
 import Tiles.Overworld.*;
 import Tiles.Overworld.BrickWall.*;
 import Tiles.Overworld.Roof.*;
+import Tiles.Interior.HouseWall.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -64,6 +65,25 @@ public class Tile {
 	public static Tile roofFlatLeft = new RoofFlatLeft(55);
 	public static Tile roofFlat = new RoofFlat(56);
 	public static Tile roofFlatRight = new RoofFlatRight(57);
+
+	//brick wall
+	public static Tile houseWallTopLeft = new HouseWallTopLeft(58);
+	public static Tile houseWallTopMiddle = new HouseWallTopMiddle(59);
+	public static Tile houseWallTopRight = new HouseWallTopRight(60);
+	public static Tile houseWallMiddleLeft = new HouseWallMiddleLeft(61);
+	public static Tile houseWallMiddleMiddle = new HouseWallMiddleMiddle(62);
+	public static Tile houseWallMiddleRight = new HouseWallMiddleRight(63);
+	public static Tile houseWallBottomLeft = new HouseWallBottomLeft(64);
+	public static Tile houseWallBottomMiddle = new HouseWallBottomMiddle(65);
+	public static Tile houseWallBottomRight = new HouseWallBottomRight(66);
+
+	public static Tile wallBorderTopLeft = new WallBorderTopLeft(67);
+	public static Tile wallBorderTopRight = new WallBorderTopRight(68);
+	public static Tile wallBorderMiddleLeft = new WallBorderMiddleLeft(69);
+	public static Tile wallBorderMiddleRight = new WallBorderMiddleRight(70);
+	public static Tile wallBorderBottomLeft = new WallBorderBottomLeft(71);
+	public static Tile wallBorderBottomMiddle = new WallBorderBottomMiddle(72);
+	public static Tile wallBorderBottomRight = new WallBorderBottomRight(73);
 
 	//CLASS
 	

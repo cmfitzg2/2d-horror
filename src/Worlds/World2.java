@@ -16,17 +16,17 @@ public class World2 extends World {
 
     @Override
     public void checkLoadZones() {
-        if (entityManager.getPlayer().getX() > 1000 && entityManager.getPlayer().getY() > 1000) {
-            transitionFrom(handler.getWorldManager().getWorld(1), 400, 400);
-        }
+/*        if (entityManager.getPlayer().getX() > 1000 && entityManager.getPlayer().getY() > 1000) {
+            transitionFrom(handler.getWorldManager().getWorld(1), 400, 450);
+        }*/
     }
 
     @Override
     protected void addEntities() {
         entityManager.addEntity(new ArtFrameSmall(handler, 72, 8, 48, 48, "Solace", null, Assets.solaceInventory));
         entityManager.addEntity(new ArtFrameSmall(handler, 136, 8, 48, 48, "Prophet", null, Assets.prophetInventory));
-        entityManager.addEntity(new Hole(handler, 420, 420, 64, 64, "Hole 2", handler.getWorldManager().getWorld(1), 100, 100));
-        entityManager.addEntity(new Friend1(handler, 200, 100, "Friend1"));
+        entityManager.addEntity(new Hole(handler, 420, 420, 64, 64, "Hole 2", handler.getWorldManager().getWorld(1), 100, 1000));
+        entityManager.addEntity(new Friend1(handler, 800, 500, "Friend1"));
     }
 
     @Override
