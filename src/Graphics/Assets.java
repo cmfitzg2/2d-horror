@@ -23,8 +23,10 @@ public class Assets {
 			brickMiddleRight, brickBottomLeft, brickBottomMiddle, brickBottomRight;
 	public static BufferedImage houseWallTopLeft, houseWallTopMiddle, houseWallTopRight, houseWallMiddleLeft, houseWallMiddleMiddle,
 			houseWallMiddleRight, houseWallBottomLeft, houseWallBottomMiddle, houseWallBottomRight;
-	public static BufferedImage wallBorderTopLeft, wallBorderTopRight, wallBorderMiddleLeft, wallBorderMiddleRight,
-			wallBorderBottomLeft, wallBorderBottomMiddle, wallBorderBottomRight;
+	public static BufferedImage wallBorderVerticalLeft, wallBorderVerticalRight, wallBorderCornerBottomRight,
+			wallBorderCornerBottomLeft, wallBorderCornerTopRight, wallBorderCornerTopLeft, wallBorderRightBottom,
+			wallBorderLeftBottom, wallBorderRightTop, wallBorderLeftTop, wallBorderTop, wallBorderRight, wallBorderLeft,
+			wallBorderBottom;
 	public static BufferedImage roofBackLeft, roofBackMiddle, roofBackRight, roofMiddleLeft, roofMiddleMiddle,
 			roofMiddleRight, roofFrontLeft, roofFrontMiddle, roofFrontRight, lowerRoofLeft, lowerRoofRight;
 	//these are named for where edges are on the flat pieces
@@ -133,13 +135,21 @@ public class Assets {
 		houseWallBottomMiddle = houseWallSheet.crop(width, height * 2, width, height);
 		houseWallBottomRight = houseWallSheet.crop(width * 2, height * 2, width, height);
 
-		wallBorderTopLeft = houseWallSheet.crop(width * 3, 0, width, height);
-		wallBorderTopRight = houseWallSheet.crop(width * 5, 0, width, height);
-		wallBorderMiddleLeft = houseWallSheet.crop(width * 3, height, width, height);
-		wallBorderMiddleRight = houseWallSheet.crop(width * 5, height, width, height);
-		wallBorderBottomLeft = houseWallSheet.crop(width * 3, height * 2, width, height);
-		wallBorderBottomMiddle = houseWallSheet.crop(width * 4, height * 2, width, height);
-		wallBorderBottomRight = houseWallSheet.crop(width * 5, height * 2, width, height);
+		SpriteSheet wallBordersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/wall-borders-sheet.png"));
+		wallBorderVerticalLeft = wallBordersSheet.crop(0, 0, width, height);
+		wallBorderVerticalRight = wallBordersSheet.crop(width * 4, 0, width, height);
+		wallBorderCornerBottomRight = wallBordersSheet.crop(width, 0, width, height);
+		wallBorderCornerBottomLeft = wallBordersSheet.crop(width * 3, 0, width, height);
+		wallBorderCornerTopRight = wallBordersSheet.crop(0, height * 3, width, height);
+		wallBorderCornerTopLeft = wallBordersSheet.crop(width * 4, height * 3, width, height);
+		wallBorderRightBottom = wallBordersSheet.crop(width, height, width, height);
+		wallBorderLeftBottom = wallBordersSheet.crop(width * 3, height, width, height);
+		wallBorderRightTop = wallBordersSheet.crop(width, height * 3, width, height);
+		wallBorderLeftTop = wallBordersSheet.crop(width * 3, height * 3, width, height);
+		wallBorderBottom = wallBordersSheet.crop(width * 2, 0, width, height);
+		wallBorderRight = wallBordersSheet.crop(0, height * 2, width, height);
+		wallBorderLeft = wallBordersSheet.crop(width * 4, height * 2, width, height);
+		wallBorderTop = wallBordersSheet.crop(width * 2, height * 4, width, height);
 
 		roofBackLeft = housesSheet.crop(0, height * 3, width, height);
 		roofBackMiddle = housesSheet.crop(width, height * 3, width, height);

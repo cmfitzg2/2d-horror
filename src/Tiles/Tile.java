@@ -1,6 +1,7 @@
 package Tiles;
 
 import Tiles.Interior.*;
+import Tiles.Interior.WallBorder.*;
 import Tiles.Overworld.*;
 import Tiles.Overworld.BrickWall.*;
 import Tiles.Overworld.Roof.*;
@@ -66,7 +67,7 @@ public class Tile {
 	public static Tile roofFlat = new RoofFlat(56);
 	public static Tile roofFlatRight = new RoofFlatRight(57);
 
-	//brick wall
+	//house wall
 	public static Tile houseWallTopLeft = new HouseWallTopLeft(58);
 	public static Tile houseWallTopMiddle = new HouseWallTopMiddle(59);
 	public static Tile houseWallTopRight = new HouseWallTopRight(60);
@@ -77,13 +78,23 @@ public class Tile {
 	public static Tile houseWallBottomMiddle = new HouseWallBottomMiddle(65);
 	public static Tile houseWallBottomRight = new HouseWallBottomRight(66);
 
-	public static Tile wallBorderTopLeft = new WallBorderTopLeft(67);
-	public static Tile wallBorderTopRight = new WallBorderTopRight(68);
-	public static Tile wallBorderMiddleLeft = new WallBorderMiddleLeft(69);
-	public static Tile wallBorderMiddleRight = new WallBorderMiddleRight(70);
-	public static Tile wallBorderBottomLeft = new WallBorderBottomLeft(71);
-	public static Tile wallBorderBottomMiddle = new WallBorderBottomMiddle(72);
-	public static Tile wallBorderBottomRight = new WallBorderBottomRight(73);
+	//house wall borders
+	public static Tile wallBorderBottom = new WallBorderBottom(67);
+	public static Tile wallBorderCornerBottomLeft = new WallBorderCornerBottomLeft(68);
+	public static Tile wallBorderCornerBottomRight = new WallBorderCornerBottomRight(69);
+	public static Tile wallBorderCornerTopLeft = new WallBorderCornerTopLeft(70);
+	public static Tile wallBorderCornerTopRight = new WallBorderCornerTopRight(71);
+	public static Tile wallBorderLeft = new WallBorderLeft(72);
+	public static Tile wallBorderLeftBottom = new WallBorderLeftBottom(73);
+	public static Tile wallBorderLeftTop = new WallBorderLeftTop(74);
+	public static Tile wallBorderRight = new WallBorderRight(75);
+	public static Tile wallBorderRightBottom = new WallBorderRightBottom(76);
+	public static Tile wallBorderRightTop = new WallBorderRightTop(77);
+	public static Tile wallBorderTop = new WallBorderTop(78);
+	public static Tile wallBorderVerticalLeft = new WallBorderVerticalLeft(79);
+	public static Tile wallBorderVerticalRight = new WallBorderVerticalRight(80);
+
+
 
 	//CLASS
 	
