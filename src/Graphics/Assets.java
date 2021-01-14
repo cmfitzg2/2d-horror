@@ -53,6 +53,7 @@ public class Assets {
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
 	public static BufferedImage hole;
+	public static BufferedImage[] dressers;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
 	public static BufferedImage[] reflection_down, reflection_up, reflection_left, reflection_right;
@@ -123,34 +124,6 @@ public class Assets {
 		brickBottomLeft = housesSheet.crop(0, height * 2, width, height);
 		brickBottomMiddle = housesSheet.crop(width, height * 2, width, height);
 		brickBottomRight = housesSheet.crop(width * 2, height * 2, width, height);
-
-		SpriteSheet houseWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/house-wall-sheet.png"));
-		houseWallTopLeft = houseWallSheet.crop(0, 0, width, height);
-		houseWallTopMiddle = houseWallSheet.crop(width, 0, width, height);
-		houseWallTopRight = houseWallSheet.crop(width * 2, 0, width, height);
-		houseWallMiddleLeft = houseWallSheet.crop(0, height, width, height);
-		houseWallMiddleMiddle = houseWallSheet.crop(width, height, width, height);
-		houseWallMiddleRight = houseWallSheet.crop(width * 2, height, width, height);
-		houseWallBottomLeft = houseWallSheet.crop(0, height * 2, width, height);
-		houseWallBottomMiddle = houseWallSheet.crop(width, height * 2, width, height);
-		houseWallBottomRight = houseWallSheet.crop(width * 2, height * 2, width, height);
-
-		SpriteSheet wallBordersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/wall-borders-sheet.png"));
-		wallBorderVerticalLeft = wallBordersSheet.crop(0, 0, width, height);
-		wallBorderVerticalRight = wallBordersSheet.crop(width * 4, 0, width, height);
-		wallBorderCornerBottomRight = wallBordersSheet.crop(width, 0, width, height);
-		wallBorderCornerBottomLeft = wallBordersSheet.crop(width * 3, 0, width, height);
-		wallBorderCornerTopRight = wallBordersSheet.crop(0, height * 3, width, height);
-		wallBorderCornerTopLeft = wallBordersSheet.crop(width * 4, height * 3, width, height);
-		wallBorderRightBottom = wallBordersSheet.crop(width, height, width, height);
-		wallBorderLeftBottom = wallBordersSheet.crop(width * 3, height, width, height);
-		wallBorderRightTop = wallBordersSheet.crop(width, height * 3, width, height);
-		wallBorderLeftTop = wallBordersSheet.crop(width * 3, height * 3, width, height);
-		wallBorderBottom = wallBordersSheet.crop(width * 2, 0, width, height);
-		wallBorderRight = wallBordersSheet.crop(0, height * 2, width, height);
-		wallBorderLeft = wallBordersSheet.crop(width * 4, height * 2, width, height);
-		wallBorderTop = wallBordersSheet.crop(width * 2, height * 4, width, height);
-
 		roofBackLeft = housesSheet.crop(0, height * 3, width, height);
 		roofBackMiddle = housesSheet.crop(width, height * 3, width, height);
 		roofBackRight = housesSheet.crop(width * 2, height * 3, width, height);
@@ -180,6 +153,45 @@ public class Assets {
 		roofFlatLeft = housesSheet.crop(width * 3, height * 6, width, height);
 		roofFlat = housesSheet.crop(width * 4, height * 6, width, height);
 		roofFlatRight = housesSheet.crop(width * 5, height * 6, width, height);
+
+		SpriteSheet houseWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/house-wall-sheet.png"));
+		houseWallTopLeft = houseWallSheet.crop(0, 0, width, height);
+		houseWallTopMiddle = houseWallSheet.crop(width, 0, width, height);
+		houseWallTopRight = houseWallSheet.crop(width * 2, 0, width, height);
+		houseWallMiddleLeft = houseWallSheet.crop(0, height, width, height);
+		houseWallMiddleMiddle = houseWallSheet.crop(width, height, width, height);
+		houseWallMiddleRight = houseWallSheet.crop(width * 2, height, width, height);
+		houseWallBottomLeft = houseWallSheet.crop(0, height * 2, width, height);
+		houseWallBottomMiddle = houseWallSheet.crop(width, height * 2, width, height);
+		houseWallBottomRight = houseWallSheet.crop(width * 2, height * 2, width, height);
+
+		SpriteSheet wallBordersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/wall-borders-sheet.png"));
+		wallBorderVerticalLeft = wallBordersSheet.crop(0, 0, width, height);
+		wallBorderVerticalRight = wallBordersSheet.crop(width * 4, 0, width, height);
+		wallBorderCornerBottomRight = wallBordersSheet.crop(width, 0, width, height);
+		wallBorderCornerBottomLeft = wallBordersSheet.crop(width * 3, 0, width, height);
+		wallBorderCornerTopRight = wallBordersSheet.crop(0, height * 3, width, height);
+		wallBorderCornerTopLeft = wallBordersSheet.crop(width * 4, height * 3, width, height);
+		wallBorderRightBottom = wallBordersSheet.crop(width, height, width, height);
+		wallBorderLeftBottom = wallBordersSheet.crop(width * 3, height, width, height);
+		wallBorderRightTop = wallBordersSheet.crop(width, height * 3, width, height);
+		wallBorderLeftTop = wallBordersSheet.crop(width * 3, height * 3, width, height);
+		wallBorderBottom = wallBordersSheet.crop(width * 2, 0, width, height);
+		wallBorderRight = wallBordersSheet.crop(0, height * 2, width, height);
+		wallBorderLeft = wallBordersSheet.crop(width * 4, height * 2, width, height);
+		wallBorderTop = wallBordersSheet.crop(width * 2, height * 4, width, height);
+
+		SpriteSheet dressersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/dressers-sheet.png"));
+		dressers = new BufferedImage[9];
+		dressers[0] = dressersSheet.crop(0, 0, width, 69);
+		dressers[1] = dressersSheet.crop(width, 0, width, 69);
+		dressers[2] = dressersSheet.crop(width * 2, 0, width, 69);
+		dressers[3] = dressersSheet.crop(width * 3, 0, width, 69);
+		dressers[4] = dressersSheet.crop(0, 69, width, 69);
+		dressers[5] = dressersSheet.crop(width, 69, width, 69);
+		dressers[6] = dressersSheet.crop(width * 2, 69, width, 69);
+		dressers[7] = dressersSheet.crop(width * 3, 69, width, 69);
+		dressers[8] = dressersSheet.crop(width * 4, 69, width, 69);
 
 		SpriteSheet staticEntities = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/sheet.png"));
 		windowOne = staticEntities.crop(0, 0, width, 44);
