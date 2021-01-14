@@ -43,6 +43,7 @@ public class World1 extends World {
         entityManager.addEntity(new Dresser(handler, 1248, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser8", 7));
         entityManager.addEntity(new Dresser(handler, 1312, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser9", 8));
         entityManager.addEntity(new Fireplace(handler, 1000, Tile.TILEHEIGHT * 3 - Assets.firePlace.getHeight() * 2 + 20, Assets.firePlace.getWidth() * 2, Assets.firePlace.getHeight() * 2, "fireplace1"));
+        entityManager.addEntity(new GrandfatherClock(handler, 500, 150, Assets.grandfatherClock.getWidth() * 2, Assets.grandfatherClock.getHeight() * 2, "clock1"));
     }
 
     @Override

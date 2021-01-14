@@ -52,7 +52,7 @@ public class Assets {
 			manifestationInventory, moribundInventory, oblationInventory, perditionInventory, processionInventory, prophetInventory,
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
-	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished;
+	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, grandfatherClock;
 	public static BufferedImage[] dressers, fire;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -398,5 +398,6 @@ public class Assets {
 		windowLight = ImageLoader.loadImage("/textures/static-entities/window-light.png");
 		yellowLight = ImageLoader.loadImage("/textures/effects/light-yellow.png");
 		firePlace = ImageLoader.loadImage("/textures/static-entities/fireplace-1.png");
+		grandfatherClock = ImageLoader.loadImage("/textures/static-entities/grandfather-clock.png");
 	}
 }
