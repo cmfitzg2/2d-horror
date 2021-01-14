@@ -52,8 +52,8 @@ public class Assets {
 			manifestationInventory, moribundInventory, oblationInventory, perditionInventory, processionInventory, prophetInventory,
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
-	public static BufferedImage hole;
-	public static BufferedImage[] dressers;
+	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished;
+	public static BufferedImage[] dressers, fire;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
 	public static BufferedImage[] reflection_down, reflection_up, reflection_left, reflection_right;
@@ -192,6 +192,15 @@ public class Assets {
 		dressers[6] = dressersSheet.crop(width * 2, 69, width, 69);
 		dressers[7] = dressersSheet.crop(width * 3, 69, width, 69);
 		dressers[8] = dressersSheet.crop(width * 4, 69, width, 69);
+
+		SpriteSheet fireSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/fire.png"));
+		fire = new BufferedImage[4];
+		fire[0] = fireSheet.crop(0, 0, width, height);
+		fire[1] = fireSheet.crop(width, 0, width, height);
+		fire[2] = fireSheet.crop(width * 2, 0, width, height);
+		fire[3] = fireSheet.crop(width * 3, 0, width, height);
+		fireUnlit = fireSheet.crop(0, height, width, height);
+		fireExtinguished = fireSheet.crop(width, height, width, height);
 
 		SpriteSheet staticEntities = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/sheet.png"));
 		windowOne = staticEntities.crop(0, 0, width, 44);
@@ -388,5 +397,6 @@ public class Assets {
 		doorwayArch = ImageLoader.loadImage("/textures/oga/LPC-Base-Assets/tiles/doorwayArch.png");
 		windowLight = ImageLoader.loadImage("/textures/static-entities/window-light.png");
 		yellowLight = ImageLoader.loadImage("/textures/effects/light-yellow.png");
+		firePlace = ImageLoader.loadImage("/textures/static-entities/fireplace-1.png");
 	}
 }

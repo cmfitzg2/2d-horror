@@ -24,7 +24,7 @@ public class TableLamp extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-        if (lit) {
+        if (lit && !handler.getFlags().isViewingArt() && !handler.isInMenu()) {
             g.drawImage(Assets.yellowLight, (int) (x - handler.getGameCamera().getxOffset() - 32),
                     (int) (y - handler.getGameCamera().getyOffset() - 32), 128, 128, null);
         }

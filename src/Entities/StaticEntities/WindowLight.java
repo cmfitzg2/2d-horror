@@ -23,7 +23,7 @@ public class WindowLight extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-        if (!handler.getFlags().isViewingArt()) {
+        if (!handler.getFlags().isViewingArt() && !handler.isInMenu()) {
             g.drawImage(Assets.yellowLight, (int) (x - handler.getGameCamera().getxOffset() - 32),
                     (int) (y - handler.getGameCamera().getyOffset() - 32), 128, 128, null);
         }

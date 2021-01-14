@@ -8,19 +8,15 @@ import java.awt.image.BufferedImage;
 
 public class Dresser extends StaticEntity {
 
-    private String dir;
+    private int type;
 
-    public Dresser(Handler handler, float x, float y, int width, int height, String uniqueName, String dir) {
+    public Dresser(Handler handler, float x, float y, int width, int height, String uniqueName, int type) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
+        bounds.y = height / 2;
         bounds.width = width;
-        bounds.height = height - 25;
-        if (dir.equals("Left") || dir.equals("Right") || dir.equals("Down")) {
-            bounds.y = 20;
-        } else if (dir.equals("Up")) {
-            bounds.y = 15;
-        }
-        this.dir = dir;
+        bounds.height = height / 2;
+        this.type = type;
     }
 
     @Override
@@ -45,22 +41,7 @@ public class Dresser extends StaticEntity {
 
     @Override
     public void render(Graphics g) {
-        BufferedImage chair;
-        switch (dir) {
-            case "Down":
-                chair = Assets.chairOneDown;
-                break;
-            case "Up":
-                chair = Assets.chairOneUp;
-                break;
-            case "Left":
-                chair = Assets.chairOneLeft;
-                break;
-            default:
-                chair = Assets.chairOneRight;
-                break;
-        }
-        g.drawImage(chair, (int) (x - handler.getGameCamera().getxOffset()),
+        g.drawImage(Assets.dressers[type], (int) (x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
     }
 
