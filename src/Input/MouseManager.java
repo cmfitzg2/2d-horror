@@ -7,7 +7,7 @@ import java.awt.event.MouseMotionListener;
 public class MouseManager implements MouseListener, MouseMotionListener
 {
 	
-	private boolean leftPressed, rightPressed, cantPress;
+	private boolean leftPressed, rightPressed, cantPress, stillHoldingLeft;
 	private int mouseX, mouseY;
 	private UIManager uiManager;
 
@@ -22,8 +22,7 @@ public class MouseManager implements MouseListener, MouseMotionListener
 	}
 	
 	//Getters
-	public boolean isLeftPressed()
-	{
+	public boolean isLeftPressed() {
 		return leftPressed;
 	}
 	
@@ -90,8 +89,10 @@ public class MouseManager implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseReleased(MouseEvent e) 
 	{
-		if(e.getButton() == MouseEvent.BUTTON1)
+		if (e.getButton() == MouseEvent.BUTTON1) {
 			leftPressed = false;
+			stillHoldingLeft = false;
+		}
 		else if(e.getButton() == MouseEvent.BUTTON3)
 			rightPressed = false;	
 		
@@ -99,4 +100,11 @@ public class MouseManager implements MouseListener, MouseMotionListener
 			uiManager.onMouseRelease(e);
 	}
 
+	public boolean isStillHoldingLeft() {
+		return stillHoldingLeft;
+	}
+
+	public void setStillHoldingLeft(boolean stillHoldingLeft) {
+		this.stillHoldingLeft = stillHoldingLeft;
+	}
 }

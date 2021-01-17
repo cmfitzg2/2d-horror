@@ -20,8 +20,9 @@ public class ArtFrameSmall extends StaticEntity {
     private boolean viewingTextbox;
     private boolean empty, open;
     private boolean firstTime = true;
+    private BufferedImage background;
 
-    public ArtFrameSmall(Handler handler, float x, float y, int width, int height, String uniqueName, String description, BufferedImage previewImage) {
+    public ArtFrameSmall(Handler handler, float x, float y, int width, int height, String uniqueName, String description, BufferedImage previewImage, BufferedImage background) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
         bounds.y = 0;
@@ -32,6 +33,7 @@ public class ArtFrameSmall extends StaticEntity {
             this.description = description;
         }
         this.previewImage = previewImage;
+        this.background = background;
         textboxFont = Assets.textboxDefault.deriveFont(Font.ITALIC, 28.0f);
     }
 
@@ -70,7 +72,6 @@ public class ArtFrameSmall extends StaticEntity {
                 if (!handler.getKeyManager().isStillHoldingEsc()) {
                     handler.getKeyManager().setStillHoldingEsc(true);
                     handler.getFlags().setViewingArt(false);
-                    handler.setPlayerFrozen(false);
                     isInteracting = false;
                     viewingTextbox = false;
                     open = false;
@@ -136,14 +137,37 @@ public class ArtFrameSmall extends StaticEntity {
     public void postRender(Graphics g) {
         if (open) {
             if (!empty) {
-                handler.getScreenOverlay().drawArt(g, GeneralUtils.getArtworkByName(uniqueName));
+                drawArt(g, GeneralUtils.getArtworkByName(uniqueName));
             } else {
-                handler.getScreenOverlay().drawArt(g, Assets.artFrame);
+                drawArt(g, Assets.artFrame);
             }
             if (viewingTextbox) {
                 textboxHandler.render(g);
             }
         }
+    }
+
+    private void drawArt(Graphics g, BufferedImage art) {
+        int scale = 1;
+        if (!handler.getFlags().isViewingArt()) {
+            return;
+        }
+        g.drawImage(background, 0, 0, handler.getWidth(), handler.getHeight(), null);
+
+        //find the smaller dimension and constrain it to that one
+        if (handler.getWidth() < handler.getHeight()) {
+            while (handler.getWidth() < Assets.paintingWidth / scale) {
+                scale++;
+            }
+        } else {
+            while (handler.getHeight() < Assets.paintingHeight / scale) {
+                scale++;
+            }
+        }
+        g.drawImage(art, handler.getWidth() / 2 - (Assets.paintingWidth / (2 * scale)),
+                handler.getHeight() / 2 - (Assets.paintingHeight / (2 * scale)),
+                Assets.paintingWidth / scale, Assets.paintingHeight / scale, null);
+
     }
 
     @Override

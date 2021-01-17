@@ -85,7 +85,7 @@ public class Player extends Creature {
     public void render(Graphics g) {
         handler.getGameCamera().centerOnEntity(this);
         if (handler.isPlayerFrozen()) {
-            if (!handler.getFlags().isViewingArt()) {
+            if (!handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle() && !handler.isInMenu()) {
                 if (up) {
                     if (headOnly) {
                         g.drawImage(Assets.headUp, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
@@ -131,8 +131,6 @@ public class Player extends Creature {
                         g.drawImage(Assets.playerDownTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
                     }
                 }
-            } else {
-                g.drawImage(Assets.wall, 0, 0, handler.getWidth(), handler.getHeight(), null);
             }
         } else {
             g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);

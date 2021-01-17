@@ -39,7 +39,8 @@ public class Assets {
 	public static BufferedImage windowLight, tableLampOff, tableLampOn;
 	public static BufferedImage yellowLight;
 	public static BufferedImage headDown, headUp, headLeft, headRight;
-	public static BufferedImage wall, artFrame, artFrameSmall, artFrameSmallEmpty;
+	public static BufferedImage darkWall, concrete, artFrame, artFrameSmall, artFrameSmallEmpty;
+	public static BufferedImage buttonPuzzlePanel, buttonPuzzleBorder, buttonPuzzleOn, buttonPuzzleOff;
 	public static BufferedImage galleryAbyss, galleryApparition, galleryBlight, galleryButcher, galleryCaptivity,
 			galleryCipher, galleryCondemnation, galleryDeluge, galleryDissonance, galleryDuty, galleryFacade,
 			galleryHarbinger, galleryHarrower, galleryHolocaust, galleryManifestation, galleryMoribund, galleryOblation,
@@ -217,6 +218,10 @@ public class Assets {
 		chairOneRight = chairsBedSheet.crop(48, 56, 26, 32);
 		chairOneLeft = chairsBedSheet.crop(48, 88, 26, 32);
 
+		SpriteSheet buttonPuzzleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/buttonPuzzleSheet.png"));
+		buttonPuzzleOff = buttonPuzzleSheet.crop(0, 0, 216, 216);
+		buttonPuzzleOn = buttonPuzzleSheet.crop(216, 0, 216, 216);
+
 		SpriteSheet reflectionSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characterclone.png"));
 		reflection_down = new BufferedImage[4];
 		reflection_up = new BufferedImage[4];
@@ -324,6 +329,8 @@ public class Assets {
 		portrait = ImageLoader.loadImage("/textures/portrait.png");
 		inventory = ImageLoader.loadImage("/textures/inventory.png");
 		inventoryHighlight = ImageLoader.loadImage("/textures/inventory-highlight.png");
+		buttonPuzzleBorder = ImageLoader.loadImage("/textures/static-entities/buttonPuzzleBorder.png");
+		buttonPuzzlePanel = ImageLoader.loadImage("/textures/static-entities/buttonPuzzlePanel.png");
 
 		keyInventory = ImageLoader.loadImage("/textures/inventory/key.png");
 
@@ -332,7 +339,8 @@ public class Assets {
 			tunnelVision[i] = ImageLoader.loadImage("/textures/reduced-vision/vision-" + j + "-75.png");
 		}
 
-		wall = ImageLoader.loadImage("/textures/wall.png");
+		darkWall = ImageLoader.loadImage("/textures/backgrounds/wall.png");
+		concrete = ImageLoader.loadImage("/textures/backgrounds/concrete.png");
 		artFrame = ImageLoader.loadImage("/textures/artFrame.png");
 		artFrameSmall = ImageLoader.loadImage("/textures/artFrameSmall.png");
 		artFrameSmallEmpty = ImageLoader.loadImage("/textures/artFrameSmallEmpty.png");

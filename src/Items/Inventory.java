@@ -55,7 +55,7 @@ public class Inventory {
         if (!handler.isPlayerFrozen() || handler.isInMenu()) {
             if (keyManager.c && !keyManager.isStillHoldingC()) {
                 keyManager.setStillHoldingC(true);
-                if (!handler.getFlags().isViewingArt()) {
+                if (!handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle()) {
                     if (isOpen) {
                         //closing the menu
                         Assets.closeInventory.stop();

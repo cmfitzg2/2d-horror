@@ -6,6 +6,7 @@ import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import Graphics.Assets;
 import Utils.FontUtils;
@@ -63,9 +64,7 @@ public class TextboxHandler {
 				sounds[i] = sound;
 			}
 		} else {
-			for (int i = 0; i < sounds.length; i++) {
-				sounds[i] = Assets.textTest2;
-			}
+			Arrays.fill(sounds, Assets.textTest2);
 		}
 		this.sizeConstraint = sizeConstraint;
 		if (this.sizeConstraint < 1) {

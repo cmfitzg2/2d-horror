@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Flags {
-    private boolean visionLimited, viewingArt, prologue, cutsceneActive;
+    private boolean visionLimited, viewingArt, inPuzzle, prologue, cutsceneActive;
     private Handler handler;
     private List<Boolean> flags;
 
@@ -47,11 +47,16 @@ public class Flags {
 
     public void setViewingArt(boolean viewingArt) {
         this.viewingArt = viewingArt;
-        if (viewingArt) {
-            handler.setPlayerFrozen(true);
-        } else {
-            handler.setPlayerFrozen(false);
-        }
+        handler.setPlayerFrozen(viewingArt);
+    }
+
+    public boolean isInPuzzle() {
+        return inPuzzle;
+    }
+
+    public void setInPuzzle(boolean inPuzzle) {
+        this.inPuzzle = inPuzzle;
+        handler.setPlayerFrozen(inPuzzle);
     }
 
     public boolean isPrologue() {

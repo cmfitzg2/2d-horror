@@ -8,5 +8,5 @@ public class Launcher {
 		Game game = new Game("Game", screenSize.width, screenSize.height);
 		game.start();
 	}
-	
+
 }

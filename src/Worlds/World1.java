@@ -22,8 +22,8 @@ public class World1 extends World {
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new ArtFrameSmall(handler, 72, 72, 48, 48, "Solace", null, Assets.solaceInventory));
-        entityManager.addEntity(new ArtFrameSmall(handler, 136, 72, 48, 48, "Prophet", null, Assets.prophetInventory));
+        entityManager.addEntity(new ArtFrameSmall(handler, 72, 72, 48, 48, "Solace", null, Assets.solaceInventory, Assets.darkWall));
+        entityManager.addEntity(new ArtFrameSmall(handler, 136, 72, 48, 48, "Prophet", null, Assets.prophetInventory, Assets.darkWall));
         entityManager.addEntity(new Hole(handler, 100, 500, 64, 64, "Hole 1", handler.getWorldManager().getWorld(3), 100, 1000));
         entityManager.addEntity(new Friend1(handler, 800, 500, "Friend1"));
         entityManager.addEntity(new Bed(handler, 100, 228, Assets.bedOne.getWidth() * 2, Assets.bedOne.getHeight() * 2, null));
@@ -44,6 +44,7 @@ public class World1 extends World {
         entityManager.addEntity(new Dresser(handler, 1312, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser9", 8));
         entityManager.addEntity(new Fireplace(handler, 1000, Tile.TILEHEIGHT * 3 - Assets.firePlace.getHeight() * 2 + 20, Assets.firePlace.getWidth() * 2, Assets.firePlace.getHeight() * 2, "fireplace1"));
         entityManager.addEntity(new GrandfatherClock(handler, 500, 150, Assets.grandfatherClock.getWidth() * 2, Assets.grandfatherClock.getHeight() * 2, "clock1"));
+        entityManager.addEntity(new ButtonPuzzle(handler, 200, 72, 31, 31, "buttonpuzzle1", Assets.concrete));
     }
 
     @Override
