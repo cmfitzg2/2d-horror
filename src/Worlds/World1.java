@@ -7,44 +7,31 @@ import Entities.StaticEntities.*;
 import Tiles.Tile;
 import Variables.Handler;
 import Graphics.Assets;
+
+import java.awt.*;
+
 public class World1 extends World {
 
+    private Rectangle loadzoneSouth;
     public World1(Handler handler, String path, int id) {
-        super(handler, path, id, new Player(handler, 100, 100, "Player"));
+        super(handler, path, id, new Player(handler, 700, 428, "Player"));
     }
 
     @Override
     public void checkLoadZones() {
-/*        if (entityManager.getPlayer().getX() > 1000 && entityManager.getPlayer().getY() > 1000) {
-            transitionFrom(handler.getWorldManager().getWorld(2), 100, 100);
-        }*/
+        loadzoneSouth = new Rectangle(894 - (int) handler.getGameCamera().getxOffset(), 795 - (int) handler.getGameCamera().getyOffset(), 132, 40);
+        if (entityManager.getPlayer().getPlayerRec().intersects(loadzoneSouth)) {
+            transitionFrom(handler.getWorldManager().getWorld(2), 2748, 3128);
+        }
     }
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new ArtFrameSmall(handler, 72, 72, 48, 48, "Solace", null, Assets.solaceInventory, Assets.darkWall));
-        entityManager.addEntity(new ArtFrameSmall(handler, 136, 72, 48, 48, "Prophet", null, Assets.prophetInventory, Assets.darkWall));
-        entityManager.addEntity(new Hole(handler, 100, 500, 64, 64, "Hole 1", handler.getWorldManager().getWorld(3), 100, 1000));
-        entityManager.addEntity(new Friend1(handler, 800, 500, "Friend1"));
-        entityManager.addEntity(new Bed(handler, 100, 228, Assets.bedOne.getWidth() * 2, Assets.bedOne.getHeight() * 2, null));
-        entityManager.addEntity(new TableLamp(handler, 200, 188, Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2, null));
-        entityManager.addEntity(new Chair1(handler, 300, 428, Assets.chairOneRight.getWidth() * 2, Assets.chairOneRight.getHeight() * 2, "chair1", "Right"));
-        entityManager.addEntity(new Chair1(handler, 500, 420, Assets.chairOneLeft.getWidth() * 2, Assets.chairOneLeft.getHeight() * 2, "chair2", "Left"));
-        entityManager.addEntity(new Chair1(handler, 400, 528, Assets.chairOneUp.getWidth() * 2, Assets.chairOneUp.getHeight() * 2, "chair3", "Up"));
-        entityManager.addEntity(new Chair1(handler, 400, 328, Assets.chairOneDown.getWidth() * 2, Assets.chairOneDown.getHeight() * 2, "chair4", "Down"));
-        entityManager.addEntity(new WindowLight(handler, 800, 72, Assets.windowLight.getWidth() * 2, Assets.windowLight.getHeight() * 2, "windowlight1"));
-        entityManager.addEntity(new Dresser(handler, 800, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser1", 0));
-        entityManager.addEntity(new Dresser(handler, 864, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser2", 1));
-        entityManager.addEntity(new Dresser(handler, 928, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser3", 2));
-        entityManager.addEntity(new Dresser(handler, 992, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser4", 3));
-        entityManager.addEntity(new Dresser(handler, 1056, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser5", 4));
-        entityManager.addEntity(new Dresser(handler, 1120, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser6", 5));
-        entityManager.addEntity(new Dresser(handler, 1184, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser7", 6));
-        entityManager.addEntity(new Dresser(handler, 1248, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser8", 7));
-        entityManager.addEntity(new Dresser(handler, 1312, 800, Assets.dressers[0].getWidth() * 2, Assets.dressers[0].getHeight() * 2, "dresser9", 8));
-        entityManager.addEntity(new Fireplace(handler, 1000, Tile.TILEHEIGHT * 3 - Assets.firePlace.getHeight() * 2 + 20, Assets.firePlace.getWidth() * 2, Assets.firePlace.getHeight() * 2, "fireplace1"));
-        entityManager.addEntity(new GrandfatherClock(handler, 500, 150, Assets.grandfatherClock.getWidth() * 2, Assets.grandfatherClock.getHeight() * 2, "clock1"));
-        entityManager.addEntity(new ButtonPuzzle(handler, 200, 72, 31, 31, "buttonpuzzle1", Assets.concrete));
+        entityManager.addEntity(new Hole(handler, 704, 1744, 64, 64, "Hole 1", handler.getWorldManager().getWorld(3), 100, 1000));
+        entityManager.addEntity(new Friend1(handler, 1404, 1744, "Friend1"));
+        entityManager.addEntity(new Bed(handler, 700, 428, Assets.bedOne.getWidth() * 2, Assets.bedOne.getHeight() * 2, null));
+        entityManager.addEntity(new TableLamp(handler, 800, 388, Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2, null));
+        entityManager.addEntity(new WindowLight(handler, 930, 320, Assets.windowLight.getWidth() * 2, Assets.windowLight.getHeight() * 2, "windowlight1"));
     }
 
     @Override
@@ -56,6 +43,15 @@ public class World1 extends World {
             CutsceneManager cutsceneManager = handler.getCutsceneManager();
             cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(1));
             handler.setPlayerFrozen(true);
+        }
+    }
+
+    @Override
+    public void render(Graphics g) {
+        renderTiles(g);
+        entityManager.render(g);
+        if (null != loadzoneSouth) {
+            g.drawRect(loadzoneSouth.x, loadzoneSouth.y, loadzoneSouth.width, loadzoneSouth.height);
         }
     }
 }

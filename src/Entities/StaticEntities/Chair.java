@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import Graphics.Assets;
 
-public class Chair1 extends StaticEntity {
+public class Chair extends StaticEntity {
 
     private String dir;
 
-    public Chair1(Handler handler, float x, float y, int width, int height, String uniqueName, String dir) {
+    public Chair(Handler handler, float x, float y, int width, int height, String uniqueName, String dir) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
         bounds.width = width;

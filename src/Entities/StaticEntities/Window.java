@@ -6,9 +6,9 @@ import Worlds.World;
 
 import java.awt.*;
 
-public class Window1 extends StaticEntity {
+public class Window extends StaticEntity {
 
-    public Window1(Handler handler, float x, float y, int width, int height, String uniqueName) {
+    public Window(Handler handler, float x, float y, int width, int height, String uniqueName) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
         bounds.y = 0;

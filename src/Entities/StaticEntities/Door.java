@@ -6,7 +6,7 @@ import Worlds.World;
 
 import java.awt.*;
 
-public class Door1 extends StaticEntity {
+public class Door extends StaticEntity {
 
     private int doorHeight = 96;
     private boolean includeStairs;
@@ -15,7 +15,7 @@ public class Door1 extends StaticEntity {
     private World destination;
     private float newX, newY;
 
-    public Door1(Handler handler, float x, float y, int width, int height, String uniqueName, World destination, float newX, float newY, boolean includeStairs, boolean includeArch) {
+    public Door(Handler handler, float x, float y, int width, int height, String uniqueName, World destination, float newX, float newY, boolean includeStairs, boolean includeArch) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
         bounds.y = 0;
