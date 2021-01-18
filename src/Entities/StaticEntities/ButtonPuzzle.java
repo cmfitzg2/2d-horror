@@ -12,7 +12,7 @@ public class ButtonPuzzle extends StaticEntity {
     private boolean[][] buttons;
     private BufferedImage background;
     private MouseManager mouseManager;
-    private int xStart, yStart, scale = 1;
+    private int xStart, yStart, scale = 1, size = 4;
 
     public ButtonPuzzle(Handler handler, float x, float y, int width, int height, String uniqueName, BufferedImage background) {
         super(handler, x, y, width, height, uniqueName);
@@ -23,18 +23,18 @@ public class ButtonPuzzle extends StaticEntity {
         this.uniqueName = uniqueName;
         this.background = background;
         mouseManager = handler.getMouseManager();
-        buttons = new boolean[4][4];
+        buttons = new boolean[size][size];
         if (handler.getWidth() < handler.getHeight()) {
-            while (handler.getWidth() < Assets.buttonPuzzleOff.getWidth() * 4 / scale) {
+            while (handler.getWidth() < Assets.buttonPuzzleOff.getWidth() * size / scale) {
                 scale++;
             }
         } else {
-            while (handler.getHeight() < Assets.buttonPuzzleOff.getHeight() * 4 / scale) {
+            while (handler.getHeight() < Assets.buttonPuzzleOff.getHeight() * size / scale) {
                 scale++;
             }
         }
-        xStart = handler.getWidth() / 2 - Assets.buttonPuzzleOff.getWidth() * 2 / scale;
-        yStart = handler.getHeight() / 2 - Assets.buttonPuzzleOff.getHeight() * 2 / scale;
+        xStart = handler.getWidth() / 2 - (Assets.buttonPuzzleOff.getWidth() * size) / (2 * scale);
+        yStart = handler.getHeight() / 2 - (Assets.buttonPuzzleOff.getHeight() * size) / (2 * scale);
     }
 
     @Override
@@ -126,8 +126,8 @@ public class ButtonPuzzle extends StaticEntity {
     private void drawPuzzle(Graphics g, BufferedImage background) {
         g.drawImage(background, 0, 0, handler.getWidth(), handler.getHeight(), null);
         g.drawImage(Assets.buttonPuzzleBorder, xStart - 4 / scale, yStart - 4 / scale,
-                Assets.buttonPuzzleBorder.getWidth() / scale + 8 / scale,
-                Assets.buttonPuzzleBorder.getHeight() / scale + 8 / scale, null);
+                buttons.length * Assets.buttonPuzzleOn.getWidth() / scale + 8,
+                buttons[0].length * Assets.buttonPuzzleOn.getHeight() / scale + 8, null);
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 if (buttons[i][j]) {
