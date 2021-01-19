@@ -27,8 +27,7 @@ public class World1 extends World {
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new Hole(handler, 704, 1744, 64, 64, "Hole 1", handler.getWorldManager().getWorld(3), 100, 1000));
-        entityManager.addEntity(new Friend1(handler, 1404, 1744, "Friend1"));
+        entityManager.addEntity(new Friend1(handler, 900, 388, "Friend1"));
         entityManager.addEntity(new Bed(handler, 700, 428, Assets.bedOne.getWidth() * 2, Assets.bedOne.getHeight() * 2, null));
         entityManager.addEntity(new TableLamp(handler, 800, 388, Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2, null));
         entityManager.addEntity(new WindowLight(handler, 930, 320, Assets.windowLight.getWidth() * 2, Assets.windowLight.getHeight() * 2, "windowlight1"));

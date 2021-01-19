@@ -31,10 +31,6 @@ public class Friend1 extends Creature {
 		playerX = handler.getActiveWorld().getEntityManager().getPlayer().getX();
 		playerY = handler.getActiveWorld().getEntityManager().getPlayer().getY();
 
-		xMove = 0;
-		yMove = 0;
-		speed = 1.5f;
-
 		if (xMove !=0 || yMove !=0) {
 			animDown.tick();
 			animLeft.tick();
@@ -42,6 +38,8 @@ public class Friend1 extends Creature {
 			animRight.tick();
 			moveX();
 			moveY();
+			xMove = 0;
+			yMove = 0;
 		}
 
 		if (null != textboxHandler && textboxHandler.isActive() && !textboxHandler.isFinished()) {
