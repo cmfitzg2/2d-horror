@@ -30,5 +30,6 @@ public class World3 extends World {
     @Override
     protected void load() {
         handler.getFlags().setVisionLimited(false);
+        firstRender = true;
     }
 }

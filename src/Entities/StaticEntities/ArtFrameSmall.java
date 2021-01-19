@@ -64,7 +64,7 @@ public class ArtFrameSmall extends StaticEntity {
                         } else {
                             message = "Take the painting?";
                         }
-                        textboxHandler = new TextboxHandler(handler, textboxFont, message, options, 2, Color.WHITE, Assets.portrait, null, 100, true);
+                        textboxHandler = new TextboxHandler(handler, textboxFont, message, options, 2, Color.WHITE, Assets.portrait, null, 100, true, true);
                     }
                 }
             }

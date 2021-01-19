@@ -18,7 +18,7 @@ public class TextboxHandler {
 	private float xScale, yScale;
 	private String currentText = "";
 	private Rectangle textboxRect, topRect, midRect, botRect;
-	boolean textFinished = false, viewingOptions = false, finished = false, active = false, scaledUp = false;
+	boolean textFinished = false, viewingOptions = false, finished = false, active = false, scaledUp = false, unfreezeAfter = false;
 	private String message, optionSelected = "";
 	private String[] options, words;
 	private Font font;
@@ -47,7 +47,7 @@ public class TextboxHandler {
 	 * @param sizeConstraint [1, 100] - divided by 100 and multiplied to font size. can only be used to constrain (e.g., reduce how much the font is shrunk or grown by default).
 	 */
 	public TextboxHandler(Handler handler, Font font, String message, String[] options, int textSpeed, Color fontColor,
-						  BufferedImage portrait, AudioClip sound, int sizeConstraint, boolean allowFastText) {
+						  BufferedImage portrait, AudioClip sound, int sizeConstraint, boolean allowFastText, boolean unfreezeAfter) {
 		this.handler = handler;
 		this.message = message;
 		this.options = options;
@@ -60,9 +60,7 @@ public class TextboxHandler {
 		}
 		this.portrait = portrait;
 		if (null != sound) {
-			for (int i = 0; i < sounds.length; i++) {
-				sounds[i] = sound;
-			}
+			Arrays.fill(sounds, sound);
 		} else {
 			Arrays.fill(sounds, Assets.textTest2);
 		}
@@ -73,6 +71,7 @@ public class TextboxHandler {
 			this.sizeConstraint = 100;
 		}
 		this.allowFastText = allowFastText;
+		this.unfreezeAfter = unfreezeAfter;
 		initParams();
 		words = message.split(" ");
 		textboxLines = new HashMap<>();
@@ -169,11 +168,15 @@ public class TextboxHandler {
 						} else {
 							optionSelected = options[optionsIndex];
 							finished = true;
-							handler.setPlayerFrozen(false);
+							if (unfreezeAfter) {
+								handler.setPlayerFrozen(false);
+							}
 						}
 					} else {
 						finished = true;
-						handler.setPlayerFrozen(false);
+						if (unfreezeAfter) {
+							handler.setPlayerFrozen(false);
+						}
 					}
 				}
 			} else if (handler.getKeyManager().down && !handler.getKeyManager().isStillHoldingDown()) {

@@ -53,5 +53,6 @@ public class World1 extends World {
         if (null != loadzoneSouth) {
             g.drawRect(loadzoneSouth.x, loadzoneSouth.y, loadzoneSouth.width, loadzoneSouth.height);
         }
+        firstRender = true;
     }
 }

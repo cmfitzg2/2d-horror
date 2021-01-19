@@ -59,7 +59,7 @@ public abstract class World {
 		entityManager.render(g);
 	}
 
-	private void transitionTo() {
+	protected void transitionTo() {
 		if (!handler.getGame().isFadeIn() && fadeIn) {
 			GeneralUtils.levelFadeIn(handler, -1);
 		}

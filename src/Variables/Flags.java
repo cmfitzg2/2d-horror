@@ -9,6 +9,8 @@ public class Flags {
     private boolean visionLimited, viewingArt, inPuzzle, prologue, cutsceneActive;
     private Handler handler;
     private List<Boolean> flags;
+    private final int prologueFlag = 0;
+    private final int friendEncounter1Flag = 1;
 
     public Flags(Handler handler) {
         this.handler = handler;
@@ -60,11 +62,19 @@ public class Flags {
     }
 
     public boolean isPrologue() {
-        return flags.get(0);
+        return flags.get(prologueFlag);
     }
 
     public void setPrologue(boolean prologue) {
-        flags.set(0, prologue);
+        flags.set(prologueFlag, prologue);
+    }
+
+    public boolean isFriendEncounter1() {
+        return flags.get(friendEncounter1Flag);
+    }
+
+    public void setFriendEncounter1(boolean friendEncounter1) {
+        flags.set(friendEncounter1Flag, friendEncounter1);
     }
 
     public boolean isCutsceneActive() {
