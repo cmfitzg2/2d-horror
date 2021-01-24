@@ -1,6 +1,7 @@
 package Worlds.WorldGenerator;
 
 import Input.KeyManager;
+import Utils.Utils;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -8,12 +9,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class WorldView implements Runnable, MouseListener, MouseMotionListener {
 
@@ -27,9 +26,9 @@ public class WorldView implements Runnable, MouseListener, MouseMotionListener {
     private int currentId;
     private int mouseX, mouseY;
     int width, height;
-    private boolean leftPressed, rightPressed;
     private KeyManager keyManager;
     private int xOffset = 0, yOffset = 0;
+    private HashMap<Integer, BufferedImage> tilesMap;
 
     public WorldView() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -89,10 +88,12 @@ public class WorldView implements Runnable, MouseListener, MouseMotionListener {
 
         //clear screen
         g.clearRect(0, 0, width, height);
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
-                if (tiles[i][j] != null) {
-                    g.drawImage(tiles[i][j], 32 * i - xOffset, 32 * j - yOffset, null);
+        if (tilesMap != null) {
+            for (int i = 0; i < tileIds.length; i++) {
+                for (int j = 0; j < tileIds[i].length; j++) {
+                    if (tileIds[i][j] >= 0) {
+                        g.drawImage(tilesMap.get(tileIds[i][j]), 32 * i - xOffset, 32 * j - yOffset, null);
+                    }
                 }
             }
         }
@@ -119,23 +120,14 @@ public class WorldView implements Runnable, MouseListener, MouseMotionListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
-            leftPressed = true;
             tiles[mouseX / 32 + xOffset / 32][mouseY / 32 + yOffset / 32] = currentImage;
             tileIds[mouseX / 32 + xOffset / 32][mouseY / 32 + yOffset / 32] = currentId;
-        }
-        if (e.getButton() == MouseEvent.BUTTON3) {
-            rightPressed = true;
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            leftPressed = false;
-        }
-        if (e.getButton() == MouseEvent.BUTTON3) {
-            rightPressed = false;
-        }
+
     }
 
     @Override
@@ -201,9 +193,11 @@ public class WorldView implements Runnable, MouseListener, MouseMotionListener {
     public void generateWorld(String outputDir) {
         //need to swap X and Y here to make writing to file easier later
         int[][] temp = new int[tileIds[0].length][tileIds.length];
-        for (int i = 0; i < tileIds.length; i++)
-            for (int j = 0; j < tileIds[0].length; j++)
+        for (int i = 0; i < tileIds.length; i++) {
+            for (int j = 0; j < tileIds[0].length; j++) {
                 temp[j][i] = tileIds[i][j];
+            }
+        }
 
         String world = Arrays.deepToString(temp);
         world = world.replace("], ", "\n").replace("[[", "").replace("]]", "").replace(",", "").replace("[", "").replace(" ", "\t");
@@ -214,5 +208,31 @@ public class WorldView implements Runnable, MouseListener, MouseMotionListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void loadFile(String filePath) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            String line;
+            //skip the first line with width/height
+            br.readLine();
+            int i, j = 0;
+            while ((line = br.readLine()) != null) {
+                i = 0;
+                String[] ids = line.split("\t");
+                for (String id : ids) {
+                    tileIds[i][j] = Utils.parseInt(id);
+                    i++;
+                }
+                j++;
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setTilesMap(HashMap<Integer, BufferedImage> tilesMap) {
+        this.tilesMap = tilesMap;
     }
 }

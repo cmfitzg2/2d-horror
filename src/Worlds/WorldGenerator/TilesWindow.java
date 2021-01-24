@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.awt.image.RasterFormatException;
 import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
     private int[][] tiles;
     private File[] infoFileArray;
     private  BufferedImage[] imageArray;
-    public static BufferedImage currentImage;
+    private HashMap<Integer, BufferedImage> tilesMap;
     private int activeX, activeY;
 
     public TilesWindow(HashMap<BufferedImage, File> images, WorldView worldView) throws Exception {
@@ -50,8 +51,9 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
         Thread t = new Thread(this);
         t.start();
         tiles = initArray();
-        setIds();
+        tilesMap = new HashMap<>();
         this.worldView = worldView;
+        setIds();
     }
 
     private void drawTiles() {
@@ -107,7 +109,7 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (tiles[mouseX / 32][mouseY / 32] == -1) {
+        if (tiles[mouseX / 32][mouseY / 32] < 0) {
             return;
         }
         int i = 0, currentWidth = 0;
@@ -168,12 +170,21 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
                 int column = xIndex;
                 for (String id : ids) {
                     tiles[column][lineIndex] = Integer.parseInt(id);
+                    try {
+                        tilesMap.put(Integer.parseInt(id), image.getSubimage((column - xIndex) * 32, lineIndex * 32, 32, 32));
+                    } catch (RasterFormatException e) {
+                        System.out.println(column * 32);
+                        System.out.println(lineIndex * 32);
+                        System.out.println(image.getWidth());
+                        System.out.println(image.getHeight());
+                    }
                     column++;
                 }
                 lineIndex++;
             }
             xIndex += image.getWidth() / 32;
         }
+        worldView.setTilesMap(tilesMap);
     }
 
     public void update(String tilesheetDir) {

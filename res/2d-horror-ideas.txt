@@ -146,7 +146,7 @@ Acceptance: "You alright? You look like you haven't slept much."
 MC: "Yeah, I feel like it too."
 Acceptance: "That sucks."
 Acceptance: "Well, you know I'm not normally one for platitudes, but hey, it *is* Friday!"
-Acceptance: "Let's just knock this day out. Maybe we can do something fun after school to clear your head."
+Acceptance: "Let's just knock this day out. Maybe we can do something after school to clear your head."
 MC: "That sounds good. Let's get this over with then."
 >Acceptance walks off screen, player regains control
 >eventually head to school

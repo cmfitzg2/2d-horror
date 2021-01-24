@@ -11,12 +11,11 @@ public class Utils {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String line;
-			while((line = br.readLine()) != null)
+			while ((line = br.readLine()) != null) {
 				builder.append(line).append("\t");
+			}
 			br.close();
-		}
-		
-		catch(IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		return builder.toString();

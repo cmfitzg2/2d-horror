@@ -27,7 +27,7 @@ public class World2 extends World {
     protected void addEntities() {
         entityManager.addEntity(new ArtFrameSmall(handler, 72, 8, 48, 48, "Solace", null, Assets.solaceInventory, Assets.darkWall));
         entityManager.addEntity(new ArtFrameSmall(handler, 136, 8, 48, 48, "Prophet", null, Assets.prophetInventory, Assets.darkWall));
-        entityManager.addEntity(new Hole(handler, 420, 420, 64, 64, "Hole 2", handler.getWorldManager().getWorld(1), 100, 1000));
+        entityManager.addEntity(new Hole(handler, 700, 420, 64, 64, "Hole 2", handler.getWorldManager().getWorld(1), 900, 420));
         entityManager.addEntity(new Friend1(handler, 2748 + handler.getWidth() / 2.0f + 64, 3128, "Friend1"));
         entityManager.addEntity(new Door(handler, 43 * Tile.TILEWIDTH, 47 * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(1), 930, 720, true, true));
     }

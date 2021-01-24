@@ -61,6 +61,7 @@ public class Assets {
 	public static BufferedImage[] ghoulDown, ghoulLeft, ghoulRight, ghoulUp;
 	public static BufferedImage[] tunnelVision;
 	public static Font sans, serif, philosopher, textboxDefault;
+	public static Font mcSpeakingFont, mcThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont;
 	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2;
 	public static Clip menuMusic;
 	public static void init() {
@@ -93,6 +94,9 @@ public class Assets {
 			serif = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/serif.ttf")).deriveFont(36f);
 			philosopher = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/philosopher.ttf")).deriveFont(36f);
 			textboxDefault = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")).deriveFont(128f);
+			mcThinkingFont = serif;
+			mcSpeakingFont = serif;
+			acceptanceFont = sans;
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			//register the font
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")));

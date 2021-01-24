@@ -38,13 +38,13 @@ public class FriendEncounter1 implements Cutscene {
     public FriendEncounter1(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
-        textboxHandler1 = new TextboxHandler(handler, Assets.sans, messageOne, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler2 = new TextboxHandler(handler, Assets.serif, messageTwo, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler3 = new TextboxHandler(handler, Assets.sans, messageThree, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler4 = new TextboxHandler(handler, Assets.serif, messageFour, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler5 = new TextboxHandler(handler, Assets.sans, messageFive, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler6 = new TextboxHandler(handler, Assets.serif, messageSix, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler7 = new TextboxHandler(handler, Assets.sans, messageSeven, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler1 = new TextboxHandler(handler, Assets.acceptanceFont, messageOne, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler2 = new TextboxHandler(handler, Assets.mcThinkingFont, messageTwo, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler3 = new TextboxHandler(handler, Assets.mcSpeakingFont, messageThree, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler4 = new TextboxHandler(handler, Assets.acceptanceFont, messageFour, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler5 = new TextboxHandler(handler, Assets.mcSpeakingFont, messageFive, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler6 = new TextboxHandler(handler, Assets.acceptanceFont, messageSix, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler7 = new TextboxHandler(handler, Assets.mcSpeakingFont, messageSeven, null, 3, Color.WHITE, null, null, 50, true, false);
     }
 
     @Override
@@ -170,8 +170,6 @@ public class FriendEncounter1 implements Cutscene {
             if (!textboxHandler7.isFinished()) {
                 textboxHandler7.render(g);
             }
-        } else {
-            textbox7 = false;
         }
     }
 
