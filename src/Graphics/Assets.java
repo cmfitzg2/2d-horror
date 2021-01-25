@@ -21,8 +21,14 @@ public class Assets {
 			playerDownTransparent, playerUpTransparent, playerLeftTransparent, playerRightTransparent;
 	public static BufferedImage brickTopLeft, brickTopMiddle, brickTopRight, brickMiddleLeft, brickMiddleMiddle,
 			brickMiddleRight, brickBottomLeft, brickBottomMiddle, brickBottomRight;
-	public static BufferedImage houseWallTopLeft, houseWallTopMiddle, houseWallTopRight, houseWallMiddleLeft, houseWallMiddleMiddle,
-			houseWallMiddleRight, houseWallBottomLeft, houseWallBottomMiddle, houseWallBottomRight;
+	public static BufferedImage houseWallTopLeftBlue, houseWallTopMiddleBlue, houseWallTopRightBlue, houseWallMiddleLeftBlue, houseWallMiddleMiddleBlue,
+			houseWallMiddleRightBlue, houseWallBottomLeftBlue, houseWallBottomMiddleBlue, houseWallBottomRightBlue;
+	public static BufferedImage houseWallTopLeftGreen, houseWallTopMiddleGreen, houseWallTopRightGreen, houseWallMiddleLeftGreen, houseWallMiddleMiddleGreen,
+			houseWallMiddleRightGreen, houseWallBottomLeftGreen, houseWallBottomMiddleGreen, houseWallBottomRightGreen;
+	public static BufferedImage houseWallTopLeftOrange, houseWallTopMiddleOrange, houseWallTopRightOrange, houseWallMiddleLeftOrange, houseWallMiddleMiddleOrange,
+			houseWallMiddleRightOrange, houseWallBottomLeftOrange, houseWallBottomMiddleOrange, houseWallBottomRightOrange;
+	public static BufferedImage houseWallTopLeftRed, houseWallTopMiddleRed, houseWallTopRightRed, houseWallMiddleLeftRed, houseWallMiddleMiddleRed,
+			houseWallMiddleRightRed, houseWallBottomLeftRed, houseWallBottomMiddleRed, houseWallBottomRightRed;
 	public static BufferedImage wallBorderVerticalLeft, wallBorderVerticalRight, wallBorderCornerBottomRight,
 			wallBorderCornerBottomLeft, wallBorderCornerTopRight, wallBorderCornerTopLeft, wallBorderRightBottom,
 			wallBorderLeftBottom, wallBorderRightTop, wallBorderLeftTop, wallBorderTop, wallBorderRight, wallBorderLeft,
@@ -54,7 +60,7 @@ public class Assets {
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
 	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, grandfatherClock;
-	public static BufferedImage[] dressers, fire;
+	public static BufferedImage[] dressers, fire, chalkboard;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
 	public static BufferedImage[] reflection_down, reflection_up, reflection_left, reflection_right;
@@ -160,15 +166,45 @@ public class Assets {
 		roofFlatRight = housesSheet.crop(width * 5, height * 6, width, height);
 
 		SpriteSheet houseWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/house-wall-sheet.png"));
-		houseWallTopLeft = houseWallSheet.crop(0, 0, width, height);
-		houseWallTopMiddle = houseWallSheet.crop(width, 0, width, height);
-		houseWallTopRight = houseWallSheet.crop(width * 2, 0, width, height);
-		houseWallMiddleLeft = houseWallSheet.crop(0, height, width, height);
-		houseWallMiddleMiddle = houseWallSheet.crop(width, height, width, height);
-		houseWallMiddleRight = houseWallSheet.crop(width * 2, height, width, height);
-		houseWallBottomLeft = houseWallSheet.crop(0, height * 2, width, height);
-		houseWallBottomMiddle = houseWallSheet.crop(width, height * 2, width, height);
-		houseWallBottomRight = houseWallSheet.crop(width * 2, height * 2, width, height);
+		houseWallTopLeftBlue = houseWallSheet.crop(0, 0, width, height);
+		houseWallTopMiddleBlue = houseWallSheet.crop(width, 0, width, height);
+		houseWallTopRightBlue = houseWallSheet.crop(width * 2, 0, width, height);
+		houseWallMiddleLeftBlue = houseWallSheet.crop(0, height, width, height);
+		houseWallMiddleMiddleBlue = houseWallSheet.crop(width, height, width, height);
+		houseWallMiddleRightBlue = houseWallSheet.crop(width * 2, height, width, height);
+		houseWallBottomLeftBlue = houseWallSheet.crop(0, height * 2, width, height);
+		houseWallBottomMiddleBlue = houseWallSheet.crop(width, height * 2, width, height);
+		houseWallBottomRightBlue = houseWallSheet.crop(width * 2, height * 2, width, height);
+
+		houseWallTopLeftGreen = houseWallSheet.crop(0, height * 3, width, height);
+		houseWallTopMiddleGreen = houseWallSheet.crop(width, height * 3, width, height);
+		houseWallTopRightGreen = houseWallSheet.crop(width * 2, height * 3, width, height);
+		houseWallMiddleLeftGreen = houseWallSheet.crop(0, height * 4, width, height);
+		houseWallMiddleMiddleGreen = houseWallSheet.crop(width, height * 4, width, height);
+		houseWallMiddleRightGreen = houseWallSheet.crop(width * 2, height * 4, width, height);
+		houseWallBottomLeftGreen = houseWallSheet.crop(0, height * 5, width, height);
+		houseWallBottomMiddleGreen = houseWallSheet.crop(width, height * 5, width, height);
+		houseWallBottomRightGreen = houseWallSheet.crop(width * 2, height * 5, width, height);
+
+		houseWallTopLeftOrange = houseWallSheet.crop(width * 3, height * 3, width, height);
+		houseWallTopMiddleOrange = houseWallSheet.crop(width * 4, height * 3, width, height);
+		houseWallTopRightOrange = houseWallSheet.crop(width * 5, height * 3, width, height);
+		houseWallMiddleLeftOrange = houseWallSheet.crop(width * 3, height * 4, width, height);
+		houseWallMiddleMiddleOrange = houseWallSheet.crop(width * 4, height * 4, width, height);
+		houseWallMiddleRightOrange = houseWallSheet.crop(width * 5, height * 4, width, height);
+		houseWallBottomLeftOrange = houseWallSheet.crop(width * 3, height * 5, width, height);
+		houseWallBottomMiddleOrange = houseWallSheet.crop(width * 4, height * 5, width, height);
+		houseWallBottomRightOrange = houseWallSheet.crop(width * 5, height * 5, width, height);
+
+		houseWallTopLeftRed = houseWallSheet.crop(width * 3, 0, width, height);
+		houseWallTopMiddleRed = houseWallSheet.crop(width * 4, 0, width, height);
+		houseWallTopRightRed = houseWallSheet.crop(width * 5, 0, width, height);
+		houseWallMiddleLeftRed = houseWallSheet.crop(width * 3, height, width, height);
+		houseWallMiddleMiddleRed = houseWallSheet.crop(width * 4, height, width, height);
+		houseWallMiddleRightRed = houseWallSheet.crop(width * 5, height, width, height);
+		houseWallBottomLeftRed = houseWallSheet.crop(width * 3, height * 2, width, height);
+		houseWallBottomMiddleRed = houseWallSheet.crop(width * 4, height * 2, width, height);
+		houseWallBottomRightRed = houseWallSheet.crop(width * 5, height * 2, width, height);
 
 		SpriteSheet wallBordersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/wall-borders-sheet.png"));
 		wallBorderVerticalLeft = wallBordersSheet.crop(0, 0, width, height);
@@ -206,6 +242,11 @@ public class Assets {
 		fire[3] = fireSheet.crop(width * 3, 0, width, height);
 		fireUnlit = fireSheet.crop(0, height, width, height);
 		fireExtinguished = fireSheet.crop(width, height, width, height);
+
+		SpriteSheet chalkboardSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/chalkboard.png"));
+		chalkboard = new BufferedImage[2];
+		chalkboard[0] = chalkboardSheet.crop(0, 0, 300, height * 4);
+		chalkboard[1] = chalkboardSheet.crop(0, height * 4, 300, height * 4);
 
 		SpriteSheet staticEntities = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/sheet.png"));
 		windowOne = staticEntities.crop(0, 0, width, 44);

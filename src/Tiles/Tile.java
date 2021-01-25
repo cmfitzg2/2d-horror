@@ -1,11 +1,14 @@
 package Tiles;
 
 import Tiles.Interior.*;
+import Tiles.Interior.HouseWall.Blue.*;
+import Tiles.Interior.HouseWall.Red.*;
+import Tiles.Interior.HouseWall.Green.*;
+import Tiles.Interior.HouseWall.Orange.*;
 import Tiles.Interior.WallBorder.*;
 import Tiles.Overworld.*;
 import Tiles.Overworld.BrickWall.*;
 import Tiles.Overworld.Roof.*;
-import Tiles.Interior.HouseWall.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -67,34 +70,62 @@ public class Tile {
 	public static Tile roofFlat = new RoofFlat(56);
 	public static Tile roofFlatRight = new RoofFlatRight(57);
 
-	//house wall
-	public static Tile houseWallTopLeft = new HouseWallTopLeft(58);
-	public static Tile houseWallTopMiddle = new HouseWallTopMiddle(59);
-	public static Tile houseWallTopRight = new HouseWallTopRight(60);
-	public static Tile houseWallMiddleLeft = new HouseWallMiddleLeft(61);
-	public static Tile houseWallMiddleMiddle = new HouseWallMiddleMiddle(62);
-	public static Tile houseWallMiddleRight = new HouseWallMiddleRight(63);
-	public static Tile houseWallBottomLeft = new HouseWallBottomLeft(64);
-	public static Tile houseWallBottomMiddle = new HouseWallBottomMiddle(65);
-	public static Tile houseWallBottomRight = new HouseWallBottomRight(66);
-
 	//house wall borders
-	public static Tile wallBorderBottom = new WallBorderBottom(67);
-	public static Tile wallBorderCornerBottomLeft = new WallBorderCornerBottomLeft(68);
-	public static Tile wallBorderCornerBottomRight = new WallBorderCornerBottomRight(69);
-	public static Tile wallBorderCornerTopLeft = new WallBorderCornerTopLeft(70);
-	public static Tile wallBorderCornerTopRight = new WallBorderCornerTopRight(71);
-	public static Tile wallBorderLeft = new WallBorderLeft(72);
-	public static Tile wallBorderLeftBottom = new WallBorderLeftBottom(73);
-	public static Tile wallBorderLeftTop = new WallBorderLeftTop(74);
-	public static Tile wallBorderRight = new WallBorderRight(75);
-	public static Tile wallBorderRightBottom = new WallBorderRightBottom(76);
-	public static Tile wallBorderRightTop = new WallBorderRightTop(77);
-	public static Tile wallBorderTop = new WallBorderTop(78);
-	public static Tile wallBorderVerticalLeft = new WallBorderVerticalLeft(79);
-	public static Tile wallBorderVerticalRight = new WallBorderVerticalRight(80);
+	public static Tile wallBorderBottom = new WallBorderBottom(58);
+	public static Tile wallBorderCornerBottomLeft = new WallBorderCornerBottomLeft(59);
+	public static Tile wallBorderCornerBottomRight = new WallBorderCornerBottomRight(60);
+	public static Tile wallBorderCornerTopLeft = new WallBorderCornerTopLeft(61);
+	public static Tile wallBorderCornerTopRight = new WallBorderCornerTopRight(62);
+	public static Tile wallBorderLeft = new WallBorderLeft(63);
+	public static Tile wallBorderLeftBottom = new WallBorderLeftBottom(64);
+	public static Tile wallBorderLeftTop = new WallBorderLeftTop(65);
+	public static Tile wallBorderRight = new WallBorderRight(66);
+	public static Tile wallBorderRightBottom = new WallBorderRightBottom(67);
+	public static Tile wallBorderRightTop = new WallBorderRightTop(68);
+	public static Tile wallBorderTop = new WallBorderTop(69);
+	public static Tile wallBorderVerticalLeft = new WallBorderVerticalLeft(70);
+	public static Tile wallBorderVerticalRight = new WallBorderVerticalRight(71);
 
+	//house wall
+	public static Tile houseWallTopLeftBlue = new HouseWallTopLeftBlue(72);
+	public static Tile houseWallTopMiddleBlue = new HouseWallTopMiddleBlue(73);
+	public static Tile houseWallTopRightBlue = new HouseWallTopRightBlue(74);
+	public static Tile houseWallMiddleLeftBlue = new HouseWallMiddleLeftBlue(75);
+	public static Tile houseWallMiddleMiddleBlue = new HouseWallMiddleMiddleBlue(76);
+	public static Tile houseWallMiddleRightBlue = new HouseWallMiddleRightBlue(77);
+	public static Tile houseWallBottomLeftBlue = new HouseWallBottomLeftBlue(78);
+	public static Tile houseWallBottomMiddleBlue = new HouseWallBottomMiddleBlue(79);
+	public static Tile houseWallBottomRightBlue = new HouseWallBottomRightBlue(80);
 
+	public static Tile houseWallTopLeftGreen = new HouseWallTopLeftGreen(81);
+	public static Tile houseWallTopMiddleGreen = new HouseWallTopMiddleGreen(82);
+	public static Tile houseWallTopRightGreen = new HouseWallTopRightGreen(83);
+	public static Tile houseWallMiddleLeftGreen = new HouseWallMiddleLeftGreen(84);
+	public static Tile houseWallMiddleMiddleGreen = new HouseWallMiddleMiddleGreen(85);
+	public static Tile houseWallMiddleRightGreen = new HouseWallMiddleRightGreen(86);
+	public static Tile houseWallBottomLeftGreen = new HouseWallBottomLeftGreen(87);
+	public static Tile houseWallBottomMiddleGreen = new HouseWallBottomMiddleGreen(88);
+	public static Tile houseWallBottomRightGreen = new HouseWallBottomRightGreen(89);
+
+	public static Tile houseWallTopLeftRed = new HouseWallTopLeftRed(90);
+	public static Tile houseWallTopMiddleRed = new HouseWallTopMiddleRed(91);
+	public static Tile houseWallTopRightRed = new HouseWallTopRightRed(92);
+	public static Tile houseWallMiddleLeftRed = new HouseWallMiddleLeftRed(93);
+	public static Tile houseWallMiddleMiddleRed = new HouseWallMiddleMiddleRed(94);
+	public static Tile houseWallMiddleRightRed = new HouseWallMiddleRightRed(95);
+	public static Tile houseWallBottomLeftRed = new HouseWallBottomLeftRed(96);
+	public static Tile houseWallBottomMiddleRed = new HouseWallBottomMiddleRed(97);
+	public static Tile houseWallBottomRightRed = new HouseWallBottomRightRed(98);
+
+	public static Tile houseWallTopLeftOrange = new HouseWallTopLeftOrange(99);
+	public static Tile houseWallTopMiddleOrange = new HouseWallTopMiddleOrange(100);
+	public static Tile houseWallTopRightOrange = new HouseWallTopRightOrange(101);
+	public static Tile houseWallMiddleLeftOrange = new HouseWallMiddleLeftOrange(102);
+	public static Tile houseWallMiddleMiddleOrange = new HouseWallMiddleMiddleOrange(103);
+	public static Tile houseWallMiddleRightOrange = new HouseWallMiddleRightOrange(104);
+	public static Tile houseWallBottomLeftOrange = new HouseWallBottomLeftOrange(105);
+	public static Tile houseWallBottomMiddleOrange = new HouseWallBottomMiddleOrange(106);
+	public static Tile houseWallBottomRightOrange = new HouseWallBottomRightOrange(107);
 
 	//CLASS
 	
