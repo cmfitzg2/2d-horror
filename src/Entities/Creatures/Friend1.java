@@ -20,10 +20,10 @@ public class Friend1 extends Creature {
 		bounds.width = 32;
 		bounds.height = 32;
 		//Animations
-		animDown = new Animation(250, Assets.reflection_down);
-		animLeft = new Animation(250, Assets.reflection_left);
-		animUp = new Animation(250, Assets.reflection_up);
-		animRight = new Animation(250, Assets.reflection_right);
+		animDown = new Animation(200, Assets.reflection_down);
+		animLeft = new Animation(200, Assets.reflection_left);
+		animUp = new Animation(200, Assets.reflection_up);
+		animRight = new Animation(200, Assets.reflection_right);
 	}
 
 	@Override

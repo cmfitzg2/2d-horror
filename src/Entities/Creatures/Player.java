@@ -31,10 +31,10 @@ public class Player extends Creature {
         bounds.height = 32;
 
         //Animations
-        animDown = new Animation(150, Assets.player_down);
-        animLeft = new Animation(150, Assets.player_left);
-        animUp = new Animation(150, Assets.player_up);
-        animRight = new Animation(150, Assets.player_right);
+        animDown = new Animation(200, Assets.player_down);
+        animLeft = new Animation(200, Assets.player_left);
+        animUp = new Animation(200, Assets.player_up);
+        animRight = new Animation(200, Assets.player_right);
 
         //ScreenOverlay
         screenOverlay = new ScreenOverlay(handler);
@@ -154,7 +154,8 @@ public class Player extends Creature {
         g.setColor(Color.WHITE);
         g.setFont(f);
         g.drawString("Current (x,y): (" + x + ", " + y + ")", 16, handler.getHeight() - 16);
-        g.drawString("Current mouse (x,y): ("  + handler.getMouseManager().getMouseX() + ", " + handler.getMouseManager().getMouseY() + ")", 16, handler.getHeight() - 100);
+        g.drawString("Current mouse (x,y): ("  + (handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset())
+                + ", " + (handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset()) + ")", 16, handler.getHeight() - 100);
         playerRec = currentPlayerRectangle();
         //g.drawRect(playerRec.x, playerRec.y, playerRec.width, playerRec.height);
     }

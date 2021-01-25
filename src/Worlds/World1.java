@@ -30,6 +30,7 @@ public class World1 extends World {
         entityManager.addEntity(new Bed(handler, 700, 428, Assets.bedOne.getWidth() * 2, Assets.bedOne.getHeight() * 2, null));
         entityManager.addEntity(new TableLamp(handler, 800, 388, Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2, null));
         entityManager.addEntity(new WindowLight(handler, 930, 320, Assets.windowLight.getWidth() * 2, Assets.windowLight.getHeight() * 2, "windowlight1"));
+        entityManager.addEntity(new Hole(handler, 1060, 500, 64, 64, "hole-world-1", handler.getWorldManager().getWorld(3), 1200, 200));
     }
 
     @Override
