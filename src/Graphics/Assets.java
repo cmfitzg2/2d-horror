@@ -59,7 +59,8 @@ public class Assets {
 			manifestationInventory, moribundInventory, oblationInventory, perditionInventory, processionInventory, prophetInventory,
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
-	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, grandfatherClock;
+	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished;
+	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -242,6 +243,13 @@ public class Assets {
 		fire[3] = fireSheet.crop(width * 3, 0, width, height);
 		fireUnlit = fireSheet.crop(0, height, width, height);
 		fireExtinguished = fireSheet.crop(width, height, width, height);
+
+		SpriteSheet grandfatherClockSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/grandfather-clock.png"));
+		grandfatherClock = new BufferedImage[4];
+		grandfatherClock[0] = grandfatherClockSheet.crop(0, 0, width, height * 3);
+		grandfatherClock[1] = grandfatherClockSheet.crop(width, 0, width, height * 3);
+		grandfatherClock[2] = grandfatherClockSheet.crop(width * 2, 0, width, height * 3);
+		grandfatherClock[3] = grandfatherClockSheet.crop(width * 3, 0, width, height * 3);
 
 		SpriteSheet chalkboardSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/chalkboard.png"));
 		chalkboard = new BufferedImage[2];
@@ -451,6 +459,5 @@ public class Assets {
 		windowLight = ImageLoader.loadImage("/textures/static-entities/window-light.png");
 		yellowLight = ImageLoader.loadImage("/textures/effects/light-yellow.png");
 		firePlace = ImageLoader.loadImage("/textures/static-entities/fireplace-1.png");
-		grandfatherClock = ImageLoader.loadImage("/textures/static-entities/grandfather-clock.png");
 	}
 }

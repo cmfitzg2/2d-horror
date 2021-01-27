@@ -61,9 +61,13 @@ public class Handler {
 		return playerFrozen;
 	}
 
-	public void setPlayerFrozen(boolean playerFrozen)
-	{
+	public void setPlayerFrozen(boolean playerFrozen) {
 		this.playerFrozen = playerFrozen;
+		if (null != player) {
+			player.setxMove(0);
+			player.setyMove(0);
+			player.updateAnimations(null);
+		}
 	}
 
 	public void setGame(Game game) {

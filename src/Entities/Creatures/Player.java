@@ -9,6 +9,7 @@ import Graphics.ScreenOverlay;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Player extends Creature {
     private static boolean down, up, left, right;
@@ -17,6 +18,8 @@ public class Player extends Creature {
     public static float defaultSpeed = 4.0f, defaultRunSpeed = 8.0f;
     //Animations
     private Animation animDown, animUp, animLeft, animRight;
+    private java.util.List<Animation> animationList = new ArrayList<>();
+    private BufferedImage currentFrame;
     public static Rectangle playerRec, interactionRectangle;
     private ScreenOverlay screenOverlay;
     //Font
@@ -35,6 +38,10 @@ public class Player extends Creature {
         animLeft = new Animation(200, Assets.player_left);
         animUp = new Animation(200, Assets.player_up);
         animRight = new Animation(200, Assets.player_right);
+        animationList.add(animDown);
+        animationList.add(animLeft);
+        animationList.add(animUp);
+        animationList.add(animRight);
 
         //ScreenOverlay
         screenOverlay = new ScreenOverlay(handler);
@@ -52,7 +59,7 @@ public class Player extends Creature {
     @Override
     public void tick() {
         playerRec = currentPlayerRectangle();
-        if (!handler.isPlayerFrozen()) {
+        if (xMove != 0 || yMove != 0) {
             //Animations
             animDown.tick();
             animLeft.tick();
@@ -61,8 +68,8 @@ public class Player extends Creature {
         }
         //Movement
         getInput();
+        move();
         if (!handler.isPlayerFrozen()) {
-            move();
             checkInteraction();
         }
         handler.getGameCamera().centerOnEntity(this);
@@ -71,9 +78,6 @@ public class Player extends Creature {
 
     public void interactedWith() {
         //Player should never be interacted with
-        interactedWith = true;
-        System.out.println("Interaction with " + this);
-        interactedWith = false;
     }
 
     @Override
@@ -85,65 +89,57 @@ public class Player extends Creature {
     public void render(Graphics g) {
         handler.getGameCamera().centerOnEntity(this);
         if (handler.isPlayerFrozen()) {
-            if (!handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle() && !handler.isInMenu()) {
-                if (up) {
-                    if (headOnly) {
-                        g.drawImage(Assets.headUp, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    } else if (!transparent) {
-                        g.drawImage(Assets.playerUpNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+            if (xMove != 0 || yMove != 0) {
+                currentFrame = getCurrentAnimationFrame();
+            } else {
+                if (!handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle() && !handler.isInMenu()) {
+                    if (up) {
+                        if (headOnly) {
+                            currentFrame = Assets.headUp;
+                        } else if (!transparent) {
+                            currentFrame = Assets.playerUpNormal;
+                        } else {
+                            currentFrame = Assets.playerUpTransparent;
+                        }
+                    } else if (down) {
+                        if (headOnly) {
+                            currentFrame = Assets.headDown;
+                        } else if (!transparent) {
+                            currentFrame = Assets.playerDownNormal;
+                        } else {
+                            currentFrame = Assets.playerDownTransparent;
+                        }
+                    } else if (left) {
+                        if (headOnly) {
+                            currentFrame = Assets.headLeft;
+                        } else if (!transparent) {
+                            currentFrame = Assets.playerLeftNormal;
+                        } else {
+                            currentFrame = Assets.playerLeftTransparent;
+                        }
+                    } else if (right) {
+                        if (headOnly) {
+                            currentFrame = Assets.headRight;
+                        } else if (!transparent) {
+                            currentFrame = Assets.playerRightNormal;
+                        } else {
+                            currentFrame = Assets.playerRightTransparent;
+                        }
                     } else {
-                        g.drawImage(Assets.playerUpTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    }
-                }
-                else if (down) {
-                    if (headOnly) {
-                        g.drawImage(Assets.headDown, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    } else if (!transparent) {
-                        g.drawImage(Assets.playerDownNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    } else {
-                        g.drawImage(Assets.playerDownTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    }
-                }
-                else if (left) {
-                    if (headOnly) {
-                        g.drawImage(Assets.headLeft, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    } else if (!transparent) {
-                        g.drawImage(Assets.playerLeftNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    } else {
-                        g.drawImage(Assets.playerLeftTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    }
-                }
-                else if (right) {
-                    if (headOnly) {
-                        g.drawImage(Assets.headRight, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    } else if (!transparent) {
-                        g.drawImage(Assets.playerRightNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    } else {
-                        g.drawImage(Assets.playerRightTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    }
-                }
-                else {
-                    if (headOnly) {
-                        g.drawImage(Assets.headDown, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    } else if (!transparent) {
-                        g.drawImage(Assets.playerDownNormal, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                    } else {
-                        g.drawImage(Assets.playerDownTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+                        if (headOnly) {
+                            currentFrame = Assets.headDown;
+                        } else if (!transparent) {
+                            currentFrame = Assets.playerDownNormal;
+                        } else {
+                            currentFrame = Assets.playerDownTransparent;
+                        }
                     }
                 }
             }
         } else {
-            g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
-
-
-            //collison box viewer
-/*		g.setColor(Color.RED);
-		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
-				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
-				bounds.width, bounds.height);*/
-
-            g.setFont(f);
+            currentFrame = getCurrentAnimationFrame();
         }
+        g.drawImage(currentFrame, (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
     }
 
     @Override
@@ -289,9 +285,7 @@ public class Player extends Creature {
                 return Assets.headDown;
             }
             return animDown.getCurrentFrame();
-        }
-        //not moving
-        else {
+        } else {
             if (!transparent) {
                 if (right) {
                     if (headOnly) {
@@ -324,6 +318,15 @@ public class Player extends Creature {
                 } else {
                     return Assets.playerDownTransparent;
                 }
+            }
+        }
+    }
+
+    public void updateAnimations(Animation ignoredAnimation) {
+        for (Animation animation : animationList) {
+            if (animation != ignoredAnimation) {
+                animation.setTimer(0);
+                animation.setIndex(0);
             }
         }
     }

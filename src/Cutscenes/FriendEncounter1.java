@@ -6,7 +6,6 @@ import Entities.Entity;
 import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
-import Utils.GeneralUtils;
 import Variables.Handler;
 
 import java.awt.*;
@@ -59,8 +58,10 @@ public class FriendEncounter1 implements Cutscene {
             }
         }
         if (textbox1 && !showTextbox1) {
-            if ((handler.getKeyManager().up || handler.getKeyManager().down || handler.getKeyManager().left
-                    || handler.getKeyManager().right || handler.getKeyManager().z)) {
+            if (player.getY() < 3322) {
+                player.setyMove(Player.DEFAULT_SPEED);
+            } else {
+                player.setyMove(0);
                 showTextbox1 = true;
             }
         }

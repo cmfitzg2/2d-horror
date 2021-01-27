@@ -19,11 +19,12 @@ public class Animation {
 		timer += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();
 		
-		if(timer>speed) {
+		if (timer > speed) {
 			index++;
 			timer = 0;
-			if(index>=frames.length)
+			if (index >= frames.length) {
 				index = 0;
+			}
 		}
 	}
 	
@@ -41,5 +42,9 @@ public class Animation {
 
 	public BufferedImage getDefaultFrame() {
 		return frames[0];
+	}
+
+	public void setTimer(long timer) {
+		this.timer = timer;
 	}
 }
