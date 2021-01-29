@@ -27,6 +27,11 @@ public class Tile {
 	public static Tile gray = new GrayTile(6);
 	public static Tile darkStoneWall = new DarkStoneWallTile(7);
 	public static Tile woodFloor = new WoodFloorTile(8);
+	public static Tile diamondTileBlue = new DiamondTileBlue(9);
+	public static Tile diamondTileGreen = new DiamondTileGreen(10);
+	public static Tile diamondTileWood = new DiamondTileWood(11);
+	public static Tile diamondTileDouble = new DiamondTileDouble(12);
+	public static Tile bathroomTile = new BathroomTile(13);
 
 	//brick wall
 	public static Tile brickTopLeft = new BrickTopLeft(20);

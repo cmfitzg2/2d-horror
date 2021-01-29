@@ -1,10 +1,8 @@
 package Worlds;
 
 import Cutscenes.CutsceneManager;
-import Entities.Creatures.Friend1;
 import Entities.Creatures.Player;
 import Entities.StaticEntities.*;
-import Tiles.Tile;
 import Variables.Handler;
 import Graphics.Assets;
 
@@ -30,8 +28,6 @@ public class World1 extends World {
         entityManager.addEntity(new Bed(handler, 700, 428, Assets.bedOne.getWidth() * 2, Assets.bedOne.getHeight() * 2, null));
         entityManager.addEntity(new TableLamp(handler, 800, 388, Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2, null));
         entityManager.addEntity(new WindowLight(handler, 930, 320, Assets.windowLight.getWidth() * 2, Assets.windowLight.getHeight() * 2, "windowlight1"));
-        entityManager.addEntity(new Hole(handler, 1060, 500, 64, 64, "hole-world-1", handler.getWorldManager().getWorld(3), 1200, 200));
-        entityManager.addEntity(new GrandfatherClock(handler, 1160, 428, Assets.grandfatherClock[0].getWidth() * 2, Assets.grandfatherClock[0].getHeight() * 2, "gfclock"));
     }
 
     @Override

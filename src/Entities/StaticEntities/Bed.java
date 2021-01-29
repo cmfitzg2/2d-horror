@@ -37,8 +37,8 @@ public class Bed extends StaticEntity {
 
     @Override
     public void tick() {
-        if (firstTime) {
-            if (handler.getFlags().isPrologue()) {
+        if (firstTime && handler.getActiveWorld().getId() == 1) {
+            if (handler.getGame().isFadeIn()) {
                 interactedWith();
                 firstTime = false;
             }
@@ -46,14 +46,14 @@ public class Bed extends StaticEntity {
         bedBounds = new Rectangle((int) x + width / 2 - (5 * width / 12)  - (int) handler.getGameCamera().getxOffset(),
                 (int) y + 16  - (int) handler.getGameCamera().getyOffset(), width - 2 * (width / 2 - (5 * width / 12)), height - 32);
         if (inBed) {
-            if (handler.getPlayer().getX() + handler.getPlayer().getWidth() / 2 <= x) {
+            if (handler.getPlayer().getX() + handler.getPlayer().getWidth() / 2.0f <= x) {
                 inBed = false;
                 handler.getPlayer().setLockY(false);
                 handler.getPlayer().setX(x - handler.getPlayer().getWidth() - 1);
                 handler.getPlayer().setSpeed(Player.defaultSpeed);
                 handler.getPlayer().setRunSpeed(Player.defaultRunSpeed);
                 handler.getPlayer().setHeadOnly(false);
-            } else if (handler.getPlayer().getX() >= x + width - handler.getPlayer().getWidth() / 2) {
+            } else if (handler.getPlayer().getX() >= x + width - handler.getPlayer().getWidth() / 2.0f) {
                 inBed = false;
                 handler.getPlayer().setLockY(false);
                 handler.getPlayer().setX(x + width + 1);

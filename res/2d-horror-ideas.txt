@@ -19,6 +19,8 @@ early game - character building, but how??
 
 i think each event should take place in such a way that MC + the character can speak / interact but can't reach eachother (something like jailbars?)
 -puzzles with spooky boys who embody the stage serving as the obstacle
+-thinking bubble has no portrait, could be another color
+-actually all the characters should have their own textbox / color, very appropriate.
 
 denial
 	name: daniel? anagram of denial lol

@@ -16,8 +16,9 @@ public class Assets {
 
 	private static final int width = 32, height = 32, biggerWidth = 48, biggerHeight = 48;
 	public static final int paintingWidth = 815, paintingHeight = 820;
-	public static BufferedImage dirt, grass, stone, water, black, gray, darkStoneWall, woodFloor,
-			playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal,
+	public static BufferedImage dirt, grass, stone, water, black, gray, darkStoneWall, woodFloor, diamondTileBlue,
+			diamondTileGreen, diamondTileWood, diamondTileDouble, bathroomTile;
+	public static BufferedImage playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal,
 			playerDownTransparent, playerUpTransparent, playerLeftTransparent, playerRightTransparent;
 	public static BufferedImage brickTopLeft, brickTopMiddle, brickTopRight, brickMiddleLeft, brickMiddleMiddle,
 			brickMiddleRight, brickBottomLeft, brickBottomMiddle, brickBottomRight;
@@ -126,7 +127,7 @@ public class Assets {
 		black = sheet.crop(width * 2, height, width, height);
 		gray = sheet.crop(width * 3, height, width, height);
 
-		SpriteSheet housesSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/houses-sheet.png"));
+		SpriteSheet housesSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/overworld/houses-sheet.png"));
 		brickTopLeft = housesSheet.crop(0, 0, width, height);
 		brickTopMiddle = housesSheet.crop(width, 0, width, height);
 		brickTopRight = housesSheet.crop(width * 2, 0, width, height);
@@ -166,7 +167,7 @@ public class Assets {
 		roofFlat = housesSheet.crop(width * 4, height * 6, width, height);
 		roofFlatRight = housesSheet.crop(width * 5, height * 6, width, height);
 
-		SpriteSheet houseWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/house-wall-sheet.png"));
+		SpriteSheet houseWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/house-wall-sheet.png"));
 		houseWallTopLeftBlue = houseWallSheet.crop(0, 0, width, height);
 		houseWallTopMiddleBlue = houseWallSheet.crop(width, 0, width, height);
 		houseWallTopRightBlue = houseWallSheet.crop(width * 2, 0, width, height);
@@ -207,7 +208,7 @@ public class Assets {
 		houseWallBottomMiddleRed = houseWallSheet.crop(width * 4, height * 2, width, height);
 		houseWallBottomRightRed = houseWallSheet.crop(width * 5, height * 2, width, height);
 
-		SpriteSheet wallBordersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/wall-borders-sheet.png"));
+		SpriteSheet wallBordersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/wall-borders-sheet.png"));
 		wallBorderVerticalLeft = wallBordersSheet.crop(0, 0, width, height);
 		wallBorderVerticalRight = wallBordersSheet.crop(width * 4, 0, width, height);
 		wallBorderCornerBottomRight = wallBordersSheet.crop(width, 0, width, height);
@@ -222,6 +223,13 @@ public class Assets {
 		wallBorderRight = wallBordersSheet.crop(0, height * 2, width, height);
 		wallBorderLeft = wallBordersSheet.crop(width * 4, height * 2, width, height);
 		wallBorderTop = wallBordersSheet.crop(width * 2, height * 4, width, height);
+
+		SpriteSheet tilesSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/tiles-sheet.png"));
+		diamondTileBlue = tilesSheet.crop(0, 0, width, height);
+		diamondTileGreen = tilesSheet.crop(width, 0, width, height);
+		diamondTileWood = tilesSheet.crop(width * 2, 0, width, height);
+		diamondTileDouble = tilesSheet.crop(width * 3, 0, width, height);
+		bathroomTile = tilesSheet.crop(0, height, width, height);
 
 		SpriteSheet dressersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/dressers-sheet.png"));
 		dressers = new BufferedImage[9];

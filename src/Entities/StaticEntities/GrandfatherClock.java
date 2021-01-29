@@ -9,13 +9,16 @@ import java.awt.*;
 public class GrandfatherClock extends StaticEntity {
 
     private Animation tick;
+    private float xScale, yScale;
 
     public GrandfatherClock(Handler handler, float x, float y, int width, int height, String uniqueName) {
         super(handler, x, y, width, height, uniqueName);
-        bounds.x = 0;
-        bounds.y = 3 * height / 4;
-        bounds.width = width;
-        bounds.height = height / 4;
+        xScale = (float) width / Assets.grandfatherClock[0].getWidth();
+        yScale = (float) height / Assets.grandfatherClock[0].getHeight();
+        bounds.x = (int) (7 * xScale);
+        bounds.y = (int) (64 * yScale);
+        bounds.width = (int) (18 * xScale);
+        bounds.height = (int) (19 * yScale);
         tick = new Animation(500, Assets.grandfatherClock);
     }
 

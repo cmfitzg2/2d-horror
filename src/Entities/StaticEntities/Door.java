@@ -35,7 +35,7 @@ public class Door extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-        g.drawRect(enterDoor.x, enterDoor.y, enterDoor.width, enterDoor.height);
+        //g.drawRect(enterDoor.x, enterDoor.y, enterDoor.width, enterDoor.height);
     }
 
     @Override
