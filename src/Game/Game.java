@@ -86,14 +86,14 @@ public class Game implements Runnable {
 
 	private void tick() {
 		keyManager.tick();
-		if(State.getState() != null)
+		if (State.getState() != null) {
 			State.getState().tick();
+		}
 	}
 
 	private void render() {
 		bufferStrategy = display.getCanvas().getBufferStrategy();
-		if(bufferStrategy == null)
-		{
+		if (bufferStrategy == null) {
 			display.getCanvas().createBufferStrategy(3);
 			return;
 		}
@@ -102,10 +102,11 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 
 		//draw
-		if(State.getState() != null)
+		if (State.getState() != null) {
 			State.getState().render(g);
-		else
+		} else {
 			System.out.println("no state");
+		}
 
 		//fade the screen in & out after rendering everything else
 		checkScreenFade();
@@ -135,8 +136,7 @@ public class Game implements Runnable {
 	}
 
 	@Override
-	public void run()
-	{
+	public void run() {
 		init();
 
 		int fps = 60;
@@ -145,62 +145,52 @@ public class Game implements Runnable {
 		long now;
 		long lastTime = System.nanoTime();
 
-		while(running)
-		{
+		while (running) {
 			now = System.nanoTime();
 			delta += (now - lastTime) / timePerTick;
 			lastTime = now;
-			if(delta >= 1)
-			{
+			if (delta >= 1) {
 				tick();
 				render();
 				delta = 0;
 			}
-
 		}
-
 		stop();
-
 	}
 
-	public KeyManager getKeyManager()
-	{
+	public KeyManager getKeyManager() {
 		return keyManager;
 	}
 
-	public MouseManager getMouseManager()
-	{
+	public MouseManager getMouseManager() {
 		return mouseManager;
 	}
 
-	public GameCamera getGameCamera()
-	{
+	public GameCamera getGameCamera() {
 		return gameCamera;
 	}
 
-	public int getWidth()
-	{
+	public int getWidth() {
 		return width;
 	}
 
-	public int getHeight()
-	{
+	public int getHeight() {
 		return height;
 	}
 
-	public synchronized void start()
-	{
-		if(running)
+	public synchronized void start() {
+		if (running) {
 			return;
+		}
 		running = true;
 		thread = new Thread(this);
 		thread.start();
 	}
 
-	public synchronized void stop()
-	{
-		if(!running)
+	public synchronized void stop() {
+		if (!running) {
 			return;
+		}
 		running = false;
 		try {
 			thread.join();
@@ -220,7 +210,7 @@ public class Game implements Runnable {
 		return fadeIn;
 	}
 
-	public void fadeOut(int frameCount){
+	public void fadeOut(int frameCount) {
 		setFadeOut(true, true);
 		finishedFadingOut = false;
 		alpha = 0;
