@@ -142,7 +142,7 @@ Acceptance: "Hey MC!"
 MC (thinking): "Sounds like Acceptance is already here. I don't know why, but today I really feel relieved to hear his voice again." 
 >Acceptance approaches
 MC: "Hey, it's good to see you again."
-Acceptance: "Good to see me again? You know we do this every day right?"
+Acceptance: "Good to see me again? You know we walk to school together every day right?"
 Acceptance: "But hey -- good to see you too!"
 Acceptance: "You alright? You look like you haven't slept much."
 MC: "Yeah, I feel like it too."

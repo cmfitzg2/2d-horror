@@ -11,14 +11,14 @@ public class WorldManager {
     private HashMap<Integer, World> worlds;
     private World activeWorld;
 
-    public WorldManager(Handler handler, World1 world1) {
+    public WorldManager(Handler handler, MCHouse1 mcHouse1) {
         this.handler = handler;
         worlds = new HashMap<>();
-        worlds.put(1, world1);
+        worlds.put(1, mcHouse1);
         worlds.put(2, new World2(handler, "res/worlds/world2.txt", 2));
         worlds.put(3, new World3(handler, "res/worlds/world3.txt", 3));
         worlds.put(4, new World4(handler, "res/worlds/world4.txt", 4));
-        setActiveWorld(world1);
+        setActiveWorld(mcHouse1);
     }
 
     public void tick() {

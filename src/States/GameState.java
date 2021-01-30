@@ -4,7 +4,7 @@ import Cutscenes.CutsceneManager;
 import Variables.Handler;
 import java.awt.Graphics;
 import Graphics.ScreenOverlay;
-import Worlds.World1;
+import Worlds.MCHouse1;
 import Worlds.WorldManager;
 
 public class GameState extends State {
@@ -21,7 +21,7 @@ public class GameState extends State {
 		screenOverlay = new ScreenOverlay(handler);
 		cutsceneManager = new CutsceneManager(handler);
 		handler.setCutsceneManager(cutsceneManager);
-		worldManager = new WorldManager(handler, new World1(handler, "res/worlds/world1.txt", 1));
+		worldManager = new WorldManager(handler, new MCHouse1(handler, "res/worlds/mc-house-1.txt", 1));
 		handler.setWorldManager(worldManager);
 	}
 

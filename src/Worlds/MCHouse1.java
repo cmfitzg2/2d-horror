@@ -8,10 +8,10 @@ import Graphics.Assets;
 
 import java.awt.*;
 
-public class World1 extends World {
+public class MCHouse1 extends World {
 
     private Rectangle loadzoneSouth;
-    public World1(Handler handler, String path, int id) {
+    public MCHouse1(Handler handler, String path, int id) {
         super(handler, path, id, new Player(handler, 700, 428, "Player"));
     }
 

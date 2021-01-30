@@ -25,7 +25,7 @@ public class FriendEncounter1 implements Cutscene {
             messageTwo = "Sounds like Acceptance is already here. \r " +
                     "I don't know why, but today I really feel relieved to hear his voice again.",
             messageThree = "Hey, it's good to see you again.",
-            messageFour = "Good to see me again? \n You know we do this every day right? \r " +
+            messageFour = "Good to see me again? \n You know we walk to school together every day right? \r " +
                     "But hey -- good to see you too! \r " +
                     "You alright? You look like you haven't slept much.",
             messageFive = "Yeah, I feel like it too.",
