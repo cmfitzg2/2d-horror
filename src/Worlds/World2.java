@@ -29,7 +29,7 @@ public class World2 extends World {
         entityManager.addEntity(new Door(handler, 43 * Tile.TILEWIDTH, 47 * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(1), 930, 720, true, false));
         entityManager.addEntity(new Door(handler, 59 * Tile.TILEWIDTH, 47 * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(1), 930, 720, true, false));
         entityManager.addEntity(new Door(handler, 29 * Tile.TILEWIDTH, 34 * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(1), 930, 720, true, false));
-        entityManager.addEntity(new Door(handler, 14 * Tile.TILEWIDTH, 44 * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(3), 21.5f * Tile.TILEWIDTH, 29 * Tile.TILEHEIGHT, true, true));
+        entityManager.addEntity(new Door(handler, 14 * Tile.TILEWIDTH, 44 * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(3), 21.5f * Tile.TILEWIDTH, 27 * Tile.TILEHEIGHT, true, true));
         entityManager.addEntity(new Window(handler, 12 * Tile.TILEWIDTH - 64, 44 * Tile.TILEHEIGHT - 12, 64, 88, "Window-1"));
         entityManager.addEntity(new Window(handler, 13 * Tile.TILEWIDTH - 32, 44 * Tile.TILEHEIGHT - 12, 64, 88, "Window-2"));
         entityManager.addEntity(new Window(handler, 15 * Tile.TILEWIDTH + 32, 44 * Tile.TILEHEIGHT - 12, 64, 88, "Window-3"));

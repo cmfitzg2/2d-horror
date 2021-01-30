@@ -19,8 +19,8 @@ public class World4 extends World {
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new Door(handler, 29 * Tile.TILEWIDTH, 3.5f * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(3), 383 - (int) handler.getGameCamera().getxOffset(), 797 - (int) handler.getGameCamera().getyOffset(), false, false));
-        entityManager.addEntity(new Chalkboard(handler, 19.0f * Tile.TILEWIDTH, 42 + Tile.TILEHEIGHT * 2, Assets.chalkboard[0].getWidth(), Assets.chalkboard[1].getHeight(), "chalkboard1", 0));
+        entityManager.addEntity(new Door(handler, 23 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(3), 383 - (int) handler.getGameCamera().getxOffset(), 797 - (int) handler.getGameCamera().getyOffset(), false, false));
+        entityManager.addEntity(new Chalkboard(handler, 13.0f * Tile.TILEWIDTH, 42 + Tile.TILEHEIGHT, Assets.chalkboard[0].getWidth(), Assets.chalkboard[1].getHeight(), "chalkboard1", 0));
     }
 
     @Override

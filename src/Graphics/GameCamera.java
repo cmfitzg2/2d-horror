@@ -16,14 +16,17 @@ public class GameCamera {
 	}
 	
 	public void checkBlankSpace() {
-		if(xOffset<0)
-			xOffset = 0;
-		else if(xOffset>handler.getActiveWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth())
+		if (xOffset > handler.getActiveWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth()) {
 			xOffset = handler.getActiveWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth();
-		if(yOffset<0)
-			yOffset = 0;
-		else if(yOffset>handler.getActiveWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight())
+		}
+		if (yOffset > handler.getActiveWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight())
 			yOffset = handler.getActiveWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight();
+		if (xOffset < 0) {
+			xOffset = 0;
+		}
+		if (yOffset < 0) {
+			yOffset = 0;
+		}
 	}
 	
 	public void centerOnEntity(Entity e) {

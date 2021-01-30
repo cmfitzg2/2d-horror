@@ -46,9 +46,6 @@ public class World1 extends World {
     public void render(Graphics g) {
         renderTiles(g);
         entityManager.render(g);
-        if (null != loadzoneSouth) {
-            g.drawRect(loadzoneSouth.x, loadzoneSouth.y, loadzoneSouth.width, loadzoneSouth.height);
-        }
         firstRender = true;
     }
 }
