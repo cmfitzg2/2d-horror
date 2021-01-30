@@ -37,7 +37,7 @@ public class Bed extends StaticEntity {
 
     @Override
     public void tick() {
-        if (firstTime && handler.getActiveWorld().getId() == 1) {
+        if (firstTime && handler.getActiveWorld().getId() == 1 && handler.getFlags().isPrologue()) {
             if (handler.getGame().isFadeIn()) {
                 interactedWith();
                 firstTime = false;

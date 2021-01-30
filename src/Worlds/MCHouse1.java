@@ -3,6 +3,7 @@ package Worlds;
 import Cutscenes.CutsceneManager;
 import Entities.Creatures.Player;
 import Entities.StaticEntities.*;
+import Tiles.Tile;
 import Variables.Handler;
 import Graphics.Assets;
 
@@ -10,23 +11,23 @@ import java.awt.*;
 
 public class MCHouse1 extends World {
 
-    private Rectangle loadzoneSouth;
-    public MCHouse1(Handler handler, String path, int id) {
-        super(handler, path, id, new Player(handler, 700, 428, "Player"));
+    public MCHouse1(Handler handler, int id, Player player) {
+        super(handler, "res/worlds/mc-house-1.txt", id, player);
     }
 
     @Override
     public void checkLoadZones() {
-        loadzoneSouth = new Rectangle(894 - (int) handler.getGameCamera().getxOffset(), 795 - (int) handler.getGameCamera().getyOffset(), 132, 40);
-        if (entityManager.getPlayer().getPlayerRec().intersects(loadzoneSouth)) {
-            transitionFrom(handler.getWorldManager().getWorld(2), 2748, 3128);
+        Rectangle loadzoneMainHouse = new Rectangle(Tile.TILEWIDTH * 9 - (int) handler.getGameCamera().getxOffset(),
+                Tile.TILEHEIGHT * 9 - (int) handler.getGameCamera().getyOffset(), Tile.TILEWIDTH / 2, Tile.TILEHEIGHT);
+        if (entityManager.getPlayer().getPlayerRec().intersects(loadzoneMainHouse)) {
+            transitionFrom(handler.getWorldManager().getWorld(2), 37 * Tile.TILEWIDTH, 15 * Tile.TILEHEIGHT - handler.getPlayer().getPlayerRec().height / 2.0f);
         }
     }
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new Bed(handler, 700, 428, Assets.bedOne.getWidth() * 2, Assets.bedOne.getHeight() * 2, null));
-        entityManager.addEntity(new TableLamp(handler, 800, 388, Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2, null));
+        entityManager.addEntity(new Bed(handler, 17.7f * Tile.TILEWIDTH, 6.75f * Tile.TILEHEIGHT, Assets.bedOne.getWidth() * 2, Assets.bedOne.getHeight() * 2, null));
+        entityManager.addEntity(new TableLamp(handler, 16.7f * Tile.TILEWIDTH, 6 * Tile.TILEHEIGHT, Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2, null));
         entityManager.addEntity(new WindowLight(handler, 930, 320, Assets.windowLight.getWidth() * 2, Assets.windowLight.getHeight() * 2, "windowlight1"));
     }
 

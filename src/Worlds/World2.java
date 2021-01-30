@@ -2,6 +2,7 @@ package Worlds;
 
 import Cutscenes.CutsceneManager;
 import Entities.Creatures.Friend1;
+import Entities.Creatures.Player;
 import Entities.StaticEntities.*;
 import Tiles.Tile;
 import Utils.GeneralUtils;
@@ -10,8 +11,8 @@ import Graphics.Assets;
 
 public class World2 extends World {
 
-    public World2(Handler handler, String path, int id) {
-        super(handler, path, id, null);
+    public World2(Handler handler, int id, Player player) {
+        super(handler, "res/worlds/world2.txt", id, player);
     }
 
     @Override

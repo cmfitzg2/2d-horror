@@ -1,11 +1,11 @@
 package States;
 
 import Cutscenes.CutsceneManager;
+import Entities.Creatures.Player;
 import Variables.Handler;
 import java.awt.Graphics;
 import Graphics.ScreenOverlay;
-import Worlds.MCHouse1;
-import Worlds.WorldManager;
+import Worlds.*;
 
 public class GameState extends State {
 	private ScreenOverlay screenOverlay;
@@ -21,7 +21,7 @@ public class GameState extends State {
 		screenOverlay = new ScreenOverlay(handler);
 		cutsceneManager = new CutsceneManager(handler);
 		handler.setCutsceneManager(cutsceneManager);
-		worldManager = new WorldManager(handler, new MCHouse1(handler, "res/worlds/mc-house-1.txt", 1));
+		worldManager = new WorldManager(handler, new MCHouse1(handler, WorldManager.MC_HOUSE_1_ID, new Player(handler, 700, 428, "Player")));
 		handler.setWorldManager(worldManager);
 	}
 

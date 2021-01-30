@@ -10,15 +10,19 @@ public class WorldManager {
     private Handler handler;
     private HashMap<Integer, World> worlds;
     private World activeWorld;
+    public static final int MC_HOUSE_1_ID = 1, MC_HOUSE_2_ID = 2, OVERWORLD_1_ID = 3, SCHOOL_1_ID = 4, CLASSROOM_1_ID = 5;
 
-    public WorldManager(Handler handler, MCHouse1 mcHouse1) {
+    public WorldManager(Handler handler, World firstWorld) {
         this.handler = handler;
         worlds = new HashMap<>();
-        worlds.put(1, mcHouse1);
-        worlds.put(2, new World2(handler, "res/worlds/world2.txt", 2));
-        worlds.put(3, new World3(handler, "res/worlds/world3.txt", 3));
-        worlds.put(4, new World4(handler, "res/worlds/world4.txt", 4));
-        setActiveWorld(mcHouse1);
+        //put the active world in first, then conditionally add every world (to avoid re-adding the first world)
+        worlds.put(firstWorld.getId(), firstWorld);
+        worlds.putIfAbsent(MC_HOUSE_1_ID, new MCHouse1(handler, MC_HOUSE_1_ID, null));
+        worlds.putIfAbsent(MC_HOUSE_2_ID, new MCHouse2(handler, MC_HOUSE_2_ID, null));
+        worlds.putIfAbsent(OVERWORLD_1_ID, new World2(handler, OVERWORLD_1_ID, null));
+        worlds.putIfAbsent(SCHOOL_1_ID, new World3(handler, SCHOOL_1_ID, null));
+        worlds.putIfAbsent(CLASSROOM_1_ID, new World4(handler, CLASSROOM_1_ID, null));
+        setActiveWorld(firstWorld);
     }
 
     public void tick() {

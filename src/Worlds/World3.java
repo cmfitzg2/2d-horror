@@ -1,5 +1,6 @@
 package Worlds;
 
+import Entities.Creatures.Player;
 import Tiles.Tile;
 import Variables.Handler;
 
@@ -7,8 +8,8 @@ import java.awt.*;
 
 public class World3 extends World {
 
-    public World3(Handler handler, String path, int id) {
-        super(handler, path, id, null);
+    public World3(Handler handler, int id, Player player) {
+        super(handler, "res/worlds/world3.txt", id, player);
     }
 
     @Override

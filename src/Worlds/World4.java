@@ -1,5 +1,6 @@
 package Worlds;
 
+import Entities.Creatures.Player;
 import Entities.StaticEntities.Chalkboard;
 import Entities.StaticEntities.Door;
 import Graphics.Assets;
@@ -8,8 +9,8 @@ import Variables.Handler;
 
 public class World4 extends World {
 
-    public World4(Handler handler, String path, int id) {
-        super(handler, path, id, null);
+    public World4(Handler handler, int id, Player player) {
+        super(handler, "res/worlds/world4.txt", id, player);
     }
 
     @Override
