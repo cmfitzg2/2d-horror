@@ -6,33 +6,35 @@ import Entities.Entity;
 import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
+import Tiles.Tile;
 import Variables.Handler;
+import Worlds.WorldManager;
 
 import java.awt.*;
 
 public class FriendEncounter1 implements Cutscene {
     Player player;
     private boolean firstTime = true;
-    private boolean showTextbox1 = false;
     private Handler handler;
     private TextboxHandler textboxHandler1, textboxHandler2, textboxHandler3, textboxHandler4, textboxHandler5,
-            textboxHandler6, textboxHandler7;
+            textboxHandler6, textboxHandler7, textboxHandler8, textboxHandler9, textboxHandler10;
     private KeyManager keyManager;
     private int messageNum = 1;
-    private boolean textbox1 = true, textbox2, textbox3, textbox4, textbox5, textbox6, textbox7;
+    private boolean textbox1 = true, textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9, textbox10;
     private Friend1 friend1;
     private final String messageOne = "Hey MC!",
-            messageTwo = "Sounds like Acceptance is already here. \r " +
+            messageTwo = "Guess Acceptance is already here. \r " +
                     "I don't know why, but today I really feel relieved to hear his voice again.",
             messageThree = "Hey, it's good to see you again.",
-            messageFour = "Good to see me again? \n You know we walk to school together every day right? \r " +
-                    "But hey -- good to see you too! \r " +
-                    "You alright? You look like you haven't slept much.",
-            messageFive = "Yeah, I feel like it too.",
-            messageSix = "That sucks. \r " +
+            messageFour = "Good to see me again? \n You know we walk to school together every day right?",
+            messageFive = "Haha, yeah I know. Sorry.",
+            messageSix = "You alright? You look like you haven't slept much.",
+            messageSeven = "Yeah, I feel like it too.",
+            messageEight = "That sucks. \r " +
                     "Well, you know I'm not normally one for platitudes, but hey, it *is* Friday! \r " +
                     "Let's just knock this day out. Maybe we can do something after school to clear your head.",
-            messageSeven = "That sounds good. Let's get this over with then.";
+            messageNine = "That sounds good. You can go ahead without me, I'll finish getting ready and be right behind you.",
+            messageTen = "Cool. See you there!";
 
     public FriendEncounter1(Handler handler) {
         this.handler = handler;
@@ -44,40 +46,40 @@ public class FriendEncounter1 implements Cutscene {
         textboxHandler5 = new TextboxHandler(handler, Assets.mcSpeakingFont, messageFive, null, 3, Color.WHITE, null, null, 50, true, false);
         textboxHandler6 = new TextboxHandler(handler, Assets.acceptanceFont, messageSix, null, 3, Color.WHITE, null, null, 50, true, false);
         textboxHandler7 = new TextboxHandler(handler, Assets.mcSpeakingFont, messageSeven, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler8 = new TextboxHandler(handler, Assets.acceptanceFont, messageEight, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler9 = new TextboxHandler(handler, Assets.mcSpeakingFont, messageNine, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler10 = new TextboxHandler(handler, Assets.acceptanceFont, messageTen, null, 3, Color.WHITE, null, null, 50, true, false);
     }
 
     @Override
     public void tick() {
         if (firstTime) {
-            for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
-                if (e instanceof Friend1) {
-                    friend1 = (Friend1) e;
-                } else if (e instanceof Player) {
-                    player = (Player) e;
-                }
-            }
+            friend1 = (Friend1) handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_2_ID).getEntityManager().getEntityByUid("friend1-mchouse2");
+            player = handler.getPlayer();
+            friend1.setDirection("right");
         }
-        if (textbox1 && !showTextbox1) {
-            if (player.getY() < 3322) {
-                player.setyMove(Player.DEFAULT_SPEED);
-            } else {
-                player.setyMove(0);
-                showTextbox1 = true;
-            }
-        }
-        if (textbox1 && showTextbox1) {
-            if (!textboxHandler1.isFinished()) {
-                textboxHandler1.tick();
-            }
+        if (textbox1 && !textboxHandler1.isFinished()) {
+            textboxHandler1.tick();
         }
         if (textbox2) {
-            player.setDirection("right");
+            player.setDirection("left");
             if (!textboxHandler2.isFinished()) {
                 textboxHandler2.tick();
             } else {
-                if (friend1.getX() > player.getX() + 100) {
-                    friend1.setxMove(-friend1.getRunSpeed());
+                if (friend1.getX() < player.getX() - 100) {
+                    player.setxMove(-player.getSpeed());
+                    if (Math.abs(friend1.getY() - player.getY()) > player.getSpeed()) {
+                        if (friend1.getY() > player.getY()) {
+                            player.setyMove(player.getSpeed());
+                        } else if (friend1.getY() < player.getY()) {
+                            player.setyMove(-player.getSpeed());
+                        }
+                    } else {
+                        player.setyMove(0);
+                    }
                 } else {
+                    player.setxMove(0);
+                    player.setyMove(0);
                     textbox3 = true;
                     textbox2 = false;
                 }
@@ -106,13 +108,28 @@ public class FriendEncounter1 implements Cutscene {
         if (textbox7) {
             if (!textboxHandler7.isFinished()) {
                 textboxHandler7.tick();
+            }
+        }
+        if (textbox8) {
+            if (!textboxHandler8.isFinished()) {
+                textboxHandler8.tick();
+            }
+        }
+        if (textbox9) {
+            if (!textboxHandler9.isFinished()) {
+                textboxHandler9.tick();
+            }
+        }
+        if (textbox10) {
+            if (!textboxHandler10.isFinished()) {
+                textboxHandler10.tick();
             } else {
-                if (friend1.getY() < player.getY() + 100) {
-                    friend1.setyMove(friend1.getRunSpeed());
-                } else if (friend1.getX() > player.getX() - (handler.getWidth() / 2.0f) - 100) {
-                    friend1.setxMove(-friend1.getRunSpeed());
+                //move friend1 to the exit
+                if (friend1.getY() < 16 * Tile.TILEHEIGHT) {
+                    friend1.setyMove(friend1.getSpeed());
                 } else {
-                    textbox7 = false;
+                    handler.getActiveWorld().getEntityManager().removeEntity(friend1);
+                    textbox10 = false;
                     exit();
                 }
             }
@@ -121,13 +138,12 @@ public class FriendEncounter1 implements Cutscene {
 
     @Override
     public void render(Graphics g) {
-        if (textbox1 && showTextbox1) {
+        if (textbox1) {
             if (!textboxHandler1.isFinished()) {
                 textboxHandler1.render(g);
             } else {
                 textbox2 = true;
                 textbox1 = false;
-                showTextbox1 = false;
             }
         }
         if (textbox2) {
@@ -170,6 +186,30 @@ public class FriendEncounter1 implements Cutscene {
         if (textbox7) {
             if (!textboxHandler7.isFinished()) {
                 textboxHandler7.render(g);
+            } else {
+                textbox8 = true;
+                textbox7 = false;
+            }
+        }
+        if (textbox8) {
+            if (!textboxHandler8.isFinished()) {
+                textboxHandler8.render(g);
+            } else {
+                textbox9 = true;
+                textbox8 = false;
+            }
+        }
+        if (textbox9) {
+            if (!textboxHandler9.isFinished()) {
+                textboxHandler9.render(g);
+            } else {
+                textbox10 = true;
+                textbox9 = false;
+            }
+        }
+        if (textbox10) {
+            if (!textboxHandler10.isFinished()) {
+                textboxHandler10.render(g);
             }
         }
     }

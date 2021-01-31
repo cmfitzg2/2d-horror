@@ -26,9 +26,6 @@ public class World2 extends World {
     protected void addEntities() {
         entityManager.addEntity(new ArtFrameSmall(handler, 72, 8, 48, 48, "Solace", null, Assets.solaceInventory, Assets.darkWall));
         entityManager.addEntity(new ArtFrameSmall(handler, 136, 8, 48, 48, "Prophet", null, Assets.prophetInventory, Assets.darkWall));
-        if (handler.getFlags().isFriendEncounter1()) {
-            entityManager.addEntity(new Friend1(handler, 2748 + handler.getWidth() / 2.0f + 64, 3322, "Friend1"));
-        }
         entityManager.addEntity(new Door(handler, 43 * Tile.TILEWIDTH, 47 * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(1), 930, 720, true, false));
         entityManager.addEntity(new Door(handler, 59 * Tile.TILEWIDTH, 47 * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(1), 930, 720, true, false));
         entityManager.addEntity(new Door(handler, 29 * Tile.TILEWIDTH, 34 * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(1), 930, 720, true, false));
@@ -53,12 +50,6 @@ public class World2 extends World {
         if (handler.getGame().isFadeIn() && handler.getGame().isFinishedFadingIn()) {
             GeneralUtils.stopLevelFadeIn(handler, false);
             transitioningTo = false;
-            if (handler.getFlags().isFriendEncounter1()) {
-                handler.getFlags().setCutsceneActive(true);
-                CutsceneManager cutsceneManager = handler.getCutsceneManager();
-                cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(2));
-                handler.setPlayerFrozen(true);
-            }
         }
     }
 }

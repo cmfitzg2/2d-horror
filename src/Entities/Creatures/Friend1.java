@@ -49,37 +49,70 @@ public class Friend1 extends Creature {
 
 	@Override
 	public void render(Graphics g) {
-		if (yMove>0) {
-			down = true; left = false; up = false; right = false;
+		if (yMove > 0) {
+			down = true;
+			left = false;
+			up = false;
+			right = false;
 			g.drawImage(animDown.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
-		}
-		else if (xMove>0) {
-			down = false; right = true; left = false; up = false;
+		} else if (xMove > 0) {
+			down = false;
+			right = true;
+			left = false;
+			up = false;
 			g.drawImage(animRight.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null); 
-		}
-		else if (yMove<0) {
-			up = true; right = false; left = false; down = false;
+		} else if (yMove < 0) {
+			up = true;
+			right = false;
+			left = false;
+			down = false;
 			g.drawImage(animUp.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null); 
-		}
-		else if (xMove<0) {
-			left = true; up = false; right = false; down = false;
+		} else if (xMove < 0) {
+			left = true;
+			up = false;
+			right = false;
+			down = false;
 			g.drawImage(animLeft.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
-		}
-
-		else if (xMove == 0 && yMove == 0) {
+		} else if (xMove == 0 && yMove == 0) {
 			if (down) {
 				g.drawImage(animDown.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-			}
-			else if (left) {
+			} else if (left) {
 				g.drawImage(animLeft.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-			}
-			else if (up) {
+			} else if (up) {
 				g.drawImage(animUp.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			} else {
 				g.drawImage(animRight.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			}
 		}
 	}
+
+	public void setDirection(String dir) {
+		if (dir.equals("up")) {
+			up = true;
+			down = false;
+			left = false;
+			right = false;
+		}
+		if (dir.equals("down")) {
+			down = true;
+			left = false;
+			right = false;
+			up = false;
+		}
+		if (dir.equals("left")) {
+			left = true;
+			down = false;
+			up = false;
+			right = false;
+		}
+		if (dir.equals("right")) {
+			right = true;
+			up = false;
+			down = false;
+			left = false;
+		}
+	}
+
 	@Override
 	public void die() {
 

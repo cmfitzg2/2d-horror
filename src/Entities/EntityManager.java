@@ -13,8 +13,9 @@ public class EntityManager {
 	private Player player;
 	private ArrayList<Entity> entities;
 	private Comparator<Entity> renderSorter = (a, b) -> {
-		if(a.getY() + a.getHeight() < b.getY() + b.getHeight())
+		if (a.getY() + a.getHeight() < b.getY() + b.getHeight()) {
 			return -1;
+		}
 		return 1;
 	};
 	private Entity e;
@@ -67,13 +68,13 @@ public class EntityManager {
 
 	//GETTERS SETTERS
 
-
-	public Handler getHandler() {
-		return handler;
-	}
-
-	public void setHandler(Handler handler) {
-		this.handler = handler;
+	public Entity getEntityByUid(String uid) {
+		for (Entity e : entities) {
+			if (e.getUniqueName().equals(uid)) {
+				return e;
+			}
+		}
+		return null;
 	}
 
 	public Player getPlayer() {

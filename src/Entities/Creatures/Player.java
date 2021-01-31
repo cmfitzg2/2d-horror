@@ -246,13 +246,15 @@ public class Player extends Creature {
                         if (e.equals(this)) {                   //an entity cannot interact with itself
                             continue;
                         }
-                        if (e.getCollisionBounds(0, 0).intersects(interactionRectangle)) {
-                            if (e.isInteracting()) {
+                        if (interactionRectangle != null) {
+                            if (e.getCollisionBounds(0, 0).intersects(interactionRectangle)) {
+                                if (e.isInteracting()) {
+                                    break;
+                                } else {
+                                    e.interactedWith();                //call interaction function specified by any class extending entity
+                                }
                                 break;
-                            } else {
-                                e.interactedWith();                //call interaction function specified by any class extending entity
                             }
-                            break;
                         }
                     }
                 }
@@ -340,27 +342,42 @@ public class Player extends Creature {
     }
 
     public static String getDirection() {
-        if (up)
+        if (up) {
             return "up";
-        if (down)
+        }
+        if (down) {
             return "down";
-        if (left)
+        }
+        if (left) {
             return "left";
-        else return "right";
+        }
+        return "right";
     }
 
     public void setDirection(String dir) {
         if (dir.equals("up")) {
-            up = true; down = false; left = false; right = false;
+            up = true;
+            down = false;
+            left = false;
+            right = false;
         }
         if (dir.equals("down")) {
-            down = true; left = false; right = false; up = false;
+            down = true;
+            left = false;
+            right = false;
+            up = false;
         }
         if (dir.equals("left")) {
-            left = true; down = false; up = false; right = false;
+            left = true;
+            down = false;
+            up = false;
+            right = false;
         }
         if (dir.equals("right")) {
-            right = true; up = false; down = false; left = false;
+            right = true;
+            up = false;
+            down = false;
+            left = false;
         }
     }
 
