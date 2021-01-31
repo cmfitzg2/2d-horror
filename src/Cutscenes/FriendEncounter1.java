@@ -74,6 +74,12 @@ public class FriendEncounter1 implements Cutscene {
                         } else if (friend1.getY() < player.getY()) {
                             player.setyMove(-player.getSpeed());
                         }
+                    } else if (Math.abs(friend1.getY() - player.getY()) >= 1) {
+                        if (friend1.getY() > player.getY()) {
+                            player.setyMove(1);
+                        } else if (friend1.getY() < player.getY()) {
+                            player.setyMove(-1);
+                        }
                     } else {
                         player.setyMove(0);
                     }
