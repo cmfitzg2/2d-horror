@@ -1,6 +1,7 @@
 package Items;
 
-import Entities.Creatures.Player;
+import Entities.Entity;
+import Textboxes.TextboxHandler;
 import Variables.Handler;
 import Input.KeyManager;
 import Graphics.Assets;
@@ -18,7 +19,7 @@ public class Inventory {
 
     private Handler handler;
     public static String REGULAR_ITEM = "regular", KEY_ITEM = "key";
-    private boolean isOpen, ignoreInputs, firstTime = true;
+    private boolean open, ignoreInputs, showItemSelectedTextbox, firstTime = true;
     private List<String> regularItems, keyItems, regularUniqueNames, keyUniqueNames;
     private Map<String, Item> items;
     private int xIndex, yIndex;
@@ -28,6 +29,7 @@ public class Inventory {
     private FontMetrics headerFontMetrics, itemFontMetrics;
     private float xScale, yScale;
     private final int borderWidth = 10;
+    private TextboxHandler itemSelectedTextbox;
 
     public Inventory(Handler handler) {
         this.handler = handler;
@@ -56,7 +58,7 @@ public class Inventory {
             if (keyManager.c && !keyManager.isStillHoldingC()) {
                 keyManager.setStillHoldingC(true);
                 if (!handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle()) {
-                    if (isOpen) {
+                    if (open) {
                         //closing the menu
                         Assets.closeInventory.stop();
                         Assets.closeInventory.play();
@@ -78,11 +80,11 @@ public class Inventory {
                             yIndex = 0;
                         }
                     }
-                    isOpen = !isOpen;
+                    open = !open;
                 }
             }
         }
-        if (isOpen) {
+        if (open) {
             if (!ignoreInputs) {
                 if (regularItems.isEmpty() && keyItems.isEmpty()) {
                     return;
@@ -103,9 +105,22 @@ public class Inventory {
             }
             if (keyManager.enter && !keyManager.isStillholdingEnter()) {
                 keyManager.setStillholdingEnter(true);
-                String selectedItem = getItemNameAtIndex();
+                String selectedItem = getUniqueItemNameAtIndex();
                 if (null != selectedItem) {
                     selectItem(selectedItem);
+                }
+            }
+            if (keyManager.z && !keyManager.isStillHoldingZ()) {
+                keyManager.setStillHoldingZ(true);
+                String selectedItem = getUniqueItemNameAtIndex();
+                if (null != selectedItem) {
+                    selectItem(selectedItem);
+                }
+            }
+        } else {
+            if (showItemSelectedTextbox) {
+                if (!itemSelectedTextbox.isFinished()) {
+                    itemSelectedTextbox.tick();
                 }
             }
         }
@@ -287,7 +302,27 @@ public class Inventory {
     }
 
     private void selectItem(String selectedItem) {
-
+        Rectangle interactionRectangle = handler.getPlayer().getInteractionRectangle();
+        boolean found = false;
+        for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
+            if (interactionRectangle.intersects(e.getCollisionBounds(0,0))) {
+                System.out.println("Interaction with " + e);
+                found = e.itemInteraction(selectedItem);
+                if (found) {
+                    break;
+                }
+            }
+        }
+        if (found) {
+            System.out.println("Found");
+        } else {
+            System.out.println("Not found");
+            showItemSelectedTextbox = true;
+            itemSelectedTextbox = new TextboxHandler(handler, Assets.serif, "That item can't be used here.", null, 3, Color.WHITE, null, null, 50, true, true);
+        }
+        open = false;
+        handler.setInMenu(false);
+        handler.setGamePaused(false);
     }
 
     private String getItemNameAtIndex() {
@@ -323,7 +358,7 @@ public class Inventory {
             firstTime = false;
             initFonts(g);
         }
-        if (isOpen) {
+        if (open) {
             //debug
             g.drawImage(Assets.inventory, 0, 0, handler.getWidth(), handler.getHeight(), null);
             g.setColor(Color.CYAN);
@@ -341,6 +376,14 @@ public class Inventory {
                 drawText(g);
                 writeItemDescription(g);
                 drawItemPreview(g, pictureRectBorderless);
+            }
+        } else {
+            if (showItemSelectedTextbox) {
+                if (!itemSelectedTextbox.isFinished()) {
+                    itemSelectedTextbox.render(g);
+                } else {
+                    showItemSelectedTextbox = false;
+                }
             }
         }
     }

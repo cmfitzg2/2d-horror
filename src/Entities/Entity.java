@@ -43,6 +43,8 @@ public abstract class Entity {
 	public abstract void interactedWith();
 	
 	public abstract boolean isInteracting();
+
+	public abstract boolean itemInteraction(String item);
 	
 	public void hurt(int amt) {
 		health -= amt;

@@ -59,4 +59,9 @@ public class Dresser extends StaticEntity {
     public boolean isInteracting() {
         return isInteracting;
     }
+
+    @Override
+    public boolean itemInteraction(String item) {
+        return false;
+    }
 }

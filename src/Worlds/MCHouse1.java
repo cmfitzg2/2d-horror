@@ -20,7 +20,7 @@ public class MCHouse1 extends World {
         Rectangle loadzoneMainHouse = new Rectangle(Tile.TILEWIDTH * 9 - (int) handler.getGameCamera().getxOffset(),
                 Tile.TILEHEIGHT * 9 - (int) handler.getGameCamera().getyOffset(), Tile.TILEWIDTH / 2, Tile.TILEHEIGHT);
         if (entityManager.getPlayer().getPlayerRec().intersects(loadzoneMainHouse)) {
-            transitionFrom(handler.getWorldManager().getWorld(2), 37 * Tile.TILEWIDTH, 15 * Tile.TILEHEIGHT - handler.getPlayer().getPlayerRec().height / 2.0f);
+            transitionFrom(handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_2_ID), 37 * Tile.TILEWIDTH, 15 * Tile.TILEHEIGHT - handler.getPlayer().getPlayerRec().height / 2.0f);
         }
     }
 

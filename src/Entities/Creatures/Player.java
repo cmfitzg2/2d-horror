@@ -20,7 +20,7 @@ public class Player extends Creature {
     private Animation animDown, animUp, animLeft, animRight;
     private java.util.List<Animation> animationList = new ArrayList<>();
     private BufferedImage currentFrame;
-    public static Rectangle playerRec, interactionRectangle;
+    private Rectangle playerRec, interactionRectangle;
     private ScreenOverlay screenOverlay;
     //Font
     Font f;
@@ -158,7 +158,11 @@ public class Player extends Creature {
 
     @Override
     public void finalRender(Graphics g) {
-
+        if (null != interactionRectangle) {
+            g.drawRect(interactionRectangle.x - (int) handler.getGameCamera().getxOffset(),
+                    interactionRectangle.y - (int) handler.getGameCamera().getyOffset(),
+                    interactionRectangle.width, interactionRectangle.height);
+        }
     }
 
     private Rectangle currentPlayerRectangle() {
@@ -174,24 +178,21 @@ public class Player extends Creature {
     private void checkInteraction() {
         Rectangle collisionBounds = getCollisionBounds(0,0);
         interactionRectangle = new Rectangle();
-        int interactionSize = 20;
+        int interactionSize = 30;
         interactionRectangle.width = interactionSize;
         interactionRectangle.height = interactionSize;
         if (up) {
-            interactionRectangle.x = collisionBounds.x + collisionBounds.width/2 - interactionSize/2;
+            interactionRectangle.x = collisionBounds.x + collisionBounds.width / 2 - interactionSize / 2;
             interactionRectangle.y = collisionBounds.y - interactionSize;
-        }
-        else if (down) {
-            interactionRectangle.x = collisionBounds.x + collisionBounds.width/2 - interactionSize/2;
+        } else if (down) {
+            interactionRectangle.x = collisionBounds.x + collisionBounds.width / 2 - interactionSize / 2;
             interactionRectangle.y = collisionBounds.y + collisionBounds.height;
-        }
-        else if (left) {
+        } else if (left) {
             interactionRectangle.x = collisionBounds.x - interactionSize;
-            interactionRectangle.y = collisionBounds.y + collisionBounds.height/2 - interactionSize/2;
-        }
-        else if (right) {
+            interactionRectangle.y = collisionBounds.y + collisionBounds.height / 2 - interactionSize / 2;
+        } else if (right) {
             interactionRectangle.x = collisionBounds.x + collisionBounds.width;
-            interactionRectangle.y = collisionBounds.y + collisionBounds.height/2 - interactionSize/2;
+            interactionRectangle.y = collisionBounds.y + collisionBounds.height / 2 - interactionSize / 2;
         }
     }
 
@@ -337,6 +338,11 @@ public class Player extends Creature {
         return interactedWith;
     }
 
+    @Override
+    public boolean itemInteraction(String item) {
+        return false;
+    }
+
     public Rectangle getPlayerRec() {
         return playerRec;
     }
@@ -415,5 +421,9 @@ public class Player extends Creature {
 
     public void setHeadOnly(boolean headOnly) {
         this.headOnly = headOnly;
+    }
+
+    public Rectangle getInteractionRectangle() {
+        return interactionRectangle;
     }
 }

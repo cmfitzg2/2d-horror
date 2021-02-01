@@ -133,6 +133,11 @@ public class Friend1 extends Creature {
 	}
 
 	@Override
+	public boolean itemInteraction(String item) {
+		return false;
+	}
+
+	@Override
 	public void preRender(Graphics g) {
 
 	}

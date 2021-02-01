@@ -127,4 +127,9 @@ public class Ghoul extends Creature {
     public boolean isInteracting() {
         return false;
     }
+
+    @Override
+    public boolean itemInteraction(String item) {
+        return false;
+    }
 }
