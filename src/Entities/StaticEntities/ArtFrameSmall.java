@@ -95,17 +95,18 @@ public class ArtFrameSmall extends StaticEntity {
                     if (empty) {
                         //putting the painting in our inventory onto this empty frame
                         description = inventoryPaintingDescription;
-                        inventory.removeItem(uniqueName, Inventory.REGULAR_ITEM);
+                        uniqueName = inventoryPaintingName;
+                        previewImage = inventoryPreviewImage;
+                        inventory.removeItem(inventoryPaintingName, Inventory.REGULAR_ITEM);
                         empty = false;
                     } else {
                         //swapping the one in our inventory with this one
-                        inventoryPainting.setUniqueName(uniqueName);
-                        inventoryPainting.setDescription(description);
-                        inventoryPainting.setPreviewImage(previewImage);
+                        inventory.removeItem(inventoryPaintingName, Inventory.REGULAR_ITEM);
+                        inventory.addItem(new Item("Painting", Inventory.REGULAR_ITEM, description, uniqueName, previewImage));
                         description = inventoryPaintingDescription;
+                        uniqueName = inventoryPaintingName;
                         previewImage = inventoryPreviewImage;
                     }
-                    uniqueName = inventoryPaintingName;
                 }
             }
         }
@@ -193,6 +194,8 @@ public class ArtFrameSmall extends StaticEntity {
 
     @Override
     public boolean itemInteraction(String item) {
-        return false;
+        System.out.println(item);
+        handler.setPlayerFrozen(false);
+        return true;
     }
 }
