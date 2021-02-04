@@ -6,9 +6,9 @@ import Variables.Handler;
 
 import java.awt.*;
 
-public class World3 extends World {
+public class School1 extends World {
 
-    public World3(Handler handler, int id, Player player) {
+    public School1(Handler handler, int id, Player player) {
         super(handler, "res/worlds/world3.txt", id, player);
     }
 

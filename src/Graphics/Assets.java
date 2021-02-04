@@ -60,7 +60,7 @@ public class Assets {
 			manifestationInventory, moribundInventory, oblationInventory, perditionInventory, processionInventory, prophetInventory,
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
-	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished;
+	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, studentDesk, teacherDesk;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard;
 	public static BufferedImage[] activeInventoryHeader;
@@ -262,6 +262,10 @@ public class Assets {
 		grandfatherClock[1] = grandfatherClockSheet.crop(width, 0, width, height * 3);
 		grandfatherClock[2] = grandfatherClockSheet.crop(width * 2, 0, width, height * 3);
 		grandfatherClock[3] = grandfatherClockSheet.crop(width * 3, 0, width, height * 3);
+
+		SpriteSheet classroomSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/classroom-sheet.png"));
+		studentDesk = classroomSheet.crop(0, 0, width, height);
+		teacherDesk = classroomSheet.crop(width, 0, width * 2, height);
 
 		SpriteSheet chalkboardSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/chalkboard.png"));
 		chalkboard = new BufferedImage[2];

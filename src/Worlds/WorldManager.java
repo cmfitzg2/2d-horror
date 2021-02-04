@@ -19,9 +19,9 @@ public class WorldManager {
         worlds.put(firstWorld.getId(), firstWorld);
         worlds.putIfAbsent(MC_HOUSE_1_ID, new MCHouse1(handler, MC_HOUSE_1_ID, null));
         worlds.putIfAbsent(MC_HOUSE_2_ID, new MCHouse2(handler, MC_HOUSE_2_ID, null));
-        worlds.putIfAbsent(OVERWORLD_1_ID, new World2(handler, OVERWORLD_1_ID, null));
-        worlds.putIfAbsent(SCHOOL_1_ID, new World3(handler, SCHOOL_1_ID, null));
-        worlds.putIfAbsent(CLASSROOM_1_ID, new World4(handler, CLASSROOM_1_ID, null));
+        worlds.putIfAbsent(OVERWORLD_1_ID, new Overworld1(handler, OVERWORLD_1_ID, null));
+        worlds.putIfAbsent(SCHOOL_1_ID, new School1(handler, SCHOOL_1_ID, null));
+        worlds.putIfAbsent(CLASSROOM_1_ID, new Classroom1(handler, CLASSROOM_1_ID, null));
         setActiveWorld(firstWorld);
     }
 

@@ -7,9 +7,9 @@ import Utils.GeneralUtils;
 import Variables.Handler;
 import Graphics.Assets;
 
-public class World2 extends World {
+public class Overworld1 extends World {
 
-    public World2(Handler handler, int id, Player player) {
+    public Overworld1(Handler handler, int id, Player player) {
         super(handler, "res/worlds/world2.txt", id, player);
     }
 
