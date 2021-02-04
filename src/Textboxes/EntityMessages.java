@@ -19,7 +19,7 @@ public class EntityMessages {
         switch (uniqueName) {
             case "Player":
                 return error;
-            case "Friend1":
+            case "Acceptance":
                 switch (handler.getActiveWorld().getId()) {
                     case 1:
                         if (messageNumber == 1) {

@@ -15,7 +15,7 @@ public class CutsceneManager {
         this.handler = handler;
         cutscenes = new HashMap<>();
         cutscenes.put(1, new Prologue(handler));
-        cutscenes.put(2, new FriendEncounter1(handler));
+        cutscenes.put(2, new AcceptanceEncounter1(handler));
         setActiveCutscene(cutscenes.get(1));
     }
 

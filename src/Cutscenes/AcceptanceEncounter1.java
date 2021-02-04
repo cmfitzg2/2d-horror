@@ -1,8 +1,7 @@
 package Cutscenes;
 
-import Entities.Creatures.Friend1;
+import Entities.Creatures.Acceptance;
 import Entities.Creatures.Player;
-import Entities.Entity;
 import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
@@ -12,7 +11,7 @@ import Worlds.WorldManager;
 
 import java.awt.*;
 
-public class FriendEncounter1 implements Cutscene {
+public class AcceptanceEncounter1 implements Cutscene {
     Player player;
     private boolean firstTime = true;
     private Handler handler;
@@ -21,7 +20,7 @@ public class FriendEncounter1 implements Cutscene {
     private KeyManager keyManager;
     private int messageNum = 1;
     private boolean textbox1 = true, textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9, textbox10;
-    private Friend1 friend1;
+    private Acceptance acceptance;
     private final String messageOne = "Hey MC!",
             messageTwo = "Guess Acceptance is already here. \r " +
                     "I don't know why, but today I really feel relieved to hear his voice again.",
@@ -36,7 +35,7 @@ public class FriendEncounter1 implements Cutscene {
             messageNine = "That sounds good. You can go ahead without me, I'll finish getting ready and be right behind you.",
             messageTen = "Cool. See you there!";
 
-    public FriendEncounter1(Handler handler) {
+    public AcceptanceEncounter1(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
         textboxHandler1 = new TextboxHandler(handler, Assets.acceptanceFont, messageOne, null, 3, Color.WHITE, null, null, 50, true, false);
@@ -54,9 +53,9 @@ public class FriendEncounter1 implements Cutscene {
     @Override
     public void tick() {
         if (firstTime) {
-            friend1 = (Friend1) handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_2_ID).getEntityManager().getEntityByUid("friend1-mchouse2");
+            acceptance = (Acceptance) handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_2_ID).getEntityManager().getEntityByUid("acceptance-mchouse2");
             player = handler.getPlayer();
-            friend1.setDirection("right");
+            acceptance.setDirection("right");
         }
         if (textbox1 && !textboxHandler1.isFinished()) {
             textboxHandler1.tick();
@@ -66,18 +65,18 @@ public class FriendEncounter1 implements Cutscene {
             if (!textboxHandler2.isFinished()) {
                 textboxHandler2.tick();
             } else {
-                if (friend1.getX() < player.getX() - 100) {
+                if (acceptance.getX() < player.getX() - 100) {
                     player.setxMove(-player.getSpeed());
-                    if (Math.abs(friend1.getY() - player.getY()) > player.getSpeed()) {
-                        if (friend1.getY() > player.getY()) {
+                    if (Math.abs(acceptance.getY() - player.getY()) > player.getSpeed()) {
+                        if (acceptance.getY() > player.getY()) {
                             player.setyMove(player.getSpeed());
-                        } else if (friend1.getY() < player.getY()) {
+                        } else if (acceptance.getY() < player.getY()) {
                             player.setyMove(-player.getSpeed());
                         }
-                    } else if (Math.abs(friend1.getY() - player.getY()) >= 1) {
-                        if (friend1.getY() > player.getY()) {
+                    } else if (Math.abs(acceptance.getY() - player.getY()) >= 1) {
+                        if (acceptance.getY() > player.getY()) {
                             player.setyMove(1);
-                        } else if (friend1.getY() < player.getY()) {
+                        } else if (acceptance.getY() < player.getY()) {
                             player.setyMove(-1);
                         }
                     } else {
@@ -130,11 +129,11 @@ public class FriendEncounter1 implements Cutscene {
             if (!textboxHandler10.isFinished()) {
                 textboxHandler10.tick();
             } else {
-                //move friend1 to the exit
-                if (friend1.getY() < 16 * Tile.TILEHEIGHT) {
-                    friend1.setyMove(friend1.getSpeed());
+                //move acceptance to the exit
+                if (acceptance.getY() < 16 * Tile.TILEHEIGHT) {
+                    acceptance.setyMove(acceptance.getSpeed());
                 } else {
-                    handler.getActiveWorld().getEntityManager().removeEntity(friend1);
+                    handler.getActiveWorld().getEntityManager().removeEntity(acceptance);
                     textbox10 = false;
                     exit();
                 }
@@ -225,6 +224,6 @@ public class FriendEncounter1 implements Cutscene {
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setFriendEncounter1(false);
-        handler.getActiveWorld().getEntityManager().removeEntity(friend1);
+        handler.getActiveWorld().getEntityManager().removeEntity(acceptance);
     }
 }

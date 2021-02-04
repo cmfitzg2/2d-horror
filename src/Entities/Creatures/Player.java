@@ -34,10 +34,10 @@ public class Player extends Creature {
         bounds.height = 32;
 
         //Animations
-        animDown = new Animation(200, Assets.player_down);
-        animLeft = new Animation(200, Assets.player_left);
-        animUp = new Animation(200, Assets.player_up);
-        animRight = new Animation(200, Assets.player_right);
+        animDown = new Animation(200, Assets.playerDown);
+        animLeft = new Animation(200, Assets.playerLeft);
+        animUp = new Animation(200, Assets.playerUp);
+        animRight = new Animation(200, Assets.playerRight);
         animationList.add(animDown);
         animationList.add(animLeft);
         animationList.add(animUp);
@@ -158,11 +158,7 @@ public class Player extends Creature {
 
     @Override
     public void finalRender(Graphics g) {
-        if (null != interactionRectangle) {
-            g.drawRect(interactionRectangle.x - (int) handler.getGameCamera().getxOffset(),
-                    interactionRectangle.y - (int) handler.getGameCamera().getyOffset(),
-                    interactionRectangle.width, interactionRectangle.height);
-        }
+
     }
 
     private Rectangle currentPlayerRectangle() {

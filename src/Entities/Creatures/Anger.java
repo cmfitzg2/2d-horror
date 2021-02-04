@@ -1,29 +1,29 @@
 package Entities.Creatures;
 
-import Variables.Handler;
 import Graphics.Animation;
 import Graphics.Assets;
+import Textboxes.TextboxHandler;
+import Variables.Handler;
 
-import java.awt.Graphics;
+import java.awt.*;
 
-public class Follower extends Creature {
+public class Anger extends Creature {
 	private Animation animDown, animUp, animLeft, animRight;
 	private boolean down = false, up = false, left = false, right = false, interactedWith = false;
-	private int id = 0;
-	private float playerX = 0, playerY = 0, distanceThreshold = 64;
+	private float playerX = 0, playerY = 0;
+	TextboxHandler textboxHandler;
 
-	public Follower(Handler handler, float x, float y, String uniqueName) {
+	public Anger(Handler handler, float x, float y, String uniqueName) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, uniqueName);
 		bounds.x = 16;
 		bounds.y = 32;
 		bounds.width = 32;
 		bounds.height = 32;
-
 		//Animations
-		animDown = new Animation(250, Assets.acceptanceDown);
-		animLeft = new Animation(250, Assets.acceptanceLeft);
-		animUp = new Animation(250, Assets.acceptanceUp);
-		animRight = new Animation(250, Assets.acceptanceRight);
+		animDown = new Animation(200, Assets.angerDown);
+		animLeft = new Animation(200, Assets.angerLeft);
+		animUp = new Animation(200, Assets.angerUp);
+		animRight = new Animation(200, Assets.angerRight);
 	}
 
 	@Override
@@ -31,68 +31,88 @@ public class Follower extends Creature {
 		playerX = handler.getActiveWorld().getEntityManager().getPlayer().getX();
 		playerY = handler.getActiveWorld().getEntityManager().getPlayer().getY();
 
-		xMove = 0;
-		yMove = 0;
-		speed = 1.5f;
-
-		//decide when to move here
-		if (playerX < x && Math.abs(playerX - x) > distanceThreshold) {
-			xMove = -speed;
-		}
-		if (playerX > x && Math.abs(playerX - x) > distanceThreshold) {
-			xMove = speed;
-		}
-		if (playerY < y && Math.abs(playerY - y) > distanceThreshold) {
-			yMove = -speed;
-		}
-		if (playerY > y && Math.abs(playerY - y) > distanceThreshold) {
-			yMove = speed;
-		}
-
 		if (xMove !=0 || yMove !=0) {
 			animDown.tick();
 			animLeft.tick();
 			animUp.tick();
 			animRight.tick();
+			moveX();
+			moveY();
+			xMove = 0;
+			yMove = 0;
+		}
 
-			moveX(true);
-			moveY(true);
+		if (null != textboxHandler && textboxHandler.isActive() && !textboxHandler.isFinished()) {
+			textboxHandler.tick();
 		}
 	}
 
 	@Override
 	public void render(Graphics g) {
-		if (yMove>0) {
-			down = true; left = false; up = false; right = false;
+		if (yMove > 0) {
+			down = true;
+			left = false;
+			up = false;
+			right = false;
 			g.drawImage(animDown.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
-		}
-		else if (xMove>0) {
-			down = false; right = true; left = false; up = false;
+		} else if (xMove > 0) {
+			down = false;
+			right = true;
+			left = false;
+			up = false;
 			g.drawImage(animRight.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null); 
-		}
-		else if (yMove<0) {
-			up = true; right = false; left = false; down = false;
+		} else if (yMove < 0) {
+			up = true;
+			right = false;
+			left = false;
+			down = false;
 			g.drawImage(animUp.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null); 
-		}
-		else if (xMove<0) {
-			left = true; up = false; right = false; down = false;
+		} else if (xMove < 0) {
+			left = true;
+			up = false;
+			right = false;
+			down = false;
 			g.drawImage(animLeft.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
-		}
-
-		else if (xMove == 0 && yMove == 0) {
+		} else if (xMove == 0 && yMove == 0) {
 			if (down) {
 				g.drawImage(animDown.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-			}
-			else if (left) {
+			} else if (left) {
 				g.drawImage(animLeft.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-			}
-			else if (up) {
+			} else if (up) {
 				g.drawImage(animUp.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			} else {
 				g.drawImage(animRight.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			}
 		}
 	}
+
+	public void setDirection(String dir) {
+		if (dir.equals("up")) {
+			up = true;
+			down = false;
+			left = false;
+			right = false;
+		}
+		if (dir.equals("down")) {
+			down = true;
+			left = false;
+			right = false;
+			up = false;
+		}
+		if (dir.equals("left")) {
+			left = true;
+			down = false;
+			up = false;
+			right = false;
+		}
+		if (dir.equals("right")) {
+			right = true;
+			up = false;
+			down = false;
+			left = false;
+		}
+	}
+
 	@Override
 	public void die() {
 
@@ -100,7 +120,11 @@ public class Follower extends Creature {
 
 	@Override
 	public void interactedWith() {
-		interactedWith = true;
+		textboxHandler = new TextboxHandler(handler, Assets.serif,
+				handler.getEntityMessages().getTextboxMessage(uniqueName, messageNumber),
+				null, 2, Color.WHITE, null, null, 50, true, true);
+		textboxHandler.setActive(true);
+		messageNumber = 2;
 	}
 
 	@Override
@@ -125,6 +149,8 @@ public class Follower extends Creature {
 
 	@Override
 	public void finalRender(Graphics g) {
-
+		if (null != textboxHandler && textboxHandler.isActive() && !textboxHandler.isFinished()) {
+			textboxHandler.render(g);
+		}
 	}
 }

@@ -64,8 +64,12 @@ public class Assets {
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard;
 	public static BufferedImage[] activeInventoryHeader;
-	public static BufferedImage[] player_down, player_up, player_left, player_right;
-	public static BufferedImage[] reflection_down, reflection_up, reflection_left, reflection_right;
+	public static BufferedImage[] playerDown, playerUp, playerLeft, playerRight;
+	public static BufferedImage[] denialDown, denialUp, denialLeft, denialRight;
+	public static BufferedImage[] angerDown, angerUp, angerLeft, angerRight;
+	public static BufferedImage[] bargainingDown, bargainingUp, bargainingLeft, bargainingRight;
+	public static BufferedImage[] depressionDown, depressionUp, depressionLeft, depressionRight;
+	public static BufferedImage[] acceptanceDown, acceptanceUp, acceptanceLeft, acceptanceRight;
 	public static BufferedImage[] ghoulDown, ghoulLeft, ghoulRight, ghoulUp;
 	public static BufferedImage[] tunnelVision;
 	public static Font sans, serif, philosopher, textboxDefault;
@@ -283,64 +287,168 @@ public class Assets {
 		buttonPuzzleOff = buttonPuzzleSheet.crop(0, 0, 216, 216);
 		buttonPuzzleOn = buttonPuzzleSheet.crop(216, 0, 216, 216);
 
-		SpriteSheet reflectionSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characterclone.png"));
-		reflection_down = new BufferedImage[4];
-		reflection_up = new BufferedImage[4];
-		reflection_left = new BufferedImage[4];
-		reflection_right = new BufferedImage[4];
+		SpriteSheet denialSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/denial-sheet.png"));
+		denialDown = new BufferedImage[4];
+		denialUp = new BufferedImage[4];
+		denialLeft = new BufferedImage[4];
+		denialRight = new BufferedImage[4];
 
-		reflection_down[0] = reflectionSheet.crop(0, 0, width, height);
-		reflection_down[1] = reflectionSheet.crop(width, 0, width, height);
-		reflection_down[2] = reflectionSheet.crop(width*2, 0, width, height);
-		reflection_down[3] = reflectionSheet.crop(width*3, 0, width, height);
+		denialDown[0] = denialSheet.crop(0, 0, width, height);
+		denialDown[1] = denialSheet.crop(width, 0, width, height);
+		denialDown[2] = denialSheet.crop(width*2, 0, width, height);
+		denialDown[3] = denialSheet.crop(width*3, 0, width, height);
 
-		reflection_up[0] = reflectionSheet.crop(0, height, width, height);
-		reflection_up[1] = reflectionSheet.crop(width, height, width, height);
-		reflection_up[2] = reflectionSheet.crop(width*2, height, width, height);
-		reflection_up[3] = reflectionSheet.crop(width*3, height, width, height);
+		denialUp[0] = denialSheet.crop(0, height, width, height);
+		denialUp[1] = denialSheet.crop(width, height, width, height);
+		denialUp[2] = denialSheet.crop(width*2, height, width, height);
+		denialUp[3] = denialSheet.crop(width*3, height, width, height);
 
-		reflection_left[0] = reflectionSheet.crop(0, height*2, width, height);
-		reflection_left[1] = reflectionSheet.crop(width, height*2, width, height);
-		reflection_left[2] = reflectionSheet.crop(width*2, height*2, width, height);
-		reflection_left[3] = reflectionSheet.crop(width*3, height*2, width, height);
+		denialLeft[0] = denialSheet.crop(0, height*2, width, height);
+		denialLeft[1] = denialSheet.crop(width, height*2, width, height);
+		denialLeft[2] = denialSheet.crop(width*2, height*2, width, height);
+		denialLeft[3] = denialSheet.crop(width*3, height*2, width, height);
 
-		reflection_right[0] = reflectionSheet.crop(0, height*3, width, height);
-		reflection_right[1] = reflectionSheet.crop(width, height*3, width, height);
-		reflection_right[2] = reflectionSheet.crop(width*2, height*3, width, height);
-		reflection_right[3] = reflectionSheet.crop(width*3, height*3, width, height);
+		denialRight[0] = denialSheet.crop(0, height*3, width, height);
+		denialRight[1] = denialSheet.crop(width, height*3, width, height);
+		denialRight[2] = denialSheet.crop(width*2, height*3, width, height);
+		denialRight[3] = denialSheet.crop(width*3, height*3, width, height);
 
-		SpriteSheet playerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Charactersheet.png"));
-		player_down = new BufferedImage[4]; 		//4 = frame count
-		player_up = new BufferedImage[4];
-		player_left = new BufferedImage[4];
-		player_right = new BufferedImage[4];
+		SpriteSheet angerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/anger-sheet.png"));
+		angerDown = new BufferedImage[4];
+		angerUp = new BufferedImage[4];
+		angerLeft = new BufferedImage[4];
+		angerRight = new BufferedImage[4];
 
-		player_down[0] = playerSheet.crop(0, 0, width, height);
-		player_down[1] = playerSheet.crop(width, 0, width, height);
-		player_down[2] = playerSheet.crop(width*2, 0, width, height);
-		player_down[3] = playerSheet.crop(width*3, 0, width, height);
+		angerDown[0] = angerSheet.crop(0, 0, width, height);
+		angerDown[1] = angerSheet.crop(width, 0, width, height);
+		angerDown[2] = angerSheet.crop(width*2, 0, width, height);
+		angerDown[3] = angerSheet.crop(width*3, 0, width, height);
 
-		player_up[0] = playerSheet.crop(0, height, width, height);
-		player_up[1] = playerSheet.crop(width, height, width, height);
-		player_up[2] = playerSheet.crop(width*2, height, width, height);
-		player_up[3] = playerSheet.crop(width*3, height, width, height);
+		angerUp[0] = angerSheet.crop(0, height, width, height);
+		angerUp[1] = angerSheet.crop(width, height, width, height);
+		angerUp[2] = angerSheet.crop(width*2, height, width, height);
+		angerUp[3] = angerSheet.crop(width*3, height, width, height);
 
-		player_left[0] = playerSheet.crop(0, height*2, width, height);
-		player_left[1] = playerSheet.crop(width, height*2, width, height);
-		player_left[2] = playerSheet.crop(width*2, height*2, width, height);
-		player_left[3] = playerSheet.crop(width*3, height*2, width, height);
+		angerLeft[0] = angerSheet.crop(0, height*2, width, height);
+		angerLeft[1] = angerSheet.crop(width, height*2, width, height);
+		angerLeft[2] = angerSheet.crop(width*2, height*2, width, height);
+		angerLeft[3] = angerSheet.crop(width*3, height*2, width, height);
 
-		player_right[0] = playerSheet.crop(0, height*3, width, height);
-		player_right[1] = playerSheet.crop(width, height*3, width, height);
-		player_right[2] = playerSheet.crop(width*2, height*3, width, height);
-		player_right[3] = playerSheet.crop(width*3, height*3, width, height);
+		angerRight[0] = angerSheet.crop(0, height*3, width, height);
+		angerRight[1] = angerSheet.crop(width, height*3, width, height);
+		angerRight[2] = angerSheet.crop(width*2, height*3, width, height);
+		angerRight[3] = angerSheet.crop(width*3, height*3, width, height);
 
-		playerDownNormal = player_down[0];
-		playerLeftNormal = player_left[0];
-		playerRightNormal = player_right[0];
-		playerUpNormal = player_up[0];
+		SpriteSheet bargainingSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/bargaining-sheet.png"));
+		bargainingDown = new BufferedImage[4];
+		bargainingUp = new BufferedImage[4];
+		bargainingLeft = new BufferedImage[4];
+		bargainingRight = new BufferedImage[4];
 
-		SpriteSheet headSheet = new SpriteSheet(ImageLoader.loadImage("/textures/player-head-sheet.png"));
+		bargainingDown[0] = bargainingSheet.crop(0, 0, width, height);
+		bargainingDown[1] = bargainingSheet.crop(width, 0, width, height);
+		bargainingDown[2] = bargainingSheet.crop(width*2, 0, width, height);
+		bargainingDown[3] = bargainingSheet.crop(width*3, 0, width, height);
+
+		bargainingUp[0] = bargainingSheet.crop(0, height, width, height);
+		bargainingUp[1] = bargainingSheet.crop(width, height, width, height);
+		bargainingUp[2] = bargainingSheet.crop(width*2, height, width, height);
+		bargainingUp[3] = bargainingSheet.crop(width*3, height, width, height);
+
+		bargainingLeft[0] = bargainingSheet.crop(0, height*2, width, height);
+		bargainingLeft[1] = bargainingSheet.crop(width, height*2, width, height);
+		bargainingLeft[2] = bargainingSheet.crop(width*2, height*2, width, height);
+		bargainingLeft[3] = bargainingSheet.crop(width*3, height*2, width, height);
+
+		bargainingRight[0] = bargainingSheet.crop(0, height*3, width, height);
+		bargainingRight[1] = bargainingSheet.crop(width, height*3, width, height);
+		bargainingRight[2] = bargainingSheet.crop(width*2, height*3, width, height);
+		bargainingRight[3] = bargainingSheet.crop(width*3, height*3, width, height);
+
+		SpriteSheet depressionSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/depression-sheet.png"));
+		depressionDown = new BufferedImage[4];
+		depressionUp = new BufferedImage[4];
+		depressionLeft = new BufferedImage[4];
+		depressionRight = new BufferedImage[4];
+
+		depressionDown[0] = depressionSheet.crop(0, 0, width, height);
+		depressionDown[1] = depressionSheet.crop(width, 0, width, height);
+		depressionDown[2] = depressionSheet.crop(width*2, 0, width, height);
+		depressionDown[3] = depressionSheet.crop(width*3, 0, width, height);
+
+		depressionUp[0] = depressionSheet.crop(0, height, width, height);
+		depressionUp[1] = depressionSheet.crop(width, height, width, height);
+		depressionUp[2] = depressionSheet.crop(width*2, height, width, height);
+		depressionUp[3] = depressionSheet.crop(width*3, height, width, height);
+
+		depressionLeft[0] = depressionSheet.crop(0, height*2, width, height);
+		depressionLeft[1] = depressionSheet.crop(width, height*2, width, height);
+		depressionLeft[2] = depressionSheet.crop(width*2, height*2, width, height);
+		depressionLeft[3] = depressionSheet.crop(width*3, height*2, width, height);
+
+		depressionRight[0] = depressionSheet.crop(0, height*3, width, height);
+		depressionRight[1] = depressionSheet.crop(width, height*3, width, height);
+		depressionRight[2] = depressionSheet.crop(width*2, height*3, width, height);
+		depressionRight[3] = depressionSheet.crop(width*3, height*3, width, height);
+
+		SpriteSheet acceptanceSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/acceptance-sheet.png"));
+		acceptanceDown = new BufferedImage[4];
+		acceptanceUp = new BufferedImage[4];
+		acceptanceLeft = new BufferedImage[4];
+		acceptanceRight = new BufferedImage[4];
+
+		acceptanceDown[0] = acceptanceSheet.crop(0, 0, width, height);
+		acceptanceDown[1] = acceptanceSheet.crop(width, 0, width, height);
+		acceptanceDown[2] = acceptanceSheet.crop(width*2, 0, width, height);
+		acceptanceDown[3] = acceptanceSheet.crop(width*3, 0, width, height);
+
+		acceptanceUp[0] = acceptanceSheet.crop(0, height, width, height);
+		acceptanceUp[1] = acceptanceSheet.crop(width, height, width, height);
+		acceptanceUp[2] = acceptanceSheet.crop(width*2, height, width, height);
+		acceptanceUp[3] = acceptanceSheet.crop(width*3, height, width, height);
+
+		acceptanceLeft[0] = acceptanceSheet.crop(0, height*2, width, height);
+		acceptanceLeft[1] = acceptanceSheet.crop(width, height*2, width, height);
+		acceptanceLeft[2] = acceptanceSheet.crop(width*2, height*2, width, height);
+		acceptanceLeft[3] = acceptanceSheet.crop(width*3, height*2, width, height);
+
+		acceptanceRight[0] = acceptanceSheet.crop(0, height*3, width, height);
+		acceptanceRight[1] = acceptanceSheet.crop(width, height*3, width, height);
+		acceptanceRight[2] = acceptanceSheet.crop(width*2, height*3, width, height);
+		acceptanceRight[3] = acceptanceSheet.crop(width*3, height*3, width, height);
+
+		SpriteSheet mcSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/mc-sheet.png"));
+		playerDown = new BufferedImage[4]; 		//4 = frame count
+		playerUp = new BufferedImage[4];
+		playerLeft = new BufferedImage[4];
+		playerRight = new BufferedImage[4];
+
+		playerDown[0] = mcSheet.crop(0, 0, width, height);
+		playerDown[1] = mcSheet.crop(width, 0, width, height);
+		playerDown[2] = mcSheet.crop(width*2, 0, width, height);
+		playerDown[3] = mcSheet.crop(width*3, 0, width, height);
+
+		playerUp[0] = mcSheet.crop(0, height, width, height);
+		playerUp[1] = mcSheet.crop(width, height, width, height);
+		playerUp[2] = mcSheet.crop(width*2, height, width, height);
+		playerUp[3] = mcSheet.crop(width*3, height, width, height);
+
+		playerLeft[0] = mcSheet.crop(0, height*2, width, height);
+		playerLeft[1] = mcSheet.crop(width, height*2, width, height);
+		playerLeft[2] = mcSheet.crop(width*2, height*2, width, height);
+		playerLeft[3] = mcSheet.crop(width*3, height*2, width, height);
+
+		playerRight[0] = mcSheet.crop(0, height*3, width, height);
+		playerRight[1] = mcSheet.crop(width, height*3, width, height);
+		playerRight[2] = mcSheet.crop(width*2, height*3, width, height);
+		playerRight[3] = mcSheet.crop(width*3, height*3, width, height);
+
+		playerDownNormal = playerDown[0];
+		playerLeftNormal = playerLeft[0];
+		playerRightNormal = playerRight[0];
+		playerUpNormal = playerUp[0];
+
+		SpriteSheet headSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/player-head-sheet.png"));
 		headDown = headSheet.crop(0, 0, width, height);
 		headUp = headSheet.crop(0, height, width, height);
 		headLeft = headSheet.crop(0, height * 2, width, height);
@@ -350,11 +458,11 @@ public class Assets {
 		tableLampOff = tableLampSheet.crop(0, 0, width, 50);
 		tableLampOn = tableLampSheet.crop(width, 0, width, 50);
 
-		SpriteSheet playerSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/Charactersheet-transparent.png"));
-		playerDownTransparent = playerSheetTransparent.crop(0, 0, width, height);
-		playerUpTransparent = playerSheetTransparent.crop(0, height, width, height);
-		playerLeftTransparent = playerSheetTransparent.crop(0, height * 2, width, height);
-		playerRightTransparent = playerSheetTransparent.crop(0, height * 3, width, height);
+		SpriteSheet mcSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/characters/mc-sheet-transparent.png"));
+		playerDownTransparent = mcSheetTransparent.crop(0, 0, width, height);
+		playerUpTransparent = mcSheetTransparent.crop(0, height, width, height);
+		playerLeftTransparent = mcSheetTransparent.crop(0, height * 2, width, height);
+		playerRightTransparent = mcSheetTransparent.crop(0, height * 3, width, height);
 
 		SpriteSheet ghoulSheet = new SpriteSheet(ImageLoader.loadImage("/textures/ghoul.png"));
 		ghoulDown = new BufferedImage[3];

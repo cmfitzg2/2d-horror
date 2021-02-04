@@ -1,7 +1,7 @@
 package Worlds;
 
 import Cutscenes.CutsceneManager;
-import Entities.Creatures.Friend1;
+import Entities.Creatures.Acceptance;
 import Entities.Creatures.Player;
 import Entities.StaticEntities.Fireplace;
 import Tiles.Tile;
@@ -35,9 +35,9 @@ public class MCHouse2 extends World {
     @Override
     protected void addEntities() {
         if (handler.getFlags().isFriendEncounter1()) {
-            Friend1 friend1 = new Friend1(handler, 1250, 857, "friend1-mchouse2");
-            friend1.setDirection("up");
-            entityManager.addEntity(friend1);
+            Acceptance acceptance = new Acceptance(handler, 1250, 857, "acceptance-mchouse2");
+            acceptance.setDirection("up");
+            entityManager.addEntity(acceptance);
         }
         entityManager.addEntity(new Fireplace(handler, 20 * Tile.TILEWIDTH - Assets.firePlace.getWidth(),
                 Tile.TILEHEIGHT * 6 + 10 - Assets.firePlace.getHeight(), Assets.firePlace.getWidth() * 2, Assets.firePlace.getHeight() * 2, "fireplace-mchouse2"));

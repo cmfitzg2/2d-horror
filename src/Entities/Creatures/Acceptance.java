@@ -7,23 +7,23 @@ import Variables.Handler;
 
 import java.awt.*;
 
-public class Friend1 extends Creature {
+public class Acceptance extends Creature {
 	private Animation animDown, animUp, animLeft, animRight;
 	private boolean down = false, up = false, left = false, right = false, interactedWith = false;
 	private float playerX = 0, playerY = 0;
 	TextboxHandler textboxHandler;
 
-	public Friend1(Handler handler, float x, float y, String uniqueName) {
+	public Acceptance(Handler handler, float x, float y, String uniqueName) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, uniqueName);
 		bounds.x = 16;
 		bounds.y = 32;
 		bounds.width = 32;
 		bounds.height = 32;
 		//Animations
-		animDown = new Animation(200, Assets.reflection_down);
-		animLeft = new Animation(200, Assets.reflection_left);
-		animUp = new Animation(200, Assets.reflection_up);
-		animRight = new Animation(200, Assets.reflection_right);
+		animDown = new Animation(200, Assets.acceptanceDown);
+		animLeft = new Animation(200, Assets.acceptanceLeft);
+		animUp = new Animation(200, Assets.acceptanceUp);
+		animRight = new Animation(200, Assets.acceptanceRight);
 	}
 
 	@Override
