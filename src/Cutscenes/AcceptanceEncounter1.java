@@ -39,14 +39,14 @@ public class AcceptanceEncounter1 implements Cutscene {
         this.handler = handler;
         keyManager = handler.getKeyManager();
         textboxHandler1 = new TextboxHandler(handler, Assets.acceptanceFont, messageOne, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler2 = new TextboxHandler(handler, Assets.mcThinkingFont, messageTwo, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler3 = new TextboxHandler(handler, Assets.mcSpeakingFont, messageThree, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, messageTwo, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler3 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageThree, null, 3, Color.WHITE, null, null, 50, true, false);
         textboxHandler4 = new TextboxHandler(handler, Assets.acceptanceFont, messageFour, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler5 = new TextboxHandler(handler, Assets.mcSpeakingFont, messageFive, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler5 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageFive, null, 3, Color.WHITE, null, null, 50, true, false);
         textboxHandler6 = new TextboxHandler(handler, Assets.acceptanceFont, messageSix, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler7 = new TextboxHandler(handler, Assets.mcSpeakingFont, messageSeven, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler7 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageSeven, null, 3, Color.WHITE, null, null, 50, true, false);
         textboxHandler8 = new TextboxHandler(handler, Assets.acceptanceFont, messageEight, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler9 = new TextboxHandler(handler, Assets.mcSpeakingFont, messageNine, null, 3, Color.WHITE, null, null, 50, true, false);
+        textboxHandler9 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageNine, null, 3, Color.WHITE, null, null, 50, true, false);
         textboxHandler10 = new TextboxHandler(handler, Assets.acceptanceFont, messageTen, null, 3, Color.WHITE, null, null, 50, true, false);
     }
 

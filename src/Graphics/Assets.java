@@ -60,7 +60,8 @@ public class Assets {
 			manifestationInventory, moribundInventory, oblationInventory, perditionInventory, processionInventory, prophetInventory,
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
-	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, studentDesk, teacherDesk;
+	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished;
+	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard;
 	public static BufferedImage[] activeInventoryHeader;
@@ -73,7 +74,7 @@ public class Assets {
 	public static BufferedImage[] ghoulDown, ghoulLeft, ghoulRight, ghoulUp;
 	public static BufferedImage[] tunnelVision;
 	public static Font sans, serif, philosopher, textboxDefault;
-	public static Font mcSpeakingFont, mcThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont;
+	public static Font playerSpeakingFont, playerThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont;
 	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2;
 	public static Clip menuMusic;
 	public static void init() {
@@ -106,8 +107,8 @@ public class Assets {
 			serif = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/serif.ttf")).deriveFont(36f);
 			philosopher = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/philosopher.ttf")).deriveFont(36f);
 			textboxDefault = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")).deriveFont(128f);
-			mcThinkingFont = serif;
-			mcSpeakingFont = serif;
+			playerThinkingFont = serif;
+			playerSpeakingFont = serif;
 			acceptanceFont = sans;
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			//register the font
@@ -262,10 +263,6 @@ public class Assets {
 		grandfatherClock[1] = grandfatherClockSheet.crop(width, 0, width, height * 3);
 		grandfatherClock[2] = grandfatherClockSheet.crop(width * 2, 0, width, height * 3);
 		grandfatherClock[3] = grandfatherClockSheet.crop(width * 3, 0, width, height * 3);
-
-		SpriteSheet classroomSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/classroom-sheet.png"));
-		studentDesk = classroomSheet.crop(0, 0, width, height);
-		teacherDesk = classroomSheet.crop(width, 0, width * 2, height);
 
 		SpriteSheet chalkboardSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/chalkboard.png"));
 		chalkboard = new BufferedImage[2];
@@ -458,6 +455,16 @@ public class Assets {
 		headLeft = headSheet.crop(0, height * 2, width, height);
 		headRight = headSheet.crop(0, height * 3, width, height);
 
+		int deskHeight = 44;
+		SpriteSheet studentDeskSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/student-desk.png"));
+		emptyDesk = studentDeskSheet.crop(0, 0, width, deskHeight);
+		denialDesk = studentDeskSheet.crop(width, 0, width, deskHeight);
+		angerDesk = studentDeskSheet.crop(width * 2, 0, width, deskHeight);
+		bargainingDesk = studentDeskSheet.crop(width * 3, 0, width, deskHeight);
+		depressionDesk = studentDeskSheet.crop(0, deskHeight, width, deskHeight);
+		acceptanceDesk = studentDeskSheet.crop(width, deskHeight, width, deskHeight);
+		playerDesk = studentDeskSheet.crop(width * 2, deskHeight, width, deskHeight);
+
 		SpriteSheet tableLampSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/table-lamp.png"));
 		tableLampOff = tableLampSheet.crop(0, 0, width, 50);
 		tableLampOn = tableLampSheet.crop(width, 0, width, 50);
@@ -579,5 +586,6 @@ public class Assets {
 		windowLight = ImageLoader.loadImage("/textures/static-entities/window-light.png");
 		yellowLight = ImageLoader.loadImage("/textures/effects/light-yellow.png");
 		firePlace = ImageLoader.loadImage("/textures/static-entities/fireplace-1.png");
+		teacherDesk = ImageLoader.loadImage("/textures/static-entities/teacher-desk.png");
 	}
 }
