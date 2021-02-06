@@ -14,8 +14,10 @@ public class Door extends StaticEntity {
     private Rectangle enterDoor;
     private World destination;
     private float newX, newY;
+    private int style;
+    public static final int PLAIN_WOOD = 0, STAIRS = 1, ARCH = 2, STAIRS_ARCH = 3, BATHROOM_MALE = 4, BATHROOM_FEMALE = 5;
 
-    public Door(Handler handler, float x, float y, int width, int height, String uniqueName, World destination, float newX, float newY, boolean includeStairs, boolean includeArch) {
+    public Door(Handler handler, float x, float y, int width, int height, String uniqueName, World destination, float newX, float newY, int style) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
         bounds.y = 0;
@@ -24,8 +26,13 @@ public class Door extends StaticEntity {
         this.destination = destination;
         this.newX = newX;
         this.newY = newY;
-        this.includeStairs = includeStairs;
-        this.includeArch = includeArch;
+        this.style = style;
+        if (style == STAIRS || style == STAIRS_ARCH) {
+            includeStairs = true;
+        }
+        if (style == ARCH || style == STAIRS_ARCH) {
+            includeArch = true;
+        }
     }
 
     @Override
@@ -54,8 +61,16 @@ public class Door extends StaticEntity {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.closedDoorOne, (int) (x - handler.getGameCamera().getxOffset()),
-                (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        if (style == PLAIN_WOOD || includeArch || includeStairs) {
+            g.drawImage(Assets.closedDoorOne, (int) (x - handler.getGameCamera().getxOffset()),
+                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        } else if (style == BATHROOM_MALE) {
+            g.drawImage(Assets.bathroomDoorMale, (int) (x - handler.getGameCamera().getxOffset()),
+                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        } else if (style == BATHROOM_FEMALE) {
+            g.drawImage(Assets.bathroomDoorFemale, (int) (x - handler.getGameCamera().getxOffset()),
+                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        }
         if (includeArch) {
             g.drawImage(Assets.doorwayArch, (int) (x - handler.getGameCamera().getxOffset() - 16),
                     (int) (y - handler.getGameCamera().getyOffset() - 12), 96, 108, null);

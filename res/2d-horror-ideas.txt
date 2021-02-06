@@ -156,7 +156,7 @@ Acceptance: "Cool. See you there!"
 >eventually head to school
 
 >Acceptance is inside
-Acceptance: "There you are! We're a little early, but everyone's already in there. Let's go."
+Acceptance: "There you are! We're a little early, but everyone's already here."
 >Acceptance enters classroom
 >MC follows
 >Cut to classroom, 5 friend group talking

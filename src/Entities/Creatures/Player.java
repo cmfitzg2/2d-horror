@@ -15,7 +15,7 @@ public class Player extends Creature {
     private static boolean down, up, left, right;
     private boolean interactedWith, transparent, lockX, lockY, headOnly;
     private Inventory inventory;
-    public static float defaultSpeed = 4.0f, defaultRunSpeed = 8.0f;
+    public static float defaultSpeed = 4.0f, defaultRunSpeed = 16.0f;
     //Animations
     private Animation animDown, animUp, animLeft, animRight;
     private java.util.List<Animation> animationList = new ArrayList<>();

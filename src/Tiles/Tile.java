@@ -5,6 +5,10 @@ import Tiles.Interior.HouseWall.Blue.*;
 import Tiles.Interior.HouseWall.Red.*;
 import Tiles.Interior.HouseWall.Green.*;
 import Tiles.Interior.HouseWall.Orange.*;
+import Tiles.Interior.School.TiledFloorBlack;
+import Tiles.Interior.School.TiledFloorWhite;
+import Tiles.Interior.School.WhiteBrickBottom;
+import Tiles.Interior.School.WhiteBrickMiddle;
 import Tiles.Interior.WallBorder.*;
 import Tiles.Overworld.*;
 import Tiles.Overworld.BrickWall.*;
@@ -32,6 +36,10 @@ public class Tile {
 	public static Tile diamondTileWood = new DiamondTileWood(11);
 	public static Tile diamondTileDouble = new DiamondTileDouble(12);
 	public static Tile bathroomTile = new BathroomTile(13);
+	public static Tile whiteBrickMiddle = new WhiteBrickMiddle(14);
+	public static Tile whiteBrickBottom = new WhiteBrickBottom(15);
+	public static Tile tiledFloorWhite = new TiledFloorWhite(16);
+	public static Tile tiledFloorBlack = new TiledFloorBlack(17);
 
 	//brick wall
 	public static Tile brickTopLeft = new BrickTopLeft(20);

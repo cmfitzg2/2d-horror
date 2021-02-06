@@ -93,12 +93,13 @@ public abstract class World {
 	}
 
 	public Tile getTile(int x, int y) {
-		if(x<0 || y<0 || x>=width || y>=height)
+		if ( x < 0 || y < 0 || x >= width || y >= height) {
 			return Tile.black;
-
+		}
 		Tile t = Tile.tiles[tiles[x][y]];
-		if(t==null)
+		if (t == null) {
 			return Tile.black;
+		}
 		return t;
 	}
 

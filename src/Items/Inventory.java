@@ -318,7 +318,7 @@ public class Inventory {
         } else {
             System.out.println("Not found");
             showItemSelectedTextbox = true;
-            itemSelectedTextbox = new TextboxHandler(handler, Assets.serif, "That item can't be used here.", null, 3, Color.WHITE, null, null, 50, true, true);
+            itemSelectedTextbox = new TextboxHandler(handler, Assets.serif, "That item can't be used here.", null, 3, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
         }
         open = false;
         handler.setInMenu(false);

@@ -11,7 +11,8 @@ public class Flags {
     private List<Boolean> flags;
     private final int prologueFlag = 0;
     private final int acceptanceEncounter1Flag = 1;
-    private final int acceptanceEncounter2Flag = 2;
+    private final int schoolCutscene1Flag = 2;
+    private final int classroomCutscene1Flag = 3;
 
     public Flags(Handler handler) {
         this.handler = handler;
@@ -78,12 +79,20 @@ public class Flags {
         flags.set(acceptanceEncounter1Flag, acceptanceEncounter1);
     }
 
-    public boolean isAcceptanceEncounter2() {
-        return flags.get(acceptanceEncounter2Flag);
+    public boolean isSchoolCutscene1() {
+        return flags.get(schoolCutscene1Flag);
     }
 
-    public void setAcceptanceEncounter2(boolean acceptanceEncounter2) {
-        flags.set(acceptanceEncounter2Flag, acceptanceEncounter2);
+    public void setSchoolCutscene1(boolean schoolCutscene1) {
+        flags.set(schoolCutscene1Flag, schoolCutscene1);
+    }
+
+    public boolean isClassroomCutscene1() {
+        return flags.get(classroomCutscene1Flag);
+    }
+
+    public void setClassroomCutscene1(boolean classroomCutscene1) {
+        flags.set(classroomCutscene1Flag, classroomCutscene1);
     }
 
     public boolean isCutsceneActive() {

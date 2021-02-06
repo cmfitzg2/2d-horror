@@ -34,7 +34,7 @@ public class ArtFrameSmall extends StaticEntity {
         }
         this.previewImage = previewImage;
         this.background = background;
-        textboxFont = Assets.textboxDefault.deriveFont(Font.ITALIC, 28.0f);
+        textboxFont = Assets.textboxFontDefault.deriveFont(Font.ITALIC, 28.0f);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ArtFrameSmall extends StaticEntity {
                         } else {
                             message = "Take the painting?";
                         }
-                        textboxHandler = new TextboxHandler(handler, textboxFont, message, options, 2, Color.WHITE, Assets.portrait, null, 100, true, true);
+                        textboxHandler = new TextboxHandler(handler, textboxFont, message, options, 2, Color.WHITE, Assets.portrait, Assets.textboxDefault, null, 100, true, true);
                     }
                 }
             }

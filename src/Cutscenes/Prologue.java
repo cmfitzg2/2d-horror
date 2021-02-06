@@ -39,8 +39,8 @@ public class Prologue implements Cutscene {
     public Prologue(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
-        textboxHandler1 = new TextboxHandler(handler, Assets.serif, messageOne, null, 3, Color.WHITE, null, null, 50, true, false);
-        textboxHandler2 = new TextboxHandler(handler, Assets.serif, messageTwo, null, 3, Color.WHITE, null, null, 50, true, true);
+        textboxHandler1 = new TextboxHandler(handler, Assets.serif, messageOne, null, 3, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
+        textboxHandler2 = new TextboxHandler(handler, Assets.serif, messageTwo, null, 3, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, true);
     }
 
     @Override

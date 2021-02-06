@@ -17,7 +17,8 @@ public class Assets {
 	private static final int width = 32, height = 32, biggerWidth = 48, biggerHeight = 48;
 	public static final int paintingWidth = 815, paintingHeight = 820;
 	public static BufferedImage dirt, grass, stone, water, black, gray, darkStoneWall, woodFloor, diamondTileBlue,
-			diamondTileGreen, diamondTileWood, diamondTileDouble, bathroomTile;
+			diamondTileGreen, diamondTileWood, diamondTileDouble, bathroomTile, whiteBrickMiddle, whiteBrickBottom,
+			tiledFloorWhite, tiledFloorBlack;
 	public static BufferedImage playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal,
 			playerDownTransparent, playerUpTransparent, playerLeftTransparent, playerRightTransparent;
 	public static BufferedImage brickTopLeft, brickTopMiddle, brickTopRight, brickMiddleLeft, brickMiddleMiddle,
@@ -41,7 +42,8 @@ public class Assets {
 	public static BufferedImage roofFlatLeftBottomRight, roofFlatLeftRight, roofFlatTopLeftBottom, roofFlatTopBottom,
 			roofFlatTopRightBottom, roofFlatTopLeft, roofFlatTop, roofFlatTopRight, roofFlatLeftBottom, roofFlatBottom,
 			roofFlatRightBottom, roofFlatLeft, roofFlat, roofFlatRight;
-	public static BufferedImage closedDoorOne, closedDoorTwo, doorwayArch, windowOne, windowTwo, stairs, chimney;
+	public static BufferedImage closedDoorOne, closedDoorTwo, stairs, doorwayArch, bathroomDoorMale, bathroomDoorFemale,
+			locker, windowOne, windowTwo, chimney;
 	public static BufferedImage bedOne, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
 	public static BufferedImage windowLight, tableLampOff, tableLampOn;
 	public static BufferedImage yellowLight;
@@ -53,7 +55,8 @@ public class Assets {
 			galleryHarbinger, galleryHarrower, galleryHolocaust, galleryManifestation, galleryMoribund, galleryOblation,
 			galleryPerdition, galleryProcession, galleryProphet, galleryRevelry, gallerySenescence, gallerySolace,
 			gallerySuffering, gallerySynchronicity, galleryTorment, galleryVilomah;
-	public static BufferedImage textbox, textboxOptions, portrait;
+	public static BufferedImage textboxDefault, textboxPlayerThinking, textboxPlayer, textboxDenial, textboxAnger,
+			textboxBargaining, textboxDepression, textboxAcceptance, textboxOptions, portrait;
 	public static BufferedImage inventory, inventoryHighlight, keyInventory, abyssInventory, apparitionInventory,
 			blightInventory, butcherInventory, captivityInventory, cipherInventory, condemnationInventory, delugeInventory,
 			dissonanceInventory, dutyInventory, facadeInventory, harbingerInventory, harrowerInventory, holocaustInventory,
@@ -73,7 +76,7 @@ public class Assets {
 	public static BufferedImage[] acceptanceDown, acceptanceUp, acceptanceLeft, acceptanceRight;
 	public static BufferedImage[] ghoulDown, ghoulLeft, ghoulRight, ghoulUp;
 	public static BufferedImage[] tunnelVision;
-	public static Font sans, serif, philosopher, textboxDefault;
+	public static Font sans, serif, philosopher, textboxFontDefault;
 	public static Font playerSpeakingFont, playerThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont;
 	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2;
 	public static Clip menuMusic;
@@ -106,7 +109,7 @@ public class Assets {
 			sans = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")).deriveFont(36f);
 			serif = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/serif.ttf")).deriveFont(36f);
 			philosopher = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/philosopher.ttf")).deriveFont(36f);
-			textboxDefault = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")).deriveFont(128f);
+			textboxFontDefault = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")).deriveFont(128f);
 			playerThinkingFont = serif;
 			playerSpeakingFont = serif;
 			acceptanceFont = sans;
@@ -235,6 +238,10 @@ public class Assets {
 		diamondTileWood = tilesSheet.crop(width * 2, 0, width, height);
 		diamondTileDouble = tilesSheet.crop(width * 3, 0, width, height);
 		bathroomTile = tilesSheet.crop(0, height, width, height);
+		whiteBrickMiddle = tilesSheet.crop(width * 2, height * 2, width, height);
+		whiteBrickBottom = tilesSheet.crop(width * 3, height * 2, width, height);
+		tiledFloorWhite = tilesSheet.crop(0, height * 2, width, height);
+		tiledFloorBlack = tilesSheet.crop(width, height * 2, width, height);
 
 		SpriteSheet dressersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/dressers-sheet.png"));
 		dressers = new BufferedImage[9];
@@ -263,6 +270,11 @@ public class Assets {
 		grandfatherClock[1] = grandfatherClockSheet.crop(width, 0, width, height * 3);
 		grandfatherClock[2] = grandfatherClockSheet.crop(width * 2, 0, width, height * 3);
 		grandfatherClock[3] = grandfatherClockSheet.crop(width * 3, 0, width, height * 3);
+
+		SpriteSheet schoolSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/school-sheet.png"));
+		bathroomDoorMale = schoolSheet.crop(0, 0, width, height + height / 2);
+		bathroomDoorFemale = schoolSheet.crop(width, 0, width, height + height / 2);
+		locker = schoolSheet.crop(width * 2, 0, width, height + height / 2);
 
 		SpriteSheet chalkboardSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/chalkboard.png"));
 		chalkboard = new BufferedImage[2];
@@ -504,7 +516,14 @@ public class Assets {
 	}
 
 	private static void initStandaloneImages() {
-		textbox = ImageLoader.loadImage("/textures/tb.png");
+		textboxDefault = ImageLoader.loadImage("/textures/tb.png");
+		textboxPlayerThinking = ImageLoader.loadImage("/textures/tb.png");
+		textboxPlayer = ImageLoader.loadImage("/textures/tb.png");
+		textboxDenial = ImageLoader.loadImage("/textures/tb.png");
+		textboxAnger = ImageLoader.loadImage("/textures/tb.png");
+		textboxBargaining = ImageLoader.loadImage("/textures/tb.png");
+		textboxDepression = ImageLoader.loadImage("/textures/tb.png");
+		textboxAcceptance = ImageLoader.loadImage("/textures/tb.png");
 		textboxOptions = ImageLoader.loadImage("/textures/tb-options.png");
 		portrait = ImageLoader.loadImage("/textures/portrait.png");
 		inventory = ImageLoader.loadImage("/textures/inventory.png");

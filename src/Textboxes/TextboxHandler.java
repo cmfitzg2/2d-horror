@@ -30,7 +30,7 @@ public class TextboxHandler {
 	private java.util.List<Textbox> textboxes;
 	private Textbox currentTextbox;
 	private int frameCount = 1, textSpeed;
-	private BufferedImage portrait;
+	private BufferedImage textbox, portrait;
 	private int portraitWidth, portraitHeight, portraitXStart, portraitYStart;
 	private boolean allowFastText;
 	private AudioClip[] sounds = new AudioClip[3];
@@ -47,7 +47,7 @@ public class TextboxHandler {
 	 * @param sizeConstraint [1, 100] - divided by 100 and multiplied to font size. can only be used to constrain (e.g., reduce how much the font is shrunk or grown by default).
 	 */
 	public TextboxHandler(Handler handler, Font font, String message, String[] options, int textSpeed, Color fontColor,
-						  BufferedImage portrait, AudioClip sound, int sizeConstraint, boolean allowFastText, boolean unfreezeAfter) {
+						  BufferedImage portrait, BufferedImage textbox, AudioClip sound, int sizeConstraint, boolean allowFastText, boolean unfreezeAfter) {
 		this.handler = handler;
 		this.message = message;
 		this.options = options;
@@ -59,6 +59,11 @@ public class TextboxHandler {
 			this.fontColor = Color.WHITE;
 		}
 		this.portrait = portrait;
+		if (null != textbox) {
+			this.textbox = textbox;
+		} else {
+			this.textbox = Assets.textboxDefault;
+		}
 		if (null != sound) {
 			Arrays.fill(sounds, sound);
 		} else {
@@ -206,7 +211,7 @@ public class TextboxHandler {
 			initGraphics(g);
 			firstTime = false;
 		}
-		g.drawImage(Assets.textbox, xStart, yStart, xEnd - xStart, yEnd - yStart, null);
+		g.drawImage(textbox, xStart, yStart, xEnd - xStart, yEnd - yStart, null);
 		if (portrait != null) {
 			g.drawImage(portrait, portraitXStart, portraitYStart, portraitWidth, portraitHeight, null);
 		}

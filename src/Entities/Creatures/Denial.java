@@ -122,7 +122,7 @@ public class Denial extends Creature {
 	public void interactedWith() {
 		textboxHandler = new TextboxHandler(handler, Assets.serif,
 				handler.getEntityMessages().getTextboxMessage(uniqueName, messageNumber),
-				null, 2, Color.WHITE, null, null, 50, true, true);
+				null, 2, Color.WHITE, null, Assets.textboxDenial, null, 50, true, true);
 		textboxHandler.setActive(true);
 		messageNumber = 2;
 	}
