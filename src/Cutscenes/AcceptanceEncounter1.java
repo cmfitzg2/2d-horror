@@ -223,7 +223,7 @@ public class AcceptanceEncounter1 implements Cutscene {
         handler.setPlayerFrozen(false);
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
-        handler.getFlags().setFriendEncounter1(false);
+        handler.getFlags().setAcceptanceEncounter1(false);
         handler.getActiveWorld().getEntityManager().removeEntity(acceptance);
     }
 }

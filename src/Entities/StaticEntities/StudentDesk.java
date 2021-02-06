@@ -44,7 +44,7 @@ public class StudentDesk extends StaticEntity {
 
     @Override
     public void tick() {
-        
+
     }
 
     @Override

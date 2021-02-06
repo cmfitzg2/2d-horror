@@ -34,7 +34,7 @@ public class MCHouse2 extends World {
 
     @Override
     protected void addEntities() {
-        if (handler.getFlags().isFriendEncounter1()) {
+        if (handler.getFlags().isAcceptanceEncounter1()) {
             Acceptance acceptance = new Acceptance(handler, 1250, 857, "acceptance-mchouse2");
             acceptance.setDirection("up");
             entityManager.addEntity(acceptance);
@@ -51,7 +51,7 @@ public class MCHouse2 extends World {
     @Override
     protected void tick() {
         super.tick();
-        if (handler.getFlags().isFriendEncounter1() && !handler.getFlags().isCutsceneActive()) {
+        if (handler.getFlags().isAcceptanceEncounter1() && !handler.getFlags().isCutsceneActive()) {
             if (handler.getPlayer().getX() < Tile.TILEWIDTH * 33) {
                 handler.getFlags().setCutsceneActive(true);
                 CutsceneManager cutsceneManager = handler.getCutsceneManager();

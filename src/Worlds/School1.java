@@ -1,5 +1,7 @@
 package Worlds;
 
+import Cutscenes.CutsceneManager;
+import Entities.Creatures.Acceptance;
 import Entities.Creatures.Player;
 import Tiles.Tile;
 import Variables.Handler;
@@ -26,12 +28,29 @@ public class School1 extends World {
 
     @Override
     protected void addEntities() {
-
+        if (handler.getFlags().isAcceptanceEncounter2()) {
+            Acceptance acceptance = new Acceptance(handler, 575, 575, "acceptance-school1");
+            acceptance.setDirection("down");
+            entityManager.addEntity(acceptance);
+        }
     }
 
     @Override
     protected void load() {
         handler.getFlags().setVisionLimited(false);
         firstRender = true;
+    }
+
+    @Override
+    protected void tick() {
+        super.tick();
+        if (handler.getFlags().isAcceptanceEncounter2() && !handler.getFlags().isCutsceneActive()) {
+            if (handler.getPlayer().getY() <= Tile.TILEWIDTH * 10 && handler.getPlayer().getX() < Tile.TILEWIDTH * 16) {
+                handler.getFlags().setCutsceneActive(true);
+                CutsceneManager cutsceneManager = handler.getCutsceneManager();
+                cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(3));
+                handler.setPlayerFrozen(true);
+            }
+        }
     }
 }
