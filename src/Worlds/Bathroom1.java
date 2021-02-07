@@ -1,11 +1,6 @@
 package Worlds;
 
 import Entities.Creatures.Player;
-import Entities.StaticEntities.Chalkboard;
-import Entities.StaticEntities.Door;
-import Entities.StaticEntities.StudentDesk;
-import Entities.StaticEntities.TeacherDesk;
-import Graphics.Assets;
 import Tiles.Tile;
 import Variables.Handler;
 

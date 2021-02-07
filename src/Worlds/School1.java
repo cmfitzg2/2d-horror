@@ -44,9 +44,6 @@ public class School1 extends World {
                 Depression depression = new Depression(handler, 610, 600, "depression-school1");
                 depression.setDirection("right");
                 entityManager.addEntity(depression);
-                Acceptance acceptance = new Acceptance(handler, 790, 550, "acceptance-school1");
-                acceptance.setDirection("left");
-                entityManager.addEntity(acceptance);
             }
         }
         entityManager.addEntity(new Door(handler, 15 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT,
@@ -69,7 +66,7 @@ public class School1 extends World {
     protected void tick() {
         super.tick();
         if (handler.getFlags().isSchoolCutscene1() && !handler.getFlags().isCutsceneActive()) {
-            if (handler.getPlayer().getY() <= Tile.TILEWIDTH * 10 && handler.getPlayer().getX() < Tile.TILEWIDTH * 16) {
+            if (handler.getPlayer().getY() <= Tile.TILEWIDTH * 10 && handler.getPlayer().getX() < Tile.TILEWIDTH * 17) {
                 handler.getFlags().setCutsceneActive(true);
                 CutsceneManager cutsceneManager = handler.getCutsceneManager();
                 cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(3));

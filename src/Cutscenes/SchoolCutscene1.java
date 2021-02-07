@@ -1,13 +1,11 @@
 package Cutscenes;
 
-import Entities.Creatures.Acceptance;
-import Entities.Creatures.Player;
+import Entities.Creatures.*;
 import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
 import Tiles.Tile;
 import Variables.Handler;
-import Worlds.WorldManager;
 
 import java.awt.*;
 
@@ -17,9 +15,12 @@ public class SchoolCutscene1 implements Cutscene {
     private Handler handler;
     private TextboxHandler textboxHandler1;
     private KeyManager keyManager;
-    private int messageNum = 1;
+    private Denial denial;
     private Acceptance acceptance;
     private final String messageOne = "There you are! \r We're a little early, but everyone's already here.";
+    private boolean showTextboxOne = false, initialSetupFinished = false;
+    private final int acceptanceXFinal = 790, acceptanceYFinal = 550, playerXFinal = 790, playerYFinal = 600;
+
 
     public SchoolCutscene1(Handler handler) {
         this.handler = handler;
@@ -30,28 +31,66 @@ public class SchoolCutscene1 implements Cutscene {
     @Override
     public void tick() {
         if (firstTime) {
-            acceptance = (Acceptance) handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID).getEntityManager().getEntityByUid("acceptance-school1");
+            acceptance = new Acceptance(handler, 15 * Tile.TILEWIDTH, 3.5f * Tile.TILEHEIGHT, "acceptance-school1");
+            handler.getActiveWorld().getEntityManager().addEntity(acceptance);
             player = handler.getPlayer();
-            acceptance.setDirection("right");
+            acceptance.setDirection("down");
+            firstTime = false;
         }
-        if (!textboxHandler1.isFinished()) {
-            textboxHandler1.tick();
-        } else {
-/*            //move acceptance to the classroom
-            if (acceptance.getX() > 6 * Tile.TILEWIDTH) {
-                acceptance.setxMove(-acceptance.getSpeed());
-            } else if (acceptance.getY() < 10.5 * Tile.TILEHEIGHT) {
+
+        if (!showTextboxOne) {
+            if (acceptance.getY() < player.getY()) {
                 acceptance.setyMove(acceptance.getSpeed());
             } else {
-                handler.getActiveWorld().getEntityManager().removeEntity(acceptance);*/
-                exit();
+                acceptance.setyMove(0);
+                if (acceptance.getX() < player.getX() - Tile.TILEWIDTH) {
+                    acceptance.setxMove(acceptance.getSpeed());
+                } else {
+                    acceptance.setxMove(0);
+                    showTextboxOne = true;
+                }
             }
-        //}
+        }
+        if (showTextboxOne) {
+            if (!textboxHandler1.isFinished()) {
+                textboxHandler1.tick();
+            } else {
+                if (acceptance.getY() < acceptanceYFinal && Math.abs(acceptance.getY() - acceptanceYFinal) > acceptance.getSpeed()) {
+                    acceptance.setyMove(acceptance.getSpeed());
+                } else if (acceptance.getY() > acceptanceYFinal && Math.abs(acceptance.getY() - acceptanceYFinal) > acceptance.getSpeed()) {
+                    acceptance.setyMove(-acceptance.getSpeed());
+                } else {
+                    acceptance.setyMove(0);
+                    if (acceptance.getX() > acceptanceXFinal && Math.abs(acceptance.getX() - acceptanceXFinal) > acceptance.getSpeed()) {
+                        acceptance.setxMove(-acceptance.getSpeed());
+                    } else {
+                        acceptance.setxMove(0);
+                    }
+                    if (player.getY() < playerYFinal && Math.abs(player.getY() - playerYFinal) > player.getSpeed()) {
+                        player.setyMove(player.getSpeed());
+                    } else if (player.getY() > playerYFinal && Math.abs(player.getY() - playerYFinal) > player.getSpeed()) {
+                        player.setyMove(-player.getSpeed());
+                    } else {
+                        player.setyMove(0);
+                        if (player.getX() > playerXFinal && Math.abs(player.getX() - playerXFinal) > player.getSpeed()) {
+                            player.setxMove(-player.getSpeed());
+                        } else {
+                            player.setxMove(0);
+                            showTextboxOne = false;
+                            initialSetupFinished = true;
+                        }
+                    }
+                }
+            }
+        }
+        if (initialSetupFinished) {
+            //now we just scroll through the textboxes
+        }
     }
 
     @Override
     public void render(Graphics g) {
-        if (!textboxHandler1.isFinished()) {
+        if (showTextboxOne && !textboxHandler1.isFinished()) {
             textboxHandler1.render(g);
         }
     }
