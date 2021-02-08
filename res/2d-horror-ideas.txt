@@ -160,13 +160,11 @@ Acceptance: "Cool. See you there!"
 >Acceptance walks off screen, player regains control
 >eventually head to school
 
->Acceptance is inside
+>Acceptance is in bathroom, comes out as player approaches class / group of friends
+>Cutscene:
 Acceptance: "There you are! We're a little early, but everyone's already here."
->Acceptance enters classroom
+>Acceptance walks to group of friends.
 >MC follows
->Cut to classroom, 5 friend group talking
->Scripted event? MC walks up
-
 Anger: "Hey MC. You look like literal garbage."
 Bargaining: "That... seems unnecessary to say."
 Depression: "I'm gonna go with Anger on this one."
@@ -177,11 +175,11 @@ Denial: "Besides, you don't look that bad."
 Bargaining: "I'm sure you're trying to be nice, Denial, but that comes off as .. a little unsympathetic."
 Denial "Whatever."
 Anger: "If it's sympathy you're after, I'm sorry that you look like literal garbage."
-Depression: "I wish you'd talk to me like that, Anger."
+Depression: "I wish you'd talk to me like that."
 Bargaining: "You probably shouldn't talk to anyone like that."
 Anger: "Don't be such a thin skinned baby for once, Bargaining."
 Depression: "Back off. Don't be mean to Bargaining."
-Acceptance: "You know, I bet all this isn't helping MC feel much better."
+Acceptance: "You know, I bet all this bickering isn't helping MC feel much better."
 MC: "It's a little nice. I can't really keep up right now, so it all kind of just blends together into white noise."
 Depression: "About time one of you joined me as the second basket case of the group."
 Bargaining: "You joke about your mental health a lot, Depression. You should take that stuff seriously."
@@ -247,7 +245,8 @@ Depression: "Don't worry, Bargaining. I'm the low bar in every other situation."
 Acceptance: "Looks like our plans are made then! Let's just make it to the end of the day now, MC."
 MC: "Yep. Back to plan A."
 >text is finally over
->teacher comes in, characters go to their seats.
+>some sort of transition to going to class, all characters go inside, MC follows
+>teacher comes in.
 Teacher: "Alright, let's get started. We're going to pick up where we left off yesterday."
 Teacher: "Logarithms are pretty simple if you understand exponents. They're really just a different way ..."
 >screen fades to black

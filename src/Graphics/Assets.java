@@ -77,7 +77,8 @@ public class Assets {
 	public static BufferedImage[] tunnelVision;
 	public static Font sans, serif, philosopher, textboxFontDefault;
 	public static Font playerSpeakingFont, playerThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont;
-	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2;
+	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2,
+			denialText, angerText, bargainingText, depressionText, acceptanceText, playerText;
 	public static Clip menuMusic;
 	public static void init() {
 		initSounds();
