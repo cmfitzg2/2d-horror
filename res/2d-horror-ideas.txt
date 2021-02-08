@@ -21,6 +21,11 @@ i think each event should take place in such a way that MC + the character can s
 -puzzles with spooky boys who embody the stage serving as the obstacle
 -thinking bubble has no portrait, could be another color
 -actually all the characters should have their own textbox / color, very appropriate.
+-paintings are going to be a motif throughout the game
+-they're inherently dream-like because they're abstract, they're what make MC / others want to come
+-each painting is different to each person, perhaps each character will take their favorite?
+-the painting they take represents their aspect of grief but isn't named until end-of-game
+-this is how it's revealed what the game meaning is
 
 denial
 	name: daniel? anagram of denial lol
