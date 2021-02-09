@@ -112,6 +112,10 @@ public class Assets {
 			textboxFontDefault = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/uwch.ttf")).deriveFont(128f);
 			playerThinkingFont = serif;
 			playerSpeakingFont = serif;
+			denialFont = serif;
+			angerFont = serif;
+			bargainingFont = serif;
+			depressionFont = serif;
 			acceptanceFont = sans;
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			//register the font

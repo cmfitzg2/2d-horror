@@ -245,43 +245,45 @@ public class TextboxHandler {
 	}
 
 	private void initGraphics(Graphics g) {
-		metrics = g.getFontMetrics(font);
-		boolean scaleUp = metrics.getHeight() < textboxRect.height / 3;
-		int initialSize = font.getSize();
-		if (scaleUp) {
-			font = FontUtils.scaleFontUpVertically(new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3), g, font);
-		} else {
-			font = FontUtils.scaleFontDownVertically(new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3), g, font);
-		}
-		//only scale the font up or down as a restriction
-		font = font.deriveFont(initialSize + (Math.abs(font.getSize() - initialSize) * sizeConstraint / 100f));
-
-		//scale to char minimum
-		metrics = g.getFontMetrics(font);
-		if (metrics.stringWidth(" ") * minimumLineLength > textboxRect.getWidth()) {
-			while (metrics.stringWidth(" ") * minimumLineLength > textboxRect.getWidth()) {
-				font = font.deriveFont(font.getSize() - 1.0f);
-				metrics = g.getFontMetrics(font);
+		if (null != g) {
+			metrics = g.getFontMetrics(font);
+			boolean scaleUp = metrics.getHeight() < textboxRect.height / 3;
+			int initialSize = font.getSize();
+			if (scaleUp) {
+				font = FontUtils.scaleFontUpVertically(new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3), g, font);
+			} else {
+				font = FontUtils.scaleFontDownVertically(new Rectangle(textboxRect.x, textboxRect.y, textboxRect.width, textboxRect.height / 3), g, font);
 			}
-		}
-		topRect.y += topRect.height / 2 + metrics.getAscent() / 2;
-		midRect.y += midRect.height / 2 + metrics.getAscent() / 2;
-		botRect.y += botRect.height / 2 + metrics.getAscent() / 2;
-		if (null != portrait) {
-			topRect.width = topRect.width - portraitWidth - (int) (xScale * xOffsetText);
-			topRect.x += portraitWidth + xScale * xOffsetText;
-			midRect.width = midRect.width - portraitWidth - (int) (xScale * xOffsetText);
-			midRect.x += portraitWidth + xScale * xOffsetText;
-			botRect.width = botRect.width - portraitWidth - (int) (xScale * xOffsetText);
-			botRect.x += portraitWidth + xScale * xOffsetText;
-		}
-		createTextboxes(g);
+			//only scale the font up or down as a restriction
+			font = font.deriveFont(initialSize + (Math.abs(font.getSize() - initialSize) * sizeConstraint / 100f));
 
-		if (options != null) {
-			optionsIncrement = metrics.getHeight();
-			xStartOptions = handler.getWidth() / 12;
-			yStartOptions = handler.getHeight() / 4;
-			minimumOptionsLength = getLongestStringLength(options) + 3;
+			//scale to char minimum
+			metrics = g.getFontMetrics(font);
+			if (metrics.stringWidth(" ") * minimumLineLength > textboxRect.getWidth()) {
+				while (metrics.stringWidth(" ") * minimumLineLength > textboxRect.getWidth()) {
+					font = font.deriveFont(font.getSize() - 1.0f);
+					metrics = g.getFontMetrics(font);
+				}
+			}
+			topRect.y += topRect.height / 2 + metrics.getAscent() / 2;
+			midRect.y += midRect.height / 2 + metrics.getAscent() / 2;
+			botRect.y += botRect.height / 2 + metrics.getAscent() / 2;
+			if (null != portrait) {
+				topRect.width = topRect.width - portraitWidth - (int) (xScale * xOffsetText);
+				topRect.x += portraitWidth + xScale * xOffsetText;
+				midRect.width = midRect.width - portraitWidth - (int) (xScale * xOffsetText);
+				midRect.x += portraitWidth + xScale * xOffsetText;
+				botRect.width = botRect.width - portraitWidth - (int) (xScale * xOffsetText);
+				botRect.x += portraitWidth + xScale * xOffsetText;
+			}
+			createTextboxes(g);
+
+			if (options != null) {
+				optionsIncrement = metrics.getHeight();
+				xStartOptions = handler.getWidth() / 12;
+				yStartOptions = handler.getHeight() / 4;
+				minimumOptionsLength = getLongestStringLength(options) + 3;
+			}
 		}
 	}
 
