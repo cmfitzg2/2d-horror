@@ -7,6 +7,7 @@ import Textboxes.TextboxHandler;
 import Tiles.Tile;
 import Variables.GeneralConstants;
 import Variables.Handler;
+import Worlds.WorldManager;
 
 import java.awt.*;
 
@@ -14,7 +15,7 @@ public class SchoolCutscene1 implements Cutscene {
     Player player;
     private boolean firstTime = true;
     private Handler handler;
-    private TextboxHandler textboxHandler1, textboxHandler2, textboxHandler3, textboxHandler4, textboxHandler5,
+    private final TextboxHandler textboxHandler1, textboxHandler2, textboxHandler3, textboxHandler4, textboxHandler5,
             textboxHandler6, textboxHandler7, textboxHandler8, textboxHandler9, textboxHandler10, textboxHandler11,
             textboxHandler12, textboxHandler13, textboxHandler14, textboxHandler15, textboxHandler16, textboxHandler17,
             textboxHandler18, textboxHandler19, textboxHandler20, textboxHandler21, textboxHandler22, textboxHandler23,
@@ -38,7 +39,7 @@ public class SchoolCutscene1 implements Cutscene {
             textbox38, textbox39, textbox40, textbox41, textbox42, textbox43, textbox44, textbox45, textbox46,
             textbox47, textbox48, textbox49, textbox50, textbox51, textbox52, textbox53, textbox54, textbox55,
             textbox56, textbox57, textbox58;
-    private final int acceptanceXFinal = 790, acceptanceYFinal = 550, playerXFinal = 790, playerYFinal = 600;
+    private final int acceptanceXFinal = 790, acceptanceYFinal = 550, playerXFinal = 790, playerYFinal = 600, classroomX = 6 * Tile.TILEWIDTH, classroomY = 11 * Tile.TILEHEIGHT + Tile.TILEHEIGHT / 2;
     private final String message1 = "There you are! \r " +
             "We're a little early, but everyone's already here.",
             message2 = "Hey MC. You look like literal garbage.",
@@ -192,6 +193,10 @@ public class SchoolCutscene1 implements Cutscene {
     @Override
     public void tick() {
         if (firstTime) {
+            denial = (Denial) handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID).getEntityManager().getEntityByUid("denial-school1");
+            anger = (Anger) handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID).getEntityManager().getEntityByUid("anger-school1");
+            bargaining = (Bargaining) handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID).getEntityManager().getEntityByUid("bargaining-school1");
+            depression = (Depression) handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID).getEntityManager().getEntityByUid("depression-school1");
             acceptance = new Acceptance(handler, 15 * Tile.TILEWIDTH, 3.5f * Tile.TILEHEIGHT, "acceptance-school1");
             handler.getActiveWorld().getEntityManager().addEntity(acceptance);
             player = handler.getPlayer();
@@ -998,7 +1003,6 @@ public class SchoolCutscene1 implements Cutscene {
                 textboxHandler58.render(g);
             } else {
                 textbox58 = false;
-
                 exit();
             }
         }
