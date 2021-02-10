@@ -1,6 +1,7 @@
 package Cutscenes;
 
 import Entities.Creatures.*;
+import Entities.EntityManager;
 import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
@@ -31,6 +32,7 @@ public class SchoolCutscene1 implements Cutscene {
     private Bargaining bargaining;
     private Depression depression;
     private Acceptance acceptance;
+    private EntityManager entityManager;
     private boolean showTextboxOne = false, initialSetupFinished = false;
     private boolean textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9, textbox10,
             textbox11, textbox12, textbox13, textbox14, textbox15, textbox16, textbox17, textbox18, textbox19,
@@ -39,7 +41,8 @@ public class SchoolCutscene1 implements Cutscene {
             textbox38, textbox39, textbox40, textbox41, textbox42, textbox43, textbox44, textbox45, textbox46,
             textbox47, textbox48, textbox49, textbox50, textbox51, textbox52, textbox53, textbox54, textbox55,
             textbox56, textbox57, textbox58;
-    private final int acceptanceXFinal = 790, acceptanceYFinal = 550, playerXFinal = 790, playerYFinal = 600, classroomX = 6 * Tile.TILEWIDTH, classroomY = 11 * Tile.TILEHEIGHT + Tile.TILEHEIGHT / 2;
+    private final int acceptanceXFinal = 790, acceptanceYFinal = 550, playerXFinal = 790, playerYFinal = 600, classroomX = 6 * Tile.TILEWIDTH, classroomY = 10 * Tile.TILEHEIGHT + Tile.TILEHEIGHT / 2;
+    private final int denialXStart = 730, angerXStart = 670, bargainingXStart = 610, depressionXStart = 610;
     private final String message1 = "There you are! \r " +
             "We're a little early, but everyone's already here.",
             message2 = "Hey MC. You look like literal garbage.",
@@ -193,12 +196,13 @@ public class SchoolCutscene1 implements Cutscene {
     @Override
     public void tick() {
         if (firstTime) {
-            denial = (Denial) handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID).getEntityManager().getEntityByUid("denial-school1");
-            anger = (Anger) handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID).getEntityManager().getEntityByUid("anger-school1");
-            bargaining = (Bargaining) handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID).getEntityManager().getEntityByUid("bargaining-school1");
-            depression = (Depression) handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID).getEntityManager().getEntityByUid("depression-school1");
+            entityManager = handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID).getEntityManager();
+            denial = (Denial) entityManager.getEntityByUid("denial-school1");
+            anger = (Anger) entityManager.getEntityByUid("anger-school1");
+            bargaining = (Bargaining) entityManager.getEntityByUid("bargaining-school1");
+            depression = (Depression) entityManager.getEntityByUid("depression-school1");
             acceptance = new Acceptance(handler, 15 * Tile.TILEWIDTH, 3.5f * Tile.TILEHEIGHT, "acceptance-school1");
-            handler.getActiveWorld().getEntityManager().addEntity(acceptance);
+            entityManager.addEntity(acceptance);
             player = handler.getPlayer();
             acceptance.setDirection("down");
             firstTime = false;
@@ -540,6 +544,68 @@ public class SchoolCutscene1 implements Cutscene {
             if (textbox58) {
                 if (!textboxHandler58.isFinished()) {
                     textboxHandler58.tick();
+                } else {
+                    if (null != depression) {
+                        if (depression.getX() > classroomX && Math.abs(depression.getX() - classroomX) > depression.getSpeed()) {
+                            depression.setxMove(-depression.getSpeed());
+                        } else {
+                            depression.setxMove(0);
+                            if (depression.getY() < classroomY && Math.abs(depression.getY() - classroomY) > depression.getSpeed()) {
+                                depression.setyMove(depression.getSpeed());
+                            } else {
+                                entityManager.removeEntity(depression);
+                            }
+                        }
+                    }
+                }
+                if (null == depression || depressionXStart - depression.getX() >= Tile.TILEWIDTH) {
+                    if (bargaining.getX() > classroomX && Math.abs(bargaining.getX() - classroomX) > bargaining.getSpeed()) {
+                        bargaining.setxMove(-bargaining.getSpeed());
+                    } else {
+                        bargaining.setxMove(0);
+                        if (bargaining.getY() < classroomY && Math.abs(bargaining.getY() - classroomY) > bargaining.getSpeed()) {
+                            bargaining.setyMove(bargaining.getSpeed());
+                        } else {
+                            entityManager.removeEntity(bargaining);
+                        }
+                    }
+                }
+                if (null == bargaining || bargainingXStart - bargaining.getX() >= Tile.TILEWIDTH) {
+                    if (anger.getX() > classroomX && Math.abs(anger.getX() - classroomX) > anger.getSpeed()) {
+                        anger.setxMove(-anger.getSpeed());
+                    } else {
+                        anger.setxMove(0);
+                        if (anger.getY() < classroomY && Math.abs(anger.getY() - classroomY) > anger.getSpeed()) {
+                            anger.setyMove(anger.getSpeed());
+                        } else {
+                            entityManager.removeEntity(anger);
+                        }
+                    }
+                }
+                if (null == anger || angerXStart - anger.getX() >= Tile.TILEWIDTH) {
+                    if (denial.getX() > classroomX && Math.abs(denial.getX() - classroomX) > denial.getSpeed()) {
+                        denial.setxMove(-denial.getSpeed());
+                    } else {
+                        denial.setxMove(0);
+                        if (denial.getY() < classroomY && Math.abs(denial.getY() - classroomY) > denial.getSpeed()) {
+                            denial.setyMove(denial.getSpeed());
+                        } else {
+                            entityManager.removeEntity(denial);
+                        }
+                    }
+                }
+                if (null == denial || denialXStart - denial.getX() >= Tile.TILEWIDTH) {
+                    if (acceptance.getX() > classroomX && Math.abs(acceptance.getX() - classroomX) > acceptance.getSpeed()) {
+                        acceptance.setxMove(-acceptance.getSpeed());
+                    } else {
+                        acceptance.setxMove(0);
+                        if (acceptance.getY() < classroomY && Math.abs(acceptance.getY() - classroomY) > acceptance.getSpeed()) {
+                            acceptance.setyMove(acceptance.getSpeed());
+                        } else {
+                            entityManager.removeEntity(acceptance);
+                            exit();
+                        }
+                    }
                 }
             }
         }
@@ -1002,8 +1068,7 @@ public class SchoolCutscene1 implements Cutscene {
             if (!textboxHandler58.isFinished()) {
                 textboxHandler58.render(g);
             } else {
-                textbox58 = false;
-                exit();
+
             }
         }
     }
@@ -1013,6 +1078,5 @@ public class SchoolCutscene1 implements Cutscene {
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setSchoolCutscene1(false);
-        //handler.getActiveWorld().getEntityManager().removeEntity(acceptance);
     }
 }
