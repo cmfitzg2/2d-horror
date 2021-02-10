@@ -79,7 +79,7 @@ public class Assets {
 	public static Font playerSpeakingFont, playerThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont;
 	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2,
 			denialText, angerText, bargainingText, depressionText, acceptanceText, playerText;
-	public static Clip menuMusic;
+	public static Clip menuMusic, schoolBell;
 	public static void init() {
 		initSounds();
 		initFonts();
@@ -98,6 +98,9 @@ public class Assets {
 			menuMusic = AudioSystem.getClip();
 			AudioInputStream ais1 = AudioSystem.getAudioInputStream(new File("res/music/desolate.au"));
 			menuMusic.open(ais1);
+			schoolBell = AudioSystem.getClip();
+			AudioInputStream ais2 = AudioSystem.getAudioInputStream(new File("res/sounds/school-bell.au"));
+			schoolBell.open(ais2);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		}

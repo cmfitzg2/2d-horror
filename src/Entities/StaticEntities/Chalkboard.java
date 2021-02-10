@@ -51,11 +51,7 @@ public class Chalkboard extends StaticEntity {
 
     @Override
     public void interactedWith() {
-        if (type == 0) {
-            type = 1;
-        } else {
-            type = 0;
-        }
+
     }
 
     @Override
@@ -66,5 +62,9 @@ public class Chalkboard extends StaticEntity {
     @Override
     public boolean itemInteraction(String item) {
         return false;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

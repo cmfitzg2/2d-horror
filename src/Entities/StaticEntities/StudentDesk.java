@@ -16,11 +16,12 @@ public class StudentDesk extends StaticEntity {
     public static final String PLAYER = "player";
 
     private String character;
-    private boolean occupied = false;
+    private boolean occupied;
 
-    public StudentDesk(Handler handler, float x, float y, int width, int height, String uniqueName, String character) {
+    public StudentDesk(Handler handler, float x, float y, int width, int height, String uniqueName, String character, boolean occupied) {
         super(handler, x, y, width, height, uniqueName);
         this.character = character;
+        this.occupied = occupied;
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = width;
@@ -87,7 +88,7 @@ public class StudentDesk extends StaticEntity {
 
     @Override
     public void interactedWith() {
-        setOccupied(!occupied);
+
     }
 
     @Override

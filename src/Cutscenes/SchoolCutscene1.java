@@ -25,7 +25,7 @@ public class SchoolCutscene1 implements Cutscene {
             textboxHandler36, textboxHandler37, textboxHandler38, textboxHandler39, textboxHandler40, textboxHandler41,
             textboxHandler42, textboxHandler43, textboxHandler44, textboxHandler45, textboxHandler46, textboxHandler47,
             textboxHandler48, textboxHandler49, textboxHandler50, textboxHandler51, textboxHandler52, textboxHandler53,
-            textboxHandler54, textboxHandler55, textboxHandler56, textboxHandler57, textboxHandler58;
+            textboxHandler54, textboxHandler55, textboxHandler56, textboxHandler57, textboxHandler58, textboxHandler59;
     private KeyManager keyManager;
     private Denial denial;
     private Anger anger;
@@ -33,14 +33,14 @@ public class SchoolCutscene1 implements Cutscene {
     private Depression depression;
     private Acceptance acceptance;
     private EntityManager entityManager;
-    private boolean showTextboxOne = false, initialSetupFinished = false;
+    private boolean showTextboxOne = false, initialSetupFinished = false, bellPlayed = false;
     private boolean textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9, textbox10,
             textbox11, textbox12, textbox13, textbox14, textbox15, textbox16, textbox17, textbox18, textbox19,
             textbox20, textbox21, textbox22, textbox23, textbox24, textbox25, textbox26, textbox27, textbox28,
             textbox29, textbox30, textbox31, textbox32, textbox33, textbox34, textbox35, textbox36, textbox37,
             textbox38, textbox39, textbox40, textbox41, textbox42, textbox43, textbox44, textbox45, textbox46,
             textbox47, textbox48, textbox49, textbox50, textbox51, textbox52, textbox53, textbox54, textbox55,
-            textbox56, textbox57, textbox58;
+            textbox56, textbox57, textbox58, textbox59;
     private final int acceptanceXFinal = 790, acceptanceYFinal = 550, playerXFinal = 790, playerYFinal = 600, classroomX = 6 * Tile.TILEWIDTH, classroomY = 10 * Tile.TILEHEIGHT + Tile.TILEHEIGHT / 2;
     private final int denialXStart = 730, angerXStart = 670, bargainingXStart = 610, depressionXStart = 610;
     private final String message1 = "There you are! \r " +
@@ -126,9 +126,9 @@ public class SchoolCutscene1 implements Cutscene {
                     "Yeah, whatever, alright. \r " +
                     "I know it'll be a wasted night, but at least I won't be the one who didn't do something that even Bargaining did.",
             message56 = "Don't worry, Bargaining. I'm the low bar in every other situation.",
-            message57 = "Looks like our plans are made then! \r " +
-                    "Let's just make it to the end of the day now, MC.",
-            message58 = "Yep. Back to plan A.";
+            message57 = "Looks like our plans are made then!",
+            message58 = "Well, that's right on cue. \r Let's just make it to the end of the day now, MC.",
+            message59 = "Yep. Back to plan A.";
 
     public SchoolCutscene1(Handler handler) {
         this.handler = handler;
@@ -190,7 +190,8 @@ public class SchoolCutscene1 implements Cutscene {
         textboxHandler55 = new TextboxHandler(handler, Assets.denialFont, message55, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDenial, Assets.denialText, 50, true, false);
         textboxHandler56 = new TextboxHandler(handler, Assets.depressionFont, message56, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression, Assets.depressionText, 50, true, false);
         textboxHandler57 = new TextboxHandler(handler, Assets.acceptanceFont, message57, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
-        textboxHandler58 = new TextboxHandler(handler, Assets.playerSpeakingFont, message58, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, Assets.playerText, 50, true, false);
+        textboxHandler58 = new TextboxHandler(handler, Assets.acceptanceFont, message58, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
+        textboxHandler59 = new TextboxHandler(handler, Assets.playerSpeakingFont, message59, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, Assets.playerText, 50, true, false);
     }
 
     @Override
@@ -539,11 +540,24 @@ public class SchoolCutscene1 implements Cutscene {
             if (textbox57) {
                 if (!textboxHandler57.isFinished()) {
                     textboxHandler57.tick();
+                } else if (!bellPlayed) {
+                    Assets.schoolBell.start();
+                    bellPlayed = true;
+                } else {
+                    if (!Assets.schoolBell.isActive()) {
+                        textbox58 = true;
+                        textbox57 = false;
+                    }
                 }
             }
             if (textbox58) {
                 if (!textboxHandler58.isFinished()) {
                     textboxHandler58.tick();
+                }
+            }
+            if (textbox59) {
+                if (!textboxHandler59.isFinished()) {
+                    textboxHandler59.tick();
                 } else {
                     if (null != depression) {
                         if (depression.getX() > classroomX && Math.abs(depression.getX() - classroomX) > depression.getSpeed()) {
@@ -1059,16 +1073,19 @@ public class SchoolCutscene1 implements Cutscene {
         if (textbox57) {
             if (!textboxHandler57.isFinished()) {
                 textboxHandler57.render(g);
-            } else {
-                textbox58 = true;
-                textbox57 = false;
             }
         }
         if (textbox58) {
             if (!textboxHandler58.isFinished()) {
                 textboxHandler58.render(g);
             } else {
-
+                textbox59 = true;
+                textbox58 = false;
+            }
+        }
+        if (textbox59) {
+            if (!textboxHandler59.isFinished()) {
+                textboxHandler59.render(g);
             }
         }
     }
