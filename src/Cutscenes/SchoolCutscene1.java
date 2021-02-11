@@ -237,14 +237,14 @@ public class SchoolCutscene1 implements Cutscene {
                         } else {
                             acceptance.setxMove(0);
                         }
-                        if (player.getY() < playerYFinal && Math.abs(player.getY() - playerYFinal) > player.getSpeed()) {
-                            player.setyMove(player.getSpeed());
-                        } else if (player.getY() > playerYFinal && Math.abs(player.getY() - playerYFinal) > player.getSpeed()) {
-                            player.setyMove(-player.getSpeed());
+                        if (player.getY() < playerYFinal && Math.abs(player.getY() - playerYFinal) > player.getCutsceneSpeed()) {
+                            player.setyMove(player.getCutsceneSpeed());
+                        } else if (player.getY() > playerYFinal && Math.abs(player.getY() - playerYFinal) > player.getCutsceneSpeed()) {
+                            player.setyMove(-player.getCutsceneSpeed());
                         } else {
                             player.setyMove(0);
-                            if (player.getX() > playerXFinal && Math.abs(player.getX() - playerXFinal) > player.getSpeed()) {
-                                player.setxMove(-player.getSpeed());
+                            if (player.getX() > playerXFinal && Math.abs(player.getX() - playerXFinal) > player.getCutsceneSpeed()) {
+                                player.setxMove(-player.getCutsceneSpeed());
                             } else {
                                 player.setxMove(0);
                                 showTextboxOne = false;

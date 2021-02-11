@@ -1,12 +1,20 @@
 package Entities.StaticEntities;
 
 import Graphics.Assets;
+import Textboxes.TextboxHandler;
 import Variables.Handler;
 
 import java.awt.*;
 
 public class TeacherDesk extends StaticEntity {
 
+    TextboxHandler textboxHandler;
+
+    private final String denialText = "Sit down, MC", angerText = "You're too stupid to teach. Sit down, dumbass.",
+            bargainingText = "Uhh, MC, I think the teacher will be here soon... \r You should probably go to your seat.",
+            depressionText = "Oh, you're teaching today? Cool, maybe I'll pay attention then.",
+            acceptanceText = "placeholder";
+    private String message = denialText;
     public TeacherDesk(Handler handler, float x, float y, int width, int height, String uniqueName) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;

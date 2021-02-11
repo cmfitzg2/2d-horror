@@ -1,6 +1,7 @@
 package Entities.StaticEntities;
 
 import Graphics.Assets;
+import Textboxes.TextboxHandler;
 import Variables.Handler;
 
 import java.awt.*;
@@ -17,6 +18,7 @@ public class StudentDesk extends StaticEntity {
 
     private String character;
     private boolean occupied;
+    TextboxHandler textboxHandler;
 
     public StudentDesk(Handler handler, float x, float y, int width, int height, String uniqueName, String character, boolean occupied) {
         super(handler, x, y, width, height, uniqueName);
@@ -35,7 +37,9 @@ public class StudentDesk extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-
+        if (null != textboxHandler) {
+            textboxHandler.render(g);
+        }
     }
 
     @Override
@@ -45,7 +49,12 @@ public class StudentDesk extends StaticEntity {
 
     @Override
     public void tick() {
-
+        if (null != textboxHandler) {
+            textboxHandler.tick();
+            if (textboxHandler.isFinished()) {
+                textboxCallback(textboxHandler.getOptionSelected());
+            }
+        }
     }
 
     @Override
@@ -81,6 +90,19 @@ public class StudentDesk extends StaticEntity {
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
     }
 
+    private void textboxCallback(String option) {
+        if (option.equals("Yes")) {
+            occupied = true;
+            handler.getPlayer().setInvisible(true);
+            handler.getPlayer().setX(x);
+            handler.getPlayer().setY(y);
+        } else {
+            handler.setPlayerFrozen(false);
+            System.out.println(option);
+        }
+        textboxHandler = null;
+    }
+
     @Override
     public void die() {
         handler.getActiveWorld().getEntityManager().removeEntity(this);
@@ -88,7 +110,10 @@ public class StudentDesk extends StaticEntity {
 
     @Override
     public void interactedWith() {
-
+        if (character.equals(PLAYER) && handler.getFlags().isClassroomCutscene1() && !occupied) {
+            handler.setPlayerFrozen(true);
+            textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, "Sit down?", new String[]{"Yes", "No"}, 2, Color.WHITE, null, Assets.textboxDefault, null, 50, true, false);
+        }
     }
 
     @Override

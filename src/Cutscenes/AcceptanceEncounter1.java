@@ -66,12 +66,12 @@ public class AcceptanceEncounter1 implements Cutscene {
                 textboxHandler2.tick();
             } else {
                 if (acceptance.getX() < player.getX() - 100) {
-                    player.setxMove(-player.getSpeed());
-                    if (Math.abs(acceptance.getY() - player.getY()) > player.getSpeed()) {
+                    player.setxMove(-player.getCutsceneSpeed());
+                    if (Math.abs(acceptance.getY() - player.getY()) > player.getCutsceneSpeed()) {
                         if (acceptance.getY() > player.getY()) {
-                            player.setyMove(player.getSpeed());
+                            player.setyMove(player.getCutsceneSpeed());
                         } else if (acceptance.getY() < player.getY()) {
-                            player.setyMove(-player.getSpeed());
+                            player.setyMove(-player.getCutsceneSpeed());
                         }
                     } else if (Math.abs(acceptance.getY() - player.getY()) >= 1) {
                         if (acceptance.getY() > player.getY()) {

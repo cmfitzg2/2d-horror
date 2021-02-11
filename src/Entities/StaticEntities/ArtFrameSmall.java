@@ -12,7 +12,6 @@ import java.awt.image.BufferedImage;
 public class ArtFrameSmall extends StaticEntity {
     private String message;
     private Font textboxFont;
-    String[] options = {"Yes", "No"};
     String description = "A painting taken from an art gallery";
     BufferedImage previewImage;
     TextboxHandler textboxHandler;
@@ -64,7 +63,7 @@ public class ArtFrameSmall extends StaticEntity {
                         } else {
                             message = "Take the painting?";
                         }
-                        textboxHandler = new TextboxHandler(handler, textboxFont, message, options, 2, Color.WHITE, Assets.portrait, Assets.textboxDefault, null, 100, true, true);
+                        textboxHandler = new TextboxHandler(handler, textboxFont, message, new String[]{"Yes", "No"}, 2, Color.WHITE, Assets.portrait, Assets.textboxDefault, null, 100, true, true);
                     }
                 }
             }
@@ -80,7 +79,7 @@ public class ArtFrameSmall extends StaticEntity {
         }
     }
 
-    public void textboxCallback(String option) {
+    private void textboxCallback(String option) {
         if (option.equals("Yes")) {
             if (!inventory.contains("Painting")) {
                 //we are definitely taking the painting from the wall

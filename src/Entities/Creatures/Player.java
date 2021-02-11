@@ -13,9 +13,10 @@ import java.util.ArrayList;
 
 public class Player extends Creature {
     private static boolean down, up, left, right;
-    private boolean interactedWith, transparent, lockX, lockY, headOnly;
+    private boolean interactedWith, transparent, invisible, lockX, lockY, headOnly;
     private Inventory inventory;
-    public static float defaultSpeed = 3.0f, defaultRunSpeed = 16.0f;
+    public static float defaultSpeed = 4.0f, defaultRunSpeed = 16.0f;
+    public float cutsceneSpeed = 3.0f;
     //Animations
     private Animation animDown, animUp, animLeft, animRight;
     private java.util.List<Animation> animationList = new ArrayList<>();
@@ -88,6 +89,9 @@ public class Player extends Creature {
     @Override
     public void render(Graphics g) {
         handler.getGameCamera().centerOnEntity(this);
+        if (invisible) {
+            return;
+        }
         if (handler.isPlayerFrozen()) {
             if (xMove != 0 || yMove != 0) {
                 currentFrame = getCurrentAnimationFrame();
@@ -421,5 +425,17 @@ public class Player extends Creature {
 
     public Rectangle getInteractionRectangle() {
         return interactionRectangle;
+    }
+
+    public float getCutsceneSpeed() {
+        return cutsceneSpeed;
+    }
+
+    public boolean isInvisible() {
+        return invisible;
+    }
+
+    public void setInvisible(boolean invisible) {
+        this.invisible = invisible;
     }
 }
