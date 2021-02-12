@@ -118,18 +118,23 @@ public class ClassroomCutscene1 implements Cutscene {
                             teacher.setxMove(teacher.getSpeed());
                         } else {
                             entityManager.removeEntity(teacher);
+                            teacher = null;
                         }
                     } else {
                         if (!friendsAdded) {
                             friendsAdded = true;
                             denial = new Denial(handler, denialDesk.getX() + denialDesk.getWidth(), denialDesk.getY(), "denial-school1");
                             entityManager.addEntity(denial);
+                            denialDesk.setOccupied(false);
                             anger = new Anger(handler, angerDesk.getX() + angerDesk.getWidth(), angerDesk.getY(), "anger-school1");
                             entityManager.addEntity(anger);
+                            angerDesk.setOccupied(false);
                             bargaining = new Bargaining(handler, bargainingDesk.getX() + bargainingDesk.getWidth(), bargainingDesk.getY(), "bargaining-school1");
                             entityManager.addEntity(bargaining);
+                            bargainingDesk.setOccupied(false);
                             depression = new Depression(handler, depressionDesk.getX() + depressionDesk.getWidth(), depressionDesk.getY(), "depression-school1");
                             entityManager.addEntity(depression);
+                            depressionDesk.setOccupied(false);
                         }
                     }
                 }
