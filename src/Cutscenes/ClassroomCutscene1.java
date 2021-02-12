@@ -1,29 +1,36 @@
 package Cutscenes;
 
-import Entities.Creatures.Player;
-import Entities.Creatures.Teacher;
+import Entities.Creatures.*;
+import Entities.EntityManager;
 import Entities.StaticEntities.Chalkboard;
+import Entities.StaticEntities.StudentDesk;
+import Entities.StaticEntities.TeacherDesk;
 import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
 import Tiles.Tile;
-import Utils.GeneralUtils;
-import Variables.GeneralConstants;
 import Variables.Handler;
 
 import java.awt.*;
 
 public class ClassroomCutscene1 implements Cutscene {
-    Player player;
-    private boolean firstTime = true;
+    private Player player;
+    private boolean firstTime = true, bellPlayed = false, friendsAdded;
     private Handler handler;
     private TextboxHandler textboxHandler1, textboxHandler2, textboxHandler3, textboxHandler4, textboxHandler5,
             textboxHandler6, textboxHandler7, textboxHandler8, textboxHandler9;
     private KeyManager keyManager;
-    private int messageNum = 1;
-    private boolean showTextbox1 = false, showTextbox2 = false, textbox1 = true, textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9;
+    private boolean showTextbox1 = false, textbox1 = true, textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9;
     private Teacher teacher;
     private Chalkboard chalkboard;
+    private StudentDesk denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
+    private TeacherDesk teacherDesk;
+    private Denial denial;
+    private Anger anger;
+    private Bargaining bargaining;
+    private Depression depression;
+    private Acceptance acceptance;
+    private EntityManager entityManager;
     private final String messageOne = "Alright, let's get started. We're going to pick up where we left off yesterday. \r " +
             "Logarithms are pretty simple if you understand exponents. They're really just a different way ... \r " +
             "...................... \n ...................... \n ......................",
@@ -59,14 +66,22 @@ public class ClassroomCutscene1 implements Cutscene {
     public void tick() {
         if (firstTime) {
             teacher = new Teacher(handler, 23 * Tile.TILEWIDTH, 3.5f * Tile.TILEHEIGHT, "teacher-school1");
-            handler.getActiveWorld().getEntityManager().addEntity(teacher);
-            chalkboard = (Chalkboard) handler.getActiveWorld().getEntityManager().getEntityByUid("chalkboard1-classroom1");
+            entityManager = handler.getActiveWorld().getEntityManager();
+            entityManager.addEntity(teacher);
+            chalkboard = (Chalkboard) entityManager.getEntityByUid("chalkboard-classroom1");
+            teacherDesk = (TeacherDesk) entityManager.getEntityByUid("teacherdesk-classroom1");
+            denialDesk = (StudentDesk) entityManager.getEntityByUid("denialdesk-classroom1");
+            angerDesk = (StudentDesk) entityManager.getEntityByUid("angerdesk-classroom1");
+            bargainingDesk = (StudentDesk) entityManager.getEntityByUid("bargainingdesk-classroom1");
+            depressionDesk = (StudentDesk) entityManager.getEntityByUid("depressiondesk-classroom1");
+            acceptanceDesk = (StudentDesk) entityManager.getEntityByUid("acceptancedesk-classroom1");
+            playerDesk = (StudentDesk) entityManager.getEntityByUid("playerdesk-classroom1");
             player = handler.getPlayer();
             teacher.setDirection("down");
             firstTime = false;
         }
         if (!showTextbox1) {
-            if (teacher.getX() > chalkboard.getX() - teacher.getWidth()) {
+            if (teacher.getX() > teacherDesk.getX() + teacherDesk.getWidth() / 2f - teacher.getWidth() / 2f) {
                 teacher.setxMove(-teacher.getSpeed());
             } else {
                 teacher.setDirection("down");
@@ -83,6 +98,7 @@ public class ClassroomCutscene1 implements Cutscene {
                         handler.getGame().fadeOut(255);
                     } else if (handler.getGame().isFinishedFadingOut()) {
                         chalkboard.setType(1);
+                        teacher.setX(chalkboard.getX() + chalkboard.getWidth());
                         textbox2 = true;
                         textbox1 = false;
                     }
@@ -96,6 +112,26 @@ public class ClassroomCutscene1 implements Cutscene {
             if (textbox3) {
                 if (!textboxHandler3.isFinished()) {
                     textboxHandler3.tick();
+                } else {
+                    if (teacher != null) {
+                        if (teacher.getX() < 23 * Tile.TILEWIDTH) {
+                            teacher.setxMove(teacher.getSpeed());
+                        } else {
+                            entityManager.removeEntity(teacher);
+                        }
+                    } else {
+                        if (!friendsAdded) {
+                            friendsAdded = true;
+                            denial = new Denial(handler, denialDesk.getX() + denialDesk.getWidth(), denialDesk.getY(), "denial-school1");
+                            entityManager.addEntity(denial);
+                            anger = new Anger(handler, angerDesk.getX() + angerDesk.getWidth(), angerDesk.getY(), "anger-school1");
+                            entityManager.addEntity(anger);
+                            bargaining = new Bargaining(handler, bargainingDesk.getX() + bargainingDesk.getWidth(), bargainingDesk.getY(), "bargaining-school1");
+                            entityManager.addEntity(bargaining);
+                            depression = new Depression(handler, depressionDesk.getX() + depressionDesk.getWidth(), depressionDesk.getY(), "depression-school1");
+                            entityManager.addEntity(depression);
+                        }
+                    }
                 }
             }
             if (textbox4) {
@@ -145,20 +181,27 @@ public class ClassroomCutscene1 implements Cutscene {
                     handler.getGame().setFadeOut(false, true);
                     textboxHandler2.render(g);
                 } else {
-                    if (!handler.getGame().isFadeIn()) {
-                        handler.getGame().fadeIn(255);
-                    } else if (handler.getGame().isFinishedFadingIn()) {
-                        textbox3 = true;
-                        textbox2 = false;
+                    if (!bellPlayed) {
+                        Assets.schoolBell.start();
+                        bellPlayed = true;
+                        handler.getScreenOverlay().overlayScreen(g, Color.black);
+                    } else {
+                        if (!Assets.schoolBell.isActive()) {
+                            if (!handler.getGame().isFadeIn()) {
+                                handler.getGame().fadeIn(255);
+                            } else if (handler.getGame().isFinishedFadingIn()) {
+                                textbox3 = true;
+                                textbox2 = false;
+                            }
+                        } else {
+                            handler.getScreenOverlay().overlayScreen(g, Color.black);
+                        }
                     }
                 }
             }
             if (textbox3) {
                 if (!textboxHandler3.isFinished()) {
                     textboxHandler3.render(g);
-                } else {
-                    textbox4 = true;
-                    textbox3 = false;
                 }
             }
             if (textbox4) {
