@@ -29,7 +29,7 @@ public class Game implements Runnable {
 
 	//Screen fading
 	public ScreenOverlay screenOverlay;
-	public int alpha = 0, alphaThreshold = 0;
+	private float alpha, alphaThreshold = 0;
 	private boolean fadeOut = false, fadeIn = false, finishedFadingIn = false, finishedFadingOut = false;
 
 	//States
@@ -123,7 +123,7 @@ public class Game implements Runnable {
 				alpha = 255;
 				finishedFadingOut = true;
 			}
-			screenOverlay.overlayScreen(g, new Color(0, 0, 0, alpha));
+			screenOverlay.overlayScreen(g, new Color(0, 0, 0, (int) alpha));
 		}
 		if (fadeIn) {
 			alpha -= alphaThreshold;
@@ -131,7 +131,7 @@ public class Game implements Runnable {
 				alpha = 0;
 				finishedFadingIn = true;
 			}
-			screenOverlay.overlayScreen(g, new Color(0, 0, 0, alpha));
+			screenOverlay.overlayScreen(g, new Color(0, 0, 0, (int) alpha));
 		}
 	}
 
@@ -203,7 +203,7 @@ public class Game implements Runnable {
 		setFadeIn(true, true);
 		finishedFadingIn = false;
 		alpha = 255;
-		alphaThreshold = 255 / frameCount;
+		alphaThreshold = 255f / frameCount;
 	}
 
 	public boolean isFadeIn() {
@@ -214,7 +214,7 @@ public class Game implements Runnable {
 		setFadeOut(true, true);
 		finishedFadingOut = false;
 		alpha = 0;
-		alphaThreshold = 255 / frameCount;
+		alphaThreshold = 255f / frameCount;
 	}
 
 	public boolean isFadeOut() {

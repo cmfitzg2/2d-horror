@@ -31,8 +31,11 @@ public class GeneralUtils {
         handler.getGame().fadeIn(transitionFrames);
     }
 
-    public static void levelFadeOut(Handler handler) {
-        handler.getGame().fadeOut(GeneralConstants.levelTransitionFrames);
+    public static void levelFadeOut(Handler handler, int transitionFrames) {
+        if (transitionFrames <= 0) {
+            transitionFrames = GeneralConstants.levelTransitionFrames;
+        }
+        handler.getGame().fadeOut(transitionFrames);
     }
 
     public static void stopLevelFadeIn(Handler handler, boolean setPlayerFrozen) {

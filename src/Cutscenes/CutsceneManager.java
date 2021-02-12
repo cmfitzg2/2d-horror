@@ -17,6 +17,7 @@ public class CutsceneManager {
         cutscenes.put(1, new Prologue(handler));
         cutscenes.put(2, new AcceptanceEncounter1(handler));
         cutscenes.put(3, new SchoolCutscene1(handler));
+        cutscenes.put(4, new ClassroomCutscene1(handler));
         setActiveCutscene(cutscenes.get(1));
     }
 

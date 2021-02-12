@@ -4,6 +4,7 @@ import Entities.Creatures.Creature;
 import Entities.Creatures.Player;
 import Entities.Entity;
 import Entities.EntityManager;
+import Variables.GeneralConstants;
 import Variables.Handler;
 import Tiles.Tile;
 import java.awt.Graphics;
@@ -71,7 +72,7 @@ public abstract class World {
 
 	public void transitionFrom(World newWorld, float newX, float newY) {
 		if (!handler.getGame().isFadeOut()) {
-			GeneralUtils.levelFadeOut(handler);
+			GeneralUtils.levelFadeOut(handler, GeneralConstants.levelTransitionFrames);
 		} else if (handler.getGame().isFinishedFadingOut()) {
 			GeneralUtils.stopLevelFadeOut(handler, newWorld, newX, newY, false);
 			transitioningTo = true;

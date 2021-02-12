@@ -246,11 +246,12 @@ Acceptance: "Looks like our plans are made then! Let's just make it to the end o
 MC: "Yep. Back to plan A."
 >text is finally over
 >some sort of transition to going to class, all characters go inside, MC follows
+
+>player eventually takes seat
 >teacher comes in.
 Teacher: "Alright, let's get started. We're going to pick up where we left off yesterday."
 Teacher: "Logarithms are pretty simple if you understand exponents. They're really just a different way ..."
 >screen fades to black
-
 MC (thinking): "..."
 MC (thinking): "...Huh?"
 MC (thinking): "It's that same feeling again as this morning. Did I fall asleep?"

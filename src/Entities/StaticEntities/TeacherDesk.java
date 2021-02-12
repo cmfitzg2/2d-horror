@@ -2,19 +2,21 @@ package Entities.StaticEntities;
 
 import Graphics.Assets;
 import Textboxes.TextboxHandler;
+import Variables.GeneralConstants;
 import Variables.Handler;
 
 import java.awt.*;
 
 public class TeacherDesk extends StaticEntity {
 
-    TextboxHandler textboxHandler;
-
-    private final String denialText = "Sit down, MC", angerText = "You're too stupid to teach. Sit down, dumbass.",
+    private TextboxHandler textboxHandler;
+    private final String denialText = "Sit down, MC",
+            angerText = "You're too stupid to teach. \n Sit down, dumbass.",
             bargainingText = "Uhh, MC, I think the teacher will be here soon... \r You should probably go to your seat.",
-            depressionText = "Oh, you're teaching today? Cool, maybe I'll pay attention then.",
-            acceptanceText = "placeholder";
-    private String message = denialText;
+            depressionText = "Oh, you're teaching today? \n Cool, guess I'll pay attention for once.",
+            acceptanceText = "You're having an awful lot of fun for a guy who's been talking about how bad he feels! Lack of sleep delirium kicking in? \r I think time's up though.";
+    private int messageNum = 0;
+
     public TeacherDesk(Handler handler, float x, float y, int width, int height, String uniqueName) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
@@ -30,7 +32,11 @@ public class TeacherDesk extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-
+        if (null != textboxHandler && textboxHandler.isActive()) {
+            if (!textboxHandler.isFinished()) {
+                textboxHandler.render(g);
+            }
+        }
     }
 
     @Override
@@ -40,7 +46,11 @@ public class TeacherDesk extends StaticEntity {
 
     @Override
     public void tick() {
-
+        if (null != textboxHandler && textboxHandler.isActive()) {
+            if (!textboxHandler.isFinished()) {
+                textboxHandler.tick();
+            }
+        }
     }
 
     @Override
@@ -56,7 +66,36 @@ public class TeacherDesk extends StaticEntity {
 
     @Override
     public void interactedWith() {
-
+        if (handler.getFlags().isClassroomCutscene1() && handler.getPlayer().getY() < y) {
+            switch (messageNum) {
+                case 0:
+                    textboxHandler = new TextboxHandler(handler, Assets.denialFont, denialText, null,
+                            GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDenial,
+                            Assets.denialText, 50, true, true);
+                    break;
+                case 1:
+                    textboxHandler = new TextboxHandler(handler, Assets.angerFont, angerText, null,
+                            GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAnger,
+                            Assets.angerText, 50, true, true);
+                    break;
+                case 2:
+                    textboxHandler = new TextboxHandler(handler, Assets.bargainingFont, bargainingText, null,
+                            GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxBargaining,
+                            Assets.bargainingText, 50, true, true);
+                    break;
+                case 3:
+                    textboxHandler = new TextboxHandler(handler, Assets.depressionFont, depressionText, null,
+                            GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression,
+                            Assets.depressionText, 50, true, true);
+                    break;
+                default:
+                    textboxHandler = new TextboxHandler(handler, Assets.acceptanceFont, acceptanceText, null,
+                            GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance,
+                            Assets.acceptanceText, 50, true, true);
+            }
+            textboxHandler.setActive(true);
+            messageNum++;
+        }
     }
 
     @Override

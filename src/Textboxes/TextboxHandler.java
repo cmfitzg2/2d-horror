@@ -175,14 +175,12 @@ public class TextboxHandler {
 							finished = true;
 							if (unfreezeAfter) {
 								handler.setPlayerFrozen(false);
-								System.out.println("unfrozen in handler");
 							}
 						}
 					} else {
 						finished = true;
 						if (unfreezeAfter) {
 							handler.setPlayerFrozen(false);
-							System.out.println("unfrozen in handler");
 						}
 					}
 				}

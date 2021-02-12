@@ -1,6 +1,7 @@
 package Entities.StaticEntities;
 
 import Utils.GeneralUtils;
+import Variables.GeneralConstants;
 import Variables.Handler;
 import Graphics.Assets;
 import Worlds.World;
@@ -53,7 +54,7 @@ public class Hole extends StaticEntity {
         }
         if (intersected) {
             if (justStartedFalling) {
-                GeneralUtils.levelFadeOut(handler);
+                GeneralUtils.levelFadeOut(handler, GeneralConstants.levelTransitionFrames);
                 justStartedFalling = false;
                 if (!broken) {
                     //Assets.woodBreak.play();

@@ -55,7 +55,7 @@ public class Assets {
 			galleryPerdition, galleryProcession, galleryProphet, galleryRevelry, gallerySenescence, gallerySolace,
 			gallerySuffering, gallerySynchronicity, galleryTorment, galleryVilomah;
 	public static BufferedImage textboxDefault, textboxPlayerThinking, textboxPlayer, textboxDenial, textboxAnger,
-			textboxBargaining, textboxDepression, textboxAcceptance, textboxOptions, portrait;
+			textboxBargaining, textboxDepression, textboxAcceptance, textboxTeacher, textboxOptions, portrait;
 	public static BufferedImage inventory, inventoryHighlight, keyInventory, abyssInventory, apparitionInventory,
 			blightInventory, butcherInventory, captivityInventory, cipherInventory, condemnationInventory, delugeInventory,
 			dissonanceInventory, dutyInventory, facadeInventory, harbingerInventory, harrowerInventory, holocaustInventory,
@@ -73,12 +73,13 @@ public class Assets {
 	public static BufferedImage[] bargainingDown, bargainingUp, bargainingLeft, bargainingRight;
 	public static BufferedImage[] depressionDown, depressionUp, depressionLeft, depressionRight;
 	public static BufferedImage[] acceptanceDown, acceptanceUp, acceptanceLeft, acceptanceRight;
+	public static BufferedImage[] teacherDown, teacherUp, teacherLeft, teacherRight;
 	public static BufferedImage[] ghoulDown, ghoulLeft, ghoulRight, ghoulUp;
 	public static BufferedImage[] tunnelVision;
 	public static Font sans, serif, philosopher, textboxFontDefault;
-	public static Font playerSpeakingFont, playerThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont;
+	public static Font playerSpeakingFont, playerThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont, teacherFont;
 	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2,
-			denialText, angerText, bargainingText, depressionText, acceptanceText, playerText;
+			denialText, angerText, bargainingText, depressionText, acceptanceText, playerText, teacherText;
 	public static Clip menuMusic, schoolBell;
 	public static void init() {
 		initSounds();
@@ -120,6 +121,7 @@ public class Assets {
 			bargainingFont = serif;
 			depressionFont = serif;
 			acceptanceFont = sans;
+			teacherFont = textboxFontDefault;
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			//register the font
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/sans.ttf")));
@@ -494,6 +496,36 @@ public class Assets {
 		playerLeftTransparent = mcSheetTransparent.crop(0, height * 2, width, height);
 		playerRightTransparent = mcSheetTransparent.crop(0, height * 3, width, height);
 
+		SpriteSheet teacherSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/teacher-sheet.png"));
+		teacherDown = new BufferedImage[4]; 		//4 = frame count
+		teacherUp = new BufferedImage[4];
+		teacherLeft = new BufferedImage[6];
+		teacherRight = new BufferedImage[6];
+
+		teacherDown[0] = teacherSheet.crop(0, 0, width, height);
+		teacherDown[1] = teacherSheet.crop(width, 0, width, height);
+		teacherDown[2] = teacherSheet.crop(width * 2, 0, width, height);
+		teacherDown[3] = teacherSheet.crop(width * 3, 0, width, height);
+
+		teacherUp[0] = teacherSheet.crop(0, height, width, height);
+		teacherUp[1] = teacherSheet.crop(width, height, width, height);
+		teacherUp[2] = teacherSheet.crop(width * 2, height, width, height);
+		teacherUp[3] = teacherSheet.crop(width * 3, height, width, height);
+
+		teacherLeft[0] = teacherSheet.crop(0, height * 2, width, height);
+		teacherLeft[1] = teacherSheet.crop(width, height * 2, width, height);
+		teacherLeft[2] = teacherSheet.crop(width * 2, height * 2, width, height);
+		teacherLeft[3] = teacherSheet.crop(width * 3, height * 2, width, height);
+		teacherLeft[4] = teacherSheet.crop(width * 4, height * 2, width, height);
+		teacherLeft[5] = teacherSheet.crop(width * 5, height * 2, width, height);
+
+		teacherRight[0] = teacherSheet.crop(0, height * 3, width, height);
+		teacherRight[1] = teacherSheet.crop(width, height * 3, width, height);
+		teacherRight[2] = teacherSheet.crop(width * 2, height * 3, width, height);
+		teacherRight[3] = teacherSheet.crop(width * 3, height * 3, width, height);
+		teacherRight[4] = teacherSheet.crop(width * 4, height * 3, width, height);
+		teacherRight[5] = teacherSheet.crop(width * 5, height * 3, width, height);
+
 		SpriteSheet ghoulSheet = new SpriteSheet(ImageLoader.loadImage("/textures/ghoul.png"));
 		ghoulDown = new BufferedImage[3];
 		ghoulDown[0] = ghoulSheet.crop(0, 0, biggerWidth, biggerHeight);
@@ -531,6 +563,7 @@ public class Assets {
 		textboxBargaining = ImageLoader.loadImage("/textures/tb.png");
 		textboxDepression = ImageLoader.loadImage("/textures/tb.png");
 		textboxAcceptance = ImageLoader.loadImage("/textures/tb.png");
+		textboxTeacher = ImageLoader.loadImage("/textures/tb.png");
 		textboxOptions = ImageLoader.loadImage("/textures/tb-options.png");
 		portrait = ImageLoader.loadImage("/textures/portrait.png");
 		inventory = ImageLoader.loadImage("/textures/inventory.png");
