@@ -27,6 +27,18 @@ i think each event should take place in such a way that MC + the character can s
 -the painting they take represents their aspect of grief but isn't named until end-of-game
 -this is how it's revealed what the game meaning is
 
+-isolated areas with each of the 5 friends, one on each floor
+-art gallery on that floor matches the stage of grief
+-denial starts in the basement, anger is ground floor, etc.
+-eventually literally transcend the cycle of grief
+-by the time you've met up with acceptance, all the other friends are dead
+-mc obviously in shambles, literally depressed now
+-becomes clear acceptance knows whats going on
+-forces MC to confront the gallery here, which has art that reminds him of what's happened
+-MC remembers and has heart2heart with acceptance over his sorrow
+-acceptance slowly leads MC to acceptance
+-maybe instead of die he can fade away or something. needs to feel natural.
+
 denial
 	name: daniel? anagram of denial lol
 	character:

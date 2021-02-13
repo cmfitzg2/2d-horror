@@ -16,10 +16,13 @@ public class School1 extends World {
         super(handler, "res/worlds/school1.txt", id, player);
     }
 
+    Rectangle loadzoneClassroom;
+    Rectangle loadzoneOutside;
+
     @Override
     public void checkLoadZones() {
-        Rectangle loadzoneClassroom = new Rectangle(383 - (int) handler.getGameCamera().getxOffset(), 733 - (int) handler.getGameCamera().getyOffset(), 63, 34);
-        Rectangle loadzoneOutside = new Rectangle(1342 - (int) handler.getGameCamera().getxOffset(), 1818 - (int) handler.getGameCamera().getyOffset(), 130, 36);
+        loadzoneClassroom = new Rectangle(6 * Tile.TILEWIDTH - (int) handler.getGameCamera().getxOffset(), (int) (11.5 * Tile.TILEHEIGHT) - (int) handler.getGameCamera().getyOffset(), 64, 32);
+        loadzoneOutside = new Rectangle(1342 - (int) handler.getGameCamera().getxOffset(), 1818 - (int) handler.getGameCamera().getyOffset(), 130, 36);
         if (entityManager.getPlayer().getPlayerRec().intersects(loadzoneClassroom)) {
             transitionFrom(handler.getWorldManager().getWorld(WorldManager.CLASSROOM_1_ID), 23 * Tile.TILEWIDTH, 4 * Tile.TILEHEIGHT);
         }
@@ -72,6 +75,22 @@ public class School1 extends World {
                 cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(3));
                 handler.setPlayerFrozen(true);
             }
+        }
+    }
+
+    @Override
+    public void render(Graphics g) {
+        if (firstRender) {
+            firstRender = false;
+            return;
+        }
+        renderTiles(g);
+        entityManager.render(g);
+        if (null != loadzoneClassroom) {
+            g.fillRect(loadzoneClassroom.x, loadzoneClassroom.y, loadzoneClassroom.width, loadzoneClassroom.height);
+        }
+        if (null != loadzoneOutside) {
+            g.fillRect(loadzoneOutside.x, loadzoneOutside.y, loadzoneOutside.width, loadzoneOutside.height);
         }
     }
 }

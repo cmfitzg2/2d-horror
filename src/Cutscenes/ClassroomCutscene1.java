@@ -31,6 +31,7 @@ public class ClassroomCutscene1 implements Cutscene {
     private Depression depression;
     private Acceptance acceptance;
     private EntityManager entityManager;
+    private final float exitX = 23 * Tile.TILEWIDTH, exitY = 4 * Tile.TILEHEIGHT;
     private final String messageOne = "Alright, let's get started. We're going to pick up where we left off yesterday. \r " +
             "Logarithms are pretty simple if you understand exponents. They're really just a different way ... \r " +
             "...................... \n ...................... \n ......................",
@@ -65,7 +66,7 @@ public class ClassroomCutscene1 implements Cutscene {
     @Override
     public void tick() {
         if (firstTime) {
-            teacher = new Teacher(handler, 23 * Tile.TILEWIDTH, 3.5f * Tile.TILEHEIGHT, "teacher-school1");
+            teacher = new Teacher(handler, exitX, exitY - Tile.TILEHEIGHT / 2f, "teacher-school1");
             entityManager = handler.getActiveWorld().getEntityManager();
             entityManager.addEntity(teacher);
             chalkboard = (Chalkboard) entityManager.getEntityByUid("chalkboard-classroom1");
@@ -99,6 +100,8 @@ public class ClassroomCutscene1 implements Cutscene {
                     } else if (handler.getGame().isFinishedFadingOut()) {
                         chalkboard.setType(1);
                         teacher.setX(chalkboard.getX() + chalkboard.getWidth());
+                        player.setX(playerDesk.getX() - playerDesk.getWidth());
+                        player.setY(playerDesk.getY());
                         textbox2 = true;
                         textbox1 = false;
                     }
@@ -114,59 +117,148 @@ public class ClassroomCutscene1 implements Cutscene {
                     textboxHandler3.tick();
                 } else {
                     if (teacher != null) {
-                        if (teacher.getX() < 23 * Tile.TILEWIDTH) {
+                        if (teacher.getX() < exitX) {
                             teacher.setxMove(teacher.getSpeed());
                         } else {
                             entityManager.removeEntity(teacher);
                             teacher = null;
-                        }
-                    } else {
-                        if (!friendsAdded) {
-                            friendsAdded = true;
-                            denial = new Denial(handler, denialDesk.getX() + denialDesk.getWidth(), denialDesk.getY(), "denial-school1");
-                            entityManager.addEntity(denial);
-                            denialDesk.setOccupied(false);
-                            anger = new Anger(handler, angerDesk.getX() + angerDesk.getWidth(), angerDesk.getY(), "anger-school1");
-                            entityManager.addEntity(anger);
-                            angerDesk.setOccupied(false);
-                            bargaining = new Bargaining(handler, bargainingDesk.getX() + bargainingDesk.getWidth(), bargainingDesk.getY(), "bargaining-school1");
-                            entityManager.addEntity(bargaining);
-                            bargainingDesk.setOccupied(false);
-                            depression = new Depression(handler, depressionDesk.getX() + depressionDesk.getWidth(), depressionDesk.getY(), "depression-school1");
-                            entityManager.addEntity(depression);
-                            depressionDesk.setOccupied(false);
+                            textbox3 = false;
+                            textbox4 = true;
                         }
                     }
                 }
             }
-            if (textbox4) {
-                if (!textboxHandler4.isFinished()) {
-                    textboxHandler4.tick();
+        }
+        //this ones a little complicated, we want to scroll MC's thoughts as friends exit
+        //and then move acceptance over for dialogue after *both* of those are done
+        if (textbox4) {
+            if (!textboxHandler4.isFinished()) {
+                textboxHandler4.tick();
+            } else if (null == depression) {
+                if (null == acceptance) {
+                    acceptance = new Acceptance(handler, acceptanceDesk.getX() + acceptanceDesk.getWidth(), acceptanceDesk.getY(), "acceptance-school1");
+                    entityManager.addEntity(acceptance);
+                    acceptanceDesk.setOccupied(false);
+                } else {
+                    if (acceptance.getX() < playerDesk.getX() - 2 * Tile.TILEWIDTH) {
+                        acceptance.setxMove(acceptance.getSpeed());
+                    } else {
+                        acceptance.setxMove(0);
+                        playerDesk.setOccupied(false);
+                        player.setDirection("left");
+                        player.setInvisible(false);
+                        textbox5 = true;
+                        textbox4 = false;
+                    }
                 }
             }
-            if (textbox5) {
-                if (!textboxHandler5.isFinished()) {
-                    textboxHandler5.tick();
+            if (!friendsAdded) {
+                friendsAdded = true;
+                denial = new Denial(handler, denialDesk.getX() + denialDesk.getWidth(), denialDesk.getY(), "denial-school1");
+                entityManager.addEntity(denial);
+                denialDesk.setOccupied(false);
+                anger = new Anger(handler, angerDesk.getX() + angerDesk.getWidth(), angerDesk.getY(), "anger-school1");
+                entityManager.addEntity(anger);
+                angerDesk.setOccupied(false);
+                bargaining = new Bargaining(handler, bargainingDesk.getX() + bargainingDesk.getWidth(), bargainingDesk.getY(), "bargaining-school1");
+                entityManager.addEntity(bargaining);
+                bargainingDesk.setOccupied(false);
+                depression = new Depression(handler, depressionDesk.getX() + depressionDesk.getWidth(), depressionDesk.getY(), "depression-school1");
+                entityManager.addEntity(depression);
+                depressionDesk.setOccupied(false);
+            } else {
+                if (null != denial) {
+                    if (denial.getX() < exitX) {
+                        denial.setxMove(denial.getSpeed());
+                    } else if (denial.getY() > exitY) {
+                        denial.setxMove(0);
+                        denial.setyMove(-denial.getSpeed());
+                    } else {
+                        entityManager.removeEntity(denial);
+                        denial = null;
+                    }
+                }
+                if (null != anger) {
+                    if (anger.getY() > denialDesk.getY() - Tile.TILEHEIGHT) {
+                        anger.setyMove(-anger.getSpeed());
+                    } else if (anger.getX() < exitX) {
+                        anger.setyMove(0);
+                        anger.setxMove(anger.getSpeed());
+                    } else if (anger.getY() > exitY) {
+                        anger.setxMove(0);
+                        anger.setyMove(-anger.getSpeed());
+                    } else {
+                        entityManager.removeEntity(anger);
+                        anger = null;
+                    }
+                }
+                if (null != bargaining) {
+                    if (bargaining.getY() > denialDesk.getY() - Tile.TILEHEIGHT) {
+                        bargaining.setyMove(-bargaining.getSpeed());
+                    } else if (bargaining.getX() < exitX) {
+                        bargaining.setyMove(0);
+                        bargaining.setxMove(bargaining.getSpeed());
+                    } else if (bargaining.getY() > exitY) {
+                        bargaining.setxMove(0);
+                        bargaining.setyMove(-bargaining.getSpeed());
+                    } else {
+                        entityManager.removeEntity(bargaining);
+                        bargaining = null;
+                    }
+                }
+                if (null != depression) {
+                    if (depression.getY() > denialDesk.getY() - Tile.TILEHEIGHT) {
+                        depression.setyMove(-depression.getSpeed());
+                    } else if (depression.getX() < exitX) {
+                        depression.setyMove(0);
+                        depression.setxMove(depression.getSpeed());
+                    } else if (depression.getY() > exitY) {
+                        depression.setxMove(0);
+                        depression.setyMove(-depression.getSpeed());
+                    } else {
+                        entityManager.removeEntity(depression);
+                        depression = null;
+                    }
                 }
             }
-            if (textbox6) {
-                if (!textboxHandler6.isFinished()) {
-                    textboxHandler6.tick();
-                }
+        }
+        if (textbox5) {
+            if (!textboxHandler5.isFinished()) {
+                textboxHandler5.tick();
             }
-            if (textbox7) {
-                if (!textboxHandler7.isFinished()) {
-                    textboxHandler7.tick();
-                }
+        }
+        if (textbox6) {
+            if (!textboxHandler6.isFinished()) {
+                textboxHandler6.tick();
             }
-            if (textbox8) {
-                if (!textboxHandler8.isFinished()) {
-                    textboxHandler8.tick();
-                }
+        }
+        if (textbox7) {
+            if (!textboxHandler7.isFinished()) {
+                textboxHandler7.tick();
             }
-            if (textbox9) {
-                if (!textboxHandler9.isFinished()) {
-                    textboxHandler9.tick();
+        }
+        if (textbox8) {
+            if (!textboxHandler8.isFinished()) {
+                textboxHandler8.tick();
+            }
+        }
+        if (textbox9) {
+            if (!textboxHandler9.isFinished()) {
+                textboxHandler9.tick();
+            } else {
+                if (null != acceptance) {
+                    if (acceptance.getY() > denialDesk.getY() - Tile.TILEHEIGHT) {
+                        acceptance.setyMove(-acceptance.getSpeed());
+                    } else if (acceptance.getX() < exitX) {
+                        acceptance.setyMove(0);
+                        acceptance.setxMove(acceptance.getSpeed());
+                    } else if (acceptance.getY() > exitY) {
+                        acceptance.setxMove(0);
+                        acceptance.setyMove(-acceptance.getSpeed());
+                    } else {
+                        entityManager.removeEntity(acceptance);
+                        acceptance = null;
+                    }
                 }
             }
         }
@@ -197,6 +289,7 @@ public class ClassroomCutscene1 implements Cutscene {
                             } else if (handler.getGame().isFinishedFadingIn()) {
                                 textbox3 = true;
                                 textbox2 = false;
+                                handler.getGame().setFadeIn(false, true);
                             }
                         } else {
                             handler.getScreenOverlay().overlayScreen(g, Color.black);
@@ -212,9 +305,6 @@ public class ClassroomCutscene1 implements Cutscene {
             if (textbox4) {
                 if (!textboxHandler4.isFinished()) {
                     textboxHandler4.render(g);
-                } else {
-                    textbox5 = true;
-                    textbox4 = false;
                 }
             }
             if (textbox5) {
@@ -253,8 +343,10 @@ public class ClassroomCutscene1 implements Cutscene {
                 if (!textboxHandler9.isFinished()) {
                     textboxHandler9.render(g);
                 } else {
-                    textbox9 = false;
-                    exit();
+                    if (null == acceptance) {
+                        textbox9 = false;
+                        exit();
+                    }
                 }
             }
         }
