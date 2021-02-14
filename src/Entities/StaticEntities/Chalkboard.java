@@ -1,6 +1,8 @@
 package Entities.StaticEntities;
 
 import Graphics.Assets;
+import Textboxes.TextboxHandler;
+import Variables.GeneralConstants;
 import Variables.Handler;
 
 import java.awt.*;
@@ -8,6 +10,7 @@ import java.awt.*;
 public class Chalkboard extends StaticEntity {
 
     private int type;
+    private TextboxHandler textboxHandler;
 
     public Chalkboard(Handler handler, float x, float y, int width, int height, String uniqueName, int type) {
         super(handler, x, y, width, height, uniqueName);
@@ -30,12 +33,16 @@ public class Chalkboard extends StaticEntity {
 
     @Override
     public void finalRender(Graphics g) {
-
+        if (null != textboxHandler && !textboxHandler.isFinished()) {
+            textboxHandler.render(g);
+        }
     }
 
     @Override
     public void tick() {
-
+        if (null != textboxHandler && !textboxHandler.isFinished()) {
+            textboxHandler.tick();
+        }
     }
 
     @Override
@@ -51,7 +58,10 @@ public class Chalkboard extends StaticEntity {
 
     @Override
     public void interactedWith() {
-
+        textboxHandler = new TextboxHandler(handler, Assets.playerThinkingFont,
+                "Definitely one of the worst things I've ever woken up to.", null, GeneralConstants.defaultTextSpeed,
+                Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+        textboxHandler.setActive(true);
     }
 
     @Override
