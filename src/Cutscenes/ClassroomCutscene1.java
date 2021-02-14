@@ -372,24 +372,24 @@ public class ClassroomCutscene1 implements Cutscene {
                 }
             }
             if (textbox10) {
-                if (!textboxHandler9.isFinished()) {
-                    textboxHandler9.render(g);
+                if (!textboxHandler10.isFinished()) {
+                    textboxHandler10.render(g);
                 } else {
                     textbox10 = false;
                     textbox11 = true;
                 }
             }
             if (textbox11) {
-                if (!textboxHandler9.isFinished()) {
-                    textboxHandler9.render(g);
+                if (!textboxHandler11.isFinished()) {
+                    textboxHandler11.render(g);
                 } else {
                     textbox11 = false;
                     textbox12 = true;
                 }
             }
             if (textbox12) {
-                if (!textboxHandler9.isFinished()) {
-                    textboxHandler9.render(g);
+                if (!textboxHandler12.isFinished()) {
+                    textboxHandler12.render(g);
                 } else {
                     textbox9 = false;
                     textbox10 = true;

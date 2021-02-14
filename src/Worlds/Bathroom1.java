@@ -1,8 +1,10 @@
 package Worlds;
 
 import Entities.Creatures.Player;
+import Entities.StaticEntities.Toilet;
 import Tiles.Tile;
 import Variables.Handler;
+import Graphics.Assets;
 
 import java.awt.*;
 
@@ -22,7 +24,10 @@ public class Bathroom1 extends World {
 
     @Override
     protected void addEntities() {
-
+        entityManager.addEntity(new Toilet(handler, 12f * Tile.TILEWIDTH, 3.5f * Tile.TILEHEIGHT,
+                Assets.toilet.getWidth() * 2, Assets.toilet.getHeight() * 2, "toilet1-bathroom1"));
+        entityManager.addEntity(new Toilet(handler, 14f * Tile.TILEWIDTH, 3.5f * Tile.TILEHEIGHT,
+                Assets.toilet.getWidth() * 2, Assets.toilet.getHeight() * 2, "toilet2-bathroom1"));
     }
 
     @Override

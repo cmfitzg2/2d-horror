@@ -62,7 +62,7 @@ public class Assets {
 			manifestationInventory, moribundInventory, oblationInventory, perditionInventory, processionInventory, prophetInventory,
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
-	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished;
+	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet;
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard;
@@ -646,5 +646,6 @@ public class Assets {
 		yellowLight = ImageLoader.loadImage("/textures/effects/light-yellow.png");
 		firePlace = ImageLoader.loadImage("/textures/static-entities/fireplace-1.png");
 		teacherDesk = ImageLoader.loadImage("/textures/static-entities/teacher-desk.png");
+		toilet = ImageLoader.loadImage("/textures/static-entities/toilet.png");
 	}
 }
