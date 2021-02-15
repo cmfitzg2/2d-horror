@@ -1,6 +1,7 @@
 package Entities.StaticEntities;
 
 import Graphics.Assets;
+import Variables.GeneralConstants;
 import Variables.Handler;
 import Worlds.World;
 
@@ -8,16 +9,15 @@ import java.awt.*;
 
 public class Door extends StaticEntity {
 
-    private int doorHeight = 96;
+    private int doorHeight = 96, style, transitionFrames = GeneralConstants.levelTransitionFrames;
     private boolean includeStairs;
     private boolean includeArch;
     private Rectangle enterDoor;
     private World destination;
     private float newX, newY;
-    private int style;
     public static final int PLAIN_WOOD = 0, STAIRS = 1, ARCH = 2, STAIRS_ARCH = 3, BATHROOM_MALE = 4, BATHROOM_FEMALE = 5;
 
-    public Door(Handler handler, float x, float y, int width, int height, String uniqueName, World destination, float newX, float newY, int style) {
+    public Door(Handler handler, float x, float y, int width, int height, String uniqueName, World destination, float newX, float newY, int style, int transitionFrames) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
         bounds.y = 0;
@@ -33,6 +33,11 @@ public class Door extends StaticEntity {
         if (style == ARCH || style == STAIRS_ARCH) {
             includeArch = true;
         }
+        this.transitionFrames = transitionFrames;
+    }
+
+    public Door(Handler handler, float x, float y, int width, int height, String uniqueName, World destination, float newX, float newY, int style) {
+        this(handler, x, y, width, height, uniqueName, destination, newX, newY, style, GeneralConstants.levelTransitionFrames);
     }
 
     @Override
@@ -55,7 +60,7 @@ public class Door extends StaticEntity {
         enterDoor = new Rectangle((int) x - 3  - (int) handler.getGameCamera().getxOffset(),
                 (int) y - 3  - (int) handler.getGameCamera().getyOffset(), width + 6, height + 20);
         if (handler.getPlayer().getPlayerRec().intersects(enterDoor)) {
-            handler.getActiveWorld().transitionFrom(destination, newX, newY);
+            handler.getActiveWorld().transitionFrom(destination, newX, newY, transitionFrames);
         }
     }
 

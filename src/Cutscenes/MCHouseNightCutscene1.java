@@ -1,42 +1,27 @@
 package Cutscenes;
 
+import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
 import Utils.GeneralUtils;
 import Variables.Handler;
-import Graphics.Assets;
+import Worlds.WorldManager;
 
 import java.awt.*;
 
-public class Prologue implements Cutscene {
+public class MCHouseNightCutscene1 implements Cutscene {
     private boolean showTextbox2 = false;
     private Handler handler;
     private TextboxHandler textboxHandler1, textboxHandler2;
     private KeyManager keyManager;
     private int messageNum = 1;
     private boolean textbox1 = true, textbox2 = false;
-    private final String messageOne = "... \r ";
-/*            "I wonder if it's time to wake up. \r " +
-            "I hate this feeling. It's the uncertainty of it. \r " +
-            "If I open my eyes and it's bright in my room, it'll be time to get up. \r " +
-            "If it's still dark, I'll have to find a way to get back to sleep. \r " +
-            "Why is it that I don't know whether it's morning or still night before I open my eyes? \r " +
-            "I wonder if most people know when it's time to get up based on how they feel. \r " +
-            "I mean, sleep is a biological process, right? \r " +
-            "I feel full after I eat. \n I feel sated when I drink. \r " +
-            "When I'm cold, it feels good to warm up. \n When I'm hot, it feels good to cool down. \r " +
-            "But when I wake up, I'm still tired. \n There's no relief. \r " +
-            "I think I used to wake up feeling refreshed. \n I did, didn't I? \r " +
-            "I wonder when that stopped. \r " +
-            "I guess it was probably gradual. \n I'm sure I would've noticed if it was all at once. \r " +
-            "Gosh, that should probably alarm me more, shouldn't it? I wonder what else I've lost without noticing. \r " +
-            "... \r " +
-            "Well, I followed that train of thought a little too far. \n At this point, I don't think I'll be getting back to sleep no matter what time it is. \r " +
-            "Guess I'd better hope it's morning then.";*/
+    private final String messageOne = "... \r " +
+            "this sucks man";
     private final String messageTwo = "... \r " +
-            "I think I'm disappointed anyway.";
+            "sheeeeyit.";
 
-    public Prologue(Handler handler) {
+    public MCHouseNightCutscene1(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
         textboxHandler1 = new TextboxHandler(handler, Assets.serif, messageOne, null, 3, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
@@ -45,6 +30,9 @@ public class Prologue implements Cutscene {
 
     @Override
     public void tick() {
+        if (handler.getActiveWorld().getId() != WorldManager.MC_HOUSE_1_ID) {
+            return;
+        }
         if (textbox1) {
             if (!textboxHandler1.isFinished()) {
                 textboxHandler1.tick();
@@ -64,13 +52,19 @@ public class Prologue implements Cutscene {
                     }
                 }
             } else {
-                exit();
+                handler.setPlayerFrozen(false);
+                handler.getCutsceneManager().setActiveCutscene(null);
+                handler.getFlags().setCutsceneActive(false);
+                handler.getFlags().setPrologue(false);
             }
         }
     }
 
     @Override
     public void render(Graphics g) {
+        if (handler.getActiveWorld().getId() != WorldManager.MC_HOUSE_1_ID) {
+            return;
+        }
         if (textbox1) {
             handler.getScreenOverlay().overlayScreen(g, Color.black);
             if (!textboxHandler1.isFinished()) {
@@ -85,9 +79,6 @@ public class Prologue implements Cutscene {
 
     @Override
     public void exit() {
-        handler.setPlayerFrozen(false);
-        handler.getCutsceneManager().setActiveCutscene(null);
-        handler.getFlags().setCutsceneActive(false);
-        handler.getFlags().setPrologue(false);
+
     }
 }

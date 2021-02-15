@@ -7,4 +7,6 @@ interface Cutscene {
     void tick();
 
     void render(Graphics g);
+
+    void exit();
 }

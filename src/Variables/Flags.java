@@ -13,6 +13,7 @@ public class Flags {
     private final int acceptanceEncounter1Flag = 1;
     private final int schoolCutscene1Flag = 2;
     private final int classroomCutscene1Flag = 3;
+    private final int mcHouseNightCutscene1Flag = 4;
 
     public Flags(Handler handler) {
         this.handler = handler;
@@ -93,6 +94,14 @@ public class Flags {
 
     public void setClassroomCutscene1(boolean classroomCutscene1) {
         flags.set(classroomCutscene1Flag, classroomCutscene1);
+    }
+
+    public boolean isMCHouseNightCutscene1() {
+        return flags.get(mcHouseNightCutscene1Flag);
+    }
+
+    public void setMcHouseNightCutscene1(boolean mcHouseNightCutscene1) {
+        flags.set(mcHouseNightCutscene1Flag, mcHouseNightCutscene1);
     }
 
     public boolean isCutsceneActive() {

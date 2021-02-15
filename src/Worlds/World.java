@@ -71,8 +71,12 @@ public abstract class World {
 	}
 
 	public void transitionFrom(World newWorld, float newX, float newY) {
+		transitionFrom(newWorld, newX, newY, GeneralConstants.levelTransitionFrames);
+	}
+
+	public void transitionFrom(World newWorld, float newX, float newY, int transitionFrames) {
 		if (!handler.getGame().isFadeOut()) {
-			GeneralUtils.levelFadeOut(handler, GeneralConstants.levelTransitionFrames);
+			GeneralUtils.levelFadeOut(handler, transitionFrames);
 		} else if (handler.getGame().isFinishedFadingOut()) {
 			GeneralUtils.stopLevelFadeOut(handler, newWorld, newX, newY, false);
 			transitioningTo = true;

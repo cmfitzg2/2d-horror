@@ -1090,7 +1090,8 @@ public class SchoolCutscene1 implements Cutscene {
         }
     }
 
-    private void exit() {
+    @Override
+    public void exit() {
         handler.setPlayerFrozen(false);
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);

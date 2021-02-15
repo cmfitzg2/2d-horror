@@ -58,10 +58,12 @@ public class Chalkboard extends StaticEntity {
 
     @Override
     public void interactedWith() {
-        textboxHandler = new TextboxHandler(handler, Assets.playerThinkingFont,
-                "Definitely one of the worst things I've ever woken up to.", null, GeneralConstants.defaultTextSpeed,
-                Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
-        textboxHandler.setActive(true);
+        if (!handler.getFlags().isClassroomCutscene1()) {
+            textboxHandler = new TextboxHandler(handler, Assets.playerThinkingFont,
+                    "Definitely one of the worst things I've ever woken up to.", null, GeneralConstants.defaultTextSpeed,
+                    Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+            textboxHandler.setActive(true);
+        }
     }
 
     @Override

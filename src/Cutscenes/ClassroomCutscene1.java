@@ -3,6 +3,7 @@ package Cutscenes;
 import Entities.Creatures.*;
 import Entities.EntityManager;
 import Entities.StaticEntities.Chalkboard;
+import Entities.StaticEntities.Door;
 import Entities.StaticEntities.StudentDesk;
 import Entities.StaticEntities.TeacherDesk;
 import Graphics.Assets;
@@ -10,6 +11,7 @@ import Input.KeyManager;
 import Textboxes.TextboxHandler;
 import Tiles.Tile;
 import Variables.Handler;
+import Worlds.WorldManager;
 
 import java.awt.*;
 
@@ -111,6 +113,11 @@ public class ClassroomCutscene1 implements Cutscene {
                         teacher.setX(chalkboard.getX() + chalkboard.getWidth());
                         player.setX(playerDesk.getX() - playerDesk.getWidth());
                         player.setY(playerDesk.getY());
+                        Door door = (Door) entityManager.getEntityByUid("door1-classroom1");
+                        entityManager.addEntity(new Door(handler, door.getX(), door.getY(), door.getWidth(), door.getHeight(),
+                                "door2-classroom1", handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID),
+                                700, 428, Door.PLAIN_WOOD, 120));
+                        entityManager.removeEntity(door);
                         textbox2 = true;
                         textbox1 = false;
                     }
@@ -402,7 +409,8 @@ public class ClassroomCutscene1 implements Cutscene {
         }
     }
 
-    private void exit() {
+    @Override
+    public void exit() {
         handler.setPlayerFrozen(false);
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);

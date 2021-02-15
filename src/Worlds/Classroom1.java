@@ -22,7 +22,7 @@ public class Classroom1 extends World {
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new Door(handler, 23 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT, 64, 96, "Door", handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID), 6 * Tile.TILEWIDTH, (int) (10 * Tile.TILEHEIGHT), Door.PLAIN_WOOD));
+        entityManager.addEntity(new Door(handler, 23 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT, 64, 96, "door1-classroom1", handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID), 6 * Tile.TILEWIDTH, (int) (10 * Tile.TILEHEIGHT), Door.PLAIN_WOOD));
         entityManager.addEntity(new Chalkboard(handler, 13.0f * Tile.TILEWIDTH, 42 + Tile.TILEHEIGHT, Assets.chalkboard[0].getWidth(), Assets.chalkboard[1].getHeight(), "chalkboard-classroom1", 0));
         entityManager.addEntity(new TeacherDesk(handler, 570, 313, Assets.teacherDesk.getWidth() * 2, Assets.teacherDesk.getHeight() * 2, "teacherdesk-classroom1"));
         entityManager.addEntity(new StudentDesk(handler, 13.0f * Tile.TILEWIDTH - 147 - Assets.emptyDesk.getWidth(), 440, Assets.emptyDesk.getWidth() * 2, Assets.emptyDesk.getHeight() * 2, "bargainingdesk-classroom1", StudentDesk.BARGAINING, handler.getFlags().isClassroomCutscene1()));

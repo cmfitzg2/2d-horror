@@ -279,9 +279,29 @@ MC (thinking): "Still though, why am I so exhausted? I don't feel any less tired
 Acceptance: "Seems like math didn't cheer you up. You look even worse than this morning."
 MC: "Yeah, I ended up sleeping through the whole class."
 Acceptance: "That's not like you. You still up for tonight?"
-MC: "For sure. The last thing I want to do is just go home feeling like this."
-Acceptance: "Great. We'll meet you outside."
+MC: "For sure. The last thing I want is to do nothing while I'm feeling like this." 
+MC: "But I think I'm gonna head home for the day. I don't see any reason to stay here if I can't even stay awake for class."
+Acceptance: "Agreed, I think that's the right call. \r You want to pick us up from school?"
+MC: "No, I don't think that's a good idea. I don't think I'm in any shape to drive."
+Acceptance: "Yeah, good point. We'll swing by your place tonight then."
+MC: "Sounds good. See you then."
 >Acceptance leaves
 >player regains control
 >eventually leaves
-
+>door now leads back to MC's house after extended screen transition
+>cut to MC back at house in bed, it's darker
+MC (thinking): "..."
+MC (thinking): "(Sigh)"
+MC (thinking): "It's so easy to fall asleep when I'm not trying to."
+MC (thinking): "But even now, as tired as I am, I can't fall asleep on command. \n Because my body "knows" I'm trying to."
+MC (thinking): "Maybe I should've stayed at school after all."
+>knocking sound
+MC (thinking): "Oh? Is that Acceptance already? I assumed they wouldn't be here for awhile."
+>player eventually makes their way to the front door
+>first person view, no one is there
+MC (thinking): "That's weird. No one is out there. I guess I'm hearing things."
+MC (thinking): "I'm sure I heard three distinct knocks though. There's something distinctly deliberate about that."
+>player walks away, idk ~3 tiles any direction, screen suddenly goes black, powerdown sound.
+MC (thinking): "The power is out? Geez, what a pain. I can't see a thing."
+>if player tries to move
+MC (thinking): "It's too dark to move around in here, I need a light source."

@@ -34,7 +34,7 @@ public class MCHouse1 extends World {
     @Override
     protected void load() {
         //handler.getFlags().setVisionLimited(true);
-        if (handler.getFlags().isPrologue()) {
+        if (handler.getFlags().isPrologue() || (handler.getFlags().isMCHouseNightCutscene1() && !handler.getFlags().isClassroomCutscene1())) {
             fadeIn = false;
             handler.getFlags().setCutsceneActive(true);
             CutsceneManager cutsceneManager = handler.getCutsceneManager();

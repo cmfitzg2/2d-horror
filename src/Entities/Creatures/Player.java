@@ -25,6 +25,10 @@ public class Player extends Creature {
     private ScreenOverlay screenOverlay;
     //Font
     Font f;
+    private Color screenFilter;
+    private Color veryDark = new Color(0, 0, 0, 200);
+    private Color dark = new Color(0, 0, 0, 120);
+    private Color someDark = new Color(0, 0, 0, 80);
 
     public Player(Handler handler, float x, float y, String uniqueName) {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, uniqueName);
@@ -148,6 +152,14 @@ public class Player extends Creature {
 
     @Override
     public void postRender(Graphics g) {
+        //g.drawRect(playerRec.x, playerRec.y, playerRec.width, playerRec.height);
+    }
+
+    @Override
+    public void finalRender(Graphics g) {
+        if (null != screenFilter) {
+            screenOverlay.overlayScreen(g, screenFilter);
+        }
         screenOverlay.drawVision(g);
         inventory.render(g);
         drawTextboxes(g);
@@ -156,13 +168,6 @@ public class Player extends Creature {
         g.drawString("Current (x,y): (" + x + ", " + y + ")", 16, handler.getHeight() - 16);
         g.drawString("Current mouse (x,y): ("  + (handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset())
                 + ", " + (handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset()) + ")", 16, handler.getHeight() - 100);
-        playerRec = currentPlayerRectangle();
-        //g.drawRect(playerRec.x, playerRec.y, playerRec.width, playerRec.height);
-    }
-
-    @Override
-    public void finalRender(Graphics g) {
-
     }
 
     private Rectangle currentPlayerRectangle() {
@@ -242,7 +247,6 @@ public class Player extends Creature {
             if (handler.getKeyManager().z) {
                 if (!handler.getKeyManager().isStillHoldingZ()) {
                     handler.getKeyManager().setStillHoldingZ(true);
-
                     for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
                         if (e.equals(this)) {                   //an entity cannot interact with itself
                             continue;
