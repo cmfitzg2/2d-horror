@@ -1,5 +1,6 @@
 package Worlds;
 
+import Cutscenes.Cutscene;
 import Cutscenes.CutsceneManager;
 import Entities.Creatures.Player;
 import Entities.StaticEntities.*;
@@ -38,7 +39,11 @@ public class MCHouse1 extends World {
             fadeIn = false;
             handler.getFlags().setCutsceneActive(true);
             CutsceneManager cutsceneManager = handler.getCutsceneManager();
-            cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(1));
+            if (handler.getFlags().isPrologue()) {
+                cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(Cutscene.PROLOGUE));
+            } else {
+                cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_1));
+            }
             handler.setPlayerFrozen(true);
         }
     }

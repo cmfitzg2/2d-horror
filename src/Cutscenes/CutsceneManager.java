@@ -14,11 +14,12 @@ public class CutsceneManager {
     public CutsceneManager(Handler handler) {
         this.handler = handler;
         cutscenes = new HashMap<>();
-        cutscenes.put(1, new Prologue(handler));
-        cutscenes.put(2, new AcceptanceEncounter1(handler));
-        cutscenes.put(3, new SchoolCutscene1(handler));
-        cutscenes.put(4, new ClassroomCutscene1(handler));
-        setActiveCutscene(cutscenes.get(1));
+        cutscenes.put(Cutscene.PROLOGUE, new Prologue(handler));
+        cutscenes.put(Cutscene.ACCEPTANCE_ENCOUNTER_1, new AcceptanceEncounter1(handler));
+        cutscenes.put(Cutscene.SCHOOL_CUTSCENE_1, new SchoolCutscene1(handler));
+        cutscenes.put(Cutscene.CLASSROOM_CUTSCENE_1, new ClassroomCutscene1(handler));
+        cutscenes.put(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_1, new MCHouseNightCutscene1(handler));
+        setActiveCutscene(cutscenes.get(Cutscene.PROLOGUE));
     }
 
     public void tick() {

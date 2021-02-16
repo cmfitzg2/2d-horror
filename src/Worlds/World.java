@@ -78,7 +78,7 @@ public abstract class World {
 		if (!handler.getGame().isFadeOut()) {
 			GeneralUtils.levelFadeOut(handler, transitionFrames);
 		} else if (handler.getGame().isFinishedFadingOut()) {
-			GeneralUtils.stopLevelFadeOut(handler, newWorld, newX, newY, false);
+			GeneralUtils.stopLevelFadeOut(handler, newWorld, newX, newY, true);
 			transitioningTo = true;
 		}
 	}

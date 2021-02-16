@@ -10,11 +10,9 @@ import Worlds.WorldManager;
 import java.awt.*;
 
 public class MCHouseNightCutscene1 implements Cutscene {
-    private boolean showTextbox2 = false;
     private Handler handler;
     private TextboxHandler textboxHandler1, textboxHandler2;
     private KeyManager keyManager;
-    private int messageNum = 1;
     private boolean textbox1 = true, textbox2 = false;
     private final String messageOne = "... \r " +
             "this sucks man";
@@ -33,6 +31,9 @@ public class MCHouseNightCutscene1 implements Cutscene {
         if (handler.getActiveWorld().getId() != WorldManager.MC_HOUSE_1_ID) {
             return;
         }
+        if (!handler.isPlayerFrozen()) {
+            handler.setPlayerFrozen(true);
+        }
         if (textbox1) {
             if (!textboxHandler1.isFinished()) {
                 textboxHandler1.tick();
@@ -44,18 +45,11 @@ public class MCHouseNightCutscene1 implements Cutscene {
         } else if (textbox2) {
             if (!textboxHandler2.isFinished()) {
                 textboxHandler2.tick();
-                if (!handler.getGame().isFadeIn()) {
-                    handler.setPlayerFrozen(true);
-                    if ((handler.getKeyManager().up || handler.getKeyManager().down || handler.getKeyManager().left
-                            || handler.getKeyManager().right || handler.getKeyManager().z)) {
-                        showTextbox2 = true;
-                    }
-                }
             } else {
                 handler.setPlayerFrozen(false);
                 handler.getCutsceneManager().setActiveCutscene(null);
                 handler.getFlags().setCutsceneActive(false);
-                handler.getFlags().setPrologue(false);
+                handler.getFlags().setMcHouseNightCutscene1(false);
             }
         }
     }
@@ -71,7 +65,7 @@ public class MCHouseNightCutscene1 implements Cutscene {
                 textboxHandler1.render(g);
             }
         } else if (textbox2) {
-            if (!textboxHandler2.isFinished() && showTextbox2) {
+            if (!textboxHandler2.isFinished()) {
                 textboxHandler2.render(g);
             }
         }
