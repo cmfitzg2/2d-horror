@@ -25,10 +25,6 @@ public class Player extends Creature {
     private ScreenOverlay screenOverlay;
     //Font
     Font f;
-    private Color screenFilter;
-    private Color veryDark = new Color(0, 0, 0, 200);
-    private Color dark = new Color(0, 0, 0, 120);
-    private Color someDark = new Color(0, 0, 0, 80);
 
     public Player(Handler handler, float x, float y, String uniqueName) {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, uniqueName);
@@ -157,9 +153,17 @@ public class Player extends Creature {
 
     @Override
     public void finalRender(Graphics g) {
-        if (null != screenFilter) {
-            screenOverlay.overlayScreen(g, screenFilter);
+        if (handler.getFlags().getTimeOfDay() > 0) {
+            switch (handler.getFlags().getTimeOfDay()) {
+                case 1:
+                    screenOverlay.overlayScreen(g, ScreenOverlay.dark);
+                    break;
+                case 2:
+                    screenOverlay.overlayScreen(g, ScreenOverlay.veryDark);
+                    break;
+            }
         }
+
         screenOverlay.drawVision(g);
         inventory.render(g);
         drawTextboxes(g);

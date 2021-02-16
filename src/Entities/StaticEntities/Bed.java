@@ -3,6 +3,7 @@ package Entities.StaticEntities;
 import Entities.Creatures.Player;
 import Graphics.Assets;
 import Variables.Handler;
+import Worlds.WorldManager;
 
 import java.awt.*;
 
@@ -37,7 +38,8 @@ public class Bed extends StaticEntity {
 
     @Override
     public void tick() {
-        if (firstTime && handler.getActiveWorld().getId() == 1 && handler.getFlags().isPrologue()) {
+        if (firstTime && handler.getActiveWorld().getId() == WorldManager.MC_HOUSE_1_ID && (handler.getFlags().isPrologue()
+                || (handler.getFlags().isMCHouseNightCutscene1() && !handler.getFlags().isClassroomCutscene1()))) {
             if (handler.getGame().isFadeIn()) {
                 interactedWith();
                 firstTime = false;

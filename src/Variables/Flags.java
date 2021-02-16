@@ -9,20 +9,25 @@ public class Flags {
     private boolean visionLimited, viewingArt, inPuzzle, prologue, cutsceneActive;
     private Handler handler;
     private List<Boolean> flags;
+    private List<Integer> constants;
     private final int prologueFlag = 0;
     private final int acceptanceEncounter1Flag = 1;
     private final int schoolCutscene1Flag = 2;
     private final int classroomCutscene1Flag = 3;
     private final int mcHouseNightCutscene1Flag = 4;
+    private final int timeOfDayIndex = 0;
+    public static final int TIME_OF_DAY_BRIGHT = 0, TIME_OF_DAY_DARK = 1;
 
     public Flags(Handler handler) {
         this.handler = handler;
         flags = new ArrayList<>();
-        loadFlagsFile();
+        constants = new ArrayList<>();
+        loadBooleanFlagsFile();
+        loadConstantsFile();
     }
 
-    private void loadFlagsFile() {
-        String file = Utils.loadFileAsString("res/save/flags.sav");
+    private void loadBooleanFlagsFile() {
+        String file = Utils.loadFileAsString("res/save/boolean-flags.sav");
         String[] tokens = file.split("\\s+");
         while (flags.size() < tokens.length) {
             flags.add(null);
@@ -34,6 +39,21 @@ public class Flags {
                 flags.set(i, true);
             } else {
                 flags.set(i, null);
+            }
+        }
+    }
+
+    private void loadConstantsFile() {
+        String file = Utils.loadFileAsString("res/save/constants.sav");
+        String[] tokens = file.split("\\s+");
+        while (constants.size() < tokens.length) {
+            constants.add(null);
+        }
+        for (int i = 0; i < tokens.length; i++) {
+            try {
+                constants.add(i, Integer.parseInt(tokens[i]));
+            } catch (NumberFormatException e) {
+                constants.add(i, null);
             }
         }
     }
@@ -110,5 +130,13 @@ public class Flags {
 
     public void setCutsceneActive(boolean cutsceneActive) {
         this.cutsceneActive = cutsceneActive;
+    }
+
+    public int getTimeOfDay() {
+        return constants.get(timeOfDayIndex);
+    }
+
+    public void setTimeOfDay(int timeOfDay) {
+        constants.set(timeOfDayIndex, timeOfDay);
     }
 }

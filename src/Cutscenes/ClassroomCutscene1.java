@@ -2,10 +2,7 @@ package Cutscenes;
 
 import Entities.Creatures.*;
 import Entities.EntityManager;
-import Entities.StaticEntities.Chalkboard;
-import Entities.StaticEntities.Door;
-import Entities.StaticEntities.StudentDesk;
-import Entities.StaticEntities.TeacherDesk;
+import Entities.StaticEntities.*;
 import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
@@ -415,5 +412,7 @@ public class ClassroomCutscene1 implements Cutscene {
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setClassroomCutscene1(false);
+        ((WindowOutside) handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID).getEntityManager()
+                .getEntityByUid("windowoutside1-mchouse1")).setStyle(WindowOutside.DARK);
     }
 }

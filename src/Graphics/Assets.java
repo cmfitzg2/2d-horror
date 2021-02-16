@@ -44,7 +44,7 @@ public class Assets {
 	public static BufferedImage closedDoorOne, closedDoorTwo, stairs, doorwayArch, bathroomDoorMale, bathroomDoorFemale,
 			locker, windowOne, windowTwo, chimney;
 	public static BufferedImage bedOne, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
-	public static BufferedImage windowLight, tableLampOff, tableLampOn;
+	public static BufferedImage windowLight, windowDark, tableLampOff, tableLampOn;
 	public static BufferedImage yellowLight;
 	public static BufferedImage headDown, headUp, headLeft, headRight;
 	public static BufferedImage darkWall, concrete, artFrame, artFrameSmall, artFrameSmallEmpty;
@@ -490,6 +490,10 @@ public class Assets {
 		tableLampOff = tableLampSheet.crop(0, 0, width, 50);
 		tableLampOn = tableLampSheet.crop(width, 0, width, 50);
 
+		SpriteSheet windowOutsideSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/window-outside.png"));
+		windowLight = windowOutsideSheet.crop(0, 0, width, height);
+		windowDark = windowOutsideSheet.crop(0, height, width, height);
+
 		SpriteSheet mcSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/characters/mc-sheet-transparent.png"));
 		playerDownTransparent = mcSheetTransparent.crop(0, 0, width, height);
 		playerUpTransparent = mcSheetTransparent.crop(0, height, width, height);
@@ -642,7 +646,6 @@ public class Assets {
 
 		hole = ImageLoader.loadImage("/textures/hole.png");
 		doorwayArch = ImageLoader.loadImage("/textures/oga/LPC-Base-Assets/tiles/doorwayArch.png");
-		windowLight = ImageLoader.loadImage("/textures/static-entities/window-light.png");
 		yellowLight = ImageLoader.loadImage("/textures/effects/light-yellow.png");
 		firePlace = ImageLoader.loadImage("/textures/static-entities/fireplace-1.png");
 		teacherDesk = ImageLoader.loadImage("/textures/static-entities/teacher-desk.png");
