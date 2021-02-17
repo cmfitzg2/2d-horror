@@ -45,6 +45,20 @@ public class MCHouseNightCutscene3 implements Cutscene {
                 textboxHandler1.tick();
             } else {
                 textbox1 = false;
+                showingText = true;
+            }
+        }
+        if (showingText && !textbox2) {
+            if (handler.getKeyManager().up || handler.getKeyManager().down || handler.getKeyManager().left || handler.getKeyManager().right) {
+                textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, messageTwo, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
+                textbox2 = true;
+            }
+        }
+        if (textbox2) {
+            if (!textboxHandler2.isFinished()) {
+                textboxHandler2.tick();
+            } else {
+                textbox2 = false;
             }
         }
     }
