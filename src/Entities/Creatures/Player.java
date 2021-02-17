@@ -1,6 +1,8 @@
 package Entities.Creatures;
 
 import Entities.Entity;
+import Entities.StaticEntities.Fireplace;
+import Entities.StaticEntities.TableLamp;
 import Variables.Handler;
 import Items.Inventory;
 import Graphics.Animation;
@@ -153,17 +155,7 @@ public class Player extends Creature {
 
     @Override
     public void finalRender(Graphics g) {
-        if (handler.getFlags().getTimeOfDay() > 0) {
-            switch (handler.getFlags().getTimeOfDay()) {
-                case 1:
-                    screenOverlay.overlayScreen(g, ScreenOverlay.dark);
-                    break;
-                case 2:
-                    screenOverlay.overlayScreen(g, ScreenOverlay.veryDark);
-                    break;
-            }
-        }
-
+        drawTimeOfDay(g);
         screenOverlay.drawVision(g);
         inventory.render(g);
         drawTextboxes(g);
@@ -182,6 +174,37 @@ public class Player extends Creature {
 
     private void drawTextboxes(Graphics g) {
 
+    }
+
+    private void drawTimeOfDay(Graphics g) {
+        int timeOfDay = handler.getFlags().getTimeOfDay();
+        if (timeOfDay > 0) {
+            for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
+                //check for light sources, but break once we find one (they don't stack)
+                if (e instanceof TableLamp) {
+                    if (((TableLamp) e).isLit()) {
+                        timeOfDay--;
+                        break;
+                    }
+                } else if (e instanceof Fireplace) {
+                    if (((Fireplace) e).isLit()) {
+                        timeOfDay--;
+                        break;
+                    }
+                }
+            }
+            switch (timeOfDay) {
+                case 1:
+                    screenOverlay.overlayScreen(g, ScreenOverlay.someDark);
+                    break;
+                case 2:
+                    screenOverlay.overlayScreen(g, ScreenOverlay.dark);
+                    break;
+                case 3:
+                    screenOverlay.overlayScreen(g, ScreenOverlay.veryDark);
+                    break;
+            }
+        }
     }
 
     private void checkInteraction() {

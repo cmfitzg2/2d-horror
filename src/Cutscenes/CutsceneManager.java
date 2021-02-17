@@ -19,6 +19,7 @@ public class CutsceneManager {
         cutscenes.put(Cutscene.SCHOOL_CUTSCENE_1, new SchoolCutscene1(handler));
         cutscenes.put(Cutscene.CLASSROOM_CUTSCENE_1, new ClassroomCutscene1(handler));
         cutscenes.put(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_1, new MCHouseNightCutscene1(handler));
+        cutscenes.put(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_2, new MCHouseNightCutscene2(handler));
         setActiveCutscene(cutscenes.get(Cutscene.PROLOGUE));
     }
 

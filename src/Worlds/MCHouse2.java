@@ -1,6 +1,8 @@
 package Worlds;
 
+import Cutscenes.Cutscene;
 import Cutscenes.CutsceneManager;
+import Cutscenes.MCHouseNightCutscene2;
 import Entities.Creatures.Acceptance;
 import Entities.Creatures.Player;
 import Entities.StaticEntities.Fireplace;
@@ -11,6 +13,8 @@ import Graphics.Assets;
 import java.awt.*;
 
 public class MCHouse2 extends World {
+
+    private boolean stillInOutsideLoadzone = false;
 
     public MCHouse2(Handler handler, int id, Player player) {
         super(handler, "res/worlds/mc-house-2.txt", id, player);
@@ -27,8 +31,33 @@ public class MCHouse2 extends World {
         Rectangle loadzoneOutside = new Rectangle(Tile.TILEWIDTH * 19 - (int) handler.getGameCamera().getxOffset(),
                 (int) (Tile.TILEHEIGHT * 17.5) - (int) handler.getGameCamera().getyOffset(), Tile.TILEWIDTH * 2, Tile.TILEHEIGHT / 2);
         if (entityManager.getPlayer().getPlayerRec().intersects(loadzoneOutside)) {
-            transitionFrom(handler.getWorldManager().getWorld(WorldManager.OVERWORLD_1_ID), Tile.TILEWIDTH * 43,
-                    Tile.TILEHEIGHT * 49);
+            //if this flag is set, we're in the part of the story that this should act as a loadzone
+            if (handler.getFlags().isMCHouseNightCutscene1()) {
+                transitionFrom(handler.getWorldManager().getWorld(WorldManager.OVERWORLD_1_ID), Tile.TILEWIDTH * 43,
+                        Tile.TILEHEIGHT * 49);
+            } else {
+                if (handler.getPlayer().getyMove() > 0) {
+                    if (handler.getFlags().isMCHouseNightCutscene2() && !handler.getFlags().isCutsceneActive()) {
+                        CutsceneManager cutsceneManager = handler.getCutsceneManager();
+                        MCHouseNightCutscene2 mcHouseNightCutscene2 = (MCHouseNightCutscene2) cutsceneManager.getCutscene(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_2);
+                        if (mcHouseNightCutscene2.isMessageDisplayed()) {
+                            //have already looked outside
+                            if (!stillInOutsideLoadzone) {
+                                handler.getFlags().setCutsceneActive(true);
+                                cutsceneManager.setActiveCutscene(mcHouseNightCutscene2);
+                                handler.setPlayerFrozen(true);
+                            }
+                        } else {
+                            handler.getFlags().setCutsceneActive(true);
+                            cutsceneManager.setActiveCutscene(mcHouseNightCutscene2);
+                            handler.setPlayerFrozen(true);
+                        }
+                    }
+                }
+            }
+            stillInOutsideLoadzone = true;
+        } else {
+            stillInOutsideLoadzone = false;
         }
     }
 

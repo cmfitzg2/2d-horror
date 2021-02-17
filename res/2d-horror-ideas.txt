@@ -296,11 +296,11 @@ MC (thinking): "It's so easy to fall asleep when I'm not trying to."
 MC (thinking): "But even now, as tired as I am, I can't fall asleep on command. \n Because my body "knows" I'm trying to."
 MC (thinking): "Maybe I should've stayed at school after all."
 >knocking sound
-MC (thinking): "Oh? Is that Acceptance already? I assumed they wouldn't be here for awhile."
+MC (thinking): "Oh? Is that Acceptance already? I figured they wouldn't be here for awhile."
 >player eventually makes their way to the front door
 >first person view, no one is there
 MC (thinking): "That's weird. No one is out there. I guess I'm hearing things."
-MC (thinking): "I'm sure I heard three distinct knocks though. There's something distinctly deliberate about that."
+MC (thinking): "I'm sure I heard three knocks though. There's something distinctly deliberate about that."
 >player walks away, idk ~3 tiles any direction, screen suddenly goes black, powerdown sound.
 MC (thinking): "The power is out? Geez, what a pain. I can't see a thing."
 >if player tries to move

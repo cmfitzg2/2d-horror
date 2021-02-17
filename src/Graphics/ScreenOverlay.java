@@ -4,7 +4,6 @@ import Variables.Handler;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 public class ScreenOverlay {
 	int gameWidth = 0;

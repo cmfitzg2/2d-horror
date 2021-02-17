@@ -94,4 +94,20 @@ public class Fireplace extends StaticEntity {
     public boolean itemInteraction(String item) {
         return false;
     }
+
+    public boolean isLit() {
+        return lit;
+    }
+
+    public void setLit(boolean lit) {
+        this.lit = lit;
+    }
+
+    public boolean isExtinguished() {
+        return extinguished;
+    }
+
+    public void setExtinguished(boolean extinguished) {
+        this.extinguished = extinguished;
+    }
 }

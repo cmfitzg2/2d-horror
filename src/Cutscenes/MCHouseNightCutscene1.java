@@ -16,8 +16,11 @@ public class MCHouseNightCutscene1 implements Cutscene {
     private boolean showingText = false, textbox1 = false, textbox2 = false;
     private boolean firstTime = true;
     private final String messageOne = "... \r " +
-            "this sucks man",
-            messageTwo = "aaaaa";
+            "(Sigh) \r " +
+            "It's so easy to fall asleep when I'm not trying to. \r " +
+            "But even now, as tired as I am, I can't fall asleep on command. \n Because my body \"knows\" I'm trying to. \r " +
+            "Maybe I should've stayed at school after all.",
+            messageTwo = "Oh? Is that Acceptance already? I figured they wouldn't be here for awhile.";
     public MCHouseNightCutscene1(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
@@ -48,12 +51,15 @@ public class MCHouseNightCutscene1 implements Cutscene {
                 } else {
                     textbox2 = true;
                     textbox1 = false;
+                    Assets.triKnock1.start();
                 }
             } else if (textbox2) {
-                if (!textboxHandler2.isFinished()) {
-                    textboxHandler2.tick();
-                } else {
-                    exit();
+                if (!Assets.triKnock1.isActive()) {
+                    if (!textboxHandler2.isFinished()) {
+                        textboxHandler2.tick();
+                    } else {
+                        exit();
+                    }
                 }
             }
         }
@@ -69,8 +75,10 @@ public class MCHouseNightCutscene1 implements Cutscene {
                 textboxHandler1.render(g);
             }
         } else if (textbox2) {
-            if (!textboxHandler2.isFinished()) {
-                textboxHandler2.render(g);
+            if (!Assets.triKnock1.isActive()) {
+                if (!textboxHandler2.isFinished()) {
+                    textboxHandler2.render(g);
+                }
             }
         }
     }

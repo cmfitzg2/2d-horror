@@ -59,6 +59,13 @@ public class TableLamp extends StaticEntity {
     @Override
     public void interactedWith() {
         lit = !lit;
+        if (lit) {
+            Assets.lampOn.stop();
+            Assets.lampOn.play();
+        } else {
+            Assets.lampOff.stop();
+            Assets.lampOff.play();
+        }
     }
 
     @Override
@@ -69,5 +76,13 @@ public class TableLamp extends StaticEntity {
     @Override
     public boolean itemInteraction(String item) {
         return false;
+    }
+
+    public boolean isLit() {
+        return lit;
+    }
+
+    public void setLit(boolean lit) {
+        this.lit = lit;
     }
 }

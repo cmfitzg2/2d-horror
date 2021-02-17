@@ -1,5 +1,6 @@
 package Entities.StaticEntities;
 
+import Cutscenes.CutsceneManager;
 import Graphics.Assets;
 import Textboxes.TextboxHandler;
 import Variables.GeneralConstants;
@@ -35,6 +36,12 @@ public class TeacherDesk extends StaticEntity {
         if (null != textboxHandler && textboxHandler.isActive()) {
             if (!textboxHandler.isFinished()) {
                 textboxHandler.render(g);
+            } else if (messageNum == 4){
+                if (handler.getFlags().isClassroomCutscene1() && !handler.getFlags().isCutsceneActive()) {
+                    handler.getFlags().setCutsceneActive(true);
+                    CutsceneManager cutsceneManager = handler.getCutsceneManager();
+                    cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(4));
+                }
             }
         }
     }

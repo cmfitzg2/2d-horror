@@ -47,7 +47,7 @@ public class Assets {
 	public static BufferedImage windowLight, windowDark, tableLampOff, tableLampOn;
 	public static BufferedImage yellowLight;
 	public static BufferedImage headDown, headUp, headLeft, headRight;
-	public static BufferedImage darkWall, concrete, artFrame, artFrameSmall, artFrameSmallEmpty;
+	public static BufferedImage darkWall, concrete, frontDoor, artFrame, artFrameSmall, artFrameSmallEmpty;
 	public static BufferedImage buttonPuzzlePanel, buttonPuzzleBorder, buttonPuzzleOn, buttonPuzzleOff;
 	public static BufferedImage galleryAbyss, galleryApparition, galleryBlight, galleryButcher, galleryCaptivity,
 			galleryCipher, galleryCondemnation, galleryDeluge, galleryDissonance, galleryDuty, galleryFacade,
@@ -79,8 +79,10 @@ public class Assets {
 	public static Font sans, serif, philosopher, textboxFontDefault;
 	public static Font playerSpeakingFont, playerThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont, teacherFont;
 	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2,
-			denialText, angerText, bargainingText, depressionText, acceptanceText, playerText, teacherText;
-	public static Clip menuMusic, schoolBell;
+			denialText, angerText, bargainingText, depressionText, acceptanceText, playerText, teacherText,
+			lampOn, lampOff;
+	public static Clip menuMusic;
+	public static Clip schoolBell, triKnock1;
 	public static void init() {
 		initSounds();
 		initFonts();
@@ -89,19 +91,24 @@ public class Assets {
 	}
 
 	private static void initSounds() {
-		menuMove = Applet.newAudioClip(Assets.class.getResource("/sounds/menuMove.au"));
-		woodBreak = Applet.newAudioClip(Assets.class.getResource("/sounds/woodBreak.au"));
-		openInventory = Applet.newAudioClip(Assets.class.getResource("/sounds/openInventory.au"));
-		closeInventory = Applet.newAudioClip(Assets.class.getResource("/sounds/closeInventory.au"));
-		textTest = Applet.newAudioClip(Assets.class.getResource("/sounds/text-test.au"));
-		textTest2  = Applet.newAudioClip(Assets.class.getResource("/sounds/text-test-2.au"));
+		menuMove = Applet.newAudioClip(Assets.class.getResource("/sounds/misc/menuMove.au"));
+		woodBreak = Applet.newAudioClip(Assets.class.getResource("/sounds/misc/woodBreak.au"));
+		openInventory = Applet.newAudioClip(Assets.class.getResource("/sounds/inventory/openInventory.au"));
+		closeInventory = Applet.newAudioClip(Assets.class.getResource("/sounds/inventory/closeInventory.au"));
+		textTest = Applet.newAudioClip(Assets.class.getResource("/sounds/text/text-test.au"));
+		textTest2  = Applet.newAudioClip(Assets.class.getResource("/sounds/text/text-test-2.au"));
+		lampOn = Applet.newAudioClip(Assets.class.getResource("/sounds/misc/switch36.au"));
+		lampOff = Applet.newAudioClip(Assets.class.getResource("/sounds/misc/switch37.au"));
 		try {
 			menuMusic = AudioSystem.getClip();
 			AudioInputStream ais1 = AudioSystem.getAudioInputStream(new File("res/music/desolate.au"));
 			menuMusic.open(ais1);
 			schoolBell = AudioSystem.getClip();
-			AudioInputStream ais2 = AudioSystem.getAudioInputStream(new File("res/sounds/school-bell.au"));
+			AudioInputStream ais2 = AudioSystem.getAudioInputStream(new File("res/sounds/misc/school-bell.au"));
 			schoolBell.open(ais2);
+			triKnock1 = AudioSystem.getClip();
+			AudioInputStream ais3 = AudioSystem.getAudioInputStream(new File("res/sounds/misc/triKnock04.au"));
+			triKnock1.open(ais3);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		}
@@ -584,6 +591,7 @@ public class Assets {
 
 		darkWall = ImageLoader.loadImage("/textures/backgrounds/wall.png");
 		concrete = ImageLoader.loadImage("/textures/backgrounds/concrete.png");
+		frontDoor = ImageLoader.loadImage("/textures/backgrounds/front-door.png");
 		artFrame = ImageLoader.loadImage("/textures/artFrame.png");
 		artFrameSmall = ImageLoader.loadImage("/textures/artFrameSmall.png");
 		artFrameSmallEmpty = ImageLoader.loadImage("/textures/artFrameSmallEmpty.png");
