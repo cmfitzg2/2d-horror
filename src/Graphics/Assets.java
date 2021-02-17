@@ -82,7 +82,7 @@ public class Assets {
 			denialText, angerText, bargainingText, depressionText, acceptanceText, playerText, teacherText,
 			lampOn, lampOff;
 	public static Clip menuMusic;
-	public static Clip schoolBell, triKnock1;
+	public static Clip schoolBell, triKnock1, powerDown;
 	public static void init() {
 		initSounds();
 		initFonts();
@@ -109,6 +109,9 @@ public class Assets {
 			triKnock1 = AudioSystem.getClip();
 			AudioInputStream ais3 = AudioSystem.getAudioInputStream(new File("res/sounds/misc/triKnock04.au"));
 			triKnock1.open(ais3);
+			powerDown = AudioSystem.getClip();
+			AudioInputStream ais4 = AudioSystem.getAudioInputStream(new File("res/sounds/misc/power-down.au"));
+			powerDown.open(ais4);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		}

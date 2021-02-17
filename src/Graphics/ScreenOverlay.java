@@ -9,7 +9,7 @@ public class ScreenOverlay {
 	int gameWidth = 0;
 	int gameHeight = 0;
 	Handler handler;
-	public static Color veryDark = new Color(0, 0, 0, 200), dark = new Color(0, 0, 0, 150), someDark = new Color(0, 0, 0, 100);
+	public static Color veryDark = new Color(0, 0, 0, 200), dark = new Color(0, 0, 0, 150), someDark = new Color(0, 0, 0, 100), pitchBlack = new Color(0, 0, 0, 255);
 
 	public ScreenOverlay(Handler handler) {
 		this.handler = handler;

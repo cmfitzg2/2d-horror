@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Player extends Creature {
     private static boolean down, up, left, right;
-    private boolean interactedWith, transparent, invisible, lockX, lockY, headOnly;
+    private boolean interactedWith, transparent, invisible, lockX, lockY, lockZ, headOnly;
     private Inventory inventory;
     public static float defaultSpeed = 4.0f, defaultRunSpeed = 16.0f;
     public float cutsceneSpeed = 3.0f;
@@ -203,6 +203,9 @@ public class Player extends Creature {
                 case 3:
                     screenOverlay.overlayScreen(g, ScreenOverlay.veryDark);
                     break;
+                case 4:
+                    screenOverlay.overlayScreen(g, ScreenOverlay.pitchBlack);
+                    break;
             }
         }
     }
@@ -271,21 +274,23 @@ public class Player extends Creature {
                     }
                 }
             }
-            if (handler.getKeyManager().z) {
-                if (!handler.getKeyManager().isStillHoldingZ()) {
-                    handler.getKeyManager().setStillHoldingZ(true);
-                    for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
-                        if (e.equals(this)) {                   //an entity cannot interact with itself
-                            continue;
-                        }
-                        if (interactionRectangle != null) {
-                            if (e.getCollisionBounds(0, 0).intersects(interactionRectangle)) {
-                                if (e.isInteracting()) {
+            if (!lockZ) {
+                if (handler.getKeyManager().z) {
+                    if (!handler.getKeyManager().isStillHoldingZ()) {
+                        handler.getKeyManager().setStillHoldingZ(true);
+                        for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
+                            if (e.equals(this)) {                   //an entity cannot interact with itself
+                                continue;
+                            }
+                            if (interactionRectangle != null) {
+                                if (e.getCollisionBounds(0, 0).intersects(interactionRectangle)) {
+                                    if (e.isInteracting()) {
+                                        break;
+                                    } else {
+                                        e.interactedWith();                //call interaction function specified by any class extending entity
+                                    }
                                     break;
-                                } else {
-                                    e.interactedWith();                //call interaction function specified by any class extending entity
                                 }
-                                break;
                             }
                         }
                     }
@@ -444,6 +449,14 @@ public class Player extends Creature {
 
     public void setLockY(boolean lockY) {
         this.lockY = lockY;
+    }
+
+    public boolean isLockZ() {
+        return lockZ;
+    }
+
+    public void setLockZ(boolean lockZ) {
+        this.lockZ = lockZ;
     }
 
     public boolean isHeadOnly() {

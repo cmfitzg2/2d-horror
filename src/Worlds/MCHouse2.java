@@ -14,7 +14,8 @@ import java.awt.*;
 
 public class MCHouse2 extends World {
 
-    private boolean stillInOutsideLoadzone = false;
+    private boolean stillInOutsideLoadzone = false, lookedOutside = false;
+    private Rectangle loadzonePlayerRoom, loadzoneOutside;
 
     public MCHouse2(Handler handler, int id, Player player) {
         super(handler, "res/worlds/mc-house-2.txt", id, player);
@@ -22,15 +23,15 @@ public class MCHouse2 extends World {
 
     @Override
     public void checkLoadZones() {
-        Rectangle loadzonePlayerRoom = new Rectangle((int) (Tile.TILEWIDTH * 38.5f) - (int) handler.getGameCamera().getxOffset(),
+        loadzonePlayerRoom = new Rectangle((int) (Tile.TILEWIDTH * 38.5f) - (int) handler.getGameCamera().getxOffset(),
                 15 * Tile.TILEHEIGHT - (int) handler.getGameCamera().getyOffset(), Tile.TILEWIDTH / 2, Tile.TILEHEIGHT);
-        if (entityManager.getPlayer().getPlayerRec().intersects(loadzonePlayerRoom)) {
+        if (handler.getPlayer().getPlayerRec().intersects(loadzonePlayerRoom)) {
             transitionFrom(handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID), Tile.TILEWIDTH * 10,
                     Tile.TILEHEIGHT * 9 - handler.getPlayer().getPlayerRec().height / 2.0f);
         }
-        Rectangle loadzoneOutside = new Rectangle(Tile.TILEWIDTH * 19 - (int) handler.getGameCamera().getxOffset(),
+        loadzoneOutside = new Rectangle(Tile.TILEWIDTH * 19 - (int) handler.getGameCamera().getxOffset(),
                 (int) (Tile.TILEHEIGHT * 17.5) - (int) handler.getGameCamera().getyOffset(), Tile.TILEWIDTH * 2, Tile.TILEHEIGHT / 2);
-        if (entityManager.getPlayer().getPlayerRec().intersects(loadzoneOutside)) {
+        if (handler.getPlayer().getPlayerRec().intersects(loadzoneOutside)) {
             //if this flag is set, we're in the part of the story that this should act as a loadzone
             if (handler.getFlags().isMCHouseNightCutscene1()) {
                 transitionFrom(handler.getWorldManager().getWorld(WorldManager.OVERWORLD_1_ID), Tile.TILEWIDTH * 43,
@@ -51,6 +52,7 @@ public class MCHouse2 extends World {
                             handler.getFlags().setCutsceneActive(true);
                             cutsceneManager.setActiveCutscene(mcHouseNightCutscene2);
                             handler.setPlayerFrozen(true);
+                            lookedOutside = true;
                         }
                     }
                 }
@@ -86,6 +88,18 @@ public class MCHouse2 extends World {
                 CutsceneManager cutsceneManager = handler.getCutsceneManager();
                 cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(2));
                 handler.setPlayerFrozen(true);
+            }
+        }
+        if (lookedOutside) {
+            if (null != loadzoneOutside) {
+                int xOrigin = loadzoneOutside.x + loadzoneOutside.width / 2;
+                int yOrigin = loadzoneOutside.y;
+                if ((Math.abs(handler.getPlayer().getX() - handler.getGameCamera().getxOffset() - xOrigin ) > 3 * Tile.TILEWIDTH)
+                        || (Math.abs(handler.getPlayer().getY() - handler.getGameCamera().getyOffset() - yOrigin) > 3 * Tile.TILEHEIGHT)) {
+                    handler.getFlags().setCutsceneActive(true);
+                    CutsceneManager cutsceneManager = handler.getCutsceneManager();
+                    cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_3));
+                }
             }
         }
     }
