@@ -316,9 +316,11 @@ public class Inventory {
         if (found) {
             System.out.println("Found");
         } else {
-            System.out.println("Not found");
-            showItemSelectedTextbox = true;
-            itemSelectedTextbox = new TextboxHandler(handler, Assets.serif, "That item can't be used here.", null, 3, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+            if (!items.get(selectedItem).useItem()) {
+                System.out.println("Not found");
+                showItemSelectedTextbox = true;
+                itemSelectedTextbox = new TextboxHandler(handler, Assets.serif, "That item can't be used here.", null, 3, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+            }
         }
         open = false;
         handler.setInMenu(false);
@@ -571,7 +573,7 @@ public class Inventory {
         return textWidth >= rect.width;
     }
 
-    public void addItem(Item item){
+    public void addItem(Item item) {
         if (item.getItemType().equals(REGULAR_ITEM)) {
             regularItems.add(item.getItemName());
             regularUniqueNames.add(item.getUniqueName());

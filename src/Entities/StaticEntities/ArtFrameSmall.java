@@ -1,5 +1,6 @@
 package Entities.StaticEntities;
 
+import Items.Painting;
 import Utils.GeneralUtils;
 import Variables.Handler;
 import Items.Inventory;
@@ -83,7 +84,7 @@ public class ArtFrameSmall extends StaticEntity {
         if (option.equals("Yes")) {
             if (!inventory.contains("Painting")) {
                 //we are definitely taking the painting from the wall
-                inventory.addItem(new Item("Painting", Inventory.REGULAR_ITEM, description, uniqueName, previewImage));
+                inventory.addItem(new Painting(handler, "Painting", Inventory.REGULAR_ITEM, description, uniqueName, previewImage));
                 empty = true;
             } else {
                 Item inventoryPainting = inventory.getItemByGenericName("Painting", Inventory.REGULAR_ITEM);
@@ -101,7 +102,7 @@ public class ArtFrameSmall extends StaticEntity {
                     } else {
                         //swapping the one in our inventory with this one
                         inventory.removeItem(inventoryPaintingName, Inventory.REGULAR_ITEM);
-                        inventory.addItem(new Item("Painting", Inventory.REGULAR_ITEM, description, uniqueName, previewImage));
+                        inventory.addItem(new Painting(handler, "Painting", Inventory.REGULAR_ITEM, description, uniqueName, previewImage));
                         description = inventoryPaintingDescription;
                         uniqueName = inventoryPaintingName;
                         previewImage = inventoryPreviewImage;

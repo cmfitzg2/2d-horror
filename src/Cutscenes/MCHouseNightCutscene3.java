@@ -2,6 +2,8 @@ package Cutscenes;
 
 import Graphics.Assets;
 import Input.KeyManager;
+import Items.Inventory;
+import Items.Lighter;
 import Textboxes.TextboxHandler;
 import Variables.Flags;
 import Variables.GeneralConstants;
@@ -36,8 +38,10 @@ public class MCHouseNightCutscene3 implements Cutscene {
             handler.getPlayer().setLockX(true);
             handler.getPlayer().setLockY(true);
             handler.getPlayer().setLockZ(true);
+            handler.setPlayerFrozen(true);
             Assets.powerDown.start();
             handler.getFlags().setTimeOfDay(Flags.TIME_OF_DAY_PITCH_BLACK);
+            handler.getPlayer().getInventory().addItem(new Lighter(handler, "Lighter", Inventory.REGULAR_ITEM, "a lighter", "lighter", Assets.keyInventory));
             firstTime = false;
         }
         if (textbox1 && !Assets.powerDown.isActive()) {
@@ -46,12 +50,14 @@ public class MCHouseNightCutscene3 implements Cutscene {
             } else {
                 textbox1 = false;
                 showingText = true;
+                handler.setPlayerFrozen(false);
             }
         }
         if (showingText && !textbox2) {
             if (handler.getKeyManager().up || handler.getKeyManager().down || handler.getKeyManager().left || handler.getKeyManager().right) {
                 textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, messageTwo, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
                 textbox2 = true;
+                handler.setPlayerFrozen(true);
             }
         }
         if (textbox2) {
@@ -59,7 +65,11 @@ public class MCHouseNightCutscene3 implements Cutscene {
                 textboxHandler2.tick();
             } else {
                 textbox2 = false;
+                handler.setPlayerFrozen(false);
             }
+        }
+        if (handler.getFlags().getTimeOfDay() != Flags.TIME_OF_DAY_PITCH_BLACK) {
+            exit();
         }
     }
 
@@ -82,6 +92,9 @@ public class MCHouseNightCutscene3 implements Cutscene {
     @Override
     public void exit() {
         handler.setPlayerFrozen(false);
+        handler.getPlayer().setLockX(false);
+        handler.getPlayer().setLockY(false);
+        handler.getPlayer().setLockZ(false);
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setMcHouseNightCutscene3(false);

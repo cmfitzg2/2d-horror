@@ -1,16 +1,20 @@
 package Items;
 
+import Variables.Handler;
+
 import java.awt.image.BufferedImage;
 
-public class Item {
+public abstract class Item {
 
-    private String itemName;
-    private String itemType;
-    private String description;
-    private String uniqueName;
-    private BufferedImage previewImage;
+    protected String itemName;
+    protected String itemType;
+    protected String description;
+    protected String uniqueName;
+    protected BufferedImage previewImage;
+    protected Handler handler;
 
-    public Item(String itemName, String itemType, String description, String uniqueName, BufferedImage previewImage) {
+    public Item(Handler handler, String itemName, String itemType, String description, String uniqueName, BufferedImage previewImage) {
+        this.handler = handler;
         this.itemName = itemName;
         this.itemType = itemType;
         this.description = description;
@@ -57,4 +61,6 @@ public class Item {
     public void setPreviewImage(BufferedImage previewImage) {
         this.previewImage = previewImage;
     }
+
+    public abstract boolean useItem();
 }

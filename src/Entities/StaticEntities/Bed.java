@@ -100,4 +100,8 @@ public class Bed extends StaticEntity {
     public boolean itemInteraction(String item) {
         return false;
     }
+
+    public void setFirstTime(boolean firstTime) {
+        this.firstTime = firstTime;
+    }
 }

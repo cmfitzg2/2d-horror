@@ -414,5 +414,7 @@ public class ClassroomCutscene1 implements Cutscene {
         handler.getFlags().setClassroomCutscene1(false);
         ((WindowOutside) handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID).getEntityManager()
                 .getEntityByUid("windowoutside1-mchouse1")).setStyle(WindowOutside.DARK);
+        ((Bed) handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID).getEntityManager()
+                .getEntityByUid("bed1-mchouse1")).setFirstTime(true);
     }
 }

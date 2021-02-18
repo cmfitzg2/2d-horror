@@ -27,7 +27,7 @@ public class MCHouse1 extends World {
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new Bed(handler, 17.7f * Tile.TILEWIDTH, 6.75f * Tile.TILEHEIGHT, Assets.bedOne.getWidth() * 2, Assets.bedOne.getHeight() * 2, null));
+        entityManager.addEntity(new Bed(handler, 17.7f * Tile.TILEWIDTH, 6.75f * Tile.TILEHEIGHT, Assets.bedOne.getWidth() * 2, Assets.bedOne.getHeight() * 2, "bed1-mchouse1"));
         entityManager.addEntity(new TableLamp(handler, 16.7f * Tile.TILEWIDTH, 6 * Tile.TILEHEIGHT, Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2, null));
         if (!handler.getFlags().isClassroomCutscene1()) {
             entityManager.addEntity(new WindowOutside(handler, 930, 320, Assets.windowLight.getWidth() * 2, Assets.windowLight.getHeight() * 2, "windowoutside1-mchouse1", WindowOutside.DARK));
