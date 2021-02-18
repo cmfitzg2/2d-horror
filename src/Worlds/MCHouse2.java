@@ -94,11 +94,13 @@ public class MCHouse2 extends World {
             if (null != loadzoneOutside) {
                 int xOrigin = loadzoneOutside.x + loadzoneOutside.width / 2;
                 int yOrigin = loadzoneOutside.y;
-                if ((Math.abs(handler.getPlayer().getX() - handler.getGameCamera().getxOffset() - xOrigin ) > 3 * Tile.TILEWIDTH)
-                        || (Math.abs(handler.getPlayer().getY() - handler.getGameCamera().getyOffset() - yOrigin) > 3 * Tile.TILEHEIGHT)) {
-                    handler.getFlags().setCutsceneActive(true);
-                    CutsceneManager cutsceneManager = handler.getCutsceneManager();
-                    cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_3));
+                if (handler.getFlags().isMCHouseNightCutscene3()) {
+                    if ((Math.abs(handler.getPlayer().getX() - handler.getGameCamera().getxOffset() - xOrigin) > 3 * Tile.TILEWIDTH)
+                            || (Math.abs(handler.getPlayer().getY() - handler.getGameCamera().getyOffset() - yOrigin) > 3 * Tile.TILEHEIGHT)) {
+                        handler.getFlags().setCutsceneActive(true);
+                        CutsceneManager cutsceneManager = handler.getCutsceneManager();
+                        cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_3));
+                    }
                 }
             }
         }
