@@ -26,9 +26,11 @@ public class TableLamp extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-        if (lit && !handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle() && !handler.isInMenu()) {
-            g.drawImage(Assets.yellowLight, (int) (x - handler.getGameCamera().getxOffset() - 32),
-                    (int) (y - handler.getGameCamera().getyOffset() - 32), 128, 128, null);
+        if (!handler.getFlags().isPowerOut()) {
+            if (lit && !handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle() && !handler.isInMenu()) {
+                g.drawImage(Assets.yellowLight, (int) (x - handler.getGameCamera().getxOffset() - 32),
+                        (int) (y - handler.getGameCamera().getyOffset() - 32), 128, 128, null);
+            }
         }
     }
 
@@ -39,16 +41,19 @@ public class TableLamp extends StaticEntity {
 
     @Override
     public void tick() {
-        if (lit && handler.getFlags().isPowerOut()) {
-            lit = false;
-        }
+
     }
 
     @Override
     public void render(Graphics g) {
-        if (lit) {
-            g.drawImage(Assets.tableLampOn, (int) (x - handler.getGameCamera().getxOffset()),
-                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        if (!handler.getFlags().isPowerOut()) {
+            if (lit) {
+                g.drawImage(Assets.tableLampOn, (int) (x - handler.getGameCamera().getxOffset()),
+                        (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+            } else {
+                g.drawImage(Assets.tableLampOff, (int) (x - handler.getGameCamera().getxOffset()),
+                        (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+            }
         } else {
             g.drawImage(Assets.tableLampOff, (int) (x - handler.getGameCamera().getxOffset()),
                     (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
@@ -69,9 +74,6 @@ public class TableLamp extends StaticEntity {
         } else {
             Assets.lampOff.stop();
             Assets.lampOff.play();
-        }
-        if (lit && handler.getFlags().isPowerOut()) {
-            lit = false;
         }
     }
 

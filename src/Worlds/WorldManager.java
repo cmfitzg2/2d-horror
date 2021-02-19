@@ -44,7 +44,7 @@ public class WorldManager {
         Lighter lighter = (Lighter) handler.getPlayer().getInventory().getItemByUniqueName(Item.LIGHTER_UID);
         for (Entity e : activeWorld.getEntityManager().getEntities()) {
             //check for light sources, but break once we find one (they don't stack)
-            if (e instanceof TableLamp) {
+            if (e instanceof TableLamp && !handler.getFlags().isPowerOut()) {
                 if (((TableLamp) e).isLit()) {
                     if (ambientLight > 0 && ambientLight == timeOfDay) {
                         handler.getPlayer().setAmbientLight(ambientLight - 1);
