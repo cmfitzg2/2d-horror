@@ -3,6 +3,8 @@ package Entities.Creatures;
 import Entities.Entity;
 import Entities.StaticEntities.Fireplace;
 import Entities.StaticEntities.TableLamp;
+import Input.KeyManager;
+import Variables.Flags;
 import Variables.Handler;
 import Items.Inventory;
 import Graphics.Animation;
@@ -25,6 +27,7 @@ public class Player extends Creature {
     private BufferedImage currentFrame;
     private Rectangle playerRec, interactionRectangle;
     private ScreenOverlay screenOverlay;
+    private KeyManager keyManager;
     private int ambientLight;
     //Font
     Font f;
@@ -47,8 +50,9 @@ public class Player extends Creature {
         animationList.add(animUp);
         animationList.add(animRight);
 
-        //ScreenOverlay
+        //Common globals
         screenOverlay = new ScreenOverlay(handler);
+        keyManager = handler.getKeyManager();
 
         //Font
         f = new Font("overlay", Font.ITALIC|Font.BOLD, 16);
@@ -231,15 +235,15 @@ public class Player extends Creature {
             yMove = 0;
 
             if (!lockY) {
-                if (handler.getKeyManager().up) {
-                    if (handler.getKeyManager().shift) {
+                if (keyManager.up) {
+                    if (keyManager.shift) {
                         yMove = -runSpeed;
                     } else {
                         yMove = -speed;
                     }
                 }
-                if (handler.getKeyManager().down) {
-                    if (handler.getKeyManager().shift) {
+                if (keyManager.down) {
+                    if (keyManager.shift) {
                         yMove = runSpeed;
                     } else {
                         yMove = speed;
@@ -247,15 +251,15 @@ public class Player extends Creature {
                 }
             }
             if (!lockX) {
-                if (handler.getKeyManager().left) {
-                    if (handler.getKeyManager().shift) {
+                if (keyManager.left) {
+                    if (keyManager.shift) {
                         xMove = -runSpeed;
                     } else {
                         xMove = -speed;
                     }
                 }
-                if (handler.getKeyManager().right) {
-                    if (handler.getKeyManager().shift) {
+                if (keyManager.right) {
+                    if (keyManager.shift) {
                         xMove = runSpeed;
                     } else {
                         xMove = speed;
@@ -263,9 +267,9 @@ public class Player extends Creature {
                 }
             }
             if (!lockZ) {
-                if (handler.getKeyManager().z) {
-                    if (!handler.getKeyManager().isStillHoldingZ()) {
-                        handler.getKeyManager().setStillHoldingZ(true);
+                if (keyManager.z) {
+                    if (!keyManager.isStillHoldingZ()) {
+                        keyManager.setStillHoldingZ(true);
                         for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
                             if (e.equals(this)) {                   //an entity cannot interact with itself
                                 continue;
@@ -476,6 +480,16 @@ public class Player extends Creature {
     }
 
     public void setAmbientLight(int ambientLight) {
+        if (this.ambientLight >= Flags.TIME_OF_DAY_PITCH_BLACK) {
+            lockX = false;
+            lockY = false;
+            lockZ = false;
+        }
         this.ambientLight = ambientLight;
+        if (ambientLight >= Flags.TIME_OF_DAY_PITCH_BLACK) {
+            lockX = true;
+            lockY = true;
+            lockZ = true;
+        }
     }
 }

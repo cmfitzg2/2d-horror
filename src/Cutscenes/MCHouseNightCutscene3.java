@@ -56,10 +56,26 @@ public class MCHouseNightCutscene3 implements Cutscene {
             }
         }
         if (showingText && !textbox2) {
-            if (handler.getKeyManager().up || handler.getKeyManager().down || handler.getKeyManager().left || handler.getKeyManager().right) {
-                textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, messageTwo, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
-                textbox2 = true;
-                handler.setPlayerFrozen(true);
+            if (handler.getKeyManager().up) {
+                if (!handler.getKeyManager().isStillHoldingUp()) {
+                    handler.getKeyManager().setStillHoldingUp(true);
+                    showCantMoveText();
+                }
+            } else if (handler.getKeyManager().down) {
+                if (!handler.getKeyManager().isStillHoldingDown()) {
+                    handler.getKeyManager().setStillHoldingDown(true);
+                    showCantMoveText();
+                }
+            } else if (handler.getKeyManager().left) {
+                if (!handler.getKeyManager().isStillHoldingLeft()) {
+                    handler.getKeyManager().setStillHoldingLeft(true);
+                    showCantMoveText();
+                }
+            } else if (handler.getKeyManager().right) {
+                if (!handler.getKeyManager().isStillHoldingRight()) {
+                    handler.getKeyManager().setStillHoldingRight(true);
+                    showCantMoveText();
+                }
             }
         }
         if (textbox2) {
@@ -100,5 +116,11 @@ public class MCHouseNightCutscene3 implements Cutscene {
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setMcHouseNightCutscene3(false);
+    }
+
+    private void showCantMoveText() {
+        textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, messageTwo, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
+        textbox2 = true;
+        handler.setPlayerFrozen(true);
     }
 }
