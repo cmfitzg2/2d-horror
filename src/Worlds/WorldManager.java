@@ -51,11 +51,6 @@ public class WorldManager {
                         if (handler.getFlags().isVisionLimited()) {
                             handler.getFlags().setVisionLimited(false);
                         }
-                        if (null != lighter) {
-                            if (lighter.isActive()) {
-                                lighter.setActive(false);
-                            }
-                        }
                     }
                     found = true;
                     break;
@@ -67,11 +62,6 @@ public class WorldManager {
                         if (handler.getFlags().isVisionLimited()) {
                             handler.getFlags().setVisionLimited(false);
                         }
-                        if (null != lighter) {
-                            if (lighter.isActive()) {
-                                lighter.setActive(false);
-                            }
-                        }
                     }
                     found = true;
                     break;
@@ -81,7 +71,7 @@ public class WorldManager {
         if (!found) {
             if (null == lighter || !lighter.isActive()) {
                 handler.getPlayer().setAmbientLight(timeOfDay);
-            } else if (lighter.isActive()) {
+            } else {
                 handler.getPlayer().setAmbientLight(Flags.TIME_OF_DAY_VERY_DARK);
                 handler.getFlags().setVisionLimited(true);
             }

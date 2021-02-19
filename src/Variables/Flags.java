@@ -1,5 +1,7 @@
 package Variables;
 
+import Items.Item;
+import Items.Lighter;
 import Utils.Utils;
 
 import java.util.ArrayList;
@@ -66,6 +68,16 @@ public class Flags {
 
     public void setVisionLimited(boolean visionLimited) {
         this.visionLimited = visionLimited;
+        if (!visionLimited) {
+            try {
+                Lighter lighter = (Lighter) handler.getPlayer().getInventory().getItemByUniqueName(Item.LIGHTER_UID);
+                if (lighter.isActive()) {
+                    lighter.setActive(false);
+                }
+            } catch (NullPointerException e) {
+
+            }
+        }
     }
 
     public boolean isViewingArt() {
