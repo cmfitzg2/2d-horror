@@ -1,5 +1,11 @@
 package Worlds;
 
+import Entities.Entity;
+import Entities.StaticEntities.Fireplace;
+import Entities.StaticEntities.TableLamp;
+import Items.Item;
+import Items.Lighter;
+import Variables.Flags;
 import Variables.Handler;
 
 import java.awt.*;
@@ -28,6 +34,58 @@ public class WorldManager {
 
     public void tick() {
         activeWorld.tick();
+        checkLightSources();
+    }
+
+    private void checkLightSources() {
+        int ambientLight = handler.getPlayer().getAmbientLight();
+        int timeOfDay = handler.getFlags().getTimeOfDay();
+        boolean found = false;
+        Lighter lighter = (Lighter) handler.getPlayer().getInventory().getItemByUniqueName(Item.LIGHTER_UID);
+        for (Entity e : activeWorld.getEntityManager().getEntities()) {
+            //check for light sources, but break once we find one (they don't stack)
+            if (e instanceof TableLamp) {
+                if (((TableLamp) e).isLit()) {
+                    if (ambientLight > 0 && ambientLight == timeOfDay) {
+                        handler.getPlayer().setAmbientLight(ambientLight - 1);
+                        if (handler.getFlags().isVisionLimited()) {
+                            handler.getFlags().setVisionLimited(false);
+                        }
+                        if (null != lighter) {
+                            if (lighter.isActive()) {
+                                lighter.setActive(false);
+                            }
+                        }
+                    }
+                    found = true;
+                    break;
+                }
+            } else if (e instanceof Fireplace) {
+                if (((Fireplace) e).isLit()) {
+                    if (ambientLight > 0 && ambientLight == timeOfDay) {
+                        handler.getPlayer().setAmbientLight(ambientLight - 1);
+                        if (handler.getFlags().isVisionLimited()) {
+                            handler.getFlags().setVisionLimited(false);
+                        }
+                        if (null != lighter) {
+                            if (lighter.isActive()) {
+                                lighter.setActive(false);
+                            }
+                        }
+                    }
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            if (null == lighter || !lighter.isActive()) {
+                handler.getPlayer().setAmbientLight(timeOfDay);
+            } else if (lighter.isActive()) {
+                handler.getPlayer().setAmbientLight(Flags.TIME_OF_DAY_VERY_DARK);
+                handler.getFlags().setVisionLimited(true);
+            }
+        }
     }
 
     public void render(Graphics g) {
@@ -41,7 +99,9 @@ public class WorldManager {
     public void setActiveWorld(World activeWorld) {
         this.activeWorld = activeWorld;
         handler.setActiveWorld(activeWorld);
+        handler.getPlayer().setAmbientLight(handler.getFlags().getTimeOfDay());
         activeWorld.load();
+        checkLightSources();
         activeWorld.resetEntityMessages();
         activeWorld.transitioningTo = true;
     }

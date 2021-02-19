@@ -48,6 +48,7 @@ public class MCHouse1 extends World {
             } else {
                 cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_1));
                 handler.getFlags().setTimeOfDay(Flags.TIME_OF_DAY_DARK);
+                handler.getPlayer().setAmbientLight(Flags.TIME_OF_DAY_DARK);
             }
             handler.setPlayerFrozen(true);
         }

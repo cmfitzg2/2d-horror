@@ -1,6 +1,8 @@
 package Entities.StaticEntities;
 
+import Entities.Entity;
 import Graphics.Assets;
+import Variables.Flags;
 import Variables.Handler;
 
 import java.awt.*;
@@ -37,7 +39,9 @@ public class TableLamp extends StaticEntity {
 
     @Override
     public void tick() {
-
+        if (lit && handler.getFlags().isPowerOut()) {
+            lit = false;
+        }
     }
 
     @Override
@@ -65,6 +69,9 @@ public class TableLamp extends StaticEntity {
         } else {
             Assets.lampOff.stop();
             Assets.lampOff.play();
+        }
+        if (lit && handler.getFlags().isPowerOut()) {
+            lit = false;
         }
     }
 

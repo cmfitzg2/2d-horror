@@ -2,6 +2,7 @@ package Entities.StaticEntities;
 
 import Graphics.Assets;
 import Graphics.Animation;
+import Variables.Flags;
 import Variables.Handler;
 
 import java.awt.*;
@@ -42,6 +43,9 @@ public class Fireplace extends StaticEntity {
     public void tick() {
         if (lit) {
             fire.tick();
+            if (handler.getFlags().isVisionLimited()) {
+                handler.getFlags().setVisionLimited(false);
+            }
         }
     }
 

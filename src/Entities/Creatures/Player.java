@@ -25,6 +25,7 @@ public class Player extends Creature {
     private BufferedImage currentFrame;
     private Rectangle playerRec, interactionRectangle;
     private ScreenOverlay screenOverlay;
+    private int ambientLight;
     //Font
     Font f;
 
@@ -57,6 +58,8 @@ public class Player extends Creature {
 
         runSpeed = defaultRunSpeed;
         speed = defaultSpeed;
+
+        ambientLight = handler.getFlags().getTimeOfDay();
     }
 
     @Override
@@ -155,7 +158,7 @@ public class Player extends Creature {
 
     @Override
     public void finalRender(Graphics g) {
-        drawTimeOfDay(g);
+        drawAmbientLight(g);
         screenOverlay.drawVision(g);
         inventory.render(g);
         drawTextboxes(g);
@@ -176,24 +179,9 @@ public class Player extends Creature {
 
     }
 
-    private void drawTimeOfDay(Graphics g) {
-        int timeOfDay = handler.getFlags().getTimeOfDay();
-        if (timeOfDay > 0) {
-            for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
-                //check for light sources, but break once we find one (they don't stack)
-                if (e instanceof TableLamp) {
-                    if (((TableLamp) e).isLit()) {
-                        timeOfDay--;
-                        break;
-                    }
-                } else if (e instanceof Fireplace) {
-                    if (((Fireplace) e).isLit()) {
-                        timeOfDay--;
-                        break;
-                    }
-                }
-            }
-            switch (timeOfDay) {
+    private void drawAmbientLight(Graphics g) {
+        if (ambientLight > 0) {
+            switch (ambientLight) {
                 case 1:
                     screenOverlay.overlayScreen(g, ScreenOverlay.someDark);
                     break;
@@ -481,5 +469,13 @@ public class Player extends Creature {
 
     public void setInvisible(boolean invisible) {
         this.invisible = invisible;
+    }
+
+    public int getAmbientLight() {
+        return ambientLight;
+    }
+
+    public void setAmbientLight(int ambientLight) {
+        this.ambientLight = ambientLight;
     }
 }

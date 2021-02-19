@@ -3,6 +3,7 @@ package Cutscenes;
 import Graphics.Assets;
 import Input.KeyManager;
 import Items.Inventory;
+import Items.Item;
 import Items.Lighter;
 import Textboxes.TextboxHandler;
 import Variables.Flags;
@@ -34,14 +35,15 @@ public class MCHouseNightCutscene3 implements Cutscene {
             return;
         }
         if (firstTime) {
-            //need to be able to open inventory so can't set frozen
             handler.getPlayer().setLockX(true);
             handler.getPlayer().setLockY(true);
             handler.getPlayer().setLockZ(true);
             handler.setPlayerFrozen(true);
             Assets.powerDown.start();
             handler.getFlags().setTimeOfDay(Flags.TIME_OF_DAY_PITCH_BLACK);
-            handler.getPlayer().getInventory().addItem(new Lighter(handler, "Lighter", Inventory.REGULAR_ITEM, "a lighter", "lighter", Assets.keyInventory));
+            handler.getPlayer().setAmbientLight(Flags.TIME_OF_DAY_PITCH_BLACK);
+            handler.getPlayer().getInventory().addItem(new Lighter(handler, "Lighter", Inventory.REGULAR_ITEM, "a lighter", Item.LIGHTER_UID, Assets.keyInventory));
+            handler.getFlags().setPowerOut(true);
             firstTime = false;
         }
         if (textbox1 && !Assets.powerDown.isActive()) {
@@ -68,7 +70,7 @@ public class MCHouseNightCutscene3 implements Cutscene {
                 handler.setPlayerFrozen(false);
             }
         }
-        if (handler.getFlags().getTimeOfDay() != Flags.TIME_OF_DAY_PITCH_BLACK) {
+        if (handler.getPlayer().getAmbientLight() != Flags.TIME_OF_DAY_PITCH_BLACK) {
             exit();
         }
     }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Flags {
-    private boolean visionLimited, viewingArt, inPuzzle, prologue, cutsceneActive;
+    private boolean visionLimited, viewingArt, inPuzzle, prologue, cutsceneActive, powerOut;
     private Handler handler;
     private List<Boolean> flags;
     private List<Integer> constants;
@@ -156,5 +156,13 @@ public class Flags {
 
     public void setTimeOfDay(int timeOfDay) {
         constants.set(timeOfDayIndex, timeOfDay);
+    }
+
+    public boolean isPowerOut() {
+        return powerOut;
+    }
+
+    public void setPowerOut(boolean powerOut) {
+        this.powerOut = powerOut;
     }
 }

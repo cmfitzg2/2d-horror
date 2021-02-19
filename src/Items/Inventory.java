@@ -596,7 +596,7 @@ public class Inventory {
     }
 
     public Item getItemByUniqueName(String name) {
-        return items.get(name);
+        return items.getOrDefault(name, null);
     }
 
     public Item getItemByGenericName(String name, String itemType) {

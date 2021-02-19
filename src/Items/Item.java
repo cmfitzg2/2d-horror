@@ -12,6 +12,7 @@ public abstract class Item {
     protected String uniqueName;
     protected BufferedImage previewImage;
     protected Handler handler;
+    public static String LIGHTER_UID = "lighter";
 
     public Item(Handler handler, String itemName, String itemType, String description, String uniqueName, BufferedImage previewImage) {
         this.handler = handler;
