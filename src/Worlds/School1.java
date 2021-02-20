@@ -1,5 +1,6 @@
 package Worlds;
 
+import Cutscenes.Cutscene;
 import Cutscenes.CutsceneManager;
 import Entities.Creatures.*;
 import Entities.StaticEntities.Door;
@@ -72,7 +73,7 @@ public class School1 extends World {
             if (handler.getPlayer().getY() <= Tile.TILEWIDTH * 10 && handler.getPlayer().getX() < Tile.TILEWIDTH * 17) {
                 handler.getFlags().setCutsceneActive(true);
                 CutsceneManager cutsceneManager = handler.getCutsceneManager();
-                cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(3));
+                cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(Cutscene.SCHOOL_CUTSCENE_1));
                 handler.setPlayerFrozen(true);
             }
         }

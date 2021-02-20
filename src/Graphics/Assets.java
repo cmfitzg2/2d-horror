@@ -47,7 +47,8 @@ public class Assets {
 	public static BufferedImage windowLight, windowDark, tableLampOff, tableLampOn;
 	public static BufferedImage yellowLight;
 	public static BufferedImage headDown, headUp, headLeft, headRight;
-	public static BufferedImage darkWall, concrete, frontDoor, artFrame, artFrameSmall, artFrameSmallEmpty;
+	public static BufferedImage darkWall, concrete, frontDoor, windowOutsideDay, windowOutsideNight,
+			artFrame, artFrameSmall, artFrameSmallEmpty;
 	public static BufferedImage buttonPuzzlePanel, buttonPuzzleBorder, buttonPuzzleOn, buttonPuzzleOff;
 	public static BufferedImage galleryAbyss, galleryApparition, galleryBlight, galleryButcher, galleryCaptivity,
 			galleryCipher, galleryCondemnation, galleryDeluge, galleryDissonance, galleryDuty, galleryFacade,
@@ -80,9 +81,9 @@ public class Assets {
 	public static Font playerSpeakingFont, playerThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont, teacherFont;
 	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2,
 			denialText, angerText, bargainingText, depressionText, acceptanceText, playerText, teacherText,
-			lampOn, lampOff;
+			lampOn, lampOff, windowHit;
 	public static Clip menuMusic;
-	public static Clip schoolBell, triKnock1, powerDown;
+	public static Clip schoolBell, triKnock1, powerDown, windowKnock;
 	public static void init() {
 		initSounds();
 		initFonts();
@@ -99,6 +100,7 @@ public class Assets {
 		textTest2  = Applet.newAudioClip(Assets.class.getResource("/sounds/text/text-test-2.au"));
 		lampOn = Applet.newAudioClip(Assets.class.getResource("/sounds/misc/switch36.au"));
 		lampOff = Applet.newAudioClip(Assets.class.getResource("/sounds/misc/switch37.au"));
+		windowHit = Applet.newAudioClip(Assets.class.getResource("/sounds/misc/window-hit.au"));
 		try {
 			menuMusic = AudioSystem.getClip();
 			AudioInputStream ais1 = AudioSystem.getAudioInputStream(new File("res/music/desolate.au"));
@@ -112,6 +114,9 @@ public class Assets {
 			powerDown = AudioSystem.getClip();
 			AudioInputStream ais4 = AudioSystem.getAudioInputStream(new File("res/sounds/misc/power-down.au"));
 			powerDown.open(ais4);
+			windowKnock = AudioSystem.getClip();
+			AudioInputStream ais5 = AudioSystem.getAudioInputStream(new File("res/sounds/misc/window-knock.au"));
+			windowKnock.open(ais5);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		}
@@ -595,6 +600,8 @@ public class Assets {
 		darkWall = ImageLoader.loadImage("/textures/backgrounds/wall.png");
 		concrete = ImageLoader.loadImage("/textures/backgrounds/concrete.png");
 		frontDoor = ImageLoader.loadImage("/textures/backgrounds/front-door.png");
+		windowOutsideDay = ImageLoader.loadImage("/textures/backgrounds/window-outside-day.png");
+		windowOutsideNight = ImageLoader.loadImage("/textures/backgrounds/window-outside-night.png");
 		artFrame = ImageLoader.loadImage("/textures/artFrame.png");
 		artFrameSmall = ImageLoader.loadImage("/textures/artFrameSmall.png");
 		artFrameSmallEmpty = ImageLoader.loadImage("/textures/artFrameSmallEmpty.png");

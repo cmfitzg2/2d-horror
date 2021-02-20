@@ -66,7 +66,7 @@ public class ScreenOverlay {
 
 		if (handler.getFlags().isVisionLimited()) {
 			//overlayScreen(g, new Color(0, 0, 120, 100));
-			g.drawImage(Assets.tunnelVision[Assets.tunnelVision.length - 1], xDrawFrom, yDrawFrom, xScale, yScale, null);
+			g.drawImage(Assets.tunnelVision[Assets.tunnelVision.length / 2], xDrawFrom, yDrawFrom, xScale, yScale, null);
 		}
 	}
 }

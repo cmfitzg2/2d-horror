@@ -60,6 +60,12 @@ public class MCHouse2 extends World {
             stillInOutsideLoadzone = true;
         } else {
             stillInOutsideLoadzone = false;
+            if (handler.getPlayer().getX() > Tile.TILEWIDTH * 28.5 && handler.getFlags().isMCHouseNightCutscene4()
+                    && !handler.getFlags().isMCHouseNightCutscene3() && !handler.getFlags().isCutsceneActive()) {
+                handler.getFlags().setCutsceneActive(true);
+                handler.getCutsceneManager().setActiveCutscene(handler.getCutsceneManager().getCutscene(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_4));
+                handler.setPlayerFrozen(true);
+            }
         }
     }
 
@@ -86,7 +92,7 @@ public class MCHouse2 extends World {
             if (handler.getPlayer().getX() < Tile.TILEWIDTH * 33) {
                 handler.getFlags().setCutsceneActive(true);
                 CutsceneManager cutsceneManager = handler.getCutsceneManager();
-                cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(2));
+                cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(Cutscene.ACCEPTANCE_ENCOUNTER_1));
                 handler.setPlayerFrozen(true);
             }
         }

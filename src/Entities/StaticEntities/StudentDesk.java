@@ -1,5 +1,6 @@
 package Entities.StaticEntities;
 
+import Cutscenes.Cutscene;
 import Cutscenes.CutsceneManager;
 import Graphics.Assets;
 import Textboxes.TextboxHandler;
@@ -101,7 +102,7 @@ public class StudentDesk extends StaticEntity {
             if (handler.getFlags().isClassroomCutscene1() && !handler.getFlags().isCutsceneActive()) {
                 handler.getFlags().setCutsceneActive(true);
                 CutsceneManager cutsceneManager = handler.getCutsceneManager();
-                cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(4));
+                cutsceneManager.setActiveCutscene(cutsceneManager.getCutscene(Cutscene.CLASSROOM_CUTSCENE_1));
             }
         } else {
             handler.setPlayerFrozen(false);

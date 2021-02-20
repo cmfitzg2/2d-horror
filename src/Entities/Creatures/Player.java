@@ -157,13 +157,12 @@ public class Player extends Creature {
 
     @Override
     public void postRender(Graphics g) {
-        //g.drawRect(playerRec.x, playerRec.y, playerRec.width, playerRec.height);
+        drawAmbientLight(g);
+        screenOverlay.drawVision(g);
     }
 
     @Override
     public void finalRender(Graphics g) {
-        drawAmbientLight(g);
-        screenOverlay.drawVision(g);
         inventory.render(g);
         drawTextboxes(g);
         g.setColor(Color.WHITE);

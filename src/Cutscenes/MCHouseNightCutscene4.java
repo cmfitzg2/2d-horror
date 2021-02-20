@@ -2,21 +2,26 @@ package Cutscenes;
 
 import Graphics.Assets;
 import Input.KeyManager;
+import Items.Inventory;
+import Items.Item;
+import Items.Lighter;
 import Textboxes.TextboxHandler;
+import Variables.Flags;
 import Variables.GeneralConstants;
 import Variables.Handler;
 import Worlds.WorldManager;
 
 import java.awt.*;
 
-public class MCHouseNightCutscene2 implements Cutscene {
+public class MCHouseNightCutscene4 implements Cutscene {
     private Handler handler;
-    private TextboxHandler textboxHandler1;
+    private TextboxHandler textboxHandler1, textboxHandler2;
     private KeyManager keyManager;
-    private boolean messageDisplayed = false, showTextbox = false;
-    private final String messageOne = "That's weird. No one is out there. \n Am I hearing things? \r " +
-            "I'm sure I heard three knocks. There's something distinctly deliberate about that.";
-    public MCHouseNightCutscene2(Handler handler) {
+    private boolean showingText = false, textbox1 = true, textbox2 = false;
+    private boolean firstTime = true;
+    private final String messageOne = "?! \r " +
+            "That came from my room!";
+    public MCHouseNightCutscene4(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
         textboxHandler1 = new TextboxHandler(handler, Assets.playerThinkingFont, messageOne, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
@@ -27,25 +32,12 @@ public class MCHouseNightCutscene2 implements Cutscene {
         if (handler.getActiveWorld().getId() != WorldManager.MC_HOUSE_2_ID) {
             return;
         }
-        if (!messageDisplayed) {
-            if (handler.getKeyManager().z) {
-                if (!handler.getKeyManager().isStillHoldingZ()) {
-                    handler.getKeyManager().setStillHoldingZ(true);
-                    messageDisplayed = true;
-                    showTextbox = true;
-                }
-            }
-        } else {
-            if (textboxHandler1.isFinished()) {
-                //checking the door again after the initial cutscene
-                if (handler.getKeyManager().z) {
-                    if (!handler.getKeyManager().isStillHoldingZ()) {
-                        exit();
-                    }
-                }
-            }
+        if (firstTime) {
+            handler.setPlayerFrozen(true);
+            Assets.windowKnock.start();
+            firstTime = false;
         }
-        if (showTextbox) {
+        if (!Assets.windowKnock.isActive()) {
             if (!textboxHandler1.isFinished()) {
                 textboxHandler1.tick();
             } else {
@@ -59,8 +51,7 @@ public class MCHouseNightCutscene2 implements Cutscene {
         if (handler.getActiveWorld().getId() != WorldManager.MC_HOUSE_2_ID) {
             return;
         }
-        g.drawImage(Assets.frontDoor, 0, 0, handler.getWidth(), handler.getHeight(), null);
-        if (showTextbox) {
+        if (!Assets.windowKnock.isActive()) {
             if (!textboxHandler1.isFinished()) {
                 textboxHandler1.render(g);
             }
@@ -69,13 +60,9 @@ public class MCHouseNightCutscene2 implements Cutscene {
 
     @Override
     public void exit() {
-        showTextbox = false;
         handler.setPlayerFrozen(false);
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
-    }
-
-    public boolean isMessageDisplayed() {
-        return messageDisplayed;
+        handler.getFlags().setMcHouseNightCutscene4(false);
     }
 }

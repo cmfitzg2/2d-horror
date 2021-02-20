@@ -1,6 +1,7 @@
 package Entities.StaticEntities;
 
 import Graphics.Assets;
+import Variables.Flags;
 import Variables.Handler;
 
 import java.awt.*;
@@ -14,7 +15,7 @@ public class WindowOutside extends StaticEntity {
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = width;
-        bounds.height = height;
+        bounds.height = height * 2;
         this.style = style;
     }
 
@@ -41,12 +42,26 @@ public class WindowOutside extends StaticEntity {
 
     @Override
     public void finalRender(Graphics g) {
-
+        if (isInteracting) {
+            if (handler.getFlags().getTimeOfDay() >= Flags.TIME_OF_DAY_DARK) {
+                g.drawImage(Assets.windowOutsideNight, 0, 0, handler.getWidth(), handler.getHeight(), null);
+            } else {
+                g.drawImage(Assets.windowOutsideDay, 0, 0, handler.getWidth(), handler.getHeight(), null);
+            }
+        }
     }
 
     @Override
     public void tick() {
-
+        if (isInteracting) {
+            if (handler.getKeyManager().z) {
+                if (!handler.getKeyManager().isStillHoldingZ()) {
+                    handler.getKeyManager().setStillHoldingZ(true);
+                    isInteracting = false;
+                    handler.setPlayerFrozen(false);
+                }
+            }
+        }
     }
 
     @Override
@@ -61,7 +76,8 @@ public class WindowOutside extends StaticEntity {
 
     @Override
     public void interactedWith() {
-
+        isInteracting = true;
+        handler.setPlayerFrozen(true);
     }
 
     @Override

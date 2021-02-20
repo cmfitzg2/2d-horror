@@ -6,13 +6,19 @@ public class Animation {
 	private int speed, index;
 	private long lastTime, timer;
 	private BufferedImage[] frames;
-	
-	public Animation(int speed, BufferedImage[] frames) {
+	private boolean loop;
+
+	public Animation(int speed, BufferedImage[] frames, boolean loop) {
 		this.speed = speed;
 		this.frames = frames;
+		this.loop = loop;
 		index = 0;
 		timer = 0;
 		lastTime = System.currentTimeMillis();
+	}
+
+	public Animation(int speed, BufferedImage[] frames) {
+		this(speed, frames, true);
 	}
 	
 	public void tick() {
@@ -23,7 +29,11 @@ public class Animation {
 			index++;
 			timer = 0;
 			if (index >= frames.length) {
-				index = 0;
+				if (loop) {
+					index = 0;
+				} else {
+					index = frames.length - 1;
+				}
 			}
 		}
 	}
