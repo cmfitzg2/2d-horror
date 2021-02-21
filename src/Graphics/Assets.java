@@ -66,7 +66,7 @@ public class Assets {
 	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet;
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
 	public static BufferedImage[] grandfatherClock;
-	public static BufferedImage[] dressers, fire, chalkboard;
+	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] playerDown, playerUp, playerLeft, playerRight;
 	public static BufferedImage[] denialDown, denialUp, denialLeft, denialRight;
@@ -596,6 +596,11 @@ public class Assets {
 		for (int i = 0, j = 20; i < tunnelVision.length; i++, j += 2) {
 			tunnelVision[i] = ImageLoader.loadImage("/textures/reduced-vision/vision-" + j + "-75.png");
 		}
+
+		windowOutsideNightHand = new BufferedImage[3];
+		windowOutsideNightHand[0] = ImageLoader.loadImage("/textures/backgrounds/window-outside-night-hand1.png");
+		windowOutsideNightHand[1] = ImageLoader.loadImage("/textures/backgrounds/window-outside-night-hand2.png");
+		windowOutsideNightHand[2] = ImageLoader.loadImage("/textures/backgrounds/window-outside-night-hand3.png");
 
 		darkWall = ImageLoader.loadImage("/textures/backgrounds/wall.png");
 		concrete = ImageLoader.loadImage("/textures/backgrounds/concrete.png");

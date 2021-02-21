@@ -1,15 +1,19 @@
 package Entities.StaticEntities;
 
+import Cutscenes.Cutscene;
 import Graphics.Assets;
 import Variables.Flags;
 import Variables.Handler;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class WindowOutside extends StaticEntity {
 
     public static int LIGHT = 0, DARK = 1;
     private int style;
+    private BufferedImage background;
+
     public WindowOutside(Handler handler, float x, float y, int width, int height, String uniqueName, int style) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
@@ -43,18 +47,26 @@ public class WindowOutside extends StaticEntity {
     @Override
     public void finalRender(Graphics g) {
         if (isInteracting) {
-            if (handler.getFlags().getTimeOfDay() >= Flags.TIME_OF_DAY_DARK) {
-                g.drawImage(Assets.windowOutsideNight, 0, 0, handler.getWidth(), handler.getHeight(), null);
+            if (null == background) {
+                if (handler.getFlags().getTimeOfDay() >= Flags.TIME_OF_DAY_DARK) {
+                    g.drawImage(Assets.windowOutsideNight, 0, 0, handler.getWidth(), handler.getHeight(), null);
+                } else {
+                    g.drawImage(Assets.windowOutsideDay, 0, 0, handler.getWidth(), handler.getHeight(), null);
+                }
             } else {
-                g.drawImage(Assets.windowOutsideDay, 0, 0, handler.getWidth(), handler.getHeight(), null);
+                g.drawImage(background, 0, 0, handler.getWidth(), handler.getHeight(), null);
             }
         }
     }
 
     @Override
     public void tick() {
-        if (isInteracting) {
-            if (handler.getKeyManager().z) {
+        if (isInteracting && !handler.getFlags().isCutsceneActive()) {
+            if (!handler.getFlags().isMCHouseNightCutscene4() && handler.getFlags().isMCHouseNightCutscene5()) {
+                handler.getFlags().setCutsceneActive(true);
+                handler.getCutsceneManager().setActiveCutscene(handler.getCutsceneManager().getCutscene(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_5));
+                handler.setPlayerFrozen(true);
+            } else if (handler.getKeyManager().z) {
                 if (!handler.getKeyManager().isStillHoldingZ()) {
                     handler.getKeyManager().setStillHoldingZ(true);
                     isInteracting = false;
@@ -96,5 +108,9 @@ public class WindowOutside extends StaticEntity {
 
     public void setStyle(int style) {
         this.style = style;
+    }
+
+    public void setBackground(BufferedImage background) {
+        this.background = background;
     }
 }

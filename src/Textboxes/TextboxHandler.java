@@ -29,7 +29,7 @@ public class TextboxHandler {
 	private HashMap<Rectangle, String> textboxLines;
 	private java.util.List<Textbox> textboxes;
 	private Textbox currentTextbox;
-	private int frameCount = 1, textSpeed;
+	private int frameCount, textSpeed;
 	private BufferedImage textbox, portrait;
 	private int portraitWidth, portraitHeight, portraitXStart, portraitYStart;
 	private boolean allowFastText;
@@ -53,6 +53,7 @@ public class TextboxHandler {
 		this.options = options;
 		this.font = font;
 		this.textSpeed = textSpeed;
+		frameCount = textSpeed;
 		if (null != fontColor) {
 			this.fontColor = fontColor;
 		} else {
@@ -126,7 +127,7 @@ public class TextboxHandler {
 				}
 			}
 			String lineText = currentTextbox.getCurrentText(currentLine);
-			if (index > lineText.length()) {
+			if (index >= lineText.length() - 1) {
 				if (!currentTextbox.getCurrentText(currentLine + 1).isEmpty()) {
 					currentLine++;
 					index = 0;
@@ -402,6 +403,10 @@ public class TextboxHandler {
 	public void setActive(boolean active) {
 		this.active = active;
 		handler.setPlayerFrozen(true);
+	}
+
+	public boolean isTextFinished() {
+		return textFinished;
 	}
 }
 

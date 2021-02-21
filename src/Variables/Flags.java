@@ -20,6 +20,7 @@ public class Flags {
     private final int mcHouseNightCutscene2Flag = 5;
     private final int mcHouseNightCutscene3Flag = 6;
     private final int mcHouseNightCutscene4Flag = 7;
+    private final int mcHouseNightCutscene5Flag = 8;
     private final int timeOfDayIndex = 0;
     public static final int TIME_OF_DAY_BRIGHT = 0, TIME_OF_DAY_SOME_DARK = 1, TIME_OF_DAY_DARK = 2, TIME_OF_DAY_VERY_DARK = 3, TIME_OF_DAY_PITCH_BLACK = 4;
 
@@ -161,6 +162,14 @@ public class Flags {
 
     public void setMcHouseNightCutscene4(boolean mcHouseNightCutscene4) {
         flags.set(mcHouseNightCutscene4Flag, mcHouseNightCutscene4);
+    }
+
+    public boolean isMCHouseNightCutscene5() {
+        return flags.get(mcHouseNightCutscene5Flag);
+    }
+
+    public void setMcHouseNightCutscene5(boolean mcHouseNightCutscene5) {
+        flags.set(mcHouseNightCutscene5Flag, mcHouseNightCutscene5);
     }
 
     public boolean isCutsceneActive() {

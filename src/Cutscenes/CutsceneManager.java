@@ -22,6 +22,7 @@ public class CutsceneManager {
         cutscenes.put(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_2, new MCHouseNightCutscene2(handler));
         cutscenes.put(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_3, new MCHouseNightCutscene3(handler));
         cutscenes.put(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_4, new MCHouseNightCutscene4(handler));
+        cutscenes.put(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_5, new MCHouseNightCutscene5(handler));
         setActiveCutscene(cutscenes.get(Cutscene.PROLOGUE));
     }
 
