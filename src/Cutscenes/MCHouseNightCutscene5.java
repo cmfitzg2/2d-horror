@@ -14,9 +14,12 @@ public class MCHouseNightCutscene5 implements Cutscene {
     private Handler handler;
     private TextboxHandler textboxHandler1, textboxHandler2;
     private KeyManager keyManager;
-    private boolean showTextbox1 = false, textbox1 = true, textbox2 = false, soundPlayed = false;
+    private boolean firstTime = true, showTextbox1 = false, textbox1 = true, textbox2 = false;
     private final String message1 = "...?",
             message2 = "No one is out there? I was sure I heard someone knocking on";
+    private long timerLong = 1000000000L, timerShort = 100000000L, currentTime;
+    private int backgroundIndex = 0;
+    private WindowOutside windowOutside;
     public MCHouseNightCutscene5(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
@@ -28,6 +31,10 @@ public class MCHouseNightCutscene5 implements Cutscene {
     public void tick() {
         if (handler.getActiveWorld().getId() != WorldManager.MC_HOUSE_1_ID) {
             return;
+        }
+        if (firstTime) {
+            windowOutside = (WindowOutside) handler.getActiveWorld().getEntityManager().getEntityByUid("windowoutside1-mchouse1");
+            firstTime = false;
         }
         if (textbox1) {
             if (showTextbox1) {
@@ -45,11 +52,26 @@ public class MCHouseNightCutscene5 implements Cutscene {
         if (textbox2) {
             if (!textboxHandler2.isTextFinished()) {
                 textboxHandler2.tick();
-            } else if (!soundPlayed) {
+            } else {
                 Assets.windowHit.play();
-                soundPlayed = true;
-                ((WindowOutside) handler.getActiveWorld().getEntityManager().getEntityByUid("windowoutside1-mchouse1"))
-                        .setBackground(Assets.windowOutsideNightHand[0]);
+                windowOutside.setBackground(Assets.windowOutsideNightHand[0]);
+                textbox2 = false;
+                currentTime = System.nanoTime();
+            }
+        }
+        if (!textbox1 && !textbox2) {
+            if (backgroundIndex == 0) {
+                if (System.nanoTime() - currentTime >= timerLong) {
+                    backgroundIndex++;
+                    windowOutside.setBackground(Assets.windowOutsideNightHand[backgroundIndex]);
+                    currentTime = System.nanoTime();
+                }
+            } else if (backgroundIndex < 3) {
+                if (System.nanoTime() - currentTime >= timerShort) {
+                    backgroundIndex++;
+                    windowOutside.setBackground(Assets.windowOutsideNightHand[backgroundIndex]);
+                    currentTime = System.nanoTime();
+                }
             } else {
                 exit();
             }

@@ -37,7 +37,7 @@ public class WindowOutside extends StaticEntity {
     @Override
     public void postRender(Graphics g) {
         if (style == LIGHT) {
-            if (!handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle() && !handler.isInMenu()) {
+            if (!handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle() && !handler.isInMenu() && !handler.getFlags().isHideEffects()) {
                 g.drawImage(Assets.yellowLight, (int) (x - handler.getGameCamera().getxOffset() - 32),
                         (int) (y - handler.getGameCamera().getyOffset() - 32), 128, 128, null);
             }
@@ -71,6 +71,7 @@ public class WindowOutside extends StaticEntity {
                     handler.getKeyManager().setStillHoldingZ(true);
                     isInteracting = false;
                     handler.setPlayerFrozen(false);
+                    handler.getFlags().setHideEffects(false);
                 }
             }
         }
@@ -90,6 +91,7 @@ public class WindowOutside extends StaticEntity {
     public void interactedWith() {
         isInteracting = true;
         handler.setPlayerFrozen(true);
+        handler.getFlags().setHideEffects(true);
     }
 
     @Override

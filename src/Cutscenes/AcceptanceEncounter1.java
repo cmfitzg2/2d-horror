@@ -56,6 +56,7 @@ public class AcceptanceEncounter1 implements Cutscene {
             acceptance = (Acceptance) handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_2_ID).getEntityManager().getEntityByUid("acceptance-mchouse2");
             player = handler.getPlayer();
             acceptance.setDirection("right");
+            firstTime = false;
         }
         if (textbox1 && !textboxHandler1.isFinished()) {
             textboxHandler1.tick();

@@ -597,10 +597,11 @@ public class Assets {
 			tunnelVision[i] = ImageLoader.loadImage("/textures/reduced-vision/vision-" + j + "-75.png");
 		}
 
-		windowOutsideNightHand = new BufferedImage[3];
+		windowOutsideNightHand = new BufferedImage[4];
 		windowOutsideNightHand[0] = ImageLoader.loadImage("/textures/backgrounds/window-outside-night-hand1.png");
 		windowOutsideNightHand[1] = ImageLoader.loadImage("/textures/backgrounds/window-outside-night-hand2.png");
 		windowOutsideNightHand[2] = ImageLoader.loadImage("/textures/backgrounds/window-outside-night-hand3.png");
+		windowOutsideNightHand[3] = ImageLoader.loadImage("/textures/backgrounds/window-outside-night.png");
 
 		darkWall = ImageLoader.loadImage("/textures/backgrounds/wall.png");
 		concrete = ImageLoader.loadImage("/textures/backgrounds/concrete.png");

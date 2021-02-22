@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Flags {
-    private boolean visionLimited, viewingArt, inPuzzle, prologue, cutsceneActive, powerOut;
+    private boolean visionLimited, viewingArt, inPuzzle, hideEffects, prologue, cutsceneActive, powerOut;
     private Handler handler;
     private List<Boolean> flags;
     private List<Integer> constants;
@@ -194,5 +194,13 @@ public class Flags {
 
     public void setPowerOut(boolean powerOut) {
         this.powerOut = powerOut;
+    }
+
+    public boolean isHideEffects() {
+        return hideEffects;
+    }
+
+    public void setHideEffects(boolean hideEffects) {
+        this.hideEffects = hideEffects;
     }
 }
