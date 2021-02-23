@@ -7,6 +7,7 @@ import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
 import Tiles.Tile;
+import Variables.GeneralConstants;
 import Variables.Handler;
 import Worlds.WorldManager;
 
@@ -57,18 +58,18 @@ public class ClassroomCutscene1 implements Cutscene {
     public ClassroomCutscene1(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
-        textboxHandler1 = new TextboxHandler(handler, Assets.teacherFont, message1, null, 3, Color.WHITE, null, Assets.textboxTeacher, null, 50, true, false);
-        textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, message2, null, 3, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
-        textboxHandler3 = new TextboxHandler(handler, Assets.teacherFont, message3, null, 3, Color.WHITE, null, Assets.textboxTeacher, null, 50, true, false);
-        textboxHandler4 = new TextboxHandler(handler, Assets.playerThinkingFont, message4, null, 3, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
-        textboxHandler5 = new TextboxHandler(handler, Assets.acceptanceFont, message5, null, 3, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
-        textboxHandler6 = new TextboxHandler(handler, Assets.playerSpeakingFont, message6, null, 3, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
-        textboxHandler7 = new TextboxHandler(handler, Assets.acceptanceFont, message7, null, 3, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
-        textboxHandler8 = new TextboxHandler(handler, Assets.playerSpeakingFont, message8, null, 3, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
-        textboxHandler9 = new TextboxHandler(handler, Assets.acceptanceFont, message9, null, 3, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
-        textboxHandler10 = new TextboxHandler(handler, Assets.playerSpeakingFont, message10, null, 3, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
-        textboxHandler11 = new TextboxHandler(handler, Assets.acceptanceFont, message11, null, 3, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
-        textboxHandler12 = new TextboxHandler(handler, Assets.playerSpeakingFont, message12, null, 3, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
+        textboxHandler1 = new TextboxHandler(handler, Assets.teacherFont, message1, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxTeacher, null, 50, true, false);
+        textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, message2, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
+        textboxHandler3 = new TextboxHandler(handler, Assets.teacherFont, message3, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxTeacher, null, 50, true, false);
+        textboxHandler4 = new TextboxHandler(handler, Assets.playerThinkingFont, message4, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
+        textboxHandler5 = new TextboxHandler(handler, Assets.acceptanceFont, message5, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
+        textboxHandler6 = new TextboxHandler(handler, Assets.playerSpeakingFont, message6, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
+        textboxHandler7 = new TextboxHandler(handler, Assets.acceptanceFont, message7, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
+        textboxHandler8 = new TextboxHandler(handler, Assets.playerSpeakingFont, message8, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
+        textboxHandler9 = new TextboxHandler(handler, Assets.acceptanceFont, message9, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
+        textboxHandler10 = new TextboxHandler(handler, Assets.playerSpeakingFont, message10, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
+        textboxHandler11 = new TextboxHandler(handler, Assets.acceptanceFont, message11, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
+        textboxHandler12 = new TextboxHandler(handler, Assets.playerSpeakingFont, message12, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
     }
 
     @Override

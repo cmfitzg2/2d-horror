@@ -12,11 +12,12 @@ import java.awt.*;
 
 public class MCHouseNightCutscene5 implements Cutscene {
     private Handler handler;
-    private TextboxHandler textboxHandler1, textboxHandler2;
+    private TextboxHandler textboxHandler1, textboxHandler2, textboxHandler3;
     private KeyManager keyManager;
-    private boolean firstTime = true, showTextbox1 = false, textbox1 = true, textbox2 = false;
+    private boolean firstTime = true, showTextbox1 = false, textbox1 = true, textbox2 = false, textbox3 = false;
     private final String message1 = "...?",
-            message2 = "No one is out there? I was sure I heard someone knocking on";
+            message2 = "No one is out there? I was sure I heard someone knocking on",
+            message3 = "Wh-Who was that?! \r I have to get out there!";
     private long timerLong = 1000000000L, timerShort = 100000000L, currentTime;
     private int backgroundIndex = 0;
     private WindowOutside windowOutside;
@@ -25,6 +26,7 @@ public class MCHouseNightCutscene5 implements Cutscene {
         keyManager = handler.getKeyManager();
         textboxHandler1 = new TextboxHandler(handler, Assets.playerThinkingFont, message1, null, GeneralConstants.slowTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, false, false);
         textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, message2, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, false, false);
+        textboxHandler3 = new TextboxHandler(handler, Assets.playerThinkingFont, message3, null, 1, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, false, true);
     }
 
     @Override
@@ -59,7 +61,7 @@ public class MCHouseNightCutscene5 implements Cutscene {
                 currentTime = System.nanoTime();
             }
         }
-        if (!textbox1 && !textbox2) {
+        if (!textbox1 && !textbox2 && !textbox3) {
             if (backgroundIndex == 0) {
                 if (System.nanoTime() - currentTime >= timerLong) {
                     backgroundIndex++;
@@ -72,6 +74,14 @@ public class MCHouseNightCutscene5 implements Cutscene {
                     windowOutside.setBackground(Assets.windowOutsideNightHand[backgroundIndex]);
                     currentTime = System.nanoTime();
                 }
+            } else {
+                windowOutside.setInteracting(false);
+                textbox3 = true;
+            }
+        }
+        if (textbox3) {
+            if (!textboxHandler3.isFinished()) {
+                textboxHandler3.tick();
             } else {
                 exit();
             }
@@ -97,6 +107,11 @@ public class MCHouseNightCutscene5 implements Cutscene {
                 textboxHandler2.render(g);
             }
         }
+        if (textbox3) {
+            if (!textboxHandler3.isFinished()) {
+                textboxHandler3.render(g);
+            }
+        }
     }
 
     @Override
@@ -105,5 +120,7 @@ public class MCHouseNightCutscene5 implements Cutscene {
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setMcHouseNightCutscene5(false);
+        //can finally end cutscene 2 now (so the front door is normal again)
+        handler.getFlags().setMcHouseNightCutscene2(false);
     }
 }

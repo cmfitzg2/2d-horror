@@ -2,6 +2,7 @@ package Items;
 
 import Entities.Entity;
 import Textboxes.TextboxHandler;
+import Variables.GeneralConstants;
 import Variables.Handler;
 import Input.KeyManager;
 import Graphics.Assets;
@@ -319,7 +320,7 @@ public class Inventory {
             if (!items.get(selectedItem).useItem()) {
                 System.out.println("Not found");
                 showItemSelectedTextbox = true;
-                itemSelectedTextbox = new TextboxHandler(handler, Assets.serif, "That item can't be used here.", null, 3, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+                itemSelectedTextbox = new TextboxHandler(handler, Assets.serif, "That item can't be used here.", null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
             }
         }
         open = false;

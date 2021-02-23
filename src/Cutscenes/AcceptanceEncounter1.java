@@ -6,6 +6,7 @@ import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
 import Tiles.Tile;
+import Variables.GeneralConstants;
 import Variables.Handler;
 import Worlds.WorldManager;
 
@@ -38,16 +39,16 @@ public class AcceptanceEncounter1 implements Cutscene {
     public AcceptanceEncounter1(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
-        textboxHandler1 = new TextboxHandler(handler, Assets.acceptanceFont, messageOne, null, 3, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
-        textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, messageTwo, null, 3, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
-        textboxHandler3 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageThree, null, 3, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
-        textboxHandler4 = new TextboxHandler(handler, Assets.acceptanceFont, messageFour, null, 3, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
-        textboxHandler5 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageFive, null, 3, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
-        textboxHandler6 = new TextboxHandler(handler, Assets.acceptanceFont, messageSix, null, 3, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
-        textboxHandler7 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageSeven, null, 3, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
-        textboxHandler8 = new TextboxHandler(handler, Assets.acceptanceFont, messageEight, null, 3, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
-        textboxHandler9 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageNine, null, 3, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
-        textboxHandler10 = new TextboxHandler(handler, Assets.acceptanceFont, messageTen, null, 3, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
+        textboxHandler1 = new TextboxHandler(handler, Assets.acceptanceFont, messageOne, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
+        textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, messageTwo, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, false);
+        textboxHandler3 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageThree, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
+        textboxHandler4 = new TextboxHandler(handler, Assets.acceptanceFont, messageFour, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
+        textboxHandler5 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageFive, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
+        textboxHandler6 = new TextboxHandler(handler, Assets.acceptanceFont, messageSix, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
+        textboxHandler7 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageSeven, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
+        textboxHandler8 = new TextboxHandler(handler, Assets.acceptanceFont, messageEight, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
+        textboxHandler9 = new TextboxHandler(handler, Assets.playerSpeakingFont, messageNine, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, null, 50, true, false);
+        textboxHandler10 = new TextboxHandler(handler, Assets.acceptanceFont, messageTen, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, null, 50, true, false);
     }
 
     @Override

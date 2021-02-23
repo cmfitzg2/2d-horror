@@ -9,4 +9,8 @@ abstract class StaticEntity extends Entity {
 		super(handler, x, y, width, height, uniqueName);
 	}
 	boolean isInteracting;
+
+	public void setInteracting(boolean interacting) {
+		isInteracting = interacting;
+	}
 }

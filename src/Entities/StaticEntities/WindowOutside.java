@@ -115,4 +115,6 @@ public class WindowOutside extends StaticEntity {
     public void setBackground(BufferedImage background) {
         this.background = background;
     }
+
+
 }

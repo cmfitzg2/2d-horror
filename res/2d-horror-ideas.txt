@@ -38,6 +38,8 @@ i think each event should take place in such a way that MC + the character can s
 -MC remembers and has heart2heart with acceptance over his sorrow
 -acceptance slowly leads MC to acceptance
 -maybe instead of die he can fade away or something. needs to feel natural.
+-denial's art theme can be innocuous, harmless stuff (signifying MC's denial of the situation and comforting images)
+-art gets progressively more revealing, culminating in the ones that directly expose MC's guilt
 
 denial
 	name: daniel? anagram of denial lol
