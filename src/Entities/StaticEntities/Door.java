@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Door extends StaticEntity {
 
-    private int doorHeight = 96, style, transitionFrames = GeneralConstants.levelTransitionFrames;
+    private int doorHeight = 96, style, transitionFrames;
     private boolean includeStairs;
     private boolean includeArch;
     private Rectangle enterDoor;

@@ -62,7 +62,6 @@ public class School1 extends World {
 
     @Override
     protected void load() {
-        handler.getFlags().setVisionLimited(false);
         firstRender = true;
     }
 
@@ -87,11 +86,5 @@ public class School1 extends World {
         }
         renderTiles(g);
         entityManager.render(g);
-        if (null != loadzoneClassroom) {
-            g.fillRect(loadzoneClassroom.x, loadzoneClassroom.y, loadzoneClassroom.width, loadzoneClassroom.height);
-        }
-        if (null != loadzoneOutside) {
-            g.fillRect(loadzoneOutside.x, loadzoneOutside.y, loadzoneOutside.width, loadzoneOutside.height);
-        }
     }
 }

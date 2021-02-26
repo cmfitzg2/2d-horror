@@ -2,11 +2,7 @@ package Cutscenes;
 
 import Graphics.Assets;
 import Input.KeyManager;
-import Items.Inventory;
-import Items.Item;
-import Items.Lighter;
 import Textboxes.TextboxHandler;
-import Variables.Flags;
 import Variables.GeneralConstants;
 import Variables.Handler;
 import Worlds.WorldManager;
