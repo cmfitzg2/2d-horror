@@ -59,7 +59,7 @@ public class Door extends StaticEntity {
     public void tick() {
         enterDoor = new Rectangle((int) x - 3  - (int) handler.getGameCamera().getxOffset(),
                 (int) y - 3  - (int) handler.getGameCamera().getyOffset(), width + 6, height + 20);
-        if (handler.getPlayer().getPlayerRec().intersects(enterDoor)) {
+        if (handler.getPlayer().getPlayerRec().intersects(enterDoor) && !handler.getActiveWorld().transitioningTo) {
             handler.getActiveWorld().transitionFrom(destination, newX, newY, transitionFrames);
         }
     }
