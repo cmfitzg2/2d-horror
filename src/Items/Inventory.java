@@ -56,7 +56,7 @@ public class Inventory {
 
     public void tick() {
         if (!handler.isPlayerFrozen() || handler.isInMenu()) {
-            if (keyManager.c && !keyManager.isStillHoldingC()) {
+            if (keyManager.c && !keyManager.isStillHoldingC() && !handler.getActiveWorld().transitioningTo && !handler.getActiveWorld().transitioningFrom) {
                 keyManager.setStillHoldingC(true);
                 if (!handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle()) {
                     if (open) {

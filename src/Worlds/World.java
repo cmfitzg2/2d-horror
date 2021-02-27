@@ -45,7 +45,9 @@ public abstract class World {
 			firstTime = false;
 		}
 		entityManager.tick();
-		checkLoadZones();
+		if (!transitioningTo) {
+			checkLoadZones();
+		}
 		if (transitioningTo) {
 			transitionTo();
 		}
@@ -77,9 +79,11 @@ public abstract class World {
 	public void transitionFrom(World newWorld, float newX, float newY, int transitionFrames) {
 		if (!handler.getGame().isFadeOut()) {
 			GeneralUtils.levelFadeOut(handler, transitionFrames);
+			transitioningFrom = true;
 		} else if (handler.getGame().isFinishedFadingOut()) {
 			GeneralUtils.stopLevelFadeOut(handler, newWorld, newX, newY, true);
 			transitioningTo = true;
+			transitioningFrom = false;
 		}
 	}
 
