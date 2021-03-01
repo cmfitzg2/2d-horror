@@ -70,5 +70,11 @@ public class Overworld1 extends World {
                 pillarWidth * 2, Assets.height * 4, null, IronGate.VERTICAL, false));
         entityManager.addEntity(new IronGate(handler, 43 * Tile.TILEWIDTH, 60 * Tile.TILEHEIGHT - Assets.height * 4 - Assets.height * 4,
                 pillarWidth * 2, Assets.height * 4, null, IronGate.TOP_CORNER_PILLAR, true));
+        entityManager.addEntity(new FrontGate(handler, 43 * Tile.TILEWIDTH, 64 * Tile.TILEHEIGHT,
+                Assets.frontGateClosed.getWidth() * 2, Assets.frontGateClosed.getHeight() * 2, null, false));
+        entityManager.addEntity(new FrontGateSide(handler, 43 * Tile.TILEWIDTH - Assets.frontGateLeft.getWidth() * 2, 64 * Tile.TILEHEIGHT,
+                Assets.frontGateLeft.getWidth() * 2, Assets.frontGateLeft.getHeight() * 2, null, true));
+        entityManager.addEntity(new FrontGateSide(handler, 43 * Tile.TILEWIDTH + Assets.frontGateClosed.getWidth() * 2, 64 * Tile.TILEHEIGHT,
+                Assets.frontGateRight.getWidth() * 2, Assets.frontGateRight.getHeight() * 2, null, false));
     }
 }

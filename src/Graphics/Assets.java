@@ -65,6 +65,7 @@ public class Assets {
 			vilomahInventory;
 	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet;
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
+	public static BufferedImage frontGateClosed, frontGateOpen, frontGateLeft, frontGateRight;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, ironGate;
 	public static BufferedImage[] activeInventoryHeader;
@@ -520,6 +521,12 @@ public class Assets {
 		SpriteSheet windowOutsideSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/window-outside.png"));
 		windowLight = windowOutsideSheet.crop(0, 0, width, height);
 		windowDark = windowOutsideSheet.crop(0, height, width, height);
+
+		SpriteSheet frontGateSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/iron-gate-front.png"));
+		frontGateLeft = frontGateSheet.crop(0, 0, 37, 83);
+		frontGateOpen = frontGateSheet.crop(37, 0, 59, 83);
+		frontGateClosed = frontGateSheet.crop(37, 83, 59, 83);
+		frontGateRight = frontGateSheet.crop(96, 0, 32, 83);
 
 		SpriteSheet mcSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/characters/mc-sheet-transparent.png"));
 		playerDownTransparent = mcSheetTransparent.crop(0, 0, width, height);
