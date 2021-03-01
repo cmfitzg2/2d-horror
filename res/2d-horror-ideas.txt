@@ -291,6 +291,7 @@ MC: "Sounds good. See you then."
 >player regains control
 >eventually leaves
 >door now leads back to MC's house after extended screen transition
+
 >cut to MC back at house in bed, it's darker
 MC (thinking): "..."
 MC (thinking): "(Sigh)"
@@ -307,3 +308,45 @@ MC (thinking): "I'm sure I heard three knocks. There's something distinctly deli
 MC (thinking): "The power is out? Geez, what a pain. I can't see a thing."
 >if player tries to move
 MC (thinking): "It's too dark to move around in here, I need a light source."
+>after using lighter to move, player walks toward bedroom
+>window tapping sound plays
+MC (thinking): "?!"
+MC (thinking): "That came from my room!"
+>go to room, check window
+MC (thinking): (slow) "...?"
+MC (thinking): "No one is out there? I was sure I heard someone knocking on"
+>hand slaps window interrupting textbox
+MC (thinking): "Wh-Who was that?!"
+MC (thinking): "I have to get out there!"
+
+>player heads outside
+>group of friends is out there minus Depression (and Anger and Denial? can't think of where they'd fit into this scene)
+Acceptance: "Whoa! Slow down there."
+MC: "Huh? It's you guys?"
+MC: "So the person who just hit my window was..."
+>depression comes around 
+Depression: "I may have some information regarding that."
+Bargaining: "Depression, I told you not to..."
+Depression: "Ahh come on, he came out didn't he?"
+Depression: "I was just messing around."
+MC: "Oh yeah? Did you knock on my door and cut my power as a joke too? You scared the hell out of me."
+Depression: "What? We just got here."
+Acceptance: "Your power's out? Yeah that definitely wasn't us."
+Acceptance: "We assumed you were sleeping when we pulled up and saw all your lights out."
+Depression: "And I heroically volunteered to wake you up."
+Bargaining: "Yeah... \"heroically\"..."
+MC: "Well, that's.. That's really odd timing then."
+Denial: "Don't correlate unrelated things. Seemingly unnexplained power surges are pretty common. I doubt this is the first for you."
+Denial: "Even in the modern era, we're still incapable of reliably delivering power to homes."
+Denial: "There's just too many moving pieces. A lot of things can go wrong, and any of them can cause a power outage."
+Acceptance: "Ever the rationalist."
+Acceptance: "But yeah, he's probably right. I wouldn't dwell on it."
+Anger: "Hey, speaking of not dwelling..."
+Anger: "CAN WE LEAVE ALREADY?"
+Acceptance: "Ahh shoot that's right, we're already wasting Anger's whole night. Let's try to be gracious."
+Acceptance: "You ready to head out MC?"
+Player: "Ready as I'll ever be. Let's go."
+>characters walk off screen, camera doesn't follow (i sure hope i can figure this out l0l)
+>slow fade out
+>fade in
+>

@@ -30,6 +30,7 @@ public class Overworld1 extends World {
         entityManager.addEntity(new Window(handler, 13 * Tile.TILEWIDTH - 32, 44 * Tile.TILEHEIGHT - 12, 64, 88, "Window-2"));
         entityManager.addEntity(new Window(handler, 15 * Tile.TILEWIDTH + 32, 44 * Tile.TILEHEIGHT - 12, 64, 88, "Window-3"));
         entityManager.addEntity(new Window(handler, 16 * Tile.TILEWIDTH + 64, 44 * Tile.TILEHEIGHT - 12, 64, 88, "Window-4"));
+        createGate();
     }
 
     @Override
@@ -46,5 +47,28 @@ public class Overworld1 extends World {
             GeneralUtils.stopLevelFadeIn(handler, false);
             transitioningTo = false;
         }
+    }
+
+    private void createGate() {
+        int pillarWidth = Assets.ironGate[IronGate.NORMAL_PILLAR].getWidth();
+        int gateSideWidth = Assets.ironGate[IronGate.GATE_LEFT].getWidth();
+        entityManager.addEntity(new IronGate(handler, 43 * Tile.TILEWIDTH, 60 * Tile.TILEHEIGHT,
+                pillarWidth * 2, Assets.height * 4, null, IronGate.BOTTOM_CORNER_PILLAR, false));
+        entityManager.addEntity(new IronGate(handler, 43 * Tile.TILEWIDTH + pillarWidth * 2, 60 * Tile.TILEHEIGHT,
+                gateSideWidth * 2, Assets.height * 4, null, IronGate.GATE_RIGHT, true));
+        entityManager.addEntity(new IronGate(handler, 43 * Tile.TILEWIDTH + pillarWidth * 2 + gateSideWidth * 2,
+                60 * Tile.TILEHEIGHT, Assets.width * 2, Assets.height * 4, null, IronGate.GATE, true));
+        entityManager.addEntity(new IronGate(handler, 43 * Tile.TILEWIDTH + pillarWidth * 2 + gateSideWidth * 2 + Assets.width * 2,
+                60 * Tile.TILEHEIGHT, gateSideWidth * 2, Assets.height * 4, null, IronGate.GATE_LEFT, true));
+        entityManager.addEntity(new IronGate(handler, 43 * Tile.TILEWIDTH + pillarWidth * 2 + gateSideWidth * 2 + Assets.width * 2 + gateSideWidth * 2,
+                60 * Tile.TILEHEIGHT, pillarWidth * 2, Assets.height * 4, null, IronGate.BOTTOM_CORNER_PILLAR, false));
+        entityManager.addEntity(new IronGate(handler, 43 * Tile.TILEWIDTH + pillarWidth * 2 + gateSideWidth * 2 + Assets.width * 2 + gateSideWidth * 2,
+                60 * Tile.TILEHEIGHT - Assets.height * 4, pillarWidth * 2, Assets.height * 4, null, IronGate.VERTICAL, false));
+        entityManager.addEntity(new IronGate(handler, 43 * Tile.TILEWIDTH + pillarWidth * 2 + gateSideWidth * 2 + Assets.width * 2 + gateSideWidth * 2,
+                60 * Tile.TILEHEIGHT - Assets.height * 4 - Assets.height * 4, pillarWidth * 2, Assets.height * 4, null, IronGate.TOP_CORNER_PILLAR, true));
+        entityManager.addEntity(new IronGate(handler, 43 * Tile.TILEWIDTH, 60 * Tile.TILEHEIGHT - Assets.height * 4,
+                pillarWidth * 2, Assets.height * 4, null, IronGate.VERTICAL, false));
+        entityManager.addEntity(new IronGate(handler, 43 * Tile.TILEWIDTH, 60 * Tile.TILEHEIGHT - Assets.height * 4 - Assets.height * 4,
+                pillarWidth * 2, Assets.height * 4, null, IronGate.TOP_CORNER_PILLAR, true));
     }
 }

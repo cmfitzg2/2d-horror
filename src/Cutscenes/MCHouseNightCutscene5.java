@@ -26,7 +26,7 @@ public class MCHouseNightCutscene5 implements Cutscene {
         keyManager = handler.getKeyManager();
         textboxHandler1 = new TextboxHandler(handler, Assets.playerThinkingFont, message1, null, GeneralConstants.slowTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, false, false);
         textboxHandler2 = new TextboxHandler(handler, Assets.playerThinkingFont, message2, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, false, false);
-        textboxHandler3 = new TextboxHandler(handler, Assets.playerThinkingFont, message3, null, 1, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, false, true);
+        textboxHandler3 = new TextboxHandler(handler, Assets.playerThinkingFont, message3, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, false, true);
     }
 
     @Override

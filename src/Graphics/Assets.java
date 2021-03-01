@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class Assets {
 
-	private static final int width = 32, height = 32, biggerWidth = 48, biggerHeight = 48;
+	public static final int width = 32, height = 32, biggerWidth = 48, biggerHeight = 48;
 	public static final int paintingWidth = 815, paintingHeight = 820;
 	public static BufferedImage dirt, grass, stone, water, black, gray, darkStoneWall, woodFloor, diamondTileBlue,
 			diamondTileGreen, diamondTileWood, diamondTileDouble, bathroomTile, whiteBrickMiddle, whiteBrickBottom,
@@ -66,7 +66,7 @@ public class Assets {
 	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet;
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
 	public static BufferedImage[] grandfatherClock;
-	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand;
+	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, ironGate;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] playerDown, playerUp, playerLeft, playerRight;
 	public static BufferedImage[] denialDown, denialUp, denialLeft, denialRight;
@@ -278,6 +278,18 @@ public class Assets {
 		dressers[6] = dressersSheet.crop(width * 2, 69, width, 69);
 		dressers[7] = dressersSheet.crop(width * 3, 69, width, 69);
 		dressers[8] = dressersSheet.crop(width * 4, 69, width, 69);
+
+		SpriteSheet ironGateSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/iron-gate-sheet.png"));
+		ironGate = new BufferedImage[8];
+		int pillarWidth = 17, gateSideWidth = 15, shadowWidth = 7;
+		ironGate[0] = ironGateSheet.crop(0, 0, pillarWidth, height * 2);
+		ironGate[1] = ironGateSheet.crop(pillarWidth, 0, pillarWidth, height * 2);
+		ironGate[2] = ironGateSheet.crop(pillarWidth * 2, 0, width, height * 2);
+		ironGate[3] = ironGateSheet.crop(0, height * 2, pillarWidth, height * 2);
+		ironGate[4] = ironGateSheet.crop(pillarWidth, height * 2, pillarWidth, height * 2);
+		ironGate[5] = ironGateSheet.crop(pillarWidth * 2, height * 2, gateSideWidth, height * 2);
+		ironGate[6] = ironGateSheet.crop(pillarWidth * 2 + gateSideWidth, height * 2, gateSideWidth, height * 2);
+		ironGate[7] = ironGateSheet.crop(pillarWidth * 2 + gateSideWidth * 2, height * 2, shadowWidth, height * 2);
 
 		SpriteSheet fireSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/fire.png"));
 		fire = new BufferedImage[4];
