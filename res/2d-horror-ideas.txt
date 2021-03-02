@@ -104,6 +104,7 @@ depression
 			-ceiling pull-down switch that allows player to get out? idk man.
 			-would need to be a reason Depression committing is necessary for player's escape, or is at least one possible solution
 			-Depresison already wants to commit, doesn't need to be the *only* solution.
+		-trapped in limited oxygen situation with MC, becomes clear only enough for 1 before escape, kills self to allow MC to escape
 
 acceptance
 	name: noah? biblical name, meaning comfort or rest
@@ -336,10 +337,9 @@ Acceptance: "We assumed you were sleeping when we pulled up and saw all your lig
 Depression: "And I heroically volunteered to wake you up."
 Bargaining: "Yeah... \"heroically\"..."
 MC: "Well, that's.. That's really odd timing then."
-Denial: "Don't correlate unrelated things. Seemingly unnexplained power surges are pretty common. I doubt this is the first for you."
+Denial: "Don't correlate unrelated things. Random power surges are pretty common. I doubt this is the first for you."
 Denial: "Even in the modern era, we're still incapable of reliably delivering power to homes."
-Denial: "There's just too many moving pieces. A lot of things can go wrong, and any of them can cause a power outage."
-Acceptance: "Ever the rationalist."
+Denial: "There's just too many moving pieces. A lot of things can go wrong, and any of them can cause a power outage."\\\Acceptance: "Ever the rationalist."
 Acceptance: "But yeah, he's probably right. I wouldn't dwell on it."
 Anger: "Hey, speaking of not dwelling..."
 Anger: "CAN WE LEAVE ALREADY?"
@@ -348,5 +348,16 @@ Acceptance: "You ready to head out MC?"
 Player: "Ready as I'll ever be. Let's go."
 >characters walk off screen, camera doesn't follow (i sure hope i can figure this out l0l)
 >slow fade out
->fade in
->
+
+>fade to friends arriving there
+Acceptance: "Well, here we are."
+>camera pans up to show building then back
+Depression: "Man, talk about cliche."
+Denial: "It's obvious, isn't it?"
+Denial: "There wouldn't be any mystique surrounding this place if it didn't fit the profile of such a place."
+Denial: "In other words, if it weren't cliche, we wouldn't be here. It's a self-fulfilling prophecy."
+Depression: "...Yeah, right? Totally cliche."
+Bargaining: "Cliche or not, I still think we shouldn't be here."
+Anger: "Oh, hey guys, Bargaining says we shouldn't be here. Guess we're heading home."
+Anger: "If only you had said something before."
+Acceptance: "Alright already, geez. ~~(to be continued)~~"
