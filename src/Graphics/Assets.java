@@ -30,6 +30,8 @@ public class Assets {
 			houseWallMiddleRightOrange, houseWallBottomLeftOrange, houseWallBottomMiddleOrange, houseWallBottomRightOrange;
 	public static BufferedImage houseWallTopLeftRed, houseWallTopMiddleRed, houseWallTopRightRed, houseWallMiddleLeftRed, houseWallMiddleMiddleRed,
 			houseWallMiddleRightRed, houseWallBottomLeftRed, houseWallBottomMiddleRed, houseWallBottomRightRed;
+	public static BufferedImage bathroomWallTopLeft, bathroomWallTopMiddle, bathroomWallTopRight, bathroomWallMiddleLeft, bathroomWallMiddleMiddle,
+			bathroomWallMiddleRight, bathroomWallBottomLeft, bathroomWallBottomMiddle, bathroomWallBottomRight;
 	public static BufferedImage wallBorderVerticalLeft, wallBorderVerticalRight, wallBorderCornerBottomRight,
 			wallBorderCornerBottomLeft, wallBorderCornerTopRight, wallBorderCornerTopLeft, wallBorderRightBottom,
 			wallBorderLeftBottom, wallBorderRightTop, wallBorderLeftTop, wallBorderTop, wallBorderRight, wallBorderLeft,
@@ -240,6 +242,17 @@ public class Assets {
 		houseWallBottomLeftRed = houseWallSheet.crop(width * 3, height * 2, width, height);
 		houseWallBottomMiddleRed = houseWallSheet.crop(width * 4, height * 2, width, height);
 		houseWallBottomRightRed = houseWallSheet.crop(width * 5, height * 2, width, height);
+
+		SpriteSheet bathroomWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/bathroom-wall-sheet.png"));
+		bathroomWallTopLeft = bathroomWallSheet.crop(0, 0, width, height);
+		bathroomWallTopMiddle = bathroomWallSheet.crop(width, 0, width, height);
+		bathroomWallTopRight = bathroomWallSheet.crop(width * 2, 0, width, height);
+		bathroomWallMiddleLeft = bathroomWallSheet.crop(0, height, width, height);
+		bathroomWallMiddleMiddle = bathroomWallSheet.crop(width, height, width, height);
+		bathroomWallMiddleRight = bathroomWallSheet.crop(width * 2, height, width, height);
+		bathroomWallBottomLeft = bathroomWallSheet.crop(0, height * 2, width, height);
+		bathroomWallBottomMiddle = bathroomWallSheet.crop(width, height * 2, width, height);
+		bathroomWallBottomRight = bathroomWallSheet.crop(width * 2, height * 2, width, height);
 
 		SpriteSheet wallBordersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/wall-borders-sheet.png"));
 		wallBorderVerticalLeft = wallBordersSheet.crop(0, 0, width, height);

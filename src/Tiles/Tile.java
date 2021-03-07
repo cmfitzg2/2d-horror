@@ -10,6 +10,7 @@ import Tiles.Interior.School.TiledFloorWhite;
 import Tiles.Interior.School.WhiteBrickBottom;
 import Tiles.Interior.School.WhiteBrickMiddle;
 import Tiles.Interior.WallBorder.*;
+import Tiles.Interior.BathroomWall.*;
 import Tiles.Overworld.*;
 import Tiles.Overworld.BrickWall.*;
 import Tiles.Overworld.Roof.*;
@@ -139,6 +140,16 @@ public class Tile {
 	public static Tile houseWallBottomLeftOrange = new HouseWallBottomLeftOrange(105);
 	public static Tile houseWallBottomMiddleOrange = new HouseWallBottomMiddleOrange(106);
 	public static Tile houseWallBottomRightOrange = new HouseWallBottomRightOrange(107);
+
+	public static Tile bathroomWallTopLeft = new BathroomWallTopLeft(108);
+	public static Tile bathroomWallTopMiddle = new BathroomWallTopMiddle(109);
+	public static Tile bathroomWallTopRight = new BathroomWallTopRight(110);
+	public static Tile bathroomWallMiddleLeft = new BathroomWallMiddleLeft(111);
+	public static Tile bathroomWallMiddleMiddle = new BathroomWallMiddleMiddle(112);
+	public static Tile bathroomWallMiddleRight = new BathroomWallMiddleRight(113);
+	public static Tile bathroomWallBottomLeft = new BathroomWallBottomLeft(114);
+	public static Tile bathroomWallBottomMiddle = new BathroomWallBottomMiddle(115);
+	public static Tile bathroomWallBottomRight = new BathroomWallBottomRight(116);
 
 	//CLASS
 	
