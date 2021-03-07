@@ -5,6 +5,7 @@ import Tiles.Interior.HouseWall.Blue.*;
 import Tiles.Interior.HouseWall.Red.*;
 import Tiles.Interior.HouseWall.Green.*;
 import Tiles.Interior.HouseWall.Orange.*;
+import Tiles.Interior.PatternedWall.*;
 import Tiles.Interior.School.TiledFloorBlack;
 import Tiles.Interior.School.TiledFloorWhite;
 import Tiles.Interior.School.WhiteBrickBottom;
@@ -150,6 +151,16 @@ public class Tile {
 	public static Tile bathroomWallBottomLeft = new BathroomWallBottomLeft(114);
 	public static Tile bathroomWallBottomMiddle = new BathroomWallBottomMiddle(115);
 	public static Tile bathroomWallBottomRight = new BathroomWallBottomRight(116);
+
+	public static Tile patternedWallTopLeft = new PatternedWallTopLeft(117);
+	public static Tile patternedWallTopMiddle = new PatternedWallTopMiddle(118);
+	public static Tile patternedWallTopRight = new PatternedWallTopRight(119);
+	public static Tile patternedWallMiddleLeft = new PatternedWallMiddleLeft(120);
+	public static Tile patternedWallMiddleMiddle = new PatternedWallMiddleMiddle(121);
+	public static Tile patternedWallMiddleRight = new PatternedWallMiddleRight(122);
+	public static Tile patternedWallBottomLeft = new PatternedWallBottomLeft(123);
+	public static Tile patternedWallBottomMiddle = new PatternedWallBottomMiddle(124);
+	public static Tile patternedWallBottomRight = new PatternedWallBottomRight(125);
 
 	//CLASS
 	

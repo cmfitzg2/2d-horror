@@ -32,6 +32,8 @@ public class Assets {
 			houseWallMiddleRightRed, houseWallBottomLeftRed, houseWallBottomMiddleRed, houseWallBottomRightRed;
 	public static BufferedImage bathroomWallTopLeft, bathroomWallTopMiddle, bathroomWallTopRight, bathroomWallMiddleLeft, bathroomWallMiddleMiddle,
 			bathroomWallMiddleRight, bathroomWallBottomLeft, bathroomWallBottomMiddle, bathroomWallBottomRight;
+	public static BufferedImage patternedWallTopLeft, patternedWallTopMiddle, patternedWallTopRight, patternedWallMiddleLeft, patternedWallMiddleMiddle,
+			patternedWallMiddleRight, patternedWallBottomLeft, patternedWallBottomMiddle, patternedWallBottomRight;
 	public static BufferedImage wallBorderVerticalLeft, wallBorderVerticalRight, wallBorderCornerBottomRight,
 			wallBorderCornerBottomLeft, wallBorderCornerTopRight, wallBorderCornerTopLeft, wallBorderRightBottom,
 			wallBorderLeftBottom, wallBorderRightTop, wallBorderLeftTop, wallBorderTop, wallBorderRight, wallBorderLeft,
@@ -253,6 +255,17 @@ public class Assets {
 		bathroomWallBottomLeft = bathroomWallSheet.crop(0, height * 2, width, height);
 		bathroomWallBottomMiddle = bathroomWallSheet.crop(width, height * 2, width, height);
 		bathroomWallBottomRight = bathroomWallSheet.crop(width * 2, height * 2, width, height);
+
+		SpriteSheet patternedWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/patterned-wall-sheet.png"));
+		patternedWallTopLeft = patternedWallSheet.crop(0, 0, width, height);
+		patternedWallTopMiddle = patternedWallSheet.crop(width, 0, width, height);
+		patternedWallTopRight = patternedWallSheet.crop(width * 2, 0, width, height);
+		patternedWallMiddleLeft = patternedWallSheet.crop(0, height, width, height);
+		patternedWallMiddleMiddle = patternedWallSheet.crop(width, height, width, height);
+		patternedWallMiddleRight = patternedWallSheet.crop(width * 2, height, width, height);
+		patternedWallBottomLeft = patternedWallSheet.crop(0, height * 2, width, height);
+		patternedWallBottomMiddle = patternedWallSheet.crop(width, height * 2, width, height);
+		patternedWallBottomRight = patternedWallSheet.crop(width * 2, height * 2, width, height);
 
 		SpriteSheet wallBordersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/wall-borders-sheet.png"));
 		wallBorderVerticalLeft = wallBordersSheet.crop(0, 0, width, height);
