@@ -1,10 +1,12 @@
 package Tiles;
 
 import Tiles.Interior.*;
+import Tiles.Interior.DamagedWall.*;
 import Tiles.Interior.HouseWall.Blue.*;
 import Tiles.Interior.HouseWall.Red.*;
 import Tiles.Interior.HouseWall.Green.*;
 import Tiles.Interior.HouseWall.Orange.*;
+import Tiles.Interior.PatternedCarpet.*;
 import Tiles.Interior.PatternedWall.*;
 import Tiles.Interior.School.TiledFloorBlack;
 import Tiles.Interior.School.TiledFloorWhite;
@@ -161,6 +163,29 @@ public class Tile {
 	public static Tile patternedWallBottomLeft = new PatternedWallBottomLeft(123);
 	public static Tile patternedWallBottomMiddle = new PatternedWallBottomMiddle(124);
 	public static Tile patternedWallBottomRight = new PatternedWallBottomRight(125);
+
+    public static Tile patternedCarpetTopLeft = new PatternedCarpetTopLeft(126);
+    public static Tile patternedCarpetTopMiddle = new PatternedCarpetTopMiddle(127);
+    public static Tile patternedCarpetTopRight = new PatternedCarpetTopRight(128);
+    public static Tile patternedCarpetMiddleLeft = new PatternedCarpetMiddleLeft(129);
+    public static Tile patternedCarpetMiddleMiddle = new PatternedCarpetMiddleMiddle(130);
+    public static Tile patternedCarpetMiddleRight = new PatternedCarpetMiddleRight(131);
+    public static Tile patternedCarpetBottomLeft = new PatternedCarpetBottomLeft(132);
+    public static Tile patternedCarpetBottomMiddle = new PatternedCarpetBottomMiddle(133);
+    public static Tile patternedCarpetBottomRight = new PatternedCarpetBottomRight(134);
+
+	public static Tile damagedWallTopLeft = new DamagedWallTopLeft(135);
+	public static Tile damagedWallTopMiddle = new DamagedWallTopMiddle(136);
+	public static Tile damagedWallTopRight = new DamagedWallTopRight(137);
+	public static Tile damagedWallMiddleLeft = new DamagedWallMiddleLeft(138);
+	public static Tile damagedWallMiddleMiddle = new DamagedWallMiddleMiddle(139);
+	public static Tile damagedWallMiddleRight = new DamagedWallMiddleRight(140);
+	public static Tile damagedWallBottomLeft = new DamagedWallBottomLeft(141);
+	public static Tile damagedWallBottomMiddle = new DamagedWallBottomMiddle(142);
+	public static Tile damagedWallBottomRight = new DamagedWallBottomRight(143);
+	public static Tile damagedWallAccent1 = new DamagedWallAccent1(144);
+	public static Tile damagedWallAccent2 = new DamagedWallAccent2(145);
+	public static Tile damagedWallAccent3 = new DamagedWallAccent3(146);
 
 	//CLASS
 	

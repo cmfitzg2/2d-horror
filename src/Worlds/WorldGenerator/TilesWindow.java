@@ -166,7 +166,7 @@ public class TilesWindow implements Runnable, MouseListener, MouseMotionListener
             int lineIndex = 0;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String[] ids = line.split("\\s+");
+                String[] ids = line.split("\t");
                 int column = xIndex;
                 for (String id : ids) {
                     tiles[column][lineIndex] = Integer.parseInt(id);

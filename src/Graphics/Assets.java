@@ -34,6 +34,11 @@ public class Assets {
 			bathroomWallMiddleRight, bathroomWallBottomLeft, bathroomWallBottomMiddle, bathroomWallBottomRight;
 	public static BufferedImage patternedWallTopLeft, patternedWallTopMiddle, patternedWallTopRight, patternedWallMiddleLeft, patternedWallMiddleMiddle,
 			patternedWallMiddleRight, patternedWallBottomLeft, patternedWallBottomMiddle, patternedWallBottomRight;
+	public static BufferedImage patternedCarpetTopLeft, patternedCarpetTopMiddle, patternedCarpetTopRight, patternedCarpetMiddleLeft, patternedCarpetMiddleMiddle,
+			patternedCarpetMiddleRight, patternedCarpetBottomLeft, patternedCarpetBottomMiddle, patternedCarpetBottomRight;
+	public static BufferedImage damagedWallTopLeft, damagedWallTopMiddle, damagedWallTopRight, damagedWallMiddleLeft, damagedWallMiddleMiddle,
+			damagedWallMiddleRight, damagedWallBottomLeft, damagedWallBottomMiddle, damagedWallBottomRight,
+			damagedWallAccent1, damagedWallAccent2, damagedWallAccent3;
 	public static BufferedImage wallBorderVerticalLeft, wallBorderVerticalRight, wallBorderCornerBottomRight,
 			wallBorderCornerBottomLeft, wallBorderCornerTopRight, wallBorderCornerTopLeft, wallBorderRightBottom,
 			wallBorderLeftBottom, wallBorderRightTop, wallBorderLeftTop, wallBorderTop, wallBorderRight, wallBorderLeft,
@@ -245,27 +250,48 @@ public class Assets {
 		houseWallBottomMiddleRed = houseWallSheet.crop(width * 4, height * 2, width, height);
 		houseWallBottomRightRed = houseWallSheet.crop(width * 5, height * 2, width, height);
 
-		SpriteSheet bathroomWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/bathroom-wall-sheet.png"));
-		bathroomWallTopLeft = bathroomWallSheet.crop(0, 0, width, height);
-		bathroomWallTopMiddle = bathroomWallSheet.crop(width, 0, width, height);
-		bathroomWallTopRight = bathroomWallSheet.crop(width * 2, 0, width, height);
-		bathroomWallMiddleLeft = bathroomWallSheet.crop(0, height, width, height);
-		bathroomWallMiddleMiddle = bathroomWallSheet.crop(width, height, width, height);
-		bathroomWallMiddleRight = bathroomWallSheet.crop(width * 2, height, width, height);
-		bathroomWallBottomLeft = bathroomWallSheet.crop(0, height * 2, width, height);
-		bathroomWallBottomMiddle = bathroomWallSheet.crop(width, height * 2, width, height);
-		bathroomWallBottomRight = bathroomWallSheet.crop(width * 2, height * 2, width, height);
+		patternedWallTopLeft = houseWallSheet.crop(width * 6, 0, width, height);
+		patternedWallTopMiddle = houseWallSheet.crop(width * 7, 0, width, height);
+		patternedWallTopRight = houseWallSheet.crop(width * 8, 0, width, height);
+		patternedWallMiddleLeft = houseWallSheet.crop(width * 6, height, width, height);
+		patternedWallMiddleMiddle = houseWallSheet.crop(width * 7, height, width, height);
+		patternedWallMiddleRight = houseWallSheet.crop(width * 8, height, width, height);
+		patternedWallBottomLeft = houseWallSheet.crop(width * 6, height * 2, width, height);
+		patternedWallBottomMiddle = houseWallSheet.crop(width * 7, height * 2, width, height);
+		patternedWallBottomRight = houseWallSheet.crop(width * 8, height * 2, width, height);
 
-		SpriteSheet patternedWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/patterned-wall-sheet.png"));
-		patternedWallTopLeft = patternedWallSheet.crop(0, 0, width, height);
-		patternedWallTopMiddle = patternedWallSheet.crop(width, 0, width, height);
-		patternedWallTopRight = patternedWallSheet.crop(width * 2, 0, width, height);
-		patternedWallMiddleLeft = patternedWallSheet.crop(0, height, width, height);
-		patternedWallMiddleMiddle = patternedWallSheet.crop(width, height, width, height);
-		patternedWallMiddleRight = patternedWallSheet.crop(width * 2, height, width, height);
-		patternedWallBottomLeft = patternedWallSheet.crop(0, height * 2, width, height);
-		patternedWallBottomMiddle = patternedWallSheet.crop(width, height * 2, width, height);
-		patternedWallBottomRight = patternedWallSheet.crop(width * 2, height * 2, width, height);
+		patternedCarpetTopLeft = houseWallSheet.crop(width * 6, height * 3, width, height);
+		patternedCarpetTopMiddle = houseWallSheet.crop(width * 7, height * 3, width, height);
+		patternedCarpetTopRight = houseWallSheet.crop(width * 8, height * 3, width, height);
+		patternedCarpetMiddleLeft = houseWallSheet.crop(width * 6, height * 4, width, height);
+		patternedCarpetMiddleMiddle = houseWallSheet.crop(width * 7, height * 4, width, height);
+		patternedCarpetMiddleRight = houseWallSheet.crop(width * 8, height * 4, width, height);
+		patternedCarpetBottomLeft = houseWallSheet.crop(width * 6, height * 5, width, height);
+		patternedCarpetBottomMiddle = houseWallSheet.crop(width * 7, height * 5, width, height);
+		patternedCarpetBottomRight = houseWallSheet.crop(width * 8, height * 5, width, height);
+
+		bathroomWallTopLeft = houseWallSheet.crop(width * 9, 0, width, height);
+		bathroomWallTopMiddle = houseWallSheet.crop(width * 10, 0, width, height);
+		bathroomWallTopRight = houseWallSheet.crop(width * 11, 0, width, height);
+		bathroomWallMiddleLeft = houseWallSheet.crop(width * 9, height, width, height);
+		bathroomWallMiddleMiddle = houseWallSheet.crop(width * 10, height, width, height);
+		bathroomWallMiddleRight = houseWallSheet.crop(width * 11, height, width, height);
+		bathroomWallBottomLeft = houseWallSheet.crop(width * 9, height * 2, width, height);
+		bathroomWallBottomMiddle = houseWallSheet.crop(width * 10, height * 2, width, height);
+		bathroomWallBottomRight = houseWallSheet.crop(width * 11, height * 2, width, height);
+
+		damagedWallTopLeft = houseWallSheet.crop(width * 9, height * 3, width, height);
+		damagedWallTopMiddle = houseWallSheet.crop(width * 10, height * 3, width, height);
+		damagedWallTopRight = houseWallSheet.crop(width * 11, height * 3, width, height);
+		damagedWallMiddleLeft = houseWallSheet.crop(width * 9, height * 4, width, height);
+		damagedWallMiddleMiddle = houseWallSheet.crop(width * 10, height * 4, width, height);
+		damagedWallMiddleRight = houseWallSheet.crop(width * 11, height * 4, width, height);
+		damagedWallBottomLeft = houseWallSheet.crop(width * 9, height * 5, width, height);
+		damagedWallBottomMiddle = houseWallSheet.crop(width * 10, height * 5, width, height);
+		damagedWallBottomRight = houseWallSheet.crop(width * 11, height * 5, width, height);
+		damagedWallAccent1 = houseWallSheet.crop(width * 9, height * 6, width, height);
+		damagedWallAccent2 = houseWallSheet.crop(width * 10, height * 6, width, height);
+		damagedWallAccent3 = houseWallSheet.crop(width * 11, height * 6, width, height);
 
 		SpriteSheet wallBordersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/wall-borders-sheet.png"));
 		wallBorderVerticalLeft = wallBordersSheet.crop(0, 0, width, height);
