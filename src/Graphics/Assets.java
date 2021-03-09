@@ -51,7 +51,7 @@ public class Assets {
 			roofFlatTopRightBottom, roofFlatTopLeft, roofFlatTop, roofFlatTopRight, roofFlatLeftBottom, roofFlatBottom,
 			roofFlatRightBottom, roofFlatLeft, roofFlat, roofFlatRight;
 	public static BufferedImage closedDoorOne, closedDoorTwo, stairs, doorwayArch, bathroomDoorMale, bathroomDoorFemale,
-			locker, windowOne, windowTwo, chimney;
+			locker, windowOne, windowTwo, chimney, bellTower;
 	public static BufferedImage bedOne, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
 	public static BufferedImage windowLight, windowDark, tableLampOff, tableLampOn;
 	public static BufferedImage yellowLight;
@@ -745,5 +745,6 @@ public class Assets {
 		firePlace = ImageLoader.loadImage("/textures/static-entities/fireplace-1.png");
 		teacherDesk = ImageLoader.loadImage("/textures/static-entities/teacher-desk.png");
 		toilet = ImageLoader.loadImage("/textures/static-entities/toilet.png");
+		bellTower = ImageLoader.loadImage("/textures/static-entities/belltower.png");
 	}
 }

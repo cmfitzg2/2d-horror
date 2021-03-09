@@ -4,6 +4,8 @@ import Variables.Handler;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Entity {
 	public static final int DEFAULT_HEALTH = 10;
@@ -15,6 +17,7 @@ public abstract class Entity {
 	protected Rectangle bounds;
 	protected boolean solid = true;
 	protected String uniqueName;
+	protected List<Rectangle> collisionBoundsList;
 	
 	public Entity(Handler handler, float x, float y, int width, int height, String uniqueName) {
 		this.handler = handler;
@@ -24,8 +27,8 @@ public abstract class Entity {
 		this.height = height;
 		this.uniqueName = uniqueName;
 		health = DEFAULT_HEALTH;
-
 		bounds = new Rectangle(0, 0, width, height);
+		collisionBoundsList = new ArrayList<>();
 	}
 	
 	public abstract void preRender(Graphics g);
@@ -46,29 +49,42 @@ public abstract class Entity {
 
 	public abstract boolean itemInteraction(String item);
 	
-	public void hurt(int amt) {
-		health -= amt;
-		if(health<=0)
-		{
-			active = false;
-			die();
-		}
-	}
-	
-	public boolean checkEntityCollisions(float xOffset, float yOffset) {
+	protected boolean checkEntityCollisions(float xOffset, float yOffset) {
 		for (Entity e : handler.getActiveWorld().getEntityManager().getEntities()) {
 			if (e.equals(this)) {
 				continue;
 			}
-			if (e.solid && e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))) {
-				return true;
+			if (e.solid) {
+				if (e.collisionBoundsList.isEmpty()) {
+					if (e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset, yOffset))) {
+						return true;
+					}
+				} else {
+					for (Rectangle rectangle : e.collisionBoundsList) {
+						if (e.getCollisionBounds(0f, 0f, rectangle).intersects(getCollisionBounds(xOffset, yOffset))) {
+							return true;
+						}
+					}
+				}
 			}
 		}
 		return false;
 	}
 	
 	public Rectangle getCollisionBounds(float xOffset, float yOffset) {
-		return new Rectangle((int) (x+bounds.x+xOffset), (int) (y+bounds.y+yOffset), bounds.width, bounds.height);
+		return new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset), bounds.width, bounds.height);
+	}
+
+	public Rectangle getCollisionBounds(float xOffset, float yOffset, Rectangle rectangle) {
+		int xStart = (int) (x + rectangle.x + xOffset);
+		int yStart = (int) (y + rectangle.y + yOffset);
+		int width = rectangle.width;
+		int height = rectangle.height;
+		return new Rectangle(xStart, yStart, width, height);
+	}
+
+		public void addBoundingBox(Rectangle rectangle) {
+		collisionBoundsList.add(rectangle);
 	}
 
 	public float getX() {
@@ -101,14 +117,6 @@ public abstract class Entity {
 
 	public void setHeight(int height) {
 		this.height = height;
-	}
-
-	public int getHealth() {
-		return health;
-	}
-
-	public void setHealth(int health) {
-		this.health = health;
 	}
 
 	public boolean isActive() {

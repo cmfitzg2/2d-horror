@@ -9,8 +9,6 @@ import java.awt.*;
 
 public class Toilet extends StaticEntity {
 
-    private TextboxHandler textboxHandler;
-
     public Toilet(Handler handler, float x, float y, int width, int height, String uniqueName) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
@@ -31,16 +29,12 @@ public class Toilet extends StaticEntity {
 
     @Override
     public void finalRender(Graphics g) {
-        if (null != textboxHandler && !textboxHandler.isFinished()) {
-            textboxHandler.render(g);
-        }
+
     }
 
     @Override
     public void tick() {
-        if (null != textboxHandler && !textboxHandler.isFinished()) {
-            textboxHandler.tick();
-        }
+
     }
 
     @Override
