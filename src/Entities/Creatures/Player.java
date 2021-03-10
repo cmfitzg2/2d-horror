@@ -61,7 +61,6 @@ public class Player extends Creature {
         //Items
         inventory = new Inventory(handler);
         inventory.addItem(new Key(handler, "Bell Tower Key", Inventory.REGULAR_ITEM, "A key for accessing the belltower on the main grounds.", Key.BELLTOWER, Assets.keyInventory));
-        inventory.addItem(new Key(handler, "Some Other Key", Inventory.REGULAR_ITEM, "who knows what it does", "some-key", Assets.keyInventory));
 
         runSpeed = defaultRunSpeed;
         speed = defaultSpeed;

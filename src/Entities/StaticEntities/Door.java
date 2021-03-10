@@ -13,7 +13,7 @@ import java.awt.*;
 public class Door extends StaticEntity {
 
     private int doorHeight = 96, style, transitionFrames;
-    private boolean includeStairs, includeArch, locked;
+    private boolean includeStairs, includeArch, locked, viewingText;
     private Rectangle enterDoor;
     private World destination;
     private float newX, newY;
@@ -67,8 +67,13 @@ public class Door extends StaticEntity {
                 handler.getActiveWorld().transitionFrom(destination, newX, newY, transitionFrames);
             }
         }
-        if (null != textboxHandler && !textboxHandler.isFinished()) {
-            textboxHandler.tick();
+        if (null != textboxHandler) {
+            if (!textboxHandler.isFinished()) {
+                textboxHandler.tick();
+            } else if (viewingText) {
+                locked = false;
+                viewingText = false;
+            }
         }
     }
 
@@ -116,15 +121,17 @@ public class Door extends StaticEntity {
 
     @Override
     public boolean itemInteraction(String item) {
-        if (uniqueName.equals("belltower-overworld1")) {
-            if (item.equals(Key.BELLTOWER)) {
-                textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault,
-                        "Used the Bell Tower Key.", null, GeneralConstants.defaultTextSpeed,
-                        Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
-                textboxHandler.setActive(true);
-                locked = false;
-                handler.getPlayer().getInventory().removeItem(Key.BELLTOWER, Inventory.REGULAR_ITEM);
-                return true;
+        if (handler.getPlayer().getPlayerRec().intersects(enterDoor)) {
+            if (uniqueName.equals("belltower-overworld1")) {
+                if (item.equals(Key.BELLTOWER)) {
+                    textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault,
+                            "Used the Bell Tower Key.", null, GeneralConstants.defaultTextSpeed,
+                            Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+                    textboxHandler.setActive(true);
+                    handler.getPlayer().getInventory().removeItem(Key.BELLTOWER, Inventory.REGULAR_ITEM);
+                    viewingText = true;
+                    return true;
+                }
             }
         }
         return false;
