@@ -15,11 +15,12 @@ public class BellTower extends StaticEntity {
 
     public BellTower(Handler handler, float x, float y, int width, int height, boolean includeStairs, String uniqueName) {
         super(handler, x, y, width, height, uniqueName);
-        addBoundingBox(new Rectangle(0, 6 * height / 7, width, height / 7));
         this.includeStairs = includeStairs;
         xScale = width / (float) Assets.bellTower.getWidth();
         yScale = height / (float) Assets.bellTower.getHeight();
-        stairsX = (int) ((xScale / 2) * (Assets.bellTower.getWidth() - stairsWidth));
+        addBoundingBox(new Rectangle(0, 6 * height / 7, width / 2 - (int) (xScale * (stairsWidth / 2)), height / 7));
+        addBoundingBox(new Rectangle(width / 2 + (int) (xScale * (stairsWidth / 2)), 6 * height / 7, width / 2 - (int) (xScale * (stairsWidth / 2)), height / 7));
+        stairsX = width / 2 - (int) (xScale * (stairsWidth / 2));
         stairsY = (int) (yScale * (Assets.bellTower.getHeight() - stairsHeight));
     }
 
