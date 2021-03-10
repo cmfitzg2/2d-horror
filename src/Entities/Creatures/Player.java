@@ -4,6 +4,7 @@ import Entities.Entity;
 import Entities.StaticEntities.Fireplace;
 import Entities.StaticEntities.TableLamp;
 import Input.KeyManager;
+import Items.Key;
 import Variables.Flags;
 import Variables.Handler;
 import Items.Inventory;
@@ -59,6 +60,8 @@ public class Player extends Creature {
 
         //Items
         inventory = new Inventory(handler);
+        inventory.addItem(new Key(handler, "Bell Tower Key", Inventory.REGULAR_ITEM, "A key for accessing the belltower on the main grounds.", Key.BELLTOWER, Assets.keyInventory));
+        inventory.addItem(new Key(handler, "Some Other Key", Inventory.REGULAR_ITEM, "who knows what it does", "some-key", Assets.keyInventory));
 
         runSpeed = defaultRunSpeed;
         speed = defaultSpeed;
@@ -159,6 +162,11 @@ public class Player extends Creature {
     public void postRender(Graphics g) {
         drawAmbientLight(g);
         screenOverlay.drawVision(g);
+        /*
+        if (null != playerRec) {
+            g.fillRect(playerRec.x, playerRec.y, playerRec.width, playerRec.height);
+        }
+         */
     }
 
     @Override

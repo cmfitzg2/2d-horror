@@ -6,6 +6,7 @@ import Entities.Creatures.*;
 import Entities.StaticEntities.Door;
 import Entities.StaticEntities.Locker;
 import Tiles.Tile;
+import Variables.GeneralConstants;
 import Variables.Handler;
 import Graphics.Assets;
 
@@ -52,7 +53,8 @@ public class School1 extends World {
         }
         entityManager.addEntity(new Door(handler, 15 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT,
                 Assets.bathroomDoorMale.getWidth() * 2, Assets.bathroomDoorMale.getHeight() * 2, "school1-bathroom-male",
-                handler.getWorldManager().getWorld(WorldManager.BATHROOM_1_ID), 9.5f * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT, Door.BATHROOM_MALE));
+                handler.getWorldManager().getWorld(WorldManager.BATHROOM_1_ID), 9.5f * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT,
+                Door.BATHROOM_MALE, GeneralConstants.levelTransitionFrames, false));
         entityManager.addEntity(new Locker(handler, 25 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT, Assets.locker.getWidth() * 2, Assets.locker.getHeight() * 2, "school1-locker1"));
         entityManager.addEntity(new Locker(handler, 26 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT, Assets.locker.getWidth() * 2, Assets.locker.getHeight() * 2, "school1-locker2"));
         entityManager.addEntity(new Locker(handler, 27 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT, Assets.locker.getWidth() * 2, Assets.locker.getHeight() * 2, "school1-locker3"));

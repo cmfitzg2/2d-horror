@@ -7,6 +7,7 @@ import Entities.StaticEntities.StudentDesk;
 import Entities.StaticEntities.TeacherDesk;
 import Graphics.Assets;
 import Tiles.Tile;
+import Variables.GeneralConstants;
 import Variables.Handler;
 
 public class Classroom1 extends World {
@@ -22,7 +23,9 @@ public class Classroom1 extends World {
 
     @Override
     protected void addEntities() {
-        entityManager.addEntity(new Door(handler, 23 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT, 64, 96, "door1-classroom1", handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID), 6 * Tile.TILEWIDTH, (int) (10 * Tile.TILEHEIGHT), Door.PLAIN_WOOD));
+        entityManager.addEntity(new Door(handler, 23 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT, 64, 96, "door1-classroom1",
+                handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID), 6 * Tile.TILEWIDTH, (int) (10 * Tile.TILEHEIGHT),
+                Door.PLAIN_WOOD, GeneralConstants.levelTransitionFrames, false));
         if (handler.getFlags().isClassroomCutscene1()) {
             entityManager.addEntity(new Chalkboard(handler, 13.0f * Tile.TILEWIDTH, 42 + Tile.TILEHEIGHT, Assets.chalkboard[0].getWidth(), Assets.chalkboard[0].getHeight(), "chalkboard-classroom1", 0));
         } else {

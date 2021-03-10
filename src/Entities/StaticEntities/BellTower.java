@@ -2,7 +2,10 @@ package Entities.StaticEntities;
 
 import Graphics.Assets;
 import Textboxes.TextboxHandler;
+import Tiles.Tile;
+import Variables.GeneralConstants;
 import Variables.Handler;
+import Worlds.WorldManager;
 
 import java.awt.*;
 
@@ -18,10 +21,16 @@ public class BellTower extends StaticEntity {
         this.includeStairs = includeStairs;
         xScale = width / (float) Assets.bellTower.getWidth();
         yScale = height / (float) Assets.bellTower.getHeight();
-        addBoundingBox(new Rectangle(0, 6 * height / 7, width / 2 - (int) (xScale * (stairsWidth / 2)), height / 7));
-        addBoundingBox(new Rectangle(width / 2 + (int) (xScale * (stairsWidth / 2)), 6 * height / 7, width / 2 - (int) (xScale * (stairsWidth / 2)), height / 7));
+        addBoundingBox(new Rectangle(0, 6 * height / 7 - Tile.TILEHEIGHT / 2, width / 2 - (int) (xScale * (stairsWidth / 2)), height / 7 + Tile.TILEHEIGHT / 2));
+        addBoundingBox(new Rectangle(width / 2 + (int) (xScale * (stairsWidth / 2)), 6 * height / 7 - Tile.TILEHEIGHT / 2, width / 2 - (int) (xScale * (stairsWidth / 2)), height / 7 + Tile.TILEHEIGHT / 2));
+        addBoundingBox(new Rectangle(width / 2 - (int) (xScale * (stairsWidth / 2)), 6 * height / 7 - Tile.TILEHEIGHT / 2, width / 2 - (int) (xScale * (stairsWidth / 2)) + 2, 8));
         stairsX = width / 2 - (int) (xScale * (stairsWidth / 2));
         stairsY = (int) (yScale * (Assets.bellTower.getHeight() - stairsHeight));
+        handler.getActiveWorld().getEntityManager().addEntity(
+                new Door(handler, x + stairsX, y + stairsY - Assets.closedDoorOne.getHeight() * 2,
+                        Assets.closedDoorOne.getWidth() * 2, Assets.closedDoorOne.getHeight() * 2, "belltower-overworld1",
+                        handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID), 700, 600, Door.PLAIN_WOOD,
+                        GeneralConstants.levelTransitionFrames, true));
     }
 
     @Override
@@ -31,9 +40,7 @@ public class BellTower extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-        for (Rectangle rectangle : collisionBoundsList) {
-            g.fillRect((int) (x + rectangle.x - handler.getGameCamera().getxOffset()), (int) (y + rectangle.y - handler.getGameCamera().getyOffset()), rectangle.width, rectangle.height);
-        }
+
     }
 
     @Override
