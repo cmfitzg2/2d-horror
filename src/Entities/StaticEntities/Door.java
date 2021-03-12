@@ -126,7 +126,7 @@ public class Door extends StaticEntity {
                 if (item.equals(Key.BELLTOWER)) {
                     textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault,
                             "Used the Bell Tower Key.", null, GeneralConstants.defaultTextSpeed,
-                            Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+                            Color.WHITE, null, Assets.textboxDefault, null, 50, true, false);
                     textboxHandler.setActive(true);
                     handler.getPlayer().getInventory().removeItem(Key.BELLTOWER, Inventory.REGULAR_ITEM);
                     viewingText = true;
