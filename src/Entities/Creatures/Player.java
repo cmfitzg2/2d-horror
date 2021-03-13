@@ -84,7 +84,9 @@ public class Player extends Creature {
         if (!handler.isPlayerFrozen()) {
             checkInteraction();
         }
-        handler.getGameCamera().centerOnEntity(this);
+        if (!handler.getFlags().isCameraOverride()) {
+            handler.getGameCamera().centerOnEntity(this);
+        }
         inventory.tick();
     }
 
@@ -99,7 +101,9 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics g) {
-        handler.getGameCamera().centerOnEntity(this);
+        if (!handler.getFlags().isCameraOverride()) {
+            handler.getGameCamera().centerOnEntity(this);
+        }
         if (invisible) {
             return;
         }
