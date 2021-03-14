@@ -175,7 +175,6 @@ public class Player extends Creature {
     @Override
     public void finalRender(Graphics g) {
         inventory.render(g);
-        drawTextboxes(g);
         g.setColor(Color.WHITE);
         g.setFont(f);
         g.drawString("Current (x,y): (" + x + ", " + y + ")", 16, handler.getHeight() - 16);
@@ -187,10 +186,6 @@ public class Player extends Creature {
         return new Rectangle((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
                 (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
                 bounds.width, bounds.height);
-    }
-
-    private void drawTextboxes(Graphics g) {
-
     }
 
     private void drawAmbientLight(Graphics g) {

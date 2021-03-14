@@ -384,4 +384,8 @@ Acceptance: "Let's head inside."
 		>option 1, there's a puzzle to be done in a different room
 		>complete it, cutscene where denial comes in "oh there you are, come on, X going on out there"
 		>wood tile that creaked when you were in here alone now breaks underneath your combined weight if I can get the two on the same tile
-		
+	>path 3, kind of a combination
+	-everyone is doing their own thing and player is free to move and talk when they enter
+	-there's a room with a puzzle in it
+	-doing the puzzle triggers denial coming in to find you
+	-then you fall in the basement
