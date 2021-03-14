@@ -376,16 +376,9 @@ Acceptance: "Let's head inside."
 >can wander around grounds maybe? i expect there'll be some puzzle out here eventually
 >belltower? locked right now
 >eventually head inside
-	>path 1, everyone's spread out doing their own thing, free to move and talk
-	>cutscene with denial involving falling into hole to basement when you talk to him
 
-	>path 2, everyone's congregated and entering triggers new dialogue cutscene
-	>how do we take this to moving the story along
-		>option 1, there's a puzzle to be done in a different room
-		>complete it, cutscene where denial comes in "oh there you are, come on, X going on out there"
-		>wood tile that creaked when you were in here alone now breaks underneath your combined weight if I can get the two on the same tile
-	>path 3, kind of a combination
-	-everyone is doing their own thing and player is free to move and talk when they enter
-	-there's a room with a puzzle in it
-	-doing the puzzle triggers denial coming in to find you
-	-then you fall in the basement
+>everyone is doing their own thing and player is free to move and talk when they enter
+>there's a room with a puzzle in it
+>doing the puzzle triggers denial coming in to find you
+>then you fall in the basement
+>NOW WE'RE AT THE PART WHERE WE NEED TO DECIDE CORE GAMEPLAY
