@@ -382,3 +382,10 @@ Acceptance: "Let's head inside."
 >doing the puzzle triggers denial coming in to find you
 >then you fall in the basement
 >NOW WE'RE AT THE PART WHERE WE NEED TO DECIDE CORE GAMEPLAY
+>in basement, total darkness, brief dialogue with Denial about the fall / use lighter to see.
+>Denial is injured. MC tells denial to stay put and rest against disused basement well while he looks for a way out
+>do some puzzle solving (hopefully involving art), get a key and a rope, then crash & scream back in area where you first landed
+>the well has given out and denial is caught halfway down it on something
+>player uses rope to throw down to him, he catches it
+>QTE style event where player has to perform some action to pull denial up
+>just before he's out the rope snaps and denial screams and falls to the bottom. thud & silence.
