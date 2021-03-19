@@ -40,6 +40,9 @@ public class Overworld1 extends World {
         entityManager.addEntity(new Window(handler, 15 * Tile.TILEWIDTH + 32, 44 * Tile.TILEHEIGHT - 12, 64, 88, "Window-3"));
         entityManager.addEntity(new Window(handler, 16 * Tile.TILEWIDTH + 64, 44 * Tile.TILEHEIGHT - 12, 64, 88, "Window-4"));
         entityManager.addEntity(new BellTower(handler, 80 * Tile.TILEWIDTH, 50 * Tile.TILEHEIGHT, Assets.bellTower.getWidth() * 2, Assets.bellTower.getHeight() * 2, true, null));
+        entityManager.addEntity(new Well(handler, 87 * Tile.TILEWIDTH, 50 * Tile.TILEHEIGHT, Assets.well[0].getWidth() * 2, Assets.well[0].getHeight() * 2, null, Well.TYPE_NORMAL));
+        entityManager.addEntity(new Well(handler, 87 * Tile.TILEWIDTH, 54 * Tile.TILEHEIGHT, Assets.well[0].getWidth() * 2, Assets.well[0].getHeight() * 2, null, Well.TYPE_COVERED));
+        entityManager.addEntity(new Well(handler, 87 * Tile.TILEWIDTH, 58 * Tile.TILEHEIGHT, Assets.well[0].getWidth() * 2, Assets.well[0].getHeight() * 2, null, Well.TYPE_DAMAGED));
         createGate();
     }
 

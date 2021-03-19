@@ -76,7 +76,7 @@ public class Assets {
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
 	public static BufferedImage frontGateClosed, frontGateOpen, frontGateLeft, frontGateRight;
 	public static BufferedImage[] grandfatherClock;
-	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, ironGate;
+	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, ironGate, well;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] playerDown, playerUp, playerLeft, playerRight;
 	public static BufferedImage[] denialDown, denialUp, denialLeft, denialRight;
@@ -343,6 +343,13 @@ public class Assets {
 		ironGate[5] = ironGateSheet.crop(pillarWidth * 2, height * 2, gateSideWidth, height * 2);
 		ironGate[6] = ironGateSheet.crop(pillarWidth * 2 + gateSideWidth, height * 2, gateSideWidth, height * 2);
 		ironGate[7] = ironGateSheet.crop(pillarWidth * 2 + gateSideWidth * 2, height * 2, shadowWidth, height * 2);
+
+		SpriteSheet wellSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/well-sheet.png"));
+		well = new BufferedImage[3];
+		int wellWidth = width * 3, wellHeight = 124;
+		well[0] = wellSheet.crop(0, 0, wellWidth, wellHeight);
+		well[1] = wellSheet.crop(0, wellHeight, wellWidth, wellHeight);
+		well[2] = wellSheet.crop(0, wellHeight * 2, wellWidth, wellHeight);
 
 		SpriteSheet fireSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/fire.png"));
 		fire = new BufferedImage[4];
