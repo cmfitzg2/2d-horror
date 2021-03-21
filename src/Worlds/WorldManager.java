@@ -2,6 +2,7 @@ package Worlds;
 
 import Entities.Entity;
 import Entities.StaticEntities.Fireplace;
+import Entities.StaticEntities.Furnace;
 import Entities.StaticEntities.TableLamp;
 import Items.Item;
 import Items.Lighter;
@@ -57,6 +58,17 @@ public class WorldManager {
                 }
             } else if (e instanceof Fireplace) {
                 if (((Fireplace) e).isLit()) {
+                    if (ambientLight > 0 && ambientLight == timeOfDay) {
+                        handler.getPlayer().setAmbientLight(ambientLight - 1);
+                        if (handler.getFlags().isVisionLimited()) {
+                            handler.getFlags().setVisionLimited(false);
+                        }
+                    }
+                    found = true;
+                    break;
+                }
+            } else if (e instanceof Furnace) {
+                if (((Furnace) e).isLit()) {
                     if (ambientLight > 0 && ambientLight == timeOfDay) {
                         handler.getPlayer().setAmbientLight(ambientLight - 1);
                         if (handler.getFlags().isVisionLimited()) {
