@@ -72,11 +72,11 @@ public class Assets {
 			manifestationInventory, moribundInventory, oblationInventory, perditionInventory, processionInventory, prophetInventory,
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
-	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet;
+	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet, furnaceUnlit;
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
 	public static BufferedImage frontGateClosed, frontGateOpen, frontGateLeft, frontGateRight;
 	public static BufferedImage[] grandfatherClock;
-	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, ironGate, well;
+	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, ironGate, well, furnaceLit;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] playerDown, playerUp, playerLeft, playerRight;
 	public static BufferedImage[] denialDown, denialUp, denialLeft, denialRight;
@@ -350,6 +350,14 @@ public class Assets {
 		well[0] = wellSheet.crop(0, 0, wellWidth, wellHeight);
 		well[1] = wellSheet.crop(0, wellHeight, wellWidth, wellHeight);
 		well[2] = wellSheet.crop(0, wellHeight * 2, wellWidth, wellHeight);
+
+		SpriteSheet furnaceSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/furnace-sheet.png"));
+		furnaceUnlit = furnaceSheet.crop(0, 0, width, 123);
+		int furnaceFaceHeight = 25;
+		furnaceLit = new BufferedImage[3];
+		furnaceLit[0] = furnaceSheet.crop(width, 0, width, furnaceFaceHeight);
+		furnaceLit[1] = furnaceSheet.crop(width, furnaceFaceHeight, width, furnaceFaceHeight);
+		furnaceLit[2] = furnaceSheet.crop(width, furnaceFaceHeight * 2, width, furnaceFaceHeight);
 
 		SpriteSheet fireSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/fire.png"));
 		fire = new BufferedImage[4];

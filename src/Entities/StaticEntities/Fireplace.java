@@ -2,7 +2,6 @@ package Entities.StaticEntities;
 
 import Graphics.Assets;
 import Graphics.Animation;
-import Variables.Flags;
 import Variables.Handler;
 
 import java.awt.*;
@@ -10,7 +9,7 @@ import java.awt.*;
 public class Fireplace extends StaticEntity {
 
     private boolean lit = false, extinguished = false;
-    private final Animation fire;
+    private Animation fire;
     private float xScale, yScale;
 
     public Fireplace(Handler handler, float x, float y, int width, int height, String uniqueName) {
