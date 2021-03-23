@@ -194,8 +194,6 @@ public class ArtFrameSmall extends StaticEntity {
 
     @Override
     public boolean itemInteraction(String item) {
-        System.out.println(item);
-        handler.setPlayerFrozen(false);
-        return true;
+        return false;
     }
 }

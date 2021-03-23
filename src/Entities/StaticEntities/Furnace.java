@@ -2,6 +2,7 @@ package Entities.StaticEntities;
 
 import Graphics.Assets;
 import Graphics.Animation;
+import Items.Item;
 import Variables.Handler;
 
 import java.awt.*;
@@ -66,7 +67,7 @@ public class Furnace extends StaticEntity {
 
     @Override
     public void interactedWith() {
-        lit = !lit;
+
     }
 
     @Override
@@ -76,6 +77,13 @@ public class Furnace extends StaticEntity {
 
     @Override
     public boolean itemInteraction(String item) {
+        if (item.equals(Item.LIGHTER_UID)) {
+            if (!lit) {
+                lit = true;
+                handler.setPlayerFrozen(false);
+                return true;
+            }
+        }
         return false;
     }
 

@@ -2,6 +2,7 @@ package Entities.StaticEntities;
 
 import Graphics.Assets;
 import Graphics.Animation;
+import Items.Item;
 import Variables.Handler;
 
 import java.awt.*;
@@ -76,16 +77,7 @@ public class Fireplace extends StaticEntity {
 
     @Override
     public void interactedWith() {
-        if (!lit) {
-            if (!extinguished) {
-                lit = true;
-            } else {
-                extinguished = false;
-            }
-        } else {
-            lit = false;
-            extinguished = true;
-        }
+
     }
 
     @Override
@@ -95,6 +87,13 @@ public class Fireplace extends StaticEntity {
 
     @Override
     public boolean itemInteraction(String item) {
+        if (item.equals(Item.LIGHTER_UID)) {
+            if (!lit && !extinguished) {
+                lit = true;
+                handler.setPlayerFrozen(false);
+                return true;
+            }
+        }
         return false;
     }
 

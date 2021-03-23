@@ -128,7 +128,7 @@ public class Door extends StaticEntity {
                             "Used the Bell Tower Key.", null, GeneralConstants.defaultTextSpeed,
                             Color.WHITE, null, Assets.textboxDefault, null, 50, true, false);
                     textboxHandler.setActive(true);
-                    handler.getPlayer().getInventory().removeItem(Key.BELLTOWER, Inventory.REGULAR_ITEM);
+                    handler.getPlayer().getInventory().removeItem(Key.BELLTOWER, Inventory.KEY_ITEM);
                     viewingText = true;
                     return true;
                 }

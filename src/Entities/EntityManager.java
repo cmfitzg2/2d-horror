@@ -70,8 +70,10 @@ public class EntityManager {
 
 	public Entity getEntityByUid(String uid) {
 		for (Entity e : entities) {
-			if (e.getUniqueName().equals(uid)) {
-				return e;
+			if (e.getUniqueName() != null) {
+				if (e.getUniqueName().equals(uid)) {
+					return e;
+				}
 			}
 		}
 		return null;
