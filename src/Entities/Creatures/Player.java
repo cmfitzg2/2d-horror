@@ -244,6 +244,7 @@ public class Player extends Creature {
 
             if (!lockY) {
                 if (keyManager.up) {
+                    handler.getKeyManager().setStillHoldingUp(true);
                     if (keyManager.shift) {
                         yMove = -runSpeed;
                     } else {
@@ -251,6 +252,7 @@ public class Player extends Creature {
                     }
                 }
                 if (keyManager.down) {
+                    handler.getKeyManager().setStillHoldingDown(true);
                     if (keyManager.shift) {
                         yMove = runSpeed;
                     } else {
@@ -260,6 +262,7 @@ public class Player extends Creature {
             }
             if (!lockX) {
                 if (keyManager.left) {
+                    handler.getKeyManager().setStillHoldingLeft(true);
                     if (keyManager.shift) {
                         xMove = -runSpeed;
                     } else {
@@ -267,6 +270,7 @@ public class Player extends Creature {
                     }
                 }
                 if (keyManager.right) {
+                    handler.getKeyManager().setStillHoldingRight(true);
                     if (keyManager.shift) {
                         xMove = runSpeed;
                     } else {
