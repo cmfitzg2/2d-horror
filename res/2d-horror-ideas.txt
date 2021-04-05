@@ -129,8 +129,10 @@ post-game:
 	-other stages of grief are real friends in real world and they're all fine?
 
 
-
-
+puzzle ideas:
+1. paintings available in one place, names available in another place, some cipher to connect them
+	-primary color in each painting arrayed in a grid (ezpz)
+	-
 
 working script
 >black screen, only textbox is visible

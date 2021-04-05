@@ -13,7 +13,7 @@ import java.awt.*;
 public class Door extends StaticEntity {
 
     private int doorHeight = 96, style, transitionFrames;
-    private boolean includeStairs, includeArch, locked, viewingText;
+    private boolean includeStairs, includeArch, locked, viewingText, transitioning;
     private Rectangle enterDoor;
     private World destination;
     private float newX, newY;
@@ -62,8 +62,16 @@ public class Door extends StaticEntity {
     public void tick() {
         enterDoor = new Rectangle((int) x - 3  - (int) handler.getGameCamera().getxOffset(),
                 (int) y - 3  - (int) handler.getGameCamera().getyOffset(), width + 6, height + 20);
-        if (handler.getPlayer().getPlayerRec().intersects(enterDoor) && !handler.getActiveWorld().transitioningTo) {
+        boolean intersects = false;
+        if (handler.getPlayer().getPlayerRec().intersects(enterDoor)) {
+            intersects = true;
+        }
+        if ((intersects || transitioning) && !handler.getActiveWorld().transitioningTo) {
             if (!locked) {
+                transitioning = true;
+                if (handler.getGame().isFinishedFadingOut()) {
+                    transitioning = false;
+                }
                 handler.getActiveWorld().transitionFrom(destination, newX, newY, transitionFrames);
             }
         }
