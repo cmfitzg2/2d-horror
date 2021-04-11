@@ -134,4 +134,12 @@ public abstract class Entity {
 	public void setUniqueName(String uniqueName) {
 		this.uniqueName = uniqueName;
 	}
+
+	public int renderVsEntity(Entity e) {
+		return 0;
+	}
+
+	public boolean customRenderVsEntity(Entity e) {
+		return false;
+	}
 }

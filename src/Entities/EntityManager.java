@@ -12,7 +12,18 @@ public class EntityManager {
 	private Handler handler;
 	private Player player;
 	private ArrayList<Entity> entities;
-	private Comparator<Entity> renderSorter = (a, b) -> {
+	private Comparator<Entity> renderSorter = (Entity a, Entity b) -> {
+		if (b.customRenderVsEntity(a)) {
+			int val = b.renderVsEntity(a);
+			if (val != 0) {
+				return val;
+			}
+		} else if (a.customRenderVsEntity(b)) {
+			int val = a.renderVsEntity(b);
+			if (val != 0) {
+				return -val;
+			}
+		}
 		if (a.getY() + a.getHeight() < b.getY() + b.getHeight()) {
 			return -1;
 		}
