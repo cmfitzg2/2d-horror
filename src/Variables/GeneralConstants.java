@@ -6,4 +6,6 @@ public class GeneralConstants {
     public static final int holdBlackFrames = 15;
 
     public static final int defaultTextSpeed = 2, slowTextSpeed = 60;
+
+    public static final int BEHIND_BUILDING_OPACITY = 154;
 }

@@ -74,7 +74,7 @@ public class Assets {
 			vilomahInventory;
 	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet, furnaceUnlit;
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
-	public static BufferedImage mansion, mansionTransparent, frontGateClosed, frontGateOpen, frontGateLeft, frontGateRight;
+	public static BufferedImage houseDefault, houseDefaultTransparent, mansion, mansionTransparent, frontGateClosed, frontGateOpen, frontGateLeft, frontGateRight;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, ironGate, well, furnaceLit;
 	public static BufferedImage[] activeInventoryHeader;
@@ -761,6 +761,8 @@ public class Assets {
 		teacherDesk = ImageLoader.loadImage("/textures/static-entities/teacher-desk.png");
 		toilet = ImageLoader.loadImage("/textures/static-entities/toilet.png");
 		bellTower = ImageLoader.loadImage("/textures/static-entities/belltower.png");
+		houseDefault = ImageLoader.loadImage("/textures/static-entities/house-default.png");
+		houseDefaultTransparent = ImageLoader.loadImage("/textures/static-entities/house-default-transparent.png");
 		mansion = ImageLoader.loadImage("/textures/static-entities/mansion-sample.png");
 		mansionTransparent = ImageLoader.loadImage("/textures/static-entities/mansion-sample-transparent.png");
 	}

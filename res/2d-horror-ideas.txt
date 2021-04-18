@@ -332,16 +332,17 @@ Depression: "I may have some information regarding that."
 Bargaining: "Depression, I told you not to..."
 Depression: "Ahh come on, he came out didn't he?"
 Depression: "I was just messing around."
-MC: "Oh yeah? Did you knock on my door and cut my power as a joke too? You scared the hell out of me."
+MC: "Oh yeah? Did you cut my power as a joke too? You scared the hell out of me."
 Depression: "What? We just got here."
 Acceptance: "Your power's out? Yeah that definitely wasn't us."
 Acceptance: "We assumed you were sleeping when we pulled up and saw all your lights out."
-Depression: "And I heroically volunteered to wake you up."
+Depression: "And I heroically volunteered to wake you up!"
 Bargaining: "Yeah... \"heroically\"..."
 MC: "Well, that's.. That's really odd timing then."
 Denial: "Don't correlate unrelated things. Random power surges are pretty common. I doubt this is the first for you."
 Denial: "Even in the modern era, we're still incapable of reliably delivering power to homes."
-Denial: "There's just too many moving pieces. A lot of things can go wrong, and any of them can cause a power outage."Acceptance: "Ever the rationalist."
+Denial: "There's just too many moving pieces. A lot of things can go wrong, and any of them can cause a power outage."
+Acceptance: "Ever the rationalist."
 Acceptance: "But yeah, he's probably right. I wouldn't dwell on it."
 Anger: "Hey, speaking of not dwelling..."
 Anger: "CAN WE LEAVE ALREADY?"
@@ -364,7 +365,8 @@ Anger: "Oh, hey guys, Bargaining says we shouldn't be here. Guess we're heading 
 Anger: "If only you had said something before."
 Depression: "Listen to you, droning on and on. It's like you're trying to delay going inside."
 Depression: "It's alright if you're scared. We won't think less of you!"
-Anger: "Shut UP! I'm not scared! That's the only reason I came at all!"
+Anger: "Shut UP! I'm not scared! The whole reason I came was to prove that!"
+Depression: "I had no idea my opinion was so important to you."
 Acceptance: "Alright already, geez. You guys sure are at eachother's throats today."
 MC: "You did say this place brings out \"the real you\" or whatever, right?"
 Acceptance: "Fair enough. But for all our sake, let's try to keep the quarreling to a minimum."
@@ -383,7 +385,6 @@ Acceptance: "Let's head inside."
 >there's a room with a puzzle in it
 >doing the puzzle triggers denial coming in to find you
 >then you fall in the basement
->NOW WE'RE AT THE PART WHERE WE NEED TO DECIDE CORE GAMEPLAY
 >in basement, total darkness, brief dialogue with Denial about the fall / use lighter to see.
 >Denial is injured. MC tells denial to stay put and rest against disused basement well while he looks for a way out
 >do some puzzle solving (hopefully involving art), get a key and a rope, then crash & scream back in area where you first landed
