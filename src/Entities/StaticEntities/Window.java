@@ -2,7 +2,6 @@ package Entities.StaticEntities;
 
 import Graphics.Assets;
 import Variables.Handler;
-import Worlds.World;
 
 import java.awt.*;
 
@@ -48,8 +47,8 @@ public class Window extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
-
+    public boolean interactedWith() {
+        return false;
     }
 
     @Override

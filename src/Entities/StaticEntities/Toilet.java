@@ -1,8 +1,6 @@
 package Entities.StaticEntities;
 
 import Graphics.Assets;
-import Textboxes.TextboxHandler;
-import Variables.GeneralConstants;
 import Variables.Handler;
 
 import java.awt.*;
@@ -49,8 +47,8 @@ public class Toilet extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
-
+    public boolean interactedWith() {
+        return false;
     }
 
     @Override

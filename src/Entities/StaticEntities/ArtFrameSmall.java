@@ -182,9 +182,10 @@ public class ArtFrameSmall extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
+    public boolean interactedWith() {
         handler.getFlags().setViewingArt(true);
         open = true;
+        return true;
     }
 
     @Override

@@ -34,8 +34,9 @@ public class MCHouse2 extends World {
         if (handler.getPlayer().getPlayerRec().intersects(loadzoneOutside)) {
             //if this flag is set, we're in the part of the story that this should act as a loadzone
             if (handler.getFlags().isMCHouseNightCutscene1() || !handler.getFlags().isMCHouseNightCutscene5()) {
+                handler.getPlayer().setDirection("down");
                 transitionFrom(handler.getWorldManager().getWorld(WorldManager.OVERWORLD_1_ID), Tile.TILEWIDTH * 43,
-                        Tile.TILEHEIGHT * 49);
+                        Tile.TILEHEIGHT * 48.5f);
             } else {
                 if (handler.getPlayer().getyMove() > 0) {
                     if (handler.getFlags().isMCHouseNightCutscene2() && !handler.getFlags().isCutsceneActive()) {

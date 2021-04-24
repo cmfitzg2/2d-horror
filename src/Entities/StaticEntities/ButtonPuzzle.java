@@ -153,9 +153,10 @@ public class ButtonPuzzle extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
+    public boolean interactedWith() {
         isInteracting = true;
         handler.getFlags().setInPuzzle(true);
+        return true;
     }
 
     @Override

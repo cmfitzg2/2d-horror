@@ -1,8 +1,6 @@
 package Entities.Creatures;
 
 import Entities.Entity;
-import Entities.StaticEntities.Fireplace;
-import Entities.StaticEntities.TableLamp;
 import Input.KeyManager;
 import Items.Item;
 import Items.Key;
@@ -93,8 +91,9 @@ public class Player extends Creature {
         inventory.tick();
     }
 
-    public void interactedWith() {
+    public boolean interactedWith() {
         //Player should never be interacted with
+        return false;
     }
 
     @Override
@@ -291,7 +290,12 @@ public class Player extends Creature {
                                     if (e.isInteracting()) {
                                         break;
                                     } else {
-                                        e.interactedWith();                //call interaction function specified by any class extending entity
+                                        //call this entity's custom interaction
+                                        boolean interaction = e.interactedWith();
+                                        if (!interaction) {
+                                            //this entity doesn't have one, check if another one does
+                                            continue;
+                                        }
                                     }
                                     break;
                                 }

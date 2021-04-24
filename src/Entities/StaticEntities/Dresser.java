@@ -4,7 +4,6 @@ import Graphics.Assets;
 import Variables.Handler;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Dresser extends StaticEntity {
 
@@ -51,8 +50,8 @@ public class Dresser extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
-
+    public boolean interactedWith() {
+        return false;
     }
 
     @Override

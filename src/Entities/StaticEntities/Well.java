@@ -1,10 +1,7 @@
 package Entities.StaticEntities;
 
 import Graphics.Assets;
-import Tiles.Tile;
-import Variables.GeneralConstants;
 import Variables.Handler;
-import Worlds.WorldManager;
 
 import java.awt.*;
 
@@ -59,8 +56,8 @@ public class Well extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
-
+    public boolean interactedWith() {
+        return false;
     }
 
     @Override

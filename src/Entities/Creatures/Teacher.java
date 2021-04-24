@@ -115,12 +115,13 @@ public class Teacher extends Creature {
 	}
 
 	@Override
-	public void interactedWith() {
+	public boolean interactedWith() {
 		textboxHandler = new TextboxHandler(handler, Assets.serif,
 				handler.getEntityMessages().getTextboxMessage(uniqueName, messageNumber),
 				null, 2, Color.WHITE, null, Assets.textboxTeacher, null, 50, true, true);
 		textboxHandler.setActive(true);
 		messageNumber = 2;
+		return true;
 	}
 
 	@Override

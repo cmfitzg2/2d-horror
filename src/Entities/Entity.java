@@ -43,7 +43,7 @@ public abstract class Entity {
 	
 	public abstract void die();
 	
-	public abstract void interactedWith();
+	public abstract boolean interactedWith();
 	
 	public abstract boolean isInteracting();
 
@@ -139,7 +139,7 @@ public abstract class Entity {
 		return 0;
 	}
 
-	public boolean customRenderVsEntity(Entity e) {
+	public boolean customRenderVsEntity() {
 		return false;
 	}
 }

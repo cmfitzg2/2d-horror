@@ -99,8 +99,8 @@ public class Follower extends Creature {
 	}
 
 	@Override
-	public void interactedWith() {
-		interactedWith = true;
+	public boolean interactedWith() {
+		return false;
 	}
 
 	@Override

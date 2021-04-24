@@ -25,7 +25,7 @@ public class WindowOutside extends StaticEntity {
 
     @Override
     public void preRender(Graphics g) {
-        if (style == LIGHT) {
+        if (handler.getFlags().getTimeOfDay() < Flags.TIME_OF_DAY_DARK) {
             g.drawImage(Assets.windowLight, (int) (x - handler.getGameCamera().getxOffset()),
                     (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         } else {
@@ -36,7 +36,7 @@ public class WindowOutside extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-        if (style == LIGHT) {
+        if (handler.getFlags().getTimeOfDay() < Flags.TIME_OF_DAY_SOME_DARK) {
             if (!handler.getFlags().isViewingArt() && !handler.getFlags().isInPuzzle() && !handler.isInMenu() && !handler.getFlags().isHideEffects()) {
                 g.drawImage(Assets.yellowLight, (int) (x - handler.getGameCamera().getxOffset() - 32),
                         (int) (y - handler.getGameCamera().getyOffset() - 32), 128, 128, null);
@@ -48,10 +48,10 @@ public class WindowOutside extends StaticEntity {
     public void finalRender(Graphics g) {
         if (isInteracting) {
             if (null == background) {
-                if (handler.getFlags().getTimeOfDay() >= Flags.TIME_OF_DAY_DARK) {
-                    g.drawImage(Assets.windowOutsideNight, 0, 0, handler.getWidth(), handler.getHeight(), null);
-                } else {
+                if (handler.getFlags().getTimeOfDay() < Flags.TIME_OF_DAY_DARK) {
                     g.drawImage(Assets.windowOutsideDay, 0, 0, handler.getWidth(), handler.getHeight(), null);
+                } else {
+                    g.drawImage(Assets.windowOutsideNight, 0, 0, handler.getWidth(), handler.getHeight(), null);
                 }
             } else {
                 g.drawImage(background, 0, 0, handler.getWidth(), handler.getHeight(), null);
@@ -88,10 +88,11 @@ public class WindowOutside extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
+    public boolean interactedWith() {
         isInteracting = true;
         handler.setPlayerFrozen(true);
         handler.getFlags().setHideEffects(true);
+        return true;
     }
 
     @Override

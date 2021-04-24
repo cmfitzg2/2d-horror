@@ -4,7 +4,6 @@ import Graphics.Assets;
 import Variables.Handler;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class IronGate extends StaticEntity {
 
@@ -69,8 +68,8 @@ public class IronGate extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
-
+    public boolean interactedWith() {
+        return false;
     }
 
     @Override

@@ -114,7 +114,7 @@ public class ClassroomCutscene1 implements Cutscene {
                         Door door = (Door) entityManager.getEntityByUid("door1-classroom1");
                         entityManager.addEntity(new Door(handler, door.getX(), door.getY(), door.getWidth(), door.getHeight(),
                                 "door2-classroom1", handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID),
-                                700, 428, Door.PLAIN_WOOD, 120, false));
+                                700, 428, Door.PLAIN_WOOD, false, GeneralConstants.longLevelTransition, false));
                         entityManager.removeEntity(door);
                         textbox2 = true;
                         textbox1 = false;
@@ -413,9 +413,15 @@ public class ClassroomCutscene1 implements Cutscene {
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setClassroomCutscene1(false);
-        ((WindowOutside) handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID).getEntityManager()
-                .getEntityByUid("windowoutside1-mchouse1")).setStyle(WindowOutside.DARK);
         ((Bed) handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID).getEntityManager()
                 .getEntityByUid("bed1-mchouse1")).setFirstTime(true);
+        EntityManager overworldManager = handler.getWorldManager().getWorld(WorldManager.OVERWORLD_1_ID).getEntityManager();
+        overworldManager.addEntity(new Denial(handler, 41.5f * Tile.TILEWIDTH, 49.5f * Tile.TILEHEIGHT, "denial-overworld1"));
+        overworldManager.addEntity(new Anger(handler, 41.5f * Tile.TILEWIDTH, 50.5f * Tile.TILEHEIGHT, "anger-overworld1"));
+        overworldManager.addEntity(new Bargaining(handler, 41.5f * Tile.TILEWIDTH, 51.5f * Tile.TILEHEIGHT, "bargaining-overworld1"));
+        overworldManager.addEntity(new Depression(handler, 46f * Tile.TILEWIDTH, 43 * Tile.TILEHEIGHT, "depression-overworld1"));
+        Acceptance acceptance = new Acceptance(handler, 44.5f * Tile.TILEWIDTH, 49.5f * Tile.TILEHEIGHT, "acceptance-overworld1");
+        overworldManager.addEntity(acceptance);
+        acceptance.setDirection("left");
     }
 }

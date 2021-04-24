@@ -78,9 +78,9 @@ public class Bed extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
+    public boolean interactedWith() {
         if (inBed) {
-            return;
+            return false;
         }
         inBed = true;
         handler.getPlayer().setSpeed(Player.defaultSpeed / 2);
@@ -89,6 +89,7 @@ public class Bed extends StaticEntity {
         handler.getPlayer().setY(y + 16);
         handler.getPlayer().setLockY(true);
         handler.getPlayer().setHeadOnly(true);
+        return true;
     }
 
     @Override

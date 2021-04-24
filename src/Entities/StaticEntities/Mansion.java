@@ -1,6 +1,5 @@
 package Entities.StaticEntities;
 
-import Entities.Creatures.Player;
 import Entities.Entity;
 import Graphics.Assets;
 import Variables.Handler;
@@ -63,8 +62,8 @@ public class Mansion extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
-
+    public boolean interactedWith() {
+        return false;
     }
 
     @Override
@@ -84,11 +83,11 @@ public class Mansion extends StaticEntity {
         if (e.getY() > y + yScale * Assets.mansion.getHeight() / 2) {
             return 1;
         }
-        return 0;
+        return -1;
     }
 
     @Override
-    public boolean customRenderVsEntity(Entity e) {
-        return e instanceof Player;
+    public boolean customRenderVsEntity() {
+        return true;
     }
 }

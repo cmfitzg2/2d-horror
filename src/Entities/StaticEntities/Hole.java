@@ -87,9 +87,8 @@ public class Hole extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
-        isInteracting = true;
-        isInteracting = false;
+    public boolean interactedWith() {
+        return false;
     }
 
     @Override

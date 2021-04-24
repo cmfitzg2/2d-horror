@@ -93,17 +93,17 @@ public abstract class World {
 		int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILEHEIGHT);
 		int yEnd = (int) Math.min(height, (handler.getGameCamera().getyOffset() + handler.getHeight()) / Tile.TILEHEIGHT + 1);
 
-		for(int y=yStart; y<yEnd; y++) {
-			for(int x=xStart; x<xEnd; x++) {
-				getTile(x,y).render(g, (int) (x*Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
-						(int) (y*Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
+		for (int y = yStart; y < yEnd; y++) {
+			for (int x = xStart; x < xEnd; x++) {
+				getTile(x,y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
+						(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 			}
 		}
 	}
 
 	public Tile getTile(int x, int y) {
-		if ( x < 0 || y < 0 || x >= width || y >= height) {
-			return Tile.black;
+		if (x < 0 || y < 0 || x >= width || y >= height) {
+			return Tile.blackSolid;
 		}
 		Tile t = Tile.tiles[tiles[x][y]];
 		if (t == null) {

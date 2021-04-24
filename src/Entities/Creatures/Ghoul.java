@@ -119,8 +119,8 @@ public class Ghoul extends Creature {
     }
 
     @Override
-    public void interactedWith() {
-
+    public boolean interactedWith() {
+        return false;
     }
 
     @Override

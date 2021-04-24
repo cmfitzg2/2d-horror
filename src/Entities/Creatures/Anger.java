@@ -31,7 +31,7 @@ public class Anger extends Creature {
 		playerX = handler.getActiveWorld().getEntityManager().getPlayer().getX();
 		playerY = handler.getActiveWorld().getEntityManager().getPlayer().getY();
 
-		if (xMove !=0 || yMove !=0) {
+		if (xMove != 0 || yMove != 0) {
 			animDown.tick();
 			animLeft.tick();
 			animUp.tick();
@@ -119,12 +119,13 @@ public class Anger extends Creature {
 	}
 
 	@Override
-	public void interactedWith() {
+	public boolean interactedWith() {
 		textboxHandler = new TextboxHandler(handler, Assets.serif,
 				handler.getEntityMessages().getTextboxMessage(uniqueName, messageNumber),
 				null, 2, Color.WHITE, null, Assets.textboxAnger, null, 50, true, true);
 		textboxHandler.setActive(true);
 		messageNumber = 2;
+		return true;
 	}
 
 	@Override

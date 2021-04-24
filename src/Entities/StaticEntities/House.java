@@ -1,6 +1,5 @@
 package Entities.StaticEntities;
 
-import Entities.Creatures.Player;
 import Entities.Entity;
 import Graphics.Assets;
 import Tiles.Tile;
@@ -69,8 +68,8 @@ public class House extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
-
+    public boolean interactedWith() {
+        return false;
     }
 
     @Override
@@ -92,7 +91,7 @@ public class House extends StaticEntity {
     }
 
     @Override
-    public boolean customRenderVsEntity(Entity e) {
-        return e instanceof Player;
+    public boolean customRenderVsEntity() {
+        return true;
     }
 }

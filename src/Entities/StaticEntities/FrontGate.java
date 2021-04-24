@@ -52,8 +52,9 @@ public class FrontGate extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
+    public boolean interactedWith() {
         setOpen(!open);
+        return true;
     }
 
     @Override

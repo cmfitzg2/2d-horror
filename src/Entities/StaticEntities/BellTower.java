@@ -1,7 +1,8 @@
 package Entities.StaticEntities;
 
+import Entities.Creatures.Player;
+import Entities.Entity;
 import Graphics.Assets;
-import Textboxes.TextboxHandler;
 import Tiles.Tile;
 import Variables.GeneralConstants;
 import Variables.Handler;
@@ -29,7 +30,7 @@ public class BellTower extends StaticEntity {
         handler.getActiveWorld().getEntityManager().addEntity(
                 new Door(handler, x + stairsX, y + stairsY - Assets.closedDoorOne.getHeight() * 2,
                         Assets.closedDoorOne.getWidth() * 2, Assets.closedDoorOne.getHeight() * 2, "belltower-overworld1",
-                        handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID), 700, 600, Door.PLAIN_WOOD,
+                        handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID), 700, 600, Door.PLAIN_WOOD, true,
                         GeneralConstants.levelTransitionFrames, true));
     }
 
@@ -69,8 +70,8 @@ public class BellTower extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
-
+    public boolean interactedWith() {
+        return false;
     }
 
     @Override
@@ -81,5 +82,18 @@ public class BellTower extends StaticEntity {
     @Override
     public boolean itemInteraction(String item) {
         return false;
+    }
+
+    @Override
+    public int renderVsEntity(Entity e) {
+        if (e.getY() >= y + 6 * height / 7f + handler.getPlayer().getHeight() / 2f) {
+            return 1;
+        }
+        return -1;
+    }
+
+    @Override
+    public boolean customRenderVsEntity() {
+        return true;
     }
 }

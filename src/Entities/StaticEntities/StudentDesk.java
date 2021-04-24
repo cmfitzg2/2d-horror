@@ -4,7 +4,6 @@ import Cutscenes.Cutscene;
 import Cutscenes.CutsceneManager;
 import Graphics.Assets;
 import Textboxes.TextboxHandler;
-import Tiles.Tile;
 import Variables.Handler;
 
 import java.awt.*;
@@ -117,11 +116,13 @@ public class StudentDesk extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
+    public boolean interactedWith() {
         if (character.equals(PLAYER) && handler.getFlags().isClassroomCutscene1() && !occupied) {
             handler.setPlayerFrozen(true);
             textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, "Sit down?", new String[]{"Yes", "No"}, 2, Color.WHITE, null, Assets.textboxDefault, null, 50, true, false);
+            return true;
         }
+        return false;
     }
 
     @Override

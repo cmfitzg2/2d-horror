@@ -13,7 +13,7 @@ import java.awt.*;
 public class Door extends StaticEntity {
 
     private int doorHeight = 96, style, transitionFrames;
-    private boolean includeStairs, includeArch, locked, viewingText, transitioning;
+    private boolean includeStairs, includeArch, locked, viewingText, transitioning, invisible;
     private Rectangle enterDoor;
     private World destination;
     private float newX, newY;
@@ -21,7 +21,7 @@ public class Door extends StaticEntity {
     private TextboxHandler textboxHandler;
 
     public Door(Handler handler, float x, float y, int width, int height, String uniqueName,
-                World destination, float newX, float newY, int style, int transitionFrames, boolean locked) {
+                World destination, float newX, float newY, int style, boolean invisible, int transitionFrames, boolean locked) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
         bounds.y = 0;
@@ -37,6 +37,7 @@ public class Door extends StaticEntity {
         if (style == ARCH || style == STAIRS_ARCH) {
             includeArch = true;
         }
+        this.invisible = invisible;
         this.transitionFrames = transitionFrames;
         this.locked = locked;
     }
@@ -87,15 +88,17 @@ public class Door extends StaticEntity {
 
     @Override
     public void render(Graphics g) {
-        if (style == PLAIN_WOOD || includeArch || includeStairs) {
-            g.drawImage(Assets.closedDoorOne, (int) (x - handler.getGameCamera().getxOffset()),
-                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-        } else if (style == BATHROOM_MALE) {
-            g.drawImage(Assets.bathroomDoorMale, (int) (x - handler.getGameCamera().getxOffset()),
-                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-        } else if (style == BATHROOM_FEMALE) {
-            g.drawImage(Assets.bathroomDoorFemale, (int) (x - handler.getGameCamera().getxOffset()),
-                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        if (!invisible) {
+            if (style == PLAIN_WOOD || includeArch || includeStairs) {
+                g.drawImage(Assets.closedDoorOne, (int) (x - handler.getGameCamera().getxOffset()),
+                        (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+            } else if (style == BATHROOM_MALE) {
+                g.drawImage(Assets.bathroomDoorMale, (int) (x - handler.getGameCamera().getxOffset()),
+                        (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+            } else if (style == BATHROOM_FEMALE) {
+                g.drawImage(Assets.bathroomDoorFemale, (int) (x - handler.getGameCamera().getxOffset()),
+                        (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+            }
         }
         if (includeArch) {
             g.drawImage(Assets.doorwayArch, (int) (x - handler.getGameCamera().getxOffset() - 16),
@@ -113,13 +116,15 @@ public class Door extends StaticEntity {
     }
 
     @Override
-    public void interactedWith() {
+    public boolean interactedWith() {
         if (locked) {
             textboxHandler = new TextboxHandler(handler, Assets.playerThinkingFont,
                     "It's locked.", null, GeneralConstants.defaultTextSpeed,
                     Color.WHITE, null, Assets.textboxPlayerThinking, null, 50, true, true);
             textboxHandler.setActive(true);
+            return true;
         }
+        return false;
     }
 
     @Override

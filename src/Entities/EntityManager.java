@@ -13,12 +13,12 @@ public class EntityManager {
 	private Player player;
 	private ArrayList<Entity> entities;
 	private Comparator<Entity> renderSorter = (Entity a, Entity b) -> {
-		if (b.customRenderVsEntity(a)) {
+		if (b.customRenderVsEntity()) {
 			int val = b.renderVsEntity(a);
 			if (val != 0) {
 				return val;
 			}
-		} else if (a.customRenderVsEntity(b)) {
+		} else if (a.customRenderVsEntity()) {
 			int val = a.renderVsEntity(b);
 			if (val != 0) {
 				return -val;
