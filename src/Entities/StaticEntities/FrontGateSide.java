@@ -10,10 +10,13 @@ public class FrontGateSide extends StaticEntity {
 
     public FrontGateSide(Handler handler, float x, float y, int width, int height, String uniqueName, boolean left) {
         super(handler, x, y, width, height, uniqueName);
+        float xScale = (float) width / Assets.frontGateLeft.getWidth();
+        float yScale = (float) height / Assets.frontGateLeft.getHeight();
+        int gateHeightDifferential = (int) (yScale * (Assets.frontGateLeft.getHeight() - Assets.ironGate[0].getHeight()));
         bounds.x = 0;
-        bounds.y = (int) (0.75 * height);
+        bounds.y = gateHeightDifferential + (int) (0.75 * Assets.ironGate[0].getHeight() * yScale);
         bounds.width = width;
-        bounds.height = (int) (0.25 * height);
+        bounds.height = (int) (0.25 * Assets.ironGate[0].getHeight() * yScale);
         this.left = left;
     }
 

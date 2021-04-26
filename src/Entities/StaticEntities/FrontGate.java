@@ -72,10 +72,12 @@ public class FrontGate extends StaticEntity {
         setBounds();
     }
     private void setBounds() {
+        float yScale = (float) height / Assets.frontGateLeft.getHeight();
+        int gateHeightDifferential = (int) (yScale * (Assets.frontGateLeft.getHeight() - Assets.ironGate[0].getHeight()));
         bounds.x = 0;
+        bounds.y = gateHeightDifferential + (int) (0.75 * Assets.ironGate[0].getHeight() * yScale);
         bounds.width = width;
-        bounds.y = (int) (0.75 * height);
-        bounds.height = (int) (0.25 * height);
+        bounds.height = (int) (0.25 * Assets.ironGate[0].getHeight() * yScale);
         if (open) {
             bounds.width = 1;
         }

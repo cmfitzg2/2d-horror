@@ -87,7 +87,7 @@ public class House extends StaticEntity {
         if (e.getY() > y + yScale * Assets.houseDefault.getHeight() / 2) {
             return 1;
         }
-        return 0;
+        return -1;
     }
 
     @Override
