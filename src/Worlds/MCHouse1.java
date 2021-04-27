@@ -52,11 +52,4 @@ public class MCHouse1 extends World {
             handler.setPlayerFrozen(true);
         }
     }
-
-    @Override
-    public void render(Graphics g) {
-        renderTiles(g);
-        entityManager.render(g);
-        firstRender = true;
-    }
 }

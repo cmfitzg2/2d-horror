@@ -79,14 +79,4 @@ public class School1 extends World {
             }
         }
     }
-
-    @Override
-    public void render(Graphics g) {
-        if (firstRender) {
-            firstRender = false;
-            return;
-        }
-        renderTiles(g);
-        entityManager.render(g);
-    }
 }

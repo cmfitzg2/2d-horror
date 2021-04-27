@@ -358,6 +358,5 @@ public class OverworldCutscene1 implements Cutscene {
         handler.getFlags().setCameraOverride(false);
         handler.getGame().setFadeOut(false, true);
         GeneralUtils.stopLevelFadeOut(handler, handler.getWorldManager().getWorld(WorldManager.MANSION_EXTERIOR_ID), 300, 300, false);
-        handler.getWorldManager().setActiveWorld(handler.getWorldManager().getWorld(WorldManager.MANSION_EXTERIOR_ID));
     }
 }

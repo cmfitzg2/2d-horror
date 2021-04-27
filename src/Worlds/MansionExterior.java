@@ -11,6 +11,8 @@ import Variables.Handler;
 
 public class MansionExterior extends World {
 
+    private boolean initialCutsceneTransition = true;
+
     public MansionExterior(Handler handler, int id, Player player) {
         super(handler, "res/worlds/mansion-exterior.txt", id, player);
     }
@@ -38,11 +40,16 @@ public class MansionExterior extends World {
         handler.getFlags().setTimeOfDay(Flags.TIME_OF_DAY_BRIGHT);
         handler.getPlayer().setAmbientLight(Flags.TIME_OF_DAY_BRIGHT);
         if (!handler.getGame().isFadeIn()) {
-            handler.getGame().fadeIn(GeneralConstants.veryLongLevelTransition);
+            if (initialCutsceneTransition) {
+                GeneralUtils.levelFadeIn(handler, GeneralConstants.veryLongLevelTransition);
+            } else if (fadeIn) {
+                GeneralUtils.levelFadeIn(handler, -1);
+            }
         }
         if (handler.getGame().isFadeIn() && handler.getGame().isFinishedFadingIn()) {
             GeneralUtils.stopLevelFadeIn(handler, false);
             transitioningTo = false;
+            initialCutsceneTransition = false;
         }
     }
 
