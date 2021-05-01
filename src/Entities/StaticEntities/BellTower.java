@@ -86,7 +86,7 @@ public class BellTower extends StaticEntity {
 
     @Override
     public int renderVsEntity(Entity e) {
-        if (e.getY() >= y + 6 * height / 7f + handler.getPlayer().getHeight() / 2f) {
+        if (e.getY() >= y + height - Assets.closedDoorOne.getHeight() * yScale) {
             return 1;
         }
         return -1;
