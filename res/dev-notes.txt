@@ -1,0 +1,13 @@
+there is an issue with rendering order when part of one entity needs to be rendered differently from another part
+the example:
+the mansion should be drawn after the top of the gate so that it appears to be inside of the gate.
+however, the bottom of the gate should be drawn after the mansion for the same reason
+
+additionally, because the mansion's y position is in the part of the gate that says the entity should be drawn after the gate,
+the mansion will perpetually sort the gate before it, meaning it will get locked into the first draw position by the mansion
+meaning the player will always be drawn after the gate -- so when inside the gate, at the bottom, the player will be drawn on top of it.
+the unfortunate solution? explicitly handle rendering vs specific entities in the custom rendering method
+if we say mansion always > gate, the mansion will always draw on top of the gate, meaning we can't have the front gate overlap it
+however, this will allow the player to be sorted vs the gate
+
+i suspect this issue will cause many issues down the line. need to think through render sorting in a better way...........

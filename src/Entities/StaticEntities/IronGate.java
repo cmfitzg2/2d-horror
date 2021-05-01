@@ -1,5 +1,6 @@
 package Entities.StaticEntities;
 
+import Entities.Creatures.Creature;
 import Entities.Creatures.Player;
 import Entities.Entity;
 import Graphics.Assets;
@@ -112,16 +113,23 @@ public class IronGate extends StaticEntity {
 
     @Override
     public int renderVsEntity(Entity e) {
+        if (e instanceof Mansion) {
+            return -1;
+        }
         if (e.getY() < y + pillarHeight / 3f) {
+            //System.out.println(e.getUniqueName() + " -- top, outside -- " + (y + pillarHeight));
             return -1;
         }
         if (e.getY() > y + pillarHeight / 3f && e.getY() < y + height / 2) {
+            //System.out.println(e.getUniqueName() + " -- top, inside -- " + (y + pillarHeight) + " && " + (y + height - pillarHeight / 3f));
             return 1;
         }
         if (e.getY() >= y + height / 2 && e.getY() < y + height - pillarHeight / 3f) {
+            //System.out.println(e.getUniqueName() + " -- bottom, inside -- " + (height / 2) + " && " + (y + height - pillarHeight / 3f));
             return -1;
         }
         if (e.getY() > y + height - pillarHeight / 3f) {
+            //System.out.println(e.getUniqueName() + " -- bottom, outside -- " + (y + height - pillarHeight / 3f));
             return 1;
         }
         return 0;
