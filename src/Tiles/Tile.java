@@ -8,15 +8,12 @@ import Tiles.Interior.HouseWall.Green.*;
 import Tiles.Interior.HouseWall.Orange.*;
 import Tiles.Interior.PatternedCarpet.*;
 import Tiles.Interior.PatternedWall.*;
-import Tiles.Interior.School.TiledFloorBlack;
-import Tiles.Interior.School.TiledFloorWhite;
-import Tiles.Interior.School.WhiteBrickBottom;
-import Tiles.Interior.School.WhiteBrickMiddle;
+import Tiles.Interior.School.*;
 import Tiles.Interior.WallBorder.*;
 import Tiles.Interior.BathroomWall.*;
 import Tiles.Overworld.*;
-import Tiles.Overworld.BrickWall.*;
-import Tiles.Overworld.Roof.*;
+import Tiles.Overworld.MansionExterior.Cobblestone.*;
+import Tiles.Overworld.MansionExterior.Grass.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -45,47 +42,17 @@ public class Tile {
 	public static Tile tiledFloorWhite = new TiledFloorWhite(16);
 	public static Tile tiledFloorBlack = new TiledFloorBlack(17);
 
-	//brick wall
-	public static Tile brickTopLeft = new BrickTopLeft(20);
-	public static Tile brickTopMiddle = new BrickTopMiddle(21);
-	public static Tile brickTopRight = new BrickTopRight(22);
-	public static Tile brickMiddleLeft = new BrickMiddleLeft(23);
-	public static Tile brickMiddleMiddle = new BrickMiddleMiddle(24);
-	public static Tile brickMiddleRight = new BrickMiddleRight(25);
-	public static Tile brickBottomLeft = new BrickBottomLeft(26);
-	public static Tile brickBottomMiddle = new BrickBottomMiddle(27);
-	public static Tile brickBottomRight = new BrickBottomRight(28);
-
-	//roof
-	public static Tile roofBackLeft = new RoofBackLeft(29);
-	public static Tile roofBackMiddle = new RoofBackMiddle(30);
-	public static Tile roofBackRight = new RoofBackRight(31);
-	public static Tile roofMiddleLeft = new RoofMiddleLeft(32);
-	public static Tile roofMiddleMiddle = new RoofMiddleMiddle(33);
-	public static Tile roofMiddleRight = new RoofMiddleRight(34);
-	public static Tile roofFrontLeft = new RoofFrontLeft(35);
-	public static Tile roofFrontMiddle = new RoofFrontMiddle(36);
-	public static Tile roofFrontRight = new RoofFrontRight(37);
-	public static Tile lowerRoofLeft = new LowerRoofLeft(38);
-	public static Tile lowerRoofRight = new LowerRoofRight(39);
-	public static Tile roofPivotBottomRight = new RoofPivotBottomRight(40);
-	public static Tile roofPivotBottomLeft = new RoofPivotBottomLeft(41);
-	public static Tile roofPivotTopRight = new RoofPivotTopRight(42);
-	public static Tile roofPivotTopLeft = new RoofPivotTopLeft(43);
-	public static Tile roofFlatLeftBottomRight = new RoofFlatLeftBottomRight(44);
-	public static Tile roofFlatLeftRight = new RoofFlatLeftRight(45);
-	public static Tile roofFlatTopLeftBottom = new RoofFlatTopLeftBottom(46);
-	public static Tile roofFlatTopBottom = new RoofFlatTopBottom(47);
-	public static Tile roofFlatTopRightBottom= new RoofFlatTopRightBottom(48);
-	public static Tile roofFlatTopLeft = new RoofFlatTopLeft(49);
-	public static Tile roofFlatTop = new RoofFlatTop(50);
-	public static Tile roofFlatTopRight = new RoofFlatTopRight(51);
-	public static Tile roofFlatLeftBottom = new RoofFlatLeftBottom(52);
-	public static Tile roofFlatBottom = new RoofFlatBottom(53);
-	public static Tile roofFlatRightBottom = new RoofFlatRightBottom(54);
-	public static Tile roofFlatLeft = new RoofFlatLeft(55);
-	public static Tile roofFlat = new RoofFlat(56);
-	public static Tile roofFlatRight = new RoofFlatRight(57);
+	public static Tile cobblestoneLeft = new CobblestoneLeft(18);
+	public static Tile cobblestoneRight = new CobblestoneRight(19);
+	public static Tile accentedGrass1 = new AccentedGrass1(20);
+	public static Tile accentedGrass2 = new AccentedGrass2(21);
+	public static Tile accentedGrass3 = new AccentedGrass3(22);
+	public static Tile accentedGrassDark1 = new AccentedGrassDark1(23);
+	public static Tile accentedGrassDark2 = new AccentedGrassDark2(24);
+	public static Tile accentedGrassDark3 = new AccentedGrassDark3(25);
+	public static Tile flowerGrass1 = new FlowerGrass1(26);
+	public static Tile flowerGrass2 = new FlowerGrass2(27);
+	public static Tile flowerGrass3 = new FlowerGrass3(28);
 
 	//house wall borders
 	public static Tile wallBorderBottom = new WallBorderBottom(58);

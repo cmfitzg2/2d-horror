@@ -5,8 +5,10 @@ import Cutscenes.CutsceneManager;
 import Cutscenes.MCHouseNightCutscene2;
 import Entities.Creatures.Acceptance;
 import Entities.Creatures.Player;
+import Entities.StaticEntities.Door;
 import Entities.StaticEntities.Fireplace;
 import Tiles.Tile;
+import Variables.GeneralConstants;
 import Variables.Handler;
 import Graphics.Assets;
 
@@ -79,6 +81,10 @@ public class MCHouse2 extends World {
         }
         entityManager.addEntity(new Fireplace(handler, 20 * Tile.TILEWIDTH - Assets.firePlace.getWidth(),
                 Tile.TILEHEIGHT * 6 + 10 - Assets.firePlace.getHeight(), Assets.firePlace.getWidth() * 2, Assets.firePlace.getHeight() * 2, "fireplace-mchouse2"));
+
+        entityManager.addEntity(new Door(handler, 20 * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT, 64, 96, null,
+                handler.getWorldManager().getWorld(WorldManager.MANSION_EXTERIOR_ID), 6 * Tile.TILEWIDTH, (int) (10 * Tile.TILEHEIGHT),
+                Door.PLAIN_WOOD, false, GeneralConstants.levelTransitionFrames, false));
     }
 
     @Override

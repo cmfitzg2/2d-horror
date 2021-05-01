@@ -171,7 +171,7 @@ public class Player extends Creature {
         if (null != playerRec) {
             g.fillRect(playerRec.x, playerRec.y, playerRec.width, playerRec.height);
         }
-         */
+        */
     }
 
     @Override

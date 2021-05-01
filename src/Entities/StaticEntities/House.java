@@ -36,7 +36,14 @@ public class House extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-
+        int halfHeight = (int) (Assets.houseDefault.getHeight() * yScale / 2);
+        int halfWidth = (int) (Assets.houseDefault.getWidth() * xScale / 2);
+        int cameraX = (int) handler.getGameCamera().getxOffset();
+        int cameraY = (int) handler.getGameCamera().getyOffset();
+        g.setColor(Color.GREEN);
+        g.drawRect((int) x - cameraX, (int) y - cameraY + halfHeight, halfWidth - (int) (Assets.closedDoorOne.getWidth() / 2 * xScale), halfHeight);
+        g.drawRect((int) x - cameraX + halfWidth + (int) (Assets.closedDoorOne.getWidth() / 2 * xScale), (int) y - cameraY + halfHeight, halfWidth - (int) (Assets.closedDoorOne.getWidth() / 2 * xScale), halfHeight);
+        g.drawRect((int) x - cameraX + halfWidth - (int) (Assets.closedDoorOne.getWidth() / 2 * xScale), (int) y - cameraY + halfHeight, Tile.TILEWIDTH, Tile.TILEHEIGHT);
     }
 
     @Override

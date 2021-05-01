@@ -18,10 +18,10 @@ public class Assets {
 	public static BufferedImage dirt, grass, stone, water, black, gray, darkStoneWall, woodFloor, diamondTileBlue,
 			diamondTileGreen, diamondTileWood, diamondTileDouble, bathroomTile, whiteBrickMiddle, whiteBrickBottom,
 			tiledFloorWhite, tiledFloorBlack;
+	public static BufferedImage cobblestoneLeft, cobblestoneRight, accentedGrass1, accentedGrass2, accentedGrass3,
+			accentedGrassDark1, accentedGrassDark2, accentedGrassDark3, flowerGrass1, flowerGrass2, flowerGrass3;
 	public static BufferedImage playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal,
 			playerDownTransparent, playerUpTransparent, playerLeftTransparent, playerRightTransparent;
-	public static BufferedImage brickTopLeft, brickTopMiddle, brickTopRight, brickMiddleLeft, brickMiddleMiddle,
-			brickMiddleRight, brickBottomLeft, brickBottomMiddle, brickBottomRight;
 	public static BufferedImage houseWallTopLeftBlue, houseWallTopMiddleBlue, houseWallTopRightBlue, houseWallMiddleLeftBlue, houseWallMiddleMiddleBlue,
 			houseWallMiddleRightBlue, houseWallBottomLeftBlue, houseWallBottomMiddleBlue, houseWallBottomRightBlue;
 	public static BufferedImage houseWallTopLeftGreen, houseWallTopMiddleGreen, houseWallTopRightGreen, houseWallMiddleLeftGreen, houseWallMiddleMiddleGreen,
@@ -43,13 +43,6 @@ public class Assets {
 			wallBorderCornerBottomLeft, wallBorderCornerTopRight, wallBorderCornerTopLeft, wallBorderRightBottom,
 			wallBorderLeftBottom, wallBorderRightTop, wallBorderLeftTop, wallBorderTop, wallBorderRight, wallBorderLeft,
 			wallBorderBottom;
-	public static BufferedImage roofBackLeft, roofBackMiddle, roofBackRight, roofMiddleLeft, roofMiddleMiddle,
-			roofMiddleRight, roofFrontLeft, roofFrontMiddle, roofFrontRight, lowerRoofLeft, lowerRoofRight;
-	//these are named for where edges are on the flat pieces
-	public static BufferedImage roofPivotBottomRight, roofPivotBottomLeft, roofPivotTopRight, roofPivotTopLeft;
-	public static BufferedImage roofFlatLeftBottomRight, roofFlatLeftRight, roofFlatTopLeftBottom, roofFlatTopBottom,
-			roofFlatTopRightBottom, roofFlatTopLeft, roofFlatTop, roofFlatTopRight, roofFlatLeftBottom, roofFlatBottom,
-			roofFlatRightBottom, roofFlatLeft, roofFlat, roofFlatRight;
 	public static BufferedImage closedDoorOne, closedDoorTwo, stairs, doorwayArch, bathroomDoorMale, bathroomDoorFemale,
 			locker, windowOne, windowTwo, chimney, bellTower;
 	public static BufferedImage bedOne, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
@@ -72,11 +65,12 @@ public class Assets {
 			manifestationInventory, moribundInventory, oblationInventory, perditionInventory, processionInventory, prophetInventory,
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
-	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet, furnaceUnlit;
+	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet, furnaceUnlit, shrub, shrubReflected;
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
-	public static BufferedImage houseDefault, houseDefaultTransparent, mansion, mansionTransparent, frontGateClosed, frontGateOpen, frontGateLeft, frontGateRight;
+	public static BufferedImage houseDefault, houseDefaultTransparent, mansion, mansionTransparent, school, schoolTransparent;
+	public static BufferedImage frontGateClosed, frontGateOpen, fullGate;
 	public static BufferedImage[] grandfatherClock;
-	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, ironGate, well, furnaceLit;
+	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, well, furnaceLit;
 	public static BufferedImage[] activeInventoryHeader;
 	public static BufferedImage[] playerDown, playerUp, playerLeft, playerRight;
 	public static BufferedImage[] denialDown, denialUp, denialLeft, denialRight;
@@ -168,46 +162,6 @@ public class Assets {
 		woodFloor = sheet.crop(width, height, width, height);
 		black = sheet.crop(width * 2, height, width, height);
 		gray = sheet.crop(width * 3, height, width, height);
-
-		SpriteSheet housesSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/overworld/houses-sheet.png"));
-		brickTopLeft = housesSheet.crop(0, 0, width, height);
-		brickTopMiddle = housesSheet.crop(width, 0, width, height);
-		brickTopRight = housesSheet.crop(width * 2, 0, width, height);
-		brickMiddleLeft = housesSheet.crop(0, height, width, height);
-		brickMiddleMiddle = housesSheet.crop(width, height, width, height);
-		brickMiddleRight = housesSheet.crop(width * 2, height, width, height);
-		brickBottomLeft = housesSheet.crop(0, height * 2, width, height);
-		brickBottomMiddle = housesSheet.crop(width, height * 2, width, height);
-		brickBottomRight = housesSheet.crop(width * 2, height * 2, width, height);
-		roofBackLeft = housesSheet.crop(0, height * 3, width, height);
-		roofBackMiddle = housesSheet.crop(width, height * 3, width, height);
-		roofBackRight = housesSheet.crop(width * 2, height * 3, width, height);
-		roofMiddleLeft = housesSheet.crop(0, height * 4, width, height);
-		roofMiddleMiddle = housesSheet.crop(width, height * 4, width, height);
-		roofMiddleRight = housesSheet.crop(width * 2, height * 4, width, height);
-		roofFrontLeft = housesSheet.crop(0, height * 5, width, height);
-		roofFrontMiddle = housesSheet.crop(width, height * 5, width, height);
-		roofFrontRight = housesSheet.crop(width * 2, height * 5, width, height);
-		lowerRoofLeft = housesSheet.crop(0, height * 6, width, height);
-		lowerRoofRight = housesSheet.crop(width * 2, height * 6, width, height);
-		roofPivotBottomRight = housesSheet.crop(width * 3, 0, width, height);
-		roofPivotBottomLeft = housesSheet.crop(width * 4, 0, width, height);
-		roofPivotTopRight = housesSheet.crop(width * 3, height, width, height);
-		roofPivotTopLeft = housesSheet.crop(width * 4, height, width, height);
-		roofFlatLeftBottomRight = housesSheet.crop(width * 3, height * 2, width, height);
-		roofFlatLeftRight = housesSheet.crop(width * 4, height * 2, width, height);
-		roofFlatTopLeftBottom = housesSheet.crop(width * 3, height * 3, width, height);
-		roofFlatTopBottom = housesSheet.crop(width * 4, height * 3, width, height);
-		roofFlatTopRightBottom = housesSheet.crop(width * 5, height * 3, width, height);
-		roofFlatTopLeft = housesSheet.crop(width * 3, height * 4, width, height);
-		roofFlatTop = housesSheet.crop(width * 4, height * 4, width, height);
-		roofFlatTopRight = housesSheet.crop(width * 5, height * 4, width, height);
-		roofFlatLeftBottom = housesSheet.crop(width * 3, height * 5, width, height);
-		roofFlatBottom = housesSheet.crop(width * 4, height * 5, width, height);
-		roofFlatRightBottom = housesSheet.crop(width * 5, height * 5, width, height);
-		roofFlatLeft = housesSheet.crop(width * 3, height * 6, width, height);
-		roofFlat = housesSheet.crop(width * 4, height * 6, width, height);
-		roofFlatRight = housesSheet.crop(width * 5, height * 6, width, height);
 
 		SpriteSheet houseWallSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/house-wall-sheet.png"));
 		houseWallTopLeftBlue = houseWallSheet.crop(0, 0, width, height);
@@ -320,6 +274,19 @@ public class Assets {
 		tiledFloorWhite = tilesSheet.crop(0, height * 2, width, height);
 		tiledFloorBlack = tilesSheet.crop(width, height * 2, width, height);
 
+		SpriteSheet mansionExteriorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/Overworld/mansion-exterior-tilesheet.png"));
+		cobblestoneLeft = mansionExteriorSheet.crop(0, 0, width, height);
+		cobblestoneRight = mansionExteriorSheet.crop(width, 0, width, height);
+		accentedGrass1 = mansionExteriorSheet.crop(0, height, width, height);
+		accentedGrass2 = mansionExteriorSheet.crop(width, height, width, height);
+		accentedGrass3 = mansionExteriorSheet.crop(width * 2, height, width, height);
+		accentedGrassDark1 = mansionExteriorSheet.crop(0, height * 2, width, height);
+		accentedGrassDark2 = mansionExteriorSheet.crop(width, height * 2, width, height);
+		accentedGrassDark3 = mansionExteriorSheet.crop(width * 2, height * 2, width, height);
+		flowerGrass1 = mansionExteriorSheet.crop(0, height * 3, width, height);
+		flowerGrass2 = mansionExteriorSheet.crop(width, height * 3, width, height);
+		flowerGrass3 = mansionExteriorSheet.crop(width * 2, height * 3, width, height);
+
 		SpriteSheet dressersSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/dressers-sheet.png"));
 		dressers = new BufferedImage[9];
 		dressers[0] = dressersSheet.crop(0, 0, width, 69);
@@ -331,18 +298,6 @@ public class Assets {
 		dressers[6] = dressersSheet.crop(width * 2, 69, width, 69);
 		dressers[7] = dressersSheet.crop(width * 3, 69, width, 69);
 		dressers[8] = dressersSheet.crop(width * 4, 69, width, 69);
-
-		SpriteSheet ironGateSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/iron-gate-sheet.png"));
-		ironGate = new BufferedImage[8];
-		int pillarWidth = 17, gateSideWidth = 15, shadowWidth = 7;
-		ironGate[0] = ironGateSheet.crop(0, 0, pillarWidth, height * 2);
-		ironGate[1] = ironGateSheet.crop(pillarWidth, 0, pillarWidth, height * 2);
-		ironGate[2] = ironGateSheet.crop(pillarWidth * 2, 0, width, height * 2);
-		ironGate[3] = ironGateSheet.crop(0, height * 2, pillarWidth, height * 2);
-		ironGate[4] = ironGateSheet.crop(pillarWidth, height * 2, pillarWidth, height * 2);
-		ironGate[5] = ironGateSheet.crop(pillarWidth * 2, height * 2, gateSideWidth, height * 2);
-		ironGate[6] = ironGateSheet.crop(pillarWidth * 2 + gateSideWidth, height * 2, gateSideWidth, height * 2);
-		ironGate[7] = ironGateSheet.crop(pillarWidth * 2 + gateSideWidth * 2, height * 2, shadowWidth, height * 2);
 
 		SpriteSheet wellSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/well-sheet.png"));
 		well = new BufferedImage[3];
@@ -589,11 +544,9 @@ public class Assets {
 		windowLight = windowOutsideSheet.crop(0, 0, width, height);
 		windowDark = windowOutsideSheet.crop(0, height, width, height);
 
-		SpriteSheet frontGateSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/iron-gate-front.png"));
-		frontGateLeft = frontGateSheet.crop(0, 0, 37, 83);
-		frontGateOpen = frontGateSheet.crop(37, 0, 59, 83);
-		frontGateClosed = frontGateSheet.crop(37, 83, 59, 83);
-		frontGateRight = frontGateSheet.crop(96, 0, 32, 83);
+		SpriteSheet frontGateSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/gate-front.png"));
+		frontGateOpen = frontGateSheet.crop(0, 0, 56, 83);
+		frontGateClosed = frontGateSheet.crop(0, 83, 56, 83);
 
 		SpriteSheet mcSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/characters/mc-sheet-transparent.png"));
 		playerDownTransparent = mcSheetTransparent.crop(0, 0, width, height);
@@ -754,6 +707,8 @@ public class Assets {
 		tormentInventory = ImageLoader.loadImage("/textures/inventory/Torment.png");
 		vilomahInventory = ImageLoader.loadImage("/textures/inventory/Vilomah.png");
 
+		shrub = ImageLoader.loadImage("/textures/static-entities/shrub.png");
+		shrubReflected = ImageLoader.loadImage("/textures/static-entities/shrub-reflected.png");
 		hole = ImageLoader.loadImage("/textures/hole.png");
 		doorwayArch = ImageLoader.loadImage("/textures/oga/LPC-Base-Assets/tiles/doorwayArch.png");
 		yellowLight = ImageLoader.loadImage("/textures/effects/light-yellow.png");
@@ -765,5 +720,8 @@ public class Assets {
 		houseDefaultTransparent = ImageLoader.loadImage("/textures/static-entities/house-default-transparent.png");
 		mansion = ImageLoader.loadImage("/textures/static-entities/mansion-sample.png");
 		mansionTransparent = ImageLoader.loadImage("/textures/static-entities/mansion-sample-transparent.png");
+		school = ImageLoader.loadImage("/textures/static-entities/school.png");
+		schoolTransparent = ImageLoader.loadImage("/textures/static-entities/school-transparent.png");
+		fullGate = ImageLoader.loadImage("/textures/static-entities/gate-impl.png");
 	}
 }

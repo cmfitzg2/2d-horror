@@ -351,6 +351,11 @@ public class OverworldCutscene1 implements Cutscene {
 
     @Override
     public void exit() {
+        entityManager.removeEntity(denial);
+        entityManager.removeEntity(anger);
+        entityManager.removeEntity(bargaining);
+        entityManager.removeEntity(depression);
+        entityManager.removeEntity(acceptance);
         handler.setPlayerFrozen(false);
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
