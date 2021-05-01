@@ -25,7 +25,7 @@ public class MansionExterior extends World {
     @Override
     protected void addEntities() {
         entityManager.addEntity(new BellTower(handler, 5 * Tile.TILEWIDTH, 5 * Tile.TILEHEIGHT, Assets.bellTower.getWidth() * 2, Assets.bellTower.getHeight() * 2, true, null));
-        entityManager.addEntity(new Mansion(handler, 20 * Tile.TILEWIDTH - Assets.mansion.getWidth() / 2f, 4 * Tile.TILEHEIGHT, Assets.mansion.getWidth() * 2, Assets.mansion.getHeight() * 2, "mansion"));
+        entityManager.addEntity(new Mansion(handler, 20 * Tile.TILEWIDTH - Assets.mansion.getWidth(), 4 * Tile.TILEHEIGHT, Assets.mansion.getWidth() * 2, Assets.mansion.getHeight() * 2, "mansion"));
         entityManager.addEntity(new IronGate(handler, 0, 5, Assets.fullGate.getWidth() * 2, Assets.fullGate.getHeight() * 2, null));
     }
 
