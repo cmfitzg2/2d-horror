@@ -68,7 +68,7 @@ public class Assets {
 	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet, furnaceUnlit, shrub, shrubReflected;
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
 	public static BufferedImage houseDefault, houseDefaultTransparent, mansion, mansionTransparent, school, schoolTransparent;
-	public static BufferedImage frontGateClosed, frontGateOpen, fullGate;
+	public static BufferedImage frontGateClosed, frontGateOpen, gateTop, gateBot, gateSide;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, well, furnaceLit;
 	public static BufferedImage[] activeInventoryHeader;
@@ -722,6 +722,8 @@ public class Assets {
 		mansionTransparent = ImageLoader.loadImage("/textures/static-entities/mansion-sample-transparent.png");
 		school = ImageLoader.loadImage("/textures/static-entities/school.png");
 		schoolTransparent = ImageLoader.loadImage("/textures/static-entities/school-transparent.png");
-		fullGate = ImageLoader.loadImage("/textures/static-entities/gate-impl.png");
+		gateTop = ImageLoader.loadImage("/textures/static-entities/gate-top.png");
+		gateBot = ImageLoader.loadImage("/textures/static-entities/gate-bot.png");
+		gateSide = ImageLoader.loadImage("/textures/static-entities/gate-side.png");
 	}
 }

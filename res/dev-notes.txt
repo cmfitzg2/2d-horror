@@ -11,3 +11,6 @@ if we say mansion always > gate, the mansion will always draw on top of the gate
 however, this will allow the player to be sorted vs the gate
 
 i suspect this issue will cause many issues down the line. need to think through render sorting in a better way...........
+
+
+nevermind ^ this didn't work, it's still busted.

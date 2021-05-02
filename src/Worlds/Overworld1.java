@@ -42,7 +42,6 @@ public class Overworld1 extends World {
         entityManager.addEntity(new Well(handler, 87 * Tile.TILEWIDTH, 54 * Tile.TILEHEIGHT, Assets.well[0].getWidth() * 2, Assets.well[0].getHeight() * 2, null, Well.TYPE_COVERED));
         entityManager.addEntity(new Well(handler, 87 * Tile.TILEWIDTH, 58 * Tile.TILEHEIGHT, Assets.well[0].getWidth() * 2, Assets.well[0].getHeight() * 2, null, Well.TYPE_DAMAGED));
         entityManager.addEntity(new Furnace(handler, 87 * Tile.TILEWIDTH, 62 * Tile.TILEHEIGHT, Assets.furnaceUnlit.getWidth() * 3, Assets.furnaceUnlit.getHeight() * 3, null, Furnace.TYPE_UNLIT));
-        entityManager.addEntity(new IronGate(handler, 12 * Tile.TILEWIDTH, 64 * Tile.TILEHEIGHT, Assets.fullGate.getWidth() * 2, Assets.fullGate.getHeight() * 2, null));
         entityManager.addEntity(new School(handler, 6 * Tile.TILEWIDTH, 40 * Tile.TILEHEIGHT, Assets.school.getWidth() * 2, Assets.school.getHeight() * 2, "school"));
         entityManager.addEntity(new House(handler, 39 * Tile.TILEWIDTH, 41 * Tile.TILEHEIGHT, Assets.houseDefault.getWidth() * 2, Assets.houseDefault.getHeight() * 2, null, House.STYLE_DEFAULT));
 
