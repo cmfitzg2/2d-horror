@@ -44,6 +44,8 @@ public class Overworld1 extends World {
         entityManager.addEntity(new Furnace(handler, 87 * Tile.TILEWIDTH, 62 * Tile.TILEHEIGHT, Assets.furnaceUnlit.getWidth() * 3, Assets.furnaceUnlit.getHeight() * 3, null, Furnace.TYPE_UNLIT));
         entityManager.addEntity(new School(handler, 6 * Tile.TILEWIDTH, 40 * Tile.TILEHEIGHT, Assets.school.getWidth() * 2, Assets.school.getHeight() * 2, "school"));
         entityManager.addEntity(new House(handler, 39 * Tile.TILEWIDTH, 41 * Tile.TILEHEIGHT, Assets.houseDefault.getWidth() * 2, Assets.houseDefault.getHeight() * 2, null, House.STYLE_DEFAULT));
+        entityManager.addEntity(new IronGate(handler, 256, 256, Assets.gateTop.getWidth() * 2, Assets.gateTop.getHeight() * 2, null, IronGate.TYPE_TOP));
+        entityManager.addEntity(new IronGate(handler, 256, 1024, Assets.gateTop.getWidth() * 2, Assets.gateTop.getHeight() * 2, null, IronGate.TYPE_TOP));
 
         if (!handler.getFlags().isMCHouseNightCutscene5()) {
             entityManager.addEntity(new Denial(handler, 41.5f * Tile.TILEWIDTH, 49.5f * Tile.TILEHEIGHT, "denial-overworld1"));

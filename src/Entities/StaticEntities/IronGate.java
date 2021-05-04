@@ -133,27 +133,14 @@ public class IronGate extends StaticEntity {
 
     @Override
     public int renderVsEntity(Entity e) {
-
-        if (type == TYPE_TOP) {
-            if (e.getY() < y + pillarHeight / 3f) {
-                //System.out.println(e.getUniqueName() + " -- top, outside -- " + (y + pillarHeight));
-                return -1;
+        if (e.getX() < x + width && e.getX() + e.getWidth() > x && e.getY() + e.getHeight() >= y && e.getY() <= y + height) {
+            if (type == TYPE_TOP || type == TYPE_BOT) {
+                if (e.getY() + e.getHeight() <= y + 2 * pillarHeight / 3f) {
+                    return -1;
+                } else {
+                    return 1;
+                }
             }
-            if (e.getY() > y + pillarHeight / 3f && e.getY() < y + Tile.TILEHEIGHT * 2) {
-                //System.out.println(e.getUniqueName() + " -- top, inside -- " + (y + pillarHeight) + " && " + (y + height - pillarHeight / 3f));
-                return 1;
-            }
-        } else if (type == TYPE_BOT) {
-            if (e.getY() >= y + Tile.TILEHEIGHT * 2 && e.getY() < y + height - pillarHeight / 3f) {
-                //System.out.println(e.getUniqueName() + " -- bottom, inside -- " + (height / 2) + " && " + (y + height - pillarHeight / 3f));
-                return -1;
-            }
-            if (e.getY() > y + height - pillarHeight / 3f) {
-                //System.out.println(e.getUniqueName() + " -- bottom, outside -- " + (y + height - pillarHeight / 3f));
-                return 1;
-            }
-        } else if (type == TYPE_SIDE) {
-            return 1;
         }
         return 0;
     }

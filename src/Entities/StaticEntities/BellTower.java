@@ -86,14 +86,12 @@ public class BellTower extends StaticEntity {
 
     @Override
     public int renderVsEntity(Entity e) {
-        if (e instanceof Mansion) {
-            return 1;
-        }
-        if (e.getX() < x + width && e.getX() + e.getWidth() > x) {
+        if (e.getX() < x + width && e.getX() + e.getWidth() > x && e.getY() + e.getHeight() >= y && e.getY() <= y + height) {
             if (e.getY() >= y + height - Assets.closedDoorOne.getHeight() * yScale) {
                 return 1;
+            } else {
+                return -1;
             }
-            return -1;
         }
         return 0;
     }

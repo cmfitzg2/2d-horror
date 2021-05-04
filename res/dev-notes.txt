@@ -14,3 +14,7 @@ i suspect this issue will cause many issues down the line. need to think through
 
 
 nevermind ^ this didn't work, it's still busted.
+
+5/3/2021, a day that will go down in infamy as long as this problem doesn't resurface:
+the fix was to stop extending the sorting criteria infinitely left/right or up/down, 
+and instead only check if the entity is inside the bounds of the entity being compared to (strictly a subset of the standard height compare)
