@@ -80,10 +80,13 @@ public class Mansion extends StaticEntity {
     public int renderVsEntity(Entity e) {
         //if the entity is on the left or right side of the middle of the mansion & in front of it
         //we need to render them in front of it
-        if (e.getY() > y + yScale * Assets.mansion.getHeight() / 2) {
-            return 1;
+        if (e.getX() < x + width && e.getX() + e.getWidth() > x) {
+            if (e.getY() > y + yScale * Assets.mansion.getHeight() / 2 && e.getY() - e.getHeight() < y + height) {
+                return 1;
+            }
+            return -1;
         }
-        return -1;
+        return 0;
     }
 
     @Override
