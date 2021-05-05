@@ -19,7 +19,7 @@ public class MansionExteriorCutscene1 implements Cutscene {
     private Handler handler;
     private final TextboxHandler textboxHandler1, textboxHandler2, textboxHandler3, textboxHandler4, textboxHandler5,
             textboxHandler6, textboxHandler7, textboxHandler8, textboxHandler9, textboxHandler10, textboxHandler11,
-            textboxHandler12, textboxHandler13, textboxHandler14, textboxHandler15, textboxHandler16;
+            textboxHandler12;
     private KeyManager keyManager;
     private Denial denial;
     private Anger anger;
@@ -28,54 +28,44 @@ public class MansionExteriorCutscene1 implements Cutscene {
     private Acceptance acceptance;
     private EntityManager entityManager;
     private boolean textbox1, textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9, textbox10,
-            textbox11, textbox12, textbox13, textbox14, textbox15, textbox16, dialogueOver;
+            textbox11, textbox12, dialogueOver;
     private boolean depressionStop1Hit, depressionStop2Hit;
     private final int depressionStop1 = 48 * Tile.TILEWIDTH, depressionStop2 = (int) (50.5 * Tile.TILEHEIGHT), depressionStop3 = (int) (44.5f * Tile.TILEWIDTH),
             angerXStart = (int) (41.5 * Tile.TILEWIDTH);
-    private final String message1 = "Whoa! Slow down there.",
-            message2 = "Huh? It's you guys? \r " +
-                    "So the person who just hit my window was...",
-            message3 = "I may have some information regarding that.",
-            message4 = "Depression, I told you not to...",
-            message5 = "Ahh come on, he came out didn't he? \r " +
-                    "I was just messing around.",
-            message6 = "Oh yeah? Did you cut my power as a joke too? You scared the hell out of me.",
-            message7 = "What? We just got here.",
-            message8 = "Your power's out? Yeah that definitely wasn't us. \r " +
-                    "We assumed you were sleeping when we pulled up and saw all your lights out.",
-            message9 = "And I heroically volunteered to wake you up!",
-            message10 = "Yeah... \"heroically\"...",
-            message11 = "Well, that's.. That's really odd timing then.",
-            message12 = "Don't correlate unrelated things. Random power surges are pretty common. I doubt this is the first for you. \r "
-                    + "Even in the modern era, we're still incapable of reliably delivering power to homes. \r "
-                    + "There's just too many moving pieces. A lot of things can go wrong, and any of them can cause a power outage.",
-            message13 = "Ever the rationalist. \r "
-                    + "But yeah, he's probably right. I wouldn't dwell on it.",
-            message14 = "Hey, speaking of not dwelling... \r "
-                    + "CAN WE LEAVE ALREADY?",
-            message15 = "Ahh shoot that's right, we're already wasting Anger's whole night. \n Let's try to be gracious. \r "
-                    + "You ready to head out MC?",
-            message16 = "Ready as I'll ever be. Let's go.";
+    private final String message1 = "Well, here are.",
+            message2 = "Man, talk about cliché.",
+            message3 = "It's obvious, isn't it? \r " +
+                    "There wouldn't be any mystique surrounding this place if it didn't fit the profile of such a place. \r " +
+                    "In other words, if it weren't cliché, we wouldn't be here. It's a self-fulfilling prophecy.",
+            message4 = "...Yeah, right? Totally cliché.",
+            message5 = "Cliche or not, I still think we shouldn't be here...",
+            message6 = "Oh, hey guys, Bargaining says we shouldn't be here. Guess we're heading home. \r " +
+                    "If only you had said something before.",
+            message7 = "Listen to you, droning on and on. It's like you're trying to delay going inside. \r " +
+                    "It's alright if you're scared. We won't think less of you!",
+            message8 = "Shut UP! I'm not scared! The whole reason I came was to prove that!",
+            message9 = "I had no idea my opinion was so important to you.",
+            message10 = "Alright already, geez. You guys sure are at each other's throats today.",
+            message11 = "You did say this place brings out \"the real you\" or whatever, right?",
+            message12 = "Fair enough. But for all our sake, let's try to keep the quarreling to a minimum. \r " +
+                    "So on the that note, and if you're all ready... \r " +
+                    "Let's head inside.";
 
     public MansionExteriorCutscene1(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
         textboxHandler1 = new TextboxHandler(handler, Assets.acceptanceFont, message1, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
-        textboxHandler2 = new TextboxHandler(handler, Assets.playerSpeakingFont, message2, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, Assets.playerText, 50, true, false);
-        textboxHandler3 = new TextboxHandler(handler, Assets.depressionFont, message3, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression, Assets.depressionText, 50, true, false);
-        textboxHandler4 = new TextboxHandler(handler, Assets.bargainingFont, message4, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxBargaining, Assets.bargainingText, 50, true, false);
-        textboxHandler5 = new TextboxHandler(handler, Assets.depressionFont, message5, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression, Assets.depressionText, 50, true, false);
-        textboxHandler6 = new TextboxHandler(handler, Assets.playerSpeakingFont, message6, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, Assets.playerText, 50, true, false);
+        textboxHandler2 = new TextboxHandler(handler, Assets.depressionFont, message2, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression, Assets.depressionText, 50, true, false);
+        textboxHandler3 = new TextboxHandler(handler, Assets.denialFont, message3, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDenial, Assets.denialText, 50, true, false);
+        textboxHandler4 = new TextboxHandler(handler, Assets.depressionFont, message4, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression, Assets.depressionText, 50, true, false);
+        textboxHandler5 = new TextboxHandler(handler, Assets.bargainingFont, message5, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxBargaining, Assets.bargainingText, 50, true, false);
+        textboxHandler6 = new TextboxHandler(handler, Assets.angerFont, message6, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAnger, Assets.angerText, 50, true, false);
         textboxHandler7 = new TextboxHandler(handler, Assets.depressionFont, message7, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression, Assets.depressionText, 50, true, false);
-        textboxHandler8 = new TextboxHandler(handler, Assets.acceptanceFont, message8, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
+        textboxHandler8 = new TextboxHandler(handler, Assets.angerFont, message8, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAnger, Assets.angerText, 50, true, false);
         textboxHandler9 = new TextboxHandler(handler, Assets.depressionFont, message9, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression, Assets.depressionText, 50, true, false);
         textboxHandler10 = new TextboxHandler(handler, Assets.bargainingFont, message10, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxBargaining, Assets.bargainingText, 50, true, false);
         textboxHandler11 = new TextboxHandler(handler, Assets.playerSpeakingFont, message11, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, Assets.playerText, 50, true, false);
         textboxHandler12 = new TextboxHandler(handler, Assets.denialFont, message12, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDenial, Assets.denialText, 50, true, false);
-        textboxHandler13 = new TextboxHandler(handler, Assets.acceptanceFont, message13, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
-        textboxHandler14 = new TextboxHandler(handler, Assets.angerFont, message14, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAnger, Assets.angerText, 50, true, false);
-        textboxHandler15 = new TextboxHandler(handler, Assets.acceptanceFont, message15, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
-        textboxHandler16 = new TextboxHandler(handler, Assets.playerSpeakingFont, message16, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, Assets.playerText, 50, true, false);
     }
 
     @Override
@@ -190,26 +180,6 @@ public class MansionExteriorCutscene1 implements Cutscene {
             if (textbox12) {
                 if (!textboxHandler12.isFinished()) {
                     textboxHandler12.tick();
-                }
-            }
-            if (textbox13) {
-                if (!textboxHandler13.isFinished()) {
-                    textboxHandler13.tick();
-                }
-            }
-            if (textbox14) {
-                if (!textboxHandler14.isFinished()) {
-                    textboxHandler14.tick();
-                }
-            }
-            if (textbox15) {
-                if (!textboxHandler15.isFinished()) {
-                    textboxHandler15.tick();
-                }
-            }
-            if (textbox16) {
-                if (!textboxHandler16.isFinished()) {
-                    textboxHandler16.tick();
                 }
             }
             if (dialogueOver) {
@@ -335,40 +305,8 @@ public class MansionExteriorCutscene1 implements Cutscene {
                 if (!textboxHandler12.isFinished()) {
                     textboxHandler12.render(g);
                 } else {
-                    textbox13 = true;
-                    textbox12 = false;
-                }
-            }
-            if (textbox13) {
-                if (!textboxHandler13.isFinished()) {
-                    textboxHandler13.render(g);
-                } else {
-                    textbox14 = true;
-                    textbox13 = false;
-                }
-            }
-            if (textbox14) {
-                if (!textboxHandler14.isFinished()) {
-                    textboxHandler14.render(g);
-                } else {
-                    textbox15 = true;
-                    textbox14 = false;
-                }
-            }
-            if (textbox15) {
-                if (!textboxHandler15.isFinished()) {
-                    textboxHandler15.render(g);
-                } else {
-                    textbox16 = true;
-                    textbox15 = false;
-                }
-            }
-            if (textbox16) {
-                if (!textboxHandler16.isFinished()) {
-                    textboxHandler16.render(g);
-                } else {
-                    textbox16 = false;
                     dialogueOver = true;
+                    textbox12 = false;
                 }
             }
         }
