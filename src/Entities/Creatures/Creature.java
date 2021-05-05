@@ -14,6 +14,7 @@ public abstract class Creature extends Entity {
 	protected float speed, runSpeed;
 	protected float xMove, yMove;
 	protected int messageNumber = 1;
+	protected boolean ignoreCollision = false;
 
 	public Creature(Handler handler, float x, float y, int width, int height, String uniqueName) {
 		super(handler, x, y, width, height, uniqueName);
@@ -24,7 +25,7 @@ public abstract class Creature extends Entity {
 	}
 
 	public void move() {
-		if (!checkEntityCollisions(xMove, 0f)) {
+		if (!checkEntityCollisions(xMove, 0f) || ignoreCollision) {
 			moveX();
 		} else {
 			if (Math.abs(xMove) == runSpeed) {
@@ -34,7 +35,7 @@ public abstract class Creature extends Entity {
 				}
 			}
 		}
-		if (!checkEntityCollisions(0f, yMove)) {
+		if (!checkEntityCollisions(0f, yMove) || ignoreCollision) {
 			moveY();
 		} else {
 			if (Math.abs(yMove) == runSpeed) {
@@ -48,14 +49,6 @@ public abstract class Creature extends Entity {
 	}
 
 	public void moveX() {
-		moveX(false);
-	}
-
-	public void moveY() {
-		moveY(false);
-	}
-
-	public void moveX(boolean ignoreCollision) {
 		if (ignoreCollision) {
 			x += xMove;
 		} else {
@@ -83,7 +76,7 @@ public abstract class Creature extends Entity {
 		}
 	}
 
-	public void moveY(boolean ignoreCollision) {
+	public void moveY() {
 		if (ignoreCollision) {
 			y += yMove;
 		} else {
@@ -167,5 +160,13 @@ public abstract class Creature extends Entity {
 
 	public void setMessageNumber(int messageNumber) {
 		this.messageNumber = messageNumber;
+	}
+
+	public boolean isIgnoreCollision() {
+		return ignoreCollision;
+	}
+
+	public void setIgnoreCollision(boolean ignoreCollision) {
+		this.ignoreCollision = ignoreCollision;
 	}
 }

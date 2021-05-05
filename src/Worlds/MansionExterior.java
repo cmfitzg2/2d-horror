@@ -30,6 +30,13 @@ public class MansionExterior extends World {
         entityManager.addEntity(new IronGate(handler, Tile.TILEWIDTH / 4f, 5 + Assets.height * 4, Assets.gateSide.getWidth() * 2, Assets.gateSide.getHeight() * 2, null, IronGate.TYPE_SIDE));
         entityManager.addEntity(new IronGate(handler, Tile.TILEWIDTH / 4f + Assets.gateTop.getWidth() * 2 - 17 * 2, 5 + Assets.height * 4, Assets.gateSide.getWidth() * 2, Assets.gateSide.getHeight() * 2, null, IronGate.TYPE_SIDE));
         entityManager.addEntity(new IronGate(handler, Tile.TILEWIDTH / 4f, 5 + Assets.gateTop.getHeight() * 2 + Assets.gateSide.getHeight() * 2, Assets.gateBot.getWidth() * 2, Assets.gateBot.getHeight() * 2, null, IronGate.TYPE_BOT));
+        if (handler.getFlags().isMansionExteriorCutscene1()) {
+            entityManager.addEntity(new Denial(handler, 20 * Tile.TILEWIDTH - handler.getPlayer().getWidth() / 2f - Tile.TILEWIDTH / 8f, 30 * Tile.TILEHEIGHT, "denial-mansionexterior1"));
+            entityManager.addEntity(new Anger(handler, 20 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f + Tile.TILEWIDTH / 8f, 30 * Tile.TILEHEIGHT, "anger-mansionexterior1"));
+            entityManager.addEntity(new Bargaining(handler, 20 * Tile.TILEWIDTH - handler.getPlayer().getWidth() / 2f - Tile.TILEWIDTH / 8f, 30 * Tile.TILEHEIGHT + handler.getPlayer().getHeight(), "bargaining-mansionexterior1"));
+            entityManager.addEntity(new Depression(handler, 20 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f + Tile.TILEWIDTH / 8f, 30 * Tile.TILEHEIGHT + handler.getPlayer().getHeight(), "depression-mansionexterior1"));
+            entityManager.addEntity(new Acceptance(handler, 20 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f + Tile.TILEWIDTH / 8f, 30 * Tile.TILEHEIGHT + handler.getPlayer().getHeight() * 2, "acceptance-mansionexterior1"));
+        }
     }
 
     @Override

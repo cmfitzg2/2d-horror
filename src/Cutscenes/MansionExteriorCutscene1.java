@@ -9,12 +9,11 @@ import Tiles.Tile;
 import Utils.GeneralUtils;
 import Variables.GeneralConstants;
 import Variables.Handler;
-import Worlds.World;
 import Worlds.WorldManager;
 
 import java.awt.*;
 
-public class OverworldCutscene1 implements Cutscene {
+public class MansionExteriorCutscene1 implements Cutscene {
     Player player;
     private boolean firstTime = true;
     private Handler handler;
@@ -58,7 +57,7 @@ public class OverworldCutscene1 implements Cutscene {
                     + "You ready to head out MC?",
             message16 = "Ready as I'll ever be. Let's go.";
 
-    public OverworldCutscene1(Handler handler) {
+    public MansionExteriorCutscene1(Handler handler) {
         this.handler = handler;
         keyManager = handler.getKeyManager();
         textboxHandler1 = new TextboxHandler(handler, Assets.acceptanceFont, message1, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
@@ -82,21 +81,35 @@ public class OverworldCutscene1 implements Cutscene {
     @Override
     public void tick() {
         if (firstTime) {
-            if (handler.getWorldManager().getActiveWorld().getId() != WorldManager.OVERWORLD_1_ID) {
+            if (handler.getWorldManager().getActiveWorld().getId() != WorldManager.MANSION_EXTERIOR_ID) {
                 return;
             }
-            entityManager = handler.getWorldManager().getWorld(WorldManager.OVERWORLD_1_ID).getEntityManager();
-            denial = (Denial) entityManager.getEntityByUid("denial-overworld1");
-            anger = (Anger) entityManager.getEntityByUid("anger-overworld1");
-            bargaining = (Bargaining) entityManager.getEntityByUid("bargaining-overworld1");
-            depression = (Depression) entityManager.getEntityByUid("depression-overworld1");
-            acceptance = (Acceptance) entityManager.getEntityByUid("acceptance-overworld1");
+            entityManager = handler.getWorldManager().getWorld(WorldManager.MANSION_EXTERIOR_ID).getEntityManager();
+            denial = (Denial) entityManager.getEntityByUid("denial-mansionexterior1");
+            anger = (Anger) entityManager.getEntityByUid("anger-mansionexterior1");
+            bargaining = (Bargaining) entityManager.getEntityByUid("bargaining-mansionexterior1");
+            depression = (Depression) entityManager.getEntityByUid("depression-mansionexterior1");
+            acceptance = (Acceptance) entityManager.getEntityByUid("acceptance-mansionexterior1");
             player = handler.getPlayer();
+            denial.setIgnoreCollision(true);
+            anger.setIgnoreCollision(true);
+            bargaining.setIgnoreCollision(true);
+            depression.setIgnoreCollision(true);
+            acceptance.setIgnoreCollision(true);
+            player.setIgnoreCollision(true);
+            handler.setPlayerFrozen(true);
+
             textbox1 = true;
             firstTime = false;
         }
-        if (!handler.getGame().isFadeIn()) {
+        if (player.getY() <= 27 * Tile.TILEHEIGHT) {
             if (textbox1) {
+                denial.setyMove(0);
+                anger.setyMove(0);
+                bargaining.setyMove(0);
+                depression.setyMove(0);
+                acceptance.setyMove(0);
+                player.setyMove(0);
                 if (!textboxHandler1.isFinished()) {
                     textboxHandler1.tick();
                 }
@@ -123,7 +136,6 @@ public class OverworldCutscene1 implements Cutscene {
                         if (depression.getX() > depressionStop3) {
                             depression.setxMove(-depression.getSpeed());
                         } else {
-                            depression.setxMove(0);
                             textbox3 = true;
                             textbox2 = false;
                         }
@@ -223,148 +235,159 @@ public class OverworldCutscene1 implements Cutscene {
 
     @Override
     public void render(Graphics g) {
-        if (textbox1) {
-            if (!textboxHandler1.isFinished()) {
-                textboxHandler1.render(g);
-            } else {
-                textbox2 = true;
-                textbox1 = false;
-            }
+        if (firstTime) {
+            return;
         }
-        if (textbox2) {
-            if (!textboxHandler2.isFinished()) {
-                textboxHandler2.render(g);
+        if (player.getY() > 27 * Tile.TILEHEIGHT) {
+            denial.setyMove(-denial.getSpeed());
+            anger.setyMove(-anger.getSpeed());
+            bargaining.setyMove(-bargaining.getSpeed());
+            depression.setyMove(-depression.getSpeed());
+            acceptance.setyMove(-acceptance.getSpeed());
+            player.setyMove(-player.getCutsceneSpeed());
+        } else {
+            if (textbox1) {
+                if (!textboxHandler1.isFinished()) {
+                    textboxHandler1.render(g);
+                } else {
+                    textbox2 = true;
+                    textbox1 = false;
+                }
             }
-        }
-        if (textbox3) {
-            if (!textboxHandler3.isFinished()) {
-                textboxHandler3.render(g);
-            } else {
-                textbox4 = true;
-                textbox3 = false;
+            if (textbox2) {
+                if (!textboxHandler2.isFinished()) {
+                    textboxHandler2.render(g);
+                }
             }
-        }
-        if (textbox4) {
-            if (!textboxHandler4.isFinished()) {
-                textboxHandler4.render(g);
-            } else {
-                textbox5 = true;
-                textbox4 = false;
+            if (textbox3) {
+                if (!textboxHandler3.isFinished()) {
+                    textboxHandler3.render(g);
+                } else {
+                    textbox4 = true;
+                    textbox3 = false;
+                }
             }
-        }
-        if (textbox5) {
-            if (!textboxHandler5.isFinished()) {
-                textboxHandler5.render(g);
-            } else {
-                textbox6 = true;
-                textbox5 = false;
+            if (textbox4) {
+                if (!textboxHandler4.isFinished()) {
+                    textboxHandler4.render(g);
+                } else {
+                    textbox5 = true;
+                    textbox4 = false;
+                }
             }
-        }
-        if (textbox6) {
-            if (!textboxHandler6.isFinished()) {
-                textboxHandler6.render(g);
-            } else {
-                textbox7 = true;
-                textbox6 = false;
+            if (textbox5) {
+                if (!textboxHandler5.isFinished()) {
+                    textboxHandler5.render(g);
+                } else {
+                    textbox6 = true;
+                    textbox5 = false;
+                }
             }
-        }
-        if (textbox7) {
-            if (!textboxHandler7.isFinished()) {
-                textboxHandler7.render(g);
-            } else {
-                textbox8 = true;
-                textbox7 = false;
+            if (textbox6) {
+                if (!textboxHandler6.isFinished()) {
+                    textboxHandler6.render(g);
+                } else {
+                    textbox7 = true;
+                    textbox6 = false;
+                }
             }
-        }
-        if (textbox8) {
-            if (!textboxHandler8.isFinished()) {
-                textboxHandler8.render(g);
-            } else {
-                textbox9 = true;
-                textbox8 = false;
+            if (textbox7) {
+                if (!textboxHandler7.isFinished()) {
+                    textboxHandler7.render(g);
+                } else {
+                    textbox8 = true;
+                    textbox7 = false;
+                }
             }
-        }
-        if (textbox9) {
-            if (!textboxHandler9.isFinished()) {
-                textboxHandler9.render(g);
-            } else {
-                textbox10 = true;
-                textbox9 = false;
+            if (textbox8) {
+                if (!textboxHandler8.isFinished()) {
+                    textboxHandler8.render(g);
+                } else {
+                    textbox9 = true;
+                    textbox8 = false;
+                }
             }
-        }
-        if (textbox10) {
-            if (!textboxHandler10.isFinished()) {
-                textboxHandler10.render(g);
-            } else {
-                textbox11 = true;
-                textbox10 = false;
+            if (textbox9) {
+                if (!textboxHandler9.isFinished()) {
+                    textboxHandler9.render(g);
+                } else {
+                    textbox10 = true;
+                    textbox9 = false;
+                }
             }
-        }
-        if (textbox11) {
-            if (!textboxHandler11.isFinished()) {
-                textboxHandler11.render(g);
-            } else {
-                textbox12 = true;
-                textbox11 = false;
+            if (textbox10) {
+                if (!textboxHandler10.isFinished()) {
+                    textboxHandler10.render(g);
+                } else {
+                    textbox11 = true;
+                    textbox10 = false;
+                }
             }
-        }
-        if (textbox12) {
-            if (!textboxHandler12.isFinished()) {
-                textboxHandler12.render(g);
-            } else {
-                textbox13 = true;
-                textbox12 = false;
+            if (textbox11) {
+                if (!textboxHandler11.isFinished()) {
+                    textboxHandler11.render(g);
+                } else {
+                    textbox12 = true;
+                    textbox11 = false;
+                }
             }
-        }
-        if (textbox13) {
-            if (!textboxHandler13.isFinished()) {
-                textboxHandler13.render(g);
-            } else {
-                textbox14 = true;
-                textbox13 = false;
+            if (textbox12) {
+                if (!textboxHandler12.isFinished()) {
+                    textboxHandler12.render(g);
+                } else {
+                    textbox13 = true;
+                    textbox12 = false;
+                }
             }
-        }
-        if (textbox14) {
-            if (!textboxHandler14.isFinished()) {
-                textboxHandler14.render(g);
-            } else {
-                textbox15 = true;
-                textbox14 = false;
+            if (textbox13) {
+                if (!textboxHandler13.isFinished()) {
+                    textboxHandler13.render(g);
+                } else {
+                    textbox14 = true;
+                    textbox13 = false;
+                }
             }
-        }
-        if (textbox15) {
-            if (!textboxHandler15.isFinished()) {
-                textboxHandler15.render(g);
-            } else {
-                textbox16 = true;
-                textbox15 = false;
+            if (textbox14) {
+                if (!textboxHandler14.isFinished()) {
+                    textboxHandler14.render(g);
+                } else {
+                    textbox15 = true;
+                    textbox14 = false;
+                }
             }
-        }
-        if (textbox16) {
-            if (!textboxHandler16.isFinished()) {
-                textboxHandler16.render(g);
-            } else {
-                textbox16 = false;
-                dialogueOver = true;
+            if (textbox15) {
+                if (!textboxHandler15.isFinished()) {
+                    textboxHandler15.render(g);
+                } else {
+                    textbox16 = true;
+                    textbox15 = false;
+                }
+            }
+            if (textbox16) {
+                if (!textboxHandler16.isFinished()) {
+                    textboxHandler16.render(g);
+                } else {
+                    textbox16 = false;
+                    dialogueOver = true;
+                }
             }
         }
     }
 
     @Override
     public void exit() {
-        entityManager.removeEntity(denial);
-        entityManager.removeEntity(anger);
-        entityManager.removeEntity(bargaining);
-        entityManager.removeEntity(depression);
-        entityManager.removeEntity(acceptance);
-        handler.getCutsceneManager().setActiveCutscene(handler.getCutsceneManager().getCutscene(Cutscene.MANSION_EXTERIOR_CUTSCENE_1));
+        handler.setPlayerFrozen(false);
+        handler.getCutsceneManager().setActiveCutscene(null);
+        handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setOverworldCutscene1(false);
         handler.getFlags().setCameraOverride(false);
         handler.getGame().setFadeOut(false, true);
-        GeneralUtils.stopLevelFadeOut(handler, handler.getWorldManager().getWorld(WorldManager.MANSION_EXTERIOR_ID),
-                20 * Tile.TILEWIDTH - handler.getPlayer().getWidth() - Tile.TILEWIDTH / 8f,
-                30 * Tile.TILEHEIGHT + handler.getPlayer().getHeight() * 2, true);
-        //could do a title screen here later when the game is uhhhh done lol
-
+        denial.setIgnoreCollision(false);
+        anger.setIgnoreCollision(false);
+        bargaining.setIgnoreCollision(false);
+        depression.setIgnoreCollision(false);
+        acceptance.setIgnoreCollision(false);
+        player.setIgnoreCollision(false);
+        GeneralUtils.stopLevelFadeOut(handler, handler.getWorldManager().getWorld(WorldManager.MANSION_EXTERIOR_ID), 300, 300, false);
     }
 }

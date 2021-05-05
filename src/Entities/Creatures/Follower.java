@@ -24,6 +24,8 @@ public class Follower extends Creature {
 		animLeft = new Animation(250, Assets.acceptanceLeft);
 		animUp = new Animation(250, Assets.acceptanceUp);
 		animRight = new Animation(250, Assets.acceptanceRight);
+
+		ignoreCollision = true;
 	}
 
 	@Override
@@ -55,8 +57,8 @@ public class Follower extends Creature {
 			animUp.tick();
 			animRight.tick();
 
-			moveX(true);
-			moveY(true);
+			moveX();
+			moveY();
 		}
 	}
 

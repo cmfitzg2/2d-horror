@@ -43,7 +43,6 @@ public class EntityManager {
 
 	public void tick() {
 		entities.sort(renderSorter);
-		System.out.println(entities);
 		if (!handler.isGamePaused()) {
 			for (int i = 0; i < entities.size(); i++) {
 				e = entities.get(i);

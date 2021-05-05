@@ -22,6 +22,7 @@ public class Flags {
     private final int mcHouseNightCutscene4Flag = 7;
     private final int mcHouseNightCutscene5Flag = 8;
     private final int overworldCutscene1Flag = 9;
+    private final int mansionExteriorCutscene1Flag = 10;
     private final int timeOfDayIndex = 0;
     public static final int TIME_OF_DAY_BRIGHT = 0, TIME_OF_DAY_SOME_DARK = 1, TIME_OF_DAY_DARK = 2, TIME_OF_DAY_VERY_DARK = 3, TIME_OF_DAY_PITCH_BLACK = 4;
 
@@ -179,6 +180,14 @@ public class Flags {
 
     public void setOverworldCutscene1(boolean overworldCutscene1) {
         flags.set(overworldCutscene1Flag, overworldCutscene1);
+    }
+
+    public boolean isMansionExteriorCutscene1() {
+        return flags.get(mansionExteriorCutscene1Flag);
+    }
+
+    public void setMansionExteriorCutscene1(boolean mansionExteriorCutscene1) {
+        flags.set(mansionExteriorCutscene1Flag, mansionExteriorCutscene1);
     }
 
     public boolean isCutsceneActive() {

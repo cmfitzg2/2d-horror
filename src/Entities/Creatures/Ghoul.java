@@ -20,6 +20,8 @@ public class Ghoul extends Creature {
         animLeft = new Animation(200, Assets.ghoulLeft);
         animRight = new Animation(200, Assets.ghoulRight);
         animUp = new Animation(200, Assets.ghoulUp);
+
+        ignoreCollision = true;
     }
 
     @Override
@@ -55,12 +57,12 @@ public class Ghoul extends Creature {
         if (xMove != 0) {
             animLeft.tick();
             animRight.tick();
-            moveX(true);
+            moveX();
         }
         if (yMove != 0) {
             animDown.tick();
             animUp.tick();
-            moveY(true);
+            moveY();
         }
     }
 

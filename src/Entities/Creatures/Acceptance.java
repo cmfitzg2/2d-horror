@@ -38,8 +38,10 @@ public class Acceptance extends Creature {
 			animRight.tick();
 			moveX();
 			moveY();
-			xMove = 0;
-			yMove = 0;
+			if (!handler.getFlags().isCutsceneActive()) {
+				xMove = 0;
+				yMove = 0;
+			}
 		}
 
 		if (null != textboxHandler && textboxHandler.isActive() && !textboxHandler.isFinished()) {

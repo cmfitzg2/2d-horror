@@ -308,6 +308,7 @@ public class ClassroomCutscene1 implements Cutscene {
                     textboxHandler2.render(g);
                 } else {
                     if (!bellPlayed) {
+                        Assets.schoolBell.setFramePosition(0);
                         Assets.schoolBell.start();
                         bellPlayed = true;
                         handler.getScreenOverlay().overlayScreen(g, Color.black);
