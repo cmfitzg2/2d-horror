@@ -21,7 +21,7 @@ public class MansionExteriorCutscene1 implements Cutscene {
     private Handler handler;
     private final TextboxHandler textboxHandler1, textboxHandler2, textboxHandler3, textboxHandler4, textboxHandler5,
             textboxHandler6, textboxHandler7, textboxHandler8, textboxHandler9, textboxHandler10, textboxHandler11,
-            textboxHandler12;
+            textboxHandler12, textboxHandler13;
     private KeyManager keyManager;
     private Denial denial;
     private Anger anger;
@@ -31,7 +31,7 @@ public class MansionExteriorCutscene1 implements Cutscene {
     private EntityManager entityManager;
     private Mansion mansion;
     private boolean textbox1, textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9, textbox10,
-            textbox11, textbox12, dialogueOver;
+            textbox11, textbox12, textbox13, dialogueOver;
     private GameCamera gameCamera;
     private final String message1 = "Well, here we are.",
             message2 = "Man, talk about cliché.",
@@ -49,8 +49,8 @@ public class MansionExteriorCutscene1 implements Cutscene {
             message10 = "Alright already, geez. You guys sure are at each other's throats today.",
             message11 = "You did say this place brings out \"the real you\" or whatever, right?",
             message12 = "Fair enough. But for all our sake, let's try to keep the quarreling to a minimum. \r " +
-                    "So on the that note, and if you're all ready... \r " +
-                    "Let's head inside.";
+                    "So on the that note, and if you're all ready...",
+            message13 = "Let's head inside.";
 
     public MansionExteriorCutscene1(Handler handler) {
         this.handler = handler;
@@ -66,7 +66,8 @@ public class MansionExteriorCutscene1 implements Cutscene {
         textboxHandler9 = new TextboxHandler(handler, Assets.depressionFont, message9, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression, Assets.depressionText, 50, true, false);
         textboxHandler10 = new TextboxHandler(handler, Assets.bargainingFont, message10, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxBargaining, Assets.bargainingText, 50, true, false);
         textboxHandler11 = new TextboxHandler(handler, Assets.playerSpeakingFont, message11, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, Assets.playerText, 50, true, false);
-        textboxHandler12 = new TextboxHandler(handler, Assets.denialFont, message12, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDenial, Assets.denialText, 50, true, false);
+        textboxHandler12 = new TextboxHandler(handler, Assets.acceptanceFont, message12, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
+        textboxHandler13 = new TextboxHandler(handler, Assets.acceptanceFont, message13, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
     }
 
     @Override
@@ -107,9 +108,6 @@ public class MansionExteriorCutscene1 implements Cutscene {
                 } else {
                     if (!textboxHandler2.isFinished()) {
                         textboxHandler2.tick();
-                    } else {
-                        textbox3 = true;
-                        textbox2 = false;
                     }
                 }
             }
@@ -163,6 +161,11 @@ public class MansionExteriorCutscene1 implements Cutscene {
                     textboxHandler12.tick();
                 }
             }
+            if (textbox13) {
+                if (!textboxHandler13.isFinished()) {
+                    textboxHandler13.tick();
+                }
+            }
             if (dialogueOver) {
                 handler.setPlayerFrozen(false);
             }
@@ -175,12 +178,14 @@ public class MansionExteriorCutscene1 implements Cutscene {
             return;
         }
         if (player.getY() > 27 * Tile.TILEHEIGHT) {
-            denial.setyMove(-denial.getSpeed());
-            anger.setyMove(-anger.getSpeed());
-            bargaining.setyMove(-bargaining.getSpeed());
-            depression.setyMove(-depression.getSpeed());
-            acceptance.setyMove(-acceptance.getSpeed());
-            player.setyMove(-player.getCutsceneSpeed());
+            if (textbox1) {
+                denial.setyMove(-denial.getSpeed());
+                anger.setyMove(-anger.getSpeed());
+                bargaining.setyMove(-bargaining.getSpeed());
+                depression.setyMove(-depression.getSpeed());
+                acceptance.setyMove(-acceptance.getSpeed());
+                player.setyMove(-player.getCutsceneSpeed());
+            }
         } else {
             if (textbox1) {
                 denial.setyMove(0);
@@ -201,6 +206,9 @@ public class MansionExteriorCutscene1 implements Cutscene {
                 if (gameCamera.getyOffset() <= mansion.getY()) {
                     if (!textboxHandler2.isFinished()) {
                         textboxHandler2.render(g);
+                    } else {
+                        textbox3 = true;
+                        textbox2 = false;
                     }
                 }
             }
@@ -280,8 +288,20 @@ public class MansionExteriorCutscene1 implements Cutscene {
                 if (!textboxHandler12.isFinished()) {
                     textboxHandler12.render(g);
                 } else {
-                    dialogueOver = true;
                     textbox12 = false;
+                    textbox13 = true;
+                }
+            }
+            if (textbox13) {
+                if (gameCamera.getyOffset() < handler.getActiveWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight()) {
+                    gameCamera.setyOffset(gameCamera.getyOffset() + 2);
+                } else {
+                    if (!textboxHandler13.isFinished()) {
+                        textboxHandler13.render(g);
+                    } else {
+                        dialogueOver = true;
+                        textbox13 = false;
+                    }
                 }
             }
         }
