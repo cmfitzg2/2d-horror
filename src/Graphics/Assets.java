@@ -44,7 +44,7 @@ public class Assets {
 			wallBorderLeftBottom, wallBorderRightTop, wallBorderLeftTop, wallBorderTop, wallBorderRight, wallBorderLeft,
 			wallBorderBottom;
 	public static BufferedImage closedDoorOne, closedDoorTwo, stairs, doorwayArch, bathroomDoorMale, bathroomDoorFemale,
-			locker, windowOne, windowTwo, chimney, bellTower;
+			locker, windowOne, windowTwo, chimney, bellTower, belltowerTransparent;
 	public static BufferedImage bedOne, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
 	public static BufferedImage windowLight, windowDark, tableLampOff, tableLampOn;
 	public static BufferedImage yellowLight;
@@ -716,6 +716,7 @@ public class Assets {
 		teacherDesk = ImageLoader.loadImage("/textures/static-entities/teacher-desk.png");
 		toilet = ImageLoader.loadImage("/textures/static-entities/toilet.png");
 		bellTower = ImageLoader.loadImage("/textures/static-entities/belltower.png");
+		belltowerTransparent = ImageLoader.loadImage("/textures/static-entities/belltower-transparent.png");
 		houseDefault = ImageLoader.loadImage("/textures/static-entities/house-default.png");
 		houseDefaultTransparent = ImageLoader.loadImage("/textures/static-entities/house-default-transparent.png");
 		mansion = ImageLoader.loadImage("/textures/static-entities/mansion-sample.png");

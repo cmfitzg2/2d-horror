@@ -1,6 +1,5 @@
 package Entities.StaticEntities;
 
-import Entities.Creatures.Player;
 import Entities.Entity;
 import Graphics.Assets;
 import Tiles.Tile;
@@ -16,6 +15,7 @@ public class BellTower extends StaticEntity {
     private final int stairsWidth = 32, stairsHeight = 16;
     private int stairsX, stairsY;
     private float xScale, yScale;
+    private Rectangle behindBelltower;
 
     public BellTower(Handler handler, float x, float y, int width, int height, boolean includeStairs, String uniqueName) {
         super(handler, x, y, width, height, uniqueName);
@@ -51,13 +51,19 @@ public class BellTower extends StaticEntity {
 
     @Override
     public void tick() {
-
+        behindBelltower = new Rectangle((int) x - (int) handler.getGameCamera().getxOffset(),
+                (int) y - (int) handler.getGameCamera().getyOffset(), width, 6 * height / 7 - Tile.TILEHEIGHT / 2);
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.bellTower, (int) (x - handler.getGameCamera().getxOffset()),
-                (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        if (handler.getPlayer().getPlayerRec().intersects(behindBelltower)) {
+            g.drawImage(Assets.belltowerTransparent, (int) (x - handler.getGameCamera().getxOffset()),
+                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        } else {
+            g.drawImage(Assets.bellTower, (int) (x - handler.getGameCamera().getxOffset()),
+                    (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        }
         if (includeStairs) {
             g.drawImage(Assets.stairs, (int) (x - handler.getGameCamera().getxOffset() + stairsX),
                     (int) (y - handler.getGameCamera().getyOffset() + stairsY), 64, 48, null);

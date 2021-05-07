@@ -362,7 +362,7 @@ public class OverworldCutscene1 implements Cutscene {
         handler.getFlags().setCameraOverride(false);
         handler.getGame().setFadeOut(false, true);
         GeneralUtils.stopLevelFadeOut(handler, handler.getWorldManager().getWorld(WorldManager.MANSION_EXTERIOR_ID),
-                20 * Tile.TILEWIDTH - handler.getPlayer().getWidth() - Tile.TILEWIDTH / 8f,
+                20 * Tile.TILEWIDTH - handler.getPlayer().getWidth() - Tile.TILEWIDTH / 32f,
                 30 * Tile.TILEHEIGHT + handler.getPlayer().getHeight() * 2, true);
         //could do a title screen here later when the game is uhhhh done lol
 

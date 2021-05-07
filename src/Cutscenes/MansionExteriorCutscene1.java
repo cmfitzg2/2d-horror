@@ -2,6 +2,7 @@ package Cutscenes;
 
 import Entities.Creatures.*;
 import Entities.EntityManager;
+import Entities.StaticEntities.Mansion;
 import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
@@ -10,6 +11,7 @@ import Utils.GeneralUtils;
 import Variables.GeneralConstants;
 import Variables.Handler;
 import Worlds.WorldManager;
+import Graphics.GameCamera;
 
 import java.awt.*;
 
@@ -27,12 +29,11 @@ public class MansionExteriorCutscene1 implements Cutscene {
     private Depression depression;
     private Acceptance acceptance;
     private EntityManager entityManager;
+    private Mansion mansion;
     private boolean textbox1, textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9, textbox10,
             textbox11, textbox12, dialogueOver;
-    private boolean depressionStop1Hit, depressionStop2Hit;
-    private final int depressionStop1 = 48 * Tile.TILEWIDTH, depressionStop2 = (int) (50.5 * Tile.TILEHEIGHT), depressionStop3 = (int) (44.5f * Tile.TILEWIDTH),
-            angerXStart = (int) (41.5 * Tile.TILEWIDTH);
-    private final String message1 = "Well, here are.",
+    private GameCamera gameCamera;
+    private final String message1 = "Well, here we are.",
             message2 = "Man, talk about cliché.",
             message3 = "It's obvious, isn't it? \r " +
                     "There wouldn't be any mystique surrounding this place if it didn't fit the profile of such a place. \r " +
@@ -74,12 +75,14 @@ public class MansionExteriorCutscene1 implements Cutscene {
             if (handler.getWorldManager().getActiveWorld().getId() != WorldManager.MANSION_EXTERIOR_ID) {
                 return;
             }
+            gameCamera = handler.getGameCamera();
             entityManager = handler.getWorldManager().getWorld(WorldManager.MANSION_EXTERIOR_ID).getEntityManager();
             denial = (Denial) entityManager.getEntityByUid("denial-mansionexterior1");
             anger = (Anger) entityManager.getEntityByUid("anger-mansionexterior1");
             bargaining = (Bargaining) entityManager.getEntityByUid("bargaining-mansionexterior1");
             depression = (Depression) entityManager.getEntityByUid("depression-mansionexterior1");
             acceptance = (Acceptance) entityManager.getEntityByUid("acceptance-mansionexterior1");
+            mansion = (Mansion) entityManager.getEntityByUid("mansion-mansionexterior1");
             player = handler.getPlayer();
             denial.setIgnoreCollision(true);
             anger.setIgnoreCollision(true);
@@ -92,43 +95,21 @@ public class MansionExteriorCutscene1 implements Cutscene {
             textbox1 = true;
             firstTime = false;
         }
-        if (player.getY() <= 27 * Tile.TILEHEIGHT) {
+        if (player.getY() <= 27 * Tile.TILEHEIGHT && !handler.getGame().isFadeIn()) {
             if (textbox1) {
-                denial.setyMove(0);
-                anger.setyMove(0);
-                bargaining.setyMove(0);
-                depression.setyMove(0);
-                acceptance.setyMove(0);
-                player.setyMove(0);
                 if (!textboxHandler1.isFinished()) {
                     textboxHandler1.tick();
                 }
             }
             if (textbox2) {
-                if (!textboxHandler2.isFinished()) {
-                    textboxHandler2.tick();
+                if (gameCamera.getyOffset() > mansion.getY()) {
+                    gameCamera.setyOffset(gameCamera.getyOffset() - 2);
                 } else {
-                    if (!depressionStop1Hit) {
-                        if (depression.getX() < depressionStop1) {
-                            depression.setxMove(depression.getSpeed());
-                        } else {
-                            depression.setxMove(0);
-                            depressionStop1Hit = true;
-                        }
-                    } else if (!depressionStop2Hit) {
-                        if (depression.getY() < depressionStop2) {
-                            depression.setyMove(depression.getSpeed());
-                        } else {
-                            depression.setyMove(0);
-                            depressionStop2Hit = true;
-                        }
+                    if (!textboxHandler2.isFinished()) {
+                        textboxHandler2.tick();
                     } else {
-                        if (depression.getX() > depressionStop3) {
-                            depression.setxMove(-depression.getSpeed());
-                        } else {
-                            textbox3 = true;
-                            textbox2 = false;
-                        }
+                        textbox3 = true;
+                        textbox2 = false;
                     }
                 }
             }
@@ -183,29 +164,14 @@ public class MansionExteriorCutscene1 implements Cutscene {
                 }
             }
             if (dialogueOver) {
-                anger.setxMove(-anger.getSpeed());
-                handler.getFlags().setCameraOverride(true);
-                if (anger.getX() < angerXStart - Tile.TILEWIDTH * 3) {
-                    player.setxMove(-player.getCutsceneSpeed());
-                    denial.setxMove(-denial.getSpeed());
-                    bargaining.setxMove(-bargaining.getSpeed());
-                    depression.setxMove(-depression.getSpeed());
-                    acceptance.setxMove(-acceptance.getSpeed());
-                    if (!handler.getGame().isFadeOut()) {
-                        GeneralUtils.levelFadeOut(handler, GeneralConstants.veryLongLevelTransition);
-                    } else {
-                        if (handler.getGame().isFinishedFadingOut()) {
-                            exit();
-                        }
-                    }
-                }
+                handler.setPlayerFrozen(false);
             }
         }
     }
 
     @Override
     public void render(Graphics g) {
-        if (firstTime) {
+        if (firstTime || handler.getGame().isFadeIn()) {
             return;
         }
         if (player.getY() > 27 * Tile.TILEHEIGHT) {
@@ -217,16 +183,25 @@ public class MansionExteriorCutscene1 implements Cutscene {
             player.setyMove(-player.getCutsceneSpeed());
         } else {
             if (textbox1) {
+                denial.setyMove(0);
+                anger.setyMove(0);
+                bargaining.setyMove(0);
+                depression.setyMove(0);
+                acceptance.setyMove(0);
+                player.setyMove(0);
                 if (!textboxHandler1.isFinished()) {
                     textboxHandler1.render(g);
                 } else {
                     textbox2 = true;
                     textbox1 = false;
+                    handler.getFlags().setCameraOverride(true);
                 }
             }
             if (textbox2) {
-                if (!textboxHandler2.isFinished()) {
-                    textboxHandler2.render(g);
+                if (gameCamera.getyOffset() <= mansion.getY()) {
+                    if (!textboxHandler2.isFinished()) {
+                        textboxHandler2.render(g);
+                    }
                 }
             }
             if (textbox3) {
