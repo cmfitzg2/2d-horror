@@ -36,9 +36,10 @@ public class TimerManager {
         }
         timerMap.put(uid, new Timer(frameLimit));
         if (!timerList.contains(uid)) {
+            timerList.add(uid);
+        } else {
             //support adding the same timer uid as long as the map doesn't contain it.
             System.out.println("DEBUG -- timer list already contained a timer with uid " + uid);
-            timerList.add(uid);
         }
     }
 
