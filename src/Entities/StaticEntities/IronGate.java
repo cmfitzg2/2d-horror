@@ -134,7 +134,8 @@ public class IronGate extends StaticEntity {
     public int renderVsEntity(Entity e) {
         if (e.getX() < x + width && e.getX() + e.getWidth() > x && e.getY() + e.getHeight() >= y && e.getY() <= y + height) {
             if (type == TYPE_TOP || type == TYPE_BOT) {
-                if (e.getY() + e.getHeight() <= y + 2 * pillarHeight / 3f) {
+                System.out.println((e.getY() + e.getHeight()) + ", " + (y + 2 * pillarHeight / 3f));
+                if (e.getY() + e.getHeight() <= Math.ceil(y + 2 * pillarHeight / 3f)) {
                     return -1;
                 } else {
                     return 1;

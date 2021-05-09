@@ -342,10 +342,37 @@ public class MansionExteriorCutscene1 implements Cutscene {
                             textboxHandler13.render(g);
                         } else {
                             dialogueOver = true;
-                            handler.setPlayerFrozen(false);
                             textbox13 = false;
                         }
                     }
+                }
+            }
+            if (dialogueOver) {
+                if (acceptance.getY() > mansion.getY() + mansion.getHeight()) {
+                    acceptance.setyMove(-acceptance.getSpeed());
+                } else {
+                    entityManager.removeEntity(acceptance);
+                }
+                if (denial.getY() > mansion.getY() + mansion.getHeight()) {
+                    denial.setyMove(-denial.getSpeed());
+                } else {
+                    entityManager.removeEntity(denial);
+                }
+                if (anger.getY() > mansion.getY() + mansion.getHeight()) {
+                    anger.setyMove(-anger.getSpeed());
+                } else {
+                    entityManager.removeEntity(anger);
+                }
+                if (bargaining.getY() > mansion.getY() + mansion.getHeight()) {
+                    bargaining.setyMove(-bargaining.getSpeed());
+                } else {
+                    entityManager.removeEntity(bargaining);
+                }
+                if (depression.getY() > mansion.getY() + mansion.getHeight()) {
+                    depression.setyMove(-depression.getSpeed());
+                } else {
+                    entityManager.removeEntity(depression);
+                    exit();
                 }
             }
         }
