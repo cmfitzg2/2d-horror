@@ -2,6 +2,7 @@ package States;
 
 import Cutscenes.CutsceneManager;
 import Entities.Creatures.Player;
+import Utils.TimerManager;
 import Variables.Handler;
 import java.awt.Graphics;
 import Graphics.ScreenOverlay;
@@ -16,6 +17,9 @@ public class GameState extends State {
 	//Cutscenes
 	private CutsceneManager cutsceneManager;
 
+	//Timer
+	private TimerManager timerManager;
+
 	public GameState(Handler handler) {
 		super(handler);
 		screenOverlay = new ScreenOverlay(handler);
@@ -23,10 +27,13 @@ public class GameState extends State {
 		handler.setCutsceneManager(cutsceneManager);
 		worldManager = new WorldManager(handler, new MCHouse1(handler, WorldManager.MC_HOUSE_1_ID, new Player(handler, 700, 428, "Player")));
 		handler.setWorldManager(worldManager);
+		timerManager = new TimerManager();
+		handler.setTimerManager(timerManager);
 	}
 
 	@Override
 	public void tick() {
+		timerManager.tick();
 		worldManager.tick();
 		if (handler.getFlags().isCutsceneActive()) {
 			cutsceneManager.tick();

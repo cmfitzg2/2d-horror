@@ -2,7 +2,6 @@ package Entities.StaticEntities;
 
 import Entities.Entity;
 import Graphics.Assets;
-import Tiles.Tile;
 import Variables.Handler;
 
 import java.awt.*;
@@ -10,7 +9,7 @@ import java.awt.*;
 public class IronGate extends StaticEntity {
 
     private float xScale, yScale;
-    private boolean open = true;
+    private boolean open = false;
     private Rectangle gateBounds;
     private int pillarWidth, pillarHeight, frontGateHeight, frontGateWidth, cameraX, cameraY, type;
     public static final int TYPE_TOP = 0, TYPE_BOT = 1, TYPE_SIDE = 2;

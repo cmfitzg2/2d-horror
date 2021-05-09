@@ -8,6 +8,7 @@ import Graphics.ScreenOverlay;
 import Input.KeyManager;
 import Input.MouseManager;
 import Textboxes.EntityMessages;
+import Utils.TimerManager;
 import Worlds.World;
 import Worlds.WorldManager;
 
@@ -20,6 +21,7 @@ public class Handler {
 	private int worldNumber = 1;
 	private WorldManager worldManager;
 	private CutsceneManager cutsceneManager;
+	private TimerManager timerManager;
 	private Player player;
 
 	public Handler(Game game)
@@ -149,5 +151,13 @@ public class Handler {
 
 	public void setCutsceneManager(CutsceneManager cutsceneManager) {
 		this.cutsceneManager = cutsceneManager;
+	}
+
+	public TimerManager getTimerManager() {
+		return timerManager;
+	}
+
+	public void setTimerManager(TimerManager timerManager) {
+		this.timerManager = timerManager;
 	}
 }

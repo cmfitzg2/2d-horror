@@ -29,7 +29,7 @@ public class MansionExterior extends World {
         entityManager.addEntity(new IronGate(handler, Tile.TILEWIDTH / 4f, 5, Assets.gateTop.getWidth() * 2, Assets.gateTop.getHeight() * 2, null, IronGate.TYPE_TOP));
         entityManager.addEntity(new IronGate(handler, Tile.TILEWIDTH / 4f, 5 + Assets.height * 4, Assets.gateSide.getWidth() * 2, Assets.gateSide.getHeight() * 2, null, IronGate.TYPE_SIDE));
         entityManager.addEntity(new IronGate(handler, Tile.TILEWIDTH / 4f + Assets.gateTop.getWidth() * 2 - 17 * 2, 5 + Assets.height * 4, Assets.gateSide.getWidth() * 2, Assets.gateSide.getHeight() * 2, null, IronGate.TYPE_SIDE));
-        entityManager.addEntity(new IronGate(handler, Tile.TILEWIDTH / 4f, 5 + Assets.gateTop.getHeight() * 2 + Assets.gateSide.getHeight() * 2, Assets.gateBot.getWidth() * 2, Assets.gateBot.getHeight() * 2, null, IronGate.TYPE_BOT));
+        entityManager.addEntity(new IronGate(handler, Tile.TILEWIDTH / 4f, 5 + Assets.gateTop.getHeight() * 2 + Assets.gateSide.getHeight() * 2, Assets.gateBot.getWidth() * 2, Assets.gateBot.getHeight() * 2, "irongatebot-mansionexterior1", IronGate.TYPE_BOT));
         if (handler.getFlags().isMansionExteriorCutscene1()) {
             entityManager.addEntity(new Denial(handler, 20 * Tile.TILEWIDTH - handler.getPlayer().getWidth() - Tile.TILEWIDTH / 32f, 30 * Tile.TILEHEIGHT, "denial-mansionexterior1"));
             entityManager.addEntity(new Anger(handler, 20 * Tile.TILEWIDTH + Tile.TILEWIDTH / 32f, 30 * Tile.TILEHEIGHT, "anger-mansionexterior1"));
@@ -47,8 +47,6 @@ public class MansionExterior extends World {
 
     @Override
     protected void transitionTo() {
-        handler.getFlags().setTimeOfDay(Flags.TIME_OF_DAY_BRIGHT);
-        handler.getPlayer().setAmbientLight(Flags.TIME_OF_DAY_BRIGHT);
         if (!handler.getGame().isFadeIn()) {
             if (initialCutsceneTransition) {
                 GeneralUtils.levelFadeIn(handler, GeneralConstants.veryLongLevelTransition);

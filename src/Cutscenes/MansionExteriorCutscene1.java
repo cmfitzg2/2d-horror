@@ -2,12 +2,12 @@ package Cutscenes;
 
 import Entities.Creatures.*;
 import Entities.EntityManager;
+import Entities.StaticEntities.IronGate;
 import Entities.StaticEntities.Mansion;
 import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
 import Tiles.Tile;
-import Utils.GeneralUtils;
 import Variables.GeneralConstants;
 import Variables.Handler;
 import Worlds.WorldManager;
@@ -30,8 +30,13 @@ public class MansionExteriorCutscene1 implements Cutscene {
     private Acceptance acceptance;
     private EntityManager entityManager;
     private Mansion mansion;
+    private IronGate ironGate;
     private boolean textbox1, textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9, textbox10,
             textbox11, textbox12, textbox13, dialogueOver;
+    private boolean acceptanceStop1Hit, acceptanceStop2Hit, acceptanceStop3Hit;
+    private float acceptanceXStart = 20 * Tile.TILEWIDTH + Tile.TILEWIDTH / 32f;
+    private float acceptanceStop1, acceptanceStop2, acceptanceStop3;
+    private float acceptanceYStart;
     private GameCamera gameCamera;
     private final String message1 = "Well, here we are.",
             message2 = "Man, talk about cliché.",
@@ -64,7 +69,7 @@ public class MansionExteriorCutscene1 implements Cutscene {
         textboxHandler7 = new TextboxHandler(handler, Assets.depressionFont, message7, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression, Assets.depressionText, 50, true, false);
         textboxHandler8 = new TextboxHandler(handler, Assets.angerFont, message8, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAnger, Assets.angerText, 50, true, false);
         textboxHandler9 = new TextboxHandler(handler, Assets.depressionFont, message9, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDepression, Assets.depressionText, 50, true, false);
-        textboxHandler10 = new TextboxHandler(handler, Assets.bargainingFont, message10, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxBargaining, Assets.bargainingText, 50, true, false);
+        textboxHandler10 = new TextboxHandler(handler, Assets.acceptanceFont, message10, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
         textboxHandler11 = new TextboxHandler(handler, Assets.playerSpeakingFont, message11, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, Assets.playerText, 50, true, false);
         textboxHandler12 = new TextboxHandler(handler, Assets.acceptanceFont, message12, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
         textboxHandler13 = new TextboxHandler(handler, Assets.acceptanceFont, message13, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
@@ -84,22 +89,30 @@ public class MansionExteriorCutscene1 implements Cutscene {
             depression = (Depression) entityManager.getEntityByUid("depression-mansionexterior1");
             acceptance = (Acceptance) entityManager.getEntityByUid("acceptance-mansionexterior1");
             mansion = (Mansion) entityManager.getEntityByUid("mansion-mansionexterior1");
+            ironGate = (IronGate) entityManager.getEntityByUid("irongatebot-mansionexterior1");
             player = handler.getPlayer();
             denial.setIgnoreCollision(true);
             anger.setIgnoreCollision(true);
             bargaining.setIgnoreCollision(true);
             depression.setIgnoreCollision(true);
             acceptance.setIgnoreCollision(true);
+            acceptanceYStart = 27 * Tile.TILEHEIGHT;
+            acceptanceStop1 = acceptanceXStart + player.getWidth() + Tile.TILEWIDTH / 32f;
+            acceptanceStop2 = acceptanceYStart - player.getHeight() * 3;
+            acceptanceStop3 = acceptanceXStart - player.getWidth() / 2f;
             player.setIgnoreCollision(true);
             handler.setPlayerFrozen(true);
-
             textbox1 = true;
             firstTime = false;
         }
         if (player.getY() <= 27 * Tile.TILEHEIGHT && !handler.getGame().isFadeIn()) {
             if (textbox1) {
-                if (!textboxHandler1.isFinished()) {
-                    textboxHandler1.tick();
+                if (!handler.getTimerManager().timerAdded("initial-mansion-timer")) {
+                    handler.getTimerManager().addTimer("initial-mansion-timer", 60);
+                } else if (handler.getTimerManager().timerExpired("initial-mansion-timer")) {
+                    if (!textboxHandler1.isFinished()) {
+                        textboxHandler1.tick();
+                    }
                 }
             }
             if (textbox2) {
@@ -166,9 +179,6 @@ public class MansionExteriorCutscene1 implements Cutscene {
                     textboxHandler13.tick();
                 }
             }
-            if (dialogueOver) {
-                handler.setPlayerFrozen(false);
-            }
         }
     }
 
@@ -194,21 +204,27 @@ public class MansionExteriorCutscene1 implements Cutscene {
                 depression.setyMove(0);
                 acceptance.setyMove(0);
                 player.setyMove(0);
-                if (!textboxHandler1.isFinished()) {
-                    textboxHandler1.render(g);
-                } else {
-                    textbox2 = true;
-                    textbox1 = false;
-                    handler.getFlags().setCameraOverride(true);
+                if (handler.getTimerManager().timerExpired("initial-mansion-timer")) {
+                    if (!textboxHandler1.isFinished()) {
+                        textboxHandler1.render(g);
+                    } else {
+                        textbox2 = true;
+                        textbox1 = false;
+                        handler.getFlags().setCameraOverride(true);
+                    }
                 }
             }
             if (textbox2) {
                 if (gameCamera.getyOffset() <= mansion.getY()) {
-                    if (!textboxHandler2.isFinished()) {
-                        textboxHandler2.render(g);
-                    } else {
-                        textbox3 = true;
-                        textbox2 = false;
+                    if (!handler.getTimerManager().timerAdded("mansion-view-timer")) {
+                        handler.getTimerManager().addTimer("mansion-view-timer", 60);
+                    } else if (handler.getTimerManager().timerExpired("mansion-view-timer")) {
+                        if (!textboxHandler2.isFinished()) {
+                            textboxHandler2.render(g);
+                        } else {
+                            textbox3 = true;
+                            textbox2 = false;
+                        }
                     }
                 }
             }
@@ -296,11 +312,39 @@ public class MansionExteriorCutscene1 implements Cutscene {
                 if (gameCamera.getyOffset() < handler.getActiveWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight()) {
                     gameCamera.setyOffset(gameCamera.getyOffset() + 2);
                 } else {
-                    if (!textboxHandler13.isFinished()) {
-                        textboxHandler13.render(g);
-                    } else {
-                        dialogueOver = true;
-                        textbox13 = false;
+                    if (!acceptanceStop1Hit) {
+                        if (acceptance.getX() < acceptanceStop1) {
+                            acceptance.setxMove(acceptance.getSpeed());
+                        } else {
+                            acceptance.setxMove(0);
+                            acceptanceStop1Hit = true;
+                        }
+                    } else if (!acceptanceStop2Hit) {
+                        if (acceptance.getY() > acceptanceStop2) {
+                            acceptance.setyMove(-acceptance.getSpeed());
+                        } else {
+                            acceptance.setyMove(0);
+                            acceptanceStop2Hit = true;
+                        }
+                    } else if (!acceptanceStop3Hit) {
+                        if (acceptance.getX() > acceptanceStop3) {
+                            acceptance.setxMove(-acceptance.getSpeed());
+                        } else {
+                            acceptance.setxMove(0);
+                            acceptanceStop3Hit = true;
+                            acceptance.setDirection("up");
+                            ironGate.setOpen(true);
+                        }
+                    } else if (!handler.getTimerManager().timerAdded("gateopen-timer")) {
+                        handler.getTimerManager().addTimer("gateopen-timer", 60);
+                    } else if (handler.getTimerManager().timerExpired("gateopen-timer")) {
+                        if (!textboxHandler13.isFinished()) {
+                            textboxHandler13.render(g);
+                        } else {
+                            dialogueOver = true;
+                            handler.setPlayerFrozen(false);
+                            textbox13 = false;
+                        }
                     }
                 }
             }
@@ -314,13 +358,11 @@ public class MansionExteriorCutscene1 implements Cutscene {
         handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setOverworldCutscene1(false);
         handler.getFlags().setCameraOverride(false);
-        handler.getGame().setFadeOut(false, true);
         denial.setIgnoreCollision(false);
         anger.setIgnoreCollision(false);
         bargaining.setIgnoreCollision(false);
         depression.setIgnoreCollision(false);
         acceptance.setIgnoreCollision(false);
         player.setIgnoreCollision(false);
-        GeneralUtils.stopLevelFadeOut(handler, handler.getWorldManager().getWorld(WorldManager.MANSION_EXTERIOR_ID), 300, 300, false);
     }
 }
