@@ -383,7 +383,7 @@ public class MansionExteriorCutscene1 implements Cutscene {
         handler.setPlayerFrozen(false);
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
-        handler.getFlags().setOverworldCutscene1(false);
+        handler.getFlags().setMansionExteriorCutscene1(false);
         handler.getFlags().setCameraOverride(false);
         denial.setIgnoreCollision(false);
         anger.setIgnoreCollision(false);

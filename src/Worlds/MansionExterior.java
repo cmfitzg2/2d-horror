@@ -54,11 +54,14 @@ public class MansionExterior extends World {
                 GeneralUtils.levelFadeIn(handler, -1);
             }
         }
-        if (handler.getGame().isFadeIn() && handler.getGame().isFinishedFadingIn() && handler.getFlags().isMansionExteriorCutscene1()) {
-            GeneralUtils.stopLevelFadeIn(handler, false);
+        if (handler.getGame().isFadeIn() && handler.getGame().isFinishedFadingIn()) {
+            if (handler.getFlags().isMansionExteriorCutscene1()) {
+                GeneralUtils.stopLevelFadeIn(handler, true);
+                initialCutsceneTransition = false;
+            } else {
+                GeneralUtils.stopLevelFadeIn(handler, false);
+            }
             transitioningTo = false;
-            initialCutsceneTransition = false;
-            handler.setPlayerFrozen(true);
         }
     }
 }
