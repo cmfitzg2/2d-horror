@@ -21,7 +21,7 @@ public class MansionExteriorCutscene1 implements Cutscene {
     private Handler handler;
     private final TextboxHandler textboxHandler1, textboxHandler2, textboxHandler3, textboxHandler4, textboxHandler5,
             textboxHandler6, textboxHandler7, textboxHandler8, textboxHandler9, textboxHandler10, textboxHandler11,
-            textboxHandler12, textboxHandler13;
+            textboxHandler12, textboxHandler13, textboxHandler14;
     private KeyManager keyManager;
     private Denial denial;
     private Anger anger;
@@ -32,7 +32,7 @@ public class MansionExteriorCutscene1 implements Cutscene {
     private Mansion mansion;
     private IronGate ironGate;
     private boolean textbox1, textbox2, textbox3, textbox4, textbox5, textbox6, textbox7, textbox8, textbox9, textbox10,
-            textbox11, textbox12, textbox13, dialogueOver;
+            textbox11, textbox12, textbox13, dialogueOver, playerOutro, playerOutroTextbox, transitioning;
     private boolean acceptanceStop1Hit, acceptanceStop2Hit, acceptanceStop3Hit;
     private float acceptanceXStart = 20 * Tile.TILEWIDTH + Tile.TILEWIDTH / 32f;
     private float acceptanceStop1, acceptanceStop2, acceptanceStop3;
@@ -55,7 +55,9 @@ public class MansionExteriorCutscene1 implements Cutscene {
             message11 = "You did say this place brings out \"the real you\" or whatever, right?",
             message12 = "Fair enough. But for all our sake, let's try to keep the quarreling to a minimum. \r " +
                     "So on the that note, and if you're all ready...",
-            message13 = "Let's head inside.";
+            message13 = "Let's head inside.",
+            playerOutroMessage = "... \r " +
+                    "Honestly, I think I expected the gate to slam behind me.";
 
     public MansionExteriorCutscene1(Handler handler) {
         this.handler = handler;
@@ -73,6 +75,7 @@ public class MansionExteriorCutscene1 implements Cutscene {
         textboxHandler11 = new TextboxHandler(handler, Assets.playerSpeakingFont, message11, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayer, Assets.playerText, 50, true, false);
         textboxHandler12 = new TextboxHandler(handler, Assets.acceptanceFont, message12, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
         textboxHandler13 = new TextboxHandler(handler, Assets.acceptanceFont, message13, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxAcceptance, Assets.acceptanceText, 50, true, false);
+        textboxHandler14 = new TextboxHandler(handler, Assets.playerThinkingFont, playerOutroMessage, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxPlayerThinking, Assets.playerText, 50, true, false);
     }
 
     @Override
@@ -179,6 +182,11 @@ public class MansionExteriorCutscene1 implements Cutscene {
                     textboxHandler13.tick();
                 }
             }
+            if (playerOutroTextbox) {
+                if (!textboxHandler14.isFinished()) {
+                    textboxHandler14.tick();
+                }
+            }
         }
     }
 
@@ -187,192 +195,236 @@ public class MansionExteriorCutscene1 implements Cutscene {
         if (firstTime || handler.getGame().isFadeIn()) {
             return;
         }
-        if (player.getY() > 27 * Tile.TILEHEIGHT) {
-            if (textbox1) {
-                denial.setyMove(-denial.getSpeed());
-                anger.setyMove(-anger.getSpeed());
-                bargaining.setyMove(-bargaining.getSpeed());
-                depression.setyMove(-depression.getSpeed());
-                acceptance.setyMove(-acceptance.getSpeed());
-                player.setyMove(-player.getCutsceneSpeed());
+        if (!dialogueOver) {
+            if (player.getY() > 27 * Tile.TILEHEIGHT) {
+                if (textbox1) {
+                    denial.setyMove(-denial.getSpeed());
+                    anger.setyMove(-anger.getSpeed());
+                    bargaining.setyMove(-bargaining.getSpeed());
+                    depression.setyMove(-depression.getSpeed());
+                    acceptance.setyMove(-acceptance.getSpeed());
+                    player.setyMove(-player.getCutsceneSpeed());
+                }
+            } else {
+                if (textbox1) {
+                    denial.setyMove(0);
+                    anger.setyMove(0);
+                    bargaining.setyMove(0);
+                    depression.setyMove(0);
+                    acceptance.setyMove(0);
+                    player.setyMove(0);
+                    if (handler.getTimerManager().timerExpired("initial-mansion-timer")) {
+                        if (!textboxHandler1.isFinished()) {
+                            textboxHandler1.render(g);
+                        } else {
+                            textbox2 = true;
+                            textbox1 = false;
+                            handler.getFlags().setCameraOverride(true);
+                        }
+                    }
+                }
+                if (textbox2) {
+                    if (gameCamera.getyOffset() <= mansion.getY()) {
+                        if (!handler.getTimerManager().timerAdded("mansion-view-timer")) {
+                            handler.getTimerManager().addTimer("mansion-view-timer", 60);
+                        } else if (handler.getTimerManager().timerExpired("mansion-view-timer")) {
+                            if (!textboxHandler2.isFinished()) {
+                                textboxHandler2.render(g);
+                            } else {
+                                textbox3 = true;
+                                textbox2 = false;
+                            }
+                        }
+                    }
+                }
+                if (textbox3) {
+                    if (!textboxHandler3.isFinished()) {
+                        textboxHandler3.render(g);
+                    } else {
+                        textbox4 = true;
+                        textbox3 = false;
+                    }
+                }
+                if (textbox4) {
+                    if (!textboxHandler4.isFinished()) {
+                        textboxHandler4.render(g);
+                    } else {
+                        textbox5 = true;
+                        textbox4 = false;
+                    }
+                }
+                if (textbox5) {
+                    if (!textboxHandler5.isFinished()) {
+                        textboxHandler5.render(g);
+                    } else {
+                        textbox6 = true;
+                        textbox5 = false;
+                    }
+                }
+                if (textbox6) {
+                    if (!textboxHandler6.isFinished()) {
+                        textboxHandler6.render(g);
+                    } else {
+                        textbox7 = true;
+                        textbox6 = false;
+                    }
+                }
+                if (textbox7) {
+                    if (!textboxHandler7.isFinished()) {
+                        textboxHandler7.render(g);
+                    } else {
+                        textbox8 = true;
+                        textbox7 = false;
+                    }
+                }
+                if (textbox8) {
+                    if (!textboxHandler8.isFinished()) {
+                        textboxHandler8.render(g);
+                    } else {
+                        textbox9 = true;
+                        textbox8 = false;
+                    }
+                }
+                if (textbox9) {
+                    if (!textboxHandler9.isFinished()) {
+                        textboxHandler9.render(g);
+                    } else {
+                        textbox10 = true;
+                        textbox9 = false;
+                    }
+                }
+                if (textbox10) {
+                    if (!textboxHandler10.isFinished()) {
+                        textboxHandler10.render(g);
+                    } else {
+                        textbox11 = true;
+                        textbox10 = false;
+                    }
+                }
+                if (textbox11) {
+                    if (!textboxHandler11.isFinished()) {
+                        textboxHandler11.render(g);
+                    } else {
+                        textbox12 = true;
+                        textbox11 = false;
+                    }
+                }
+                if (textbox12) {
+                    if (!textboxHandler12.isFinished()) {
+                        textboxHandler12.render(g);
+                    } else {
+                        textbox12 = false;
+                        textbox13 = true;
+                    }
+                }
+                if (textbox13) {
+                    if (gameCamera.getyOffset() < handler.getActiveWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight()) {
+                        gameCamera.setyOffset(gameCamera.getyOffset() + 2);
+                    } else {
+                        handler.getFlags().setCameraOverride(false);
+                        if (!acceptanceStop1Hit) {
+                            if (acceptance.getX() < acceptanceStop1) {
+                                acceptance.setxMove(acceptance.getSpeed());
+                            } else {
+                                acceptance.setxMove(0);
+                                acceptanceStop1Hit = true;
+                            }
+                        } else if (!acceptanceStop2Hit) {
+                            if (acceptance.getY() > acceptanceStop2) {
+                                acceptance.setyMove(-acceptance.getSpeed());
+                            } else {
+                                acceptance.setyMove(0);
+                                acceptanceStop2Hit = true;
+                            }
+                        } else if (!acceptanceStop3Hit) {
+                            if (acceptance.getX() > acceptanceStop3) {
+                                acceptance.setxMove(-acceptance.getSpeed());
+                            } else {
+                                acceptance.setxMove(0);
+                                acceptanceStop3Hit = true;
+                                acceptance.setDirection("up");
+                                ironGate.setOpen(true);
+                            }
+                        } else if (!handler.getTimerManager().timerAdded("gateopen-timer")) {
+                            handler.getTimerManager().addTimer("gateopen-timer", 60);
+                        } else if (handler.getTimerManager().timerExpired("gateopen-timer")) {
+                            if (!textboxHandler13.isFinished()) {
+                                textboxHandler13.render(g);
+                            } else {
+                                dialogueOver = true;
+                                textbox13 = false;
+                            }
+                        }
+                    }
+                }
             }
         } else {
-            if (textbox1) {
-                denial.setyMove(0);
-                anger.setyMove(0);
-                bargaining.setyMove(0);
-                depression.setyMove(0);
-                acceptance.setyMove(0);
-                player.setyMove(0);
-                if (handler.getTimerManager().timerExpired("initial-mansion-timer")) {
-                    if (!textboxHandler1.isFinished()) {
-                        textboxHandler1.render(g);
-                    } else {
-                        textbox2 = true;
-                        textbox1 = false;
-                        handler.getFlags().setCameraOverride(true);
-                    }
-                }
-            }
-            if (textbox2) {
-                if (gameCamera.getyOffset() <= mansion.getY()) {
-                    if (!handler.getTimerManager().timerAdded("mansion-view-timer")) {
-                        handler.getTimerManager().addTimer("mansion-view-timer", 60);
-                    } else if (handler.getTimerManager().timerExpired("mansion-view-timer")) {
-                        if (!textboxHandler2.isFinished()) {
-                            textboxHandler2.render(g);
-                        } else {
-                            textbox3 = true;
-                            textbox2 = false;
-                        }
-                    }
-                }
-            }
-            if (textbox3) {
-                if (!textboxHandler3.isFinished()) {
-                    textboxHandler3.render(g);
-                } else {
-                    textbox4 = true;
-                    textbox3 = false;
-                }
-            }
-            if (textbox4) {
-                if (!textboxHandler4.isFinished()) {
-                    textboxHandler4.render(g);
-                } else {
-                    textbox5 = true;
-                    textbox4 = false;
-                }
-            }
-            if (textbox5) {
-                if (!textboxHandler5.isFinished()) {
-                    textboxHandler5.render(g);
-                } else {
-                    textbox6 = true;
-                    textbox5 = false;
-                }
-            }
-            if (textbox6) {
-                if (!textboxHandler6.isFinished()) {
-                    textboxHandler6.render(g);
-                } else {
-                    textbox7 = true;
-                    textbox6 = false;
-                }
-            }
-            if (textbox7) {
-                if (!textboxHandler7.isFinished()) {
-                    textboxHandler7.render(g);
-                } else {
-                    textbox8 = true;
-                    textbox7 = false;
-                }
-            }
-            if (textbox8) {
-                if (!textboxHandler8.isFinished()) {
-                    textboxHandler8.render(g);
-                } else {
-                    textbox9 = true;
-                    textbox8 = false;
-                }
-            }
-            if (textbox9) {
-                if (!textboxHandler9.isFinished()) {
-                    textboxHandler9.render(g);
-                } else {
-                    textbox10 = true;
-                    textbox9 = false;
-                }
-            }
-            if (textbox10) {
-                if (!textboxHandler10.isFinished()) {
-                    textboxHandler10.render(g);
-                } else {
-                    textbox11 = true;
-                    textbox10 = false;
-                }
-            }
-            if (textbox11) {
-                if (!textboxHandler11.isFinished()) {
-                    textboxHandler11.render(g);
-                } else {
-                    textbox12 = true;
-                    textbox11 = false;
-                }
-            }
-            if (textbox12) {
-                if (!textboxHandler12.isFinished()) {
-                    textboxHandler12.render(g);
-                } else {
-                    textbox12 = false;
-                    textbox13 = true;
-                }
-            }
-            if (textbox13) {
-                if (gameCamera.getyOffset() < handler.getActiveWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight()) {
-                    gameCamera.setyOffset(gameCamera.getyOffset() + 2);
-                } else {
-                    if (!acceptanceStop1Hit) {
-                        if (acceptance.getX() < acceptanceStop1) {
-                            acceptance.setxMove(acceptance.getSpeed());
-                        } else {
-                            acceptance.setxMove(0);
-                            acceptanceStop1Hit = true;
-                        }
-                    } else if (!acceptanceStop2Hit) {
-                        if (acceptance.getY() > acceptanceStop2) {
-                            acceptance.setyMove(-acceptance.getSpeed());
-                        } else {
-                            acceptance.setyMove(0);
-                            acceptanceStop2Hit = true;
-                        }
-                    } else if (!acceptanceStop3Hit) {
-                        if (acceptance.getX() > acceptanceStop3) {
-                            acceptance.setxMove(-acceptance.getSpeed());
-                        } else {
-                            acceptance.setxMove(0);
-                            acceptanceStop3Hit = true;
-                            acceptance.setDirection("up");
-                            ironGate.setOpen(true);
-                        }
-                    } else if (!handler.getTimerManager().timerAdded("gateopen-timer")) {
-                        handler.getTimerManager().addTimer("gateopen-timer", 60);
-                    } else if (handler.getTimerManager().timerExpired("gateopen-timer")) {
-                        if (!textboxHandler13.isFinished()) {
-                            textboxHandler13.render(g);
-                        } else {
-                            dialogueOver = true;
-                            textbox13 = false;
-                        }
-                    }
-                }
-            }
-            if (dialogueOver) {
+            if (!playerOutro) {
                 if (acceptance.getY() > mansion.getY() + mansion.getHeight()) {
                     acceptance.setyMove(-acceptance.getSpeed());
                 } else {
+                    acceptance.setyMove(0);
                     entityManager.removeEntity(acceptance);
                 }
-                if (denial.getY() > mansion.getY() + mansion.getHeight()) {
-                    denial.setyMove(-denial.getSpeed());
-                } else {
-                    entityManager.removeEntity(denial);
+                if (acceptance.getY() < acceptanceStop2 - Tile.TILEHEIGHT / 2f) {
+                    if (denial.getY() > mansion.getY() + mansion.getHeight()) {
+                        denial.setyMove(-denial.getSpeed());
+                    } else {
+                        denial.setyMove(0);
+                        entityManager.removeEntity(denial);
+                    }
+                    if (anger.getY() > mansion.getY() + mansion.getHeight()) {
+                        anger.setyMove(-anger.getSpeed());
+                    } else {
+                        anger.setyMove(0);
+                        entityManager.removeEntity(anger);
+                    }
+                    if (anger.getY() < acceptanceStop2) {
+                        if (bargaining.getY() > mansion.getY() + mansion.getHeight()) {
+                            bargaining.setyMove(-bargaining.getSpeed());
+                        } else {
+                            bargaining.setyMove(0);
+                            entityManager.removeEntity(bargaining);
+                        }
+                        if (depression.getY() > mansion.getY() + mansion.getHeight()) {
+                            depression.setyMove(-depression.getSpeed());
+                        } else {
+                            depression.setyMove(0);
+                            entityManager.removeEntity(depression);
+                        }
+                        if (depression.getY() < acceptanceStop2 + Tile.TILEHEIGHT / 2f) {
+                            if (player.getY() > mansion.getY() + mansion.getHeight() + Tile.TILEHEIGHT / 2f) {
+                                player.setyMove(-player.getCutsceneSpeed());
+                            } else {
+                                playerOutro = true;
+                                player.setyMove(0);
+                                handler.getTimerManager().addTimer("final-mansion-timer1", 60);
+                            }
+                        }
+                    }
                 }
-                if (anger.getY() > mansion.getY() + mansion.getHeight()) {
-                    anger.setyMove(-anger.getSpeed());
-                } else {
-                    entityManager.removeEntity(anger);
+            } else {
+                //player outro
+                if (handler.getTimerManager().timerExpired("final-mansion-timer1") && !playerOutroTextbox) {
+                    handler.getPlayer().setDirection("down");
+                    playerOutroTextbox = true;
                 }
-                if (bargaining.getY() > mansion.getY() + mansion.getHeight()) {
-                    bargaining.setyMove(-bargaining.getSpeed());
-                } else {
-                    entityManager.removeEntity(bargaining);
-                }
-                if (depression.getY() > mansion.getY() + mansion.getHeight()) {
-                    depression.setyMove(-depression.getSpeed());
-                } else {
-                    entityManager.removeEntity(depression);
-                    exit();
+                if (playerOutroTextbox) {
+                    if (!textboxHandler14.isFinished()) {
+                        textboxHandler14.render(g);
+                    } else {
+                        if (player.getY() > mansion.getY() + mansion.getHeight()) {
+                            player.setyMove(-player.getCutsceneSpeed());
+                        } else {
+                            player.setyMove(0);
+                            if (handler.getGame().isFinishedFadingOut()) {
+                                handler.getActiveWorld().transitionFrom(handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_2_ID), 700, 600, GeneralConstants.longLevelTransition);
+                                exit();
+                                return;
+                            }
+                            handler.getActiveWorld().transitionFrom(handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_2_ID), 700, 600, GeneralConstants.longLevelTransition);
+                        }
+                    }
                 }
             }
         }
@@ -384,7 +436,6 @@ public class MansionExteriorCutscene1 implements Cutscene {
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setMansionExteriorCutscene1(false);
-        handler.getFlags().setCameraOverride(false);
         denial.setIgnoreCollision(false);
         anger.setIgnoreCollision(false);
         bargaining.setIgnoreCollision(false);
