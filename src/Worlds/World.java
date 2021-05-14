@@ -13,7 +13,7 @@ import Utils.GeneralUtils;
 
 public abstract class World {
 	protected Handler handler;
-	private int width, height, id;
+	private int width, height, id, fadeInFrames = -1;
 	private int[][] tiles;
 	private String path;
 	protected boolean firstTime = true, fadeIn = true, firstRender = true;
@@ -40,7 +40,7 @@ public abstract class World {
 		if (firstTime) {
 			addEntities();
 			if (fadeIn) {
-				GeneralUtils.levelFadeIn(handler, -1);
+				GeneralUtils.levelFadeIn(handler, fadeInFrames);
 			}
 			firstTime = false;
 		}
@@ -154,5 +154,13 @@ public abstract class World {
 
 	public int getId() {
 		return id;
+	}
+
+	public void setFirstRender(boolean firstRender) {
+		this.firstRender = firstRender;
+	}
+
+	public void setFadeInFrames(int fadeInFrames) {
+		this.fadeInFrames = fadeInFrames;
 	}
 }

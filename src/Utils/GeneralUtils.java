@@ -47,7 +47,6 @@ public class GeneralUtils {
         handler.getGame().setFinishedFadingOut(false);
         handler.getGame().setFadeOut(false, setPlayerFrozen);
         handler.getWorldManager().setActiveWorld(newWorld);
-        handler.setActiveWorld(newWorld);
         newWorld.getEntityManager().getPlayer().setX(newX);
         newWorld.getEntityManager().getPlayer().setY(newY);
     }

@@ -250,4 +250,8 @@ public class Game implements Runnable {
 	public void setFinishedFadingOut(boolean finishedFadingOut) {
 		this.finishedFadingOut = finishedFadingOut;
 	}
+
+	public float getAlpha() {
+		return alpha;
+	}
 }

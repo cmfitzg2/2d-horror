@@ -8,6 +8,7 @@ import Graphics.Assets;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
 import Tiles.Tile;
+import Utils.GeneralUtils;
 import Variables.GeneralConstants;
 import Variables.Handler;
 import Worlds.WorldManager;
@@ -420,9 +421,13 @@ public class MansionExteriorCutscene1 implements Cutscene {
                             if (handler.getGame().isFinishedFadingOut()) {
                                 handler.getActiveWorld().transitionFrom(handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_2_ID), 700, 600, GeneralConstants.longLevelTransition);
                                 exit();
+                                GeneralUtils.levelFadeIn(handler, GeneralConstants.longLevelTransition);
                                 return;
                             }
                             handler.getActiveWorld().transitionFrom(handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_2_ID), 700, 600, GeneralConstants.longLevelTransition);
+                            if (ironGate.isOpen() && handler.getGame().getAlpha() >= 120) {
+                                ironGate.setOpen(false);
+                            }
                         }
                     }
                 }
