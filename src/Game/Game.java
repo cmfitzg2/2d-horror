@@ -203,7 +203,7 @@ public class Game implements Runnable {
 		setFadeIn(true, true);
 		finishedFadingIn = false;
 		alpha = 255;
-		alphaThreshold = 255f / frameCount;
+		alphaThreshold = (float) Math.ceil(255f / frameCount);
 	}
 
 	public boolean isFadeIn() {
@@ -214,7 +214,7 @@ public class Game implements Runnable {
 		setFadeOut(true, true);
 		finishedFadingOut = false;
 		alpha = 0;
-		alphaThreshold = 255f / frameCount;
+		alphaThreshold = (float) Math.ceil(255f / frameCount);
 	}
 
 	public boolean isFadeOut() {

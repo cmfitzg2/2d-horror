@@ -140,19 +140,21 @@ public class Tile {
     public static Tile patternedCarpetBottomLeft = new PatternedCarpetBottomLeft(132);
     public static Tile patternedCarpetBottomMiddle = new PatternedCarpetBottomMiddle(133);
     public static Tile patternedCarpetBottomRight = new PatternedCarpetBottomRight(134);
+    public static Tile patternedCarpetCornerBottomLeft = new PatternedCarpetCornerBottomLeft(135);
+    public static Tile patternedCarpetCornerBottomRight = new PatternedCarpetCornerBottomRight(136);
 
-	public static Tile damagedWallTopLeft = new DamagedWallTopLeft(135);
-	public static Tile damagedWallTopMiddle = new DamagedWallTopMiddle(136);
-	public static Tile damagedWallTopRight = new DamagedWallTopRight(137);
-	public static Tile damagedWallMiddleLeft = new DamagedWallMiddleLeft(138);
-	public static Tile damagedWallMiddleMiddle = new DamagedWallMiddleMiddle(139);
-	public static Tile damagedWallMiddleRight = new DamagedWallMiddleRight(140);
-	public static Tile damagedWallBottomLeft = new DamagedWallBottomLeft(141);
-	public static Tile damagedWallBottomMiddle = new DamagedWallBottomMiddle(142);
-	public static Tile damagedWallBottomRight = new DamagedWallBottomRight(143);
-	public static Tile damagedWallAccent1 = new DamagedWallAccent1(144);
-	public static Tile damagedWallAccent2 = new DamagedWallAccent2(145);
-	public static Tile damagedWallAccent3 = new DamagedWallAccent3(146);
+	public static Tile damagedWallTopLeft = new DamagedWallTopLeft(137);
+	public static Tile damagedWallTopMiddle = new DamagedWallTopMiddle(138);
+	public static Tile damagedWallTopRight = new DamagedWallTopRight(139);
+	public static Tile damagedWallMiddleLeft = new DamagedWallMiddleLeft(140);
+	public static Tile damagedWallMiddleMiddle = new DamagedWallMiddleMiddle(141);
+	public static Tile damagedWallMiddleRight = new DamagedWallMiddleRight(142);
+	public static Tile damagedWallBottomLeft = new DamagedWallBottomLeft(143);
+	public static Tile damagedWallBottomMiddle = new DamagedWallBottomMiddle(144);
+	public static Tile damagedWallBottomRight = new DamagedWallBottomRight(145);
+	public static Tile damagedWallAccent1 = new DamagedWallAccent1(146);
+	public static Tile damagedWallAccent2 = new DamagedWallAccent2(147);
+	public static Tile damagedWallAccent3 = new DamagedWallAccent3(148);
 
 	//CLASS
 	

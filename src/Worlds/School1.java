@@ -18,13 +18,10 @@ public class School1 extends World {
         super(handler, "res/worlds/school1.txt", id, player);
     }
 
-    Rectangle loadzoneClassroom;
-    Rectangle loadzoneOutside;
-
     @Override
     public void checkLoadZones() {
-        loadzoneClassroom = new Rectangle(6 * Tile.TILEWIDTH - (int) handler.getGameCamera().getxOffset(), (int) (11.5 * Tile.TILEHEIGHT) - (int) handler.getGameCamera().getyOffset(), 64, 32);
-        loadzoneOutside = new Rectangle(1342 - (int) handler.getGameCamera().getxOffset(), 1818 - (int) handler.getGameCamera().getyOffset(), 130, 36);
+        Rectangle loadzoneClassroom = new Rectangle(6 * Tile.TILEWIDTH - (int) handler.getGameCamera().getxOffset(), (int) (11.5 * Tile.TILEHEIGHT) - (int) handler.getGameCamera().getyOffset(), 64, 32);
+        Rectangle loadzoneOutside = new Rectangle(21 * Tile.TILEWIDTH - (int) handler.getGameCamera().getxOffset(), (int) (28.5f * Tile.TILEHEIGHT - (int) handler.getGameCamera().getyOffset()), 130, 36);
         if (entityManager.getPlayer().getPlayerRec().intersects(loadzoneClassroom)) {
             transitionFrom(handler.getWorldManager().getWorld(WorldManager.CLASSROOM_1_ID), 23 * Tile.TILEWIDTH, 4 * Tile.TILEHEIGHT);
         }

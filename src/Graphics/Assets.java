@@ -35,7 +35,8 @@ public class Assets {
 	public static BufferedImage patternedWallTopLeft, patternedWallTopMiddle, patternedWallTopRight, patternedWallMiddleLeft, patternedWallMiddleMiddle,
 			patternedWallMiddleRight, patternedWallBottomLeft, patternedWallBottomMiddle, patternedWallBottomRight;
 	public static BufferedImage patternedCarpetTopLeft, patternedCarpetTopMiddle, patternedCarpetTopRight, patternedCarpetMiddleLeft, patternedCarpetMiddleMiddle,
-			patternedCarpetMiddleRight, patternedCarpetBottomLeft, patternedCarpetBottomMiddle, patternedCarpetBottomRight;
+			patternedCarpetMiddleRight, patternedCarpetBottomLeft, patternedCarpetBottomMiddle, patternedCarpetBottomRight,
+			patternedCarpetCornerBottomLeft, patternedCarpetCornerBottomRight;
 	public static BufferedImage damagedWallTopLeft, damagedWallTopMiddle, damagedWallTopRight, damagedWallMiddleLeft, damagedWallMiddleMiddle,
 			damagedWallMiddleRight, damagedWallBottomLeft, damagedWallBottomMiddle, damagedWallBottomRight,
 			damagedWallAccent1, damagedWallAccent2, damagedWallAccent3;
@@ -223,6 +224,8 @@ public class Assets {
 		patternedCarpetBottomLeft = houseWallSheet.crop(width * 6, height * 5, width, height);
 		patternedCarpetBottomMiddle = houseWallSheet.crop(width * 7, height * 5, width, height);
 		patternedCarpetBottomRight = houseWallSheet.crop(width * 8, height * 5, width, height);
+		patternedCarpetCornerBottomLeft = houseWallSheet.crop(width * 6, height * 6, width, height);
+		patternedCarpetCornerBottomRight = houseWallSheet.crop(width * 7, height * 6, width, height);
 
 		bathroomWallTopLeft = houseWallSheet.crop(width * 9, 0, width, height);
 		bathroomWallTopMiddle = houseWallSheet.crop(width * 10, 0, width, height);

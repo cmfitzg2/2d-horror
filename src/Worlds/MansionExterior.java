@@ -5,13 +5,15 @@ import Entities.StaticEntities.*;
 import Graphics.Assets;
 import Tiles.Tile;
 import Utils.GeneralUtils;
-import Variables.Flags;
 import Variables.GeneralConstants;
 import Variables.Handler;
+
+import java.awt.*;
 
 public class MansionExterior extends World {
 
     private boolean initialCutsceneTransition = true;
+    private Rectangle loadzoneMansion;
 
     public MansionExterior(Handler handler, int id, Player player) {
         super(handler, "res/worlds/mansion-exterior.txt", id, player);
@@ -19,7 +21,26 @@ public class MansionExterior extends World {
 
     @Override
     public void checkLoadZones() {
+        if (!handler.getFlags().isMansionExteriorCutscene1()) {
+            loadzoneMansion = new Rectangle(19 * Tile.TILEWIDTH - (int) handler.getGameCamera().getxOffset(), (int) (18 * Tile.TILEHEIGHT - (int) handler.getGameCamera().getyOffset()),
+                    Tile.TILEWIDTH * 2, Tile.TILEHEIGHT / 4);
+            if (entityManager.getPlayer().getPlayerRec().intersects(loadzoneMansion)) {
+                transitionFrom(handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT);
+            }
+        }
+    }
 
+    @Override
+    public void render(Graphics g) {
+        if (firstRender) {
+            firstRender = false;
+            return;
+        }
+        renderTiles(g);
+        entityManager.render(g);
+        if (null != loadzoneMansion) {
+            g.fillRect(loadzoneMansion.x, loadzoneMansion.y, loadzoneMansion.width, loadzoneMansion.height);
+        }
     }
 
     @Override
@@ -42,7 +63,7 @@ public class MansionExterior extends World {
     @Override
     protected void load() {
         firstRender = true;
-        fadeIn = false;
+        fadeIn = !handler.getFlags().isMansionExteriorCutscene1();
     }
 
     @Override
