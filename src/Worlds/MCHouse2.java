@@ -83,7 +83,7 @@ public class MCHouse2 extends World {
                 Tile.TILEHEIGHT * 6 + 10 - Assets.firePlace.getHeight(), Assets.firePlace.getWidth() * 2, Assets.firePlace.getHeight() * 2, "fireplace-mchouse2"));
 
         entityManager.addEntity(new Door(handler, 20 * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT, 64, 96, null,
-                handler.getWorldManager().getWorld(WorldManager.MANSION_EXTERIOR_ID), 6 * Tile.TILEWIDTH, (int) (10 * Tile.TILEHEIGHT),
+                handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT,
                 Door.PLAIN_WOOD, false, GeneralConstants.levelTransitionFrames, false));
     }
 

@@ -1,10 +1,12 @@
 package Worlds;
 
 import Entities.Creatures.*;
+import Entities.StaticEntities.MansionStairs;
 import Tiles.Tile;
 import Utils.GeneralUtils;
 import Variables.Flags;
 import Variables.Handler;
+import Graphics.Assets;
 
 import java.awt.*;
 
@@ -26,7 +28,10 @@ public class MansionInterior1 extends World {
 
     @Override
     protected void addEntities() {
-
+        entityManager.addEntity(new MansionStairs(handler, 25 * Tile.TILEWIDTH, 7 * Tile.TILEHEIGHT - Assets.mansionStairsUpRight.getHeight(),
+                Assets.mansionStairsUpRight.getWidth() * 2, Assets.mansionStairsUpRight.getHeight() * 2, null,
+                handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT,
+                MansionStairs.STYLE_UP_RIGHT));
     }
 
     @Override

@@ -105,7 +105,7 @@ public class Door extends StaticEntity {
                     (int) (y - handler.getGameCamera().getyOffset() - 12), 96, 108, null);
         }
         if (includeStairs) {
-            g.drawImage(Assets.stairs, (int) (x - handler.getGameCamera().getxOffset()),
+            g.drawImage(Assets.doorStairs, (int) (x - handler.getGameCamera().getxOffset()),
                     (int) (y - handler.getGameCamera().getyOffset() + doorHeight), 64, 48, null);
         }
     }

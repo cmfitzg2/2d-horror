@@ -65,7 +65,7 @@ public class BellTower extends StaticEntity {
                     (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         }
         if (includeStairs) {
-            g.drawImage(Assets.stairs, (int) (x - handler.getGameCamera().getxOffset() + stairsX),
+            g.drawImage(Assets.doorStairs, (int) (x - handler.getGameCamera().getxOffset() + stairsX),
                     (int) (y - handler.getGameCamera().getyOffset() + stairsY), 64, 48, null);
         }
     }

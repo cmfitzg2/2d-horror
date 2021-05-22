@@ -44,7 +44,7 @@ public class Assets {
 			wallBorderCornerBottomLeft, wallBorderCornerTopRight, wallBorderCornerTopLeft, wallBorderRightBottom,
 			wallBorderLeftBottom, wallBorderRightTop, wallBorderLeftTop, wallBorderTop, wallBorderRight, wallBorderLeft,
 			wallBorderBottom;
-	public static BufferedImage closedDoorOne, closedDoorTwo, stairs, doorwayArch, bathroomDoorMale, bathroomDoorFemale,
+	public static BufferedImage closedDoorOne, closedDoorTwo, doorStairs, doorwayArch, bathroomDoorMale, bathroomDoorFemale,
 			locker, windowOne, windowTwo, chimney, bellTower, belltowerTransparent;
 	public static BufferedImage bedOne, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
 	public static BufferedImage windowLight, windowDark, tableLampOff, tableLampOn;
@@ -70,6 +70,7 @@ public class Assets {
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
 	public static BufferedImage houseDefault, houseDefaultTransparent, mansion, mansionTransparent, school, schoolTransparent;
 	public static BufferedImage frontGateClosed, frontGateOpen, gateTop, gateBot, gateSide;
+	public static BufferedImage mansionStairsUpRight;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, well, furnaceLit;
 	public static BufferedImage[] activeInventoryHeader;
@@ -346,7 +347,7 @@ public class Assets {
 		SpriteSheet staticEntities = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/sheet.png"));
 		windowOne = staticEntities.crop(0, 0, width, 44);
 		windowTwo = staticEntities.crop(0, 44, width, height);
-		stairs = staticEntities.crop(0, 44 + height, width, height - height / 4);
+		doorStairs = staticEntities.crop(0, 44 + height, width, height - height / 4);
 		chimney = staticEntities.crop(0, 44 + height + (height - height / 4), width, 30);
 		closedDoorOne = staticEntities.crop(0, 44 + height + (height - height / 4) + 30, width, height + height / 2);
 		closedDoorTwo = staticEntities.crop(0, 44 + height + (height - height / 4) + 30 + height + (height / 2), width, 46);
@@ -729,5 +730,6 @@ public class Assets {
 		gateTop = ImageLoader.loadImage("/textures/static-entities/gate-top.png");
 		gateBot = ImageLoader.loadImage("/textures/static-entities/gate-bot.png");
 		gateSide = ImageLoader.loadImage("/textures/static-entities/gate-side.png");
+		mansionStairsUpRight = ImageLoader.loadImage("/textures/static-entities/mansion-stairs-up-right.png");
 	}
 }

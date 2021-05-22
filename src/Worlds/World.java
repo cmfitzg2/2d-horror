@@ -88,6 +88,8 @@ public abstract class World {
 		}
 	}
 
+	//TODO: I'm pretty sure a lot of the heavy lifting here can be done a single time on load rather than every frame.
+	//TODO: Doing it that way might mean the tiles are immutable unless I do a good job with the setters.
 	public void renderTiles(Graphics g) {
 		int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILEWIDTH);
 		int xEnd = (int) Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth()) / Tile.TILEWIDTH + 1);
