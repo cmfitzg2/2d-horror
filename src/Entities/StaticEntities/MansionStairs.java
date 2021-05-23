@@ -6,10 +6,11 @@ import Variables.Handler;
 import Worlds.World;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class MansionStairs extends StaticEntity {
 
-    public static final int STYLE_UP_RIGHT = 0;
+    public static final int STYLE_UP_RIGHT = 0, STYLE_DOWN_LEFT = 1;
     private int style;
     private float xScale, yScale;
     private World destination;
@@ -22,11 +23,18 @@ public class MansionStairs extends StaticEntity {
         this.newX = newX;
         this.newY = newY;
         this.style = style;
-        xScale = (float) width / Assets.mansionStairsUpRight.getWidth();
-        yScale = (float) height / Assets.mansionStairsUpRight.getHeight();
-        addBoundingBox(new Rectangle(0, (int) (38 * yScale), width, (int) (6 * yScale)));
-        addBoundingBox(new Rectangle((int) (17 * xScale), (int) (68 * yScale), (int) (47 * xScale), (int) (12 * yScale)));
-        addBoundingBox(new Rectangle((int) (25 * xScale), (int) (38 * yScale), (int) (40 * xScale), (int) (40 * yScale)));
+        if (style == STYLE_UP_RIGHT) {
+            xScale = (float) width / Assets.mansionStairsUpRight.getWidth();
+            yScale = (float) height / Assets.mansionStairsUpRight.getHeight();
+            addBoundingBox(new Rectangle(0, (int) (38 * yScale), width, (int) (6 * yScale)));
+            addBoundingBox(new Rectangle((int) (17 * xScale), (int) (68 * yScale), (int) (47 * xScale), (int) (12 * yScale)));
+            addBoundingBox(new Rectangle((int) (25 * xScale), (int) (38 * yScale), (int) (40 * xScale), (int) (40 * yScale)));
+        } else if (style == STYLE_DOWN_LEFT) {
+            xScale = (float) width / Assets.mansionStairsDownLeft.getWidth();
+            yScale = (float) height / Assets.mansionStairsDownLeft.getHeight();
+            addBoundingBox(new Rectangle(0, (int) (12 * yScale), width, (int) (5 * yScale)));
+            addBoundingBox(new Rectangle(0, height - (int) (1 * yScale), width, (int) (1 * yScale)));
+        }
     }
 
     @Override
@@ -51,6 +59,10 @@ public class MansionStairs extends StaticEntity {
             levelTransition = new Rectangle((int) x + (int) (xScale * 20) - (int) handler.getGameCamera().getxOffset(),
                     (int) y + (int) (yScale * 40) - (int) handler.getGameCamera().getyOffset(),
                     (int) (16 * xScale), (int) (20 * yScale));
+        } else if (style == STYLE_DOWN_LEFT) {
+            levelTransition = new Rectangle((int) x + (int) (xScale * 4) - (int) handler.getGameCamera().getxOffset(),
+                    (int) y + (int) (yScale * 17) - (int) handler.getGameCamera().getyOffset(),
+                    (int) (45 * xScale), (int) (31 * yScale));
         }
         if (levelTransition != null) {
             if (handler.getPlayer().getPlayerRec().intersects(levelTransition)) {
@@ -61,8 +73,14 @@ public class MansionStairs extends StaticEntity {
 
     @Override
     public void render(Graphics g) {
+        BufferedImage imageStyle = null;
         if (style == STYLE_UP_RIGHT) {
-            g.drawImage(Assets.mansionStairsUpRight, (int) (x - handler.getGameCamera().getxOffset()),
+            imageStyle = Assets.mansionStairsUpRight;
+        } else if (style == STYLE_DOWN_LEFT) {
+            imageStyle = Assets.mansionStairsDownLeft;
+        }
+        if (null != imageStyle) {
+            g.drawImage(imageStyle, (int) (x - handler.getGameCamera().getxOffset()),
                     (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         }
     }
@@ -89,10 +107,18 @@ public class MansionStairs extends StaticEntity {
 
     @Override
     public int renderVsEntity(Entity e) {
-        if (e.getY() + e.getHeight() > y + yScale * 38) {
-            return 1;
+        if (style == STYLE_UP_RIGHT) {
+            if (e.getY() + e.getHeight() > y + yScale * 38) {
+                return 1;
+            }
+            return -1;
+        } else if (style == STYLE_DOWN_LEFT) {
+            if (e.getY() + e.getHeight() > y + yScale * 16) {
+                return 1;
+            }
+            return -1;
         }
-        return -1;
+        return 0;
     }
 
     @Override

@@ -70,7 +70,7 @@ public class Assets {
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
 	public static BufferedImage houseDefault, houseDefaultTransparent, mansion, mansionTransparent, school, schoolTransparent;
 	public static BufferedImage frontGateClosed, frontGateOpen, gateTop, gateBot, gateSide;
-	public static BufferedImage mansionStairsUpRight;
+	public static BufferedImage mansionStairsUpRight, mansionStairsDownLeft;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, well, furnaceLit;
 	public static BufferedImage[] activeInventoryHeader;
@@ -552,6 +552,10 @@ public class Assets {
 		frontGateOpen = frontGateSheet.crop(0, 0, 56, 83);
 		frontGateClosed = frontGateSheet.crop(0, 83, 56, 83);
 
+		SpriteSheet mansionStairsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/mansion-stairs-sheet.png"));
+		mansionStairsUpRight = mansionStairsSheet.crop(0, 0, width * 2, 79);
+		mansionStairsDownLeft = mansionStairsSheet.crop(0, 79, width * 2, 48);
+
 		SpriteSheet mcSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/characters/mc-sheet-transparent.png"));
 		playerDownTransparent = mcSheetTransparent.crop(0, 0, width, height);
 		playerUpTransparent = mcSheetTransparent.crop(0, height, width, height);
@@ -730,6 +734,5 @@ public class Assets {
 		gateTop = ImageLoader.loadImage("/textures/static-entities/gate-top.png");
 		gateBot = ImageLoader.loadImage("/textures/static-entities/gate-bot.png");
 		gateSide = ImageLoader.loadImage("/textures/static-entities/gate-side.png");
-		mansionStairsUpRight = ImageLoader.loadImage("/textures/static-entities/mansion-stairs-up-right.png");
 	}
 }

@@ -38,9 +38,6 @@ public class MansionExterior extends World {
         }
         renderTiles(g);
         entityManager.render(g);
-        if (null != loadzoneMansion) {
-            g.fillRect(loadzoneMansion.x, loadzoneMansion.y, loadzoneMansion.width, loadzoneMansion.height);
-        }
     }
 
     @Override
@@ -69,7 +66,7 @@ public class MansionExterior extends World {
     @Override
     protected void transitionTo() {
         if (!handler.getGame().isFadeIn()) {
-            if (initialCutsceneTransition) {
+            if (initialCutsceneTransition && handler.getFlags().isMansionExteriorCutscene1()) {
                 GeneralUtils.levelFadeIn(handler, GeneralConstants.veryLongLevelTransition);
             } else if (fadeIn) {
                 GeneralUtils.levelFadeIn(handler, -1);

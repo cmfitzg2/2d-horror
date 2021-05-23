@@ -18,6 +18,8 @@ public class Door extends StaticEntity {
     private World destination;
     private float newX, newY;
     public static final int PLAIN_WOOD = 0, STAIRS = 1, ARCH = 2, STAIRS_ARCH = 3, BATHROOM_MALE = 4, BATHROOM_FEMALE = 5;
+    public static final boolean VISIBLE = false, INVISIBLE = true;
+    public static final boolean LOCKED = true, UNLOCKED = false;
     private TextboxHandler textboxHandler;
 
     public Door(Handler handler, float x, float y, int width, int height, String uniqueName,

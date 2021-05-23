@@ -3,7 +3,6 @@ package Worlds;
 import Entities.Creatures.*;
 import Entities.StaticEntities.MansionStairs;
 import Tiles.Tile;
-import Utils.GeneralUtils;
 import Variables.Flags;
 import Variables.Handler;
 import Graphics.Assets;
@@ -30,7 +29,7 @@ public class MansionInterior1 extends World {
     protected void addEntities() {
         entityManager.addEntity(new MansionStairs(handler, 25 * Tile.TILEWIDTH, 7 * Tile.TILEHEIGHT - Assets.mansionStairsUpRight.getHeight(),
                 Assets.mansionStairsUpRight.getWidth() * 2, Assets.mansionStairsUpRight.getHeight() * 2, null,
-                handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT,
+                handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_2_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 15 * Tile.TILEHEIGHT,
                 MansionStairs.STYLE_UP_RIGHT));
     }
 
@@ -41,16 +40,5 @@ public class MansionInterior1 extends World {
         handler.getPlayer().setAmbientLight(Flags.TIME_OF_DAY_SOME_DARK);
         fadeIn = !handler.getFlags().isMansionExteriorCutscene1();
         handler.getFlags().setMansionExteriorCutscene1(false);
-    }
-
-    @Override
-    protected void transitionTo() {
-        if (!handler.getGame().isFadeIn() && fadeIn) {
-            GeneralUtils.levelFadeIn(handler, -1);
-        }
-        if (handler.getGame().isFadeIn() && handler.getGame().isFinishedFadingIn()) {
-            GeneralUtils.stopLevelFadeIn(handler, false);
-            transitioningTo = false;
-        }
     }
 }

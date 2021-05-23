@@ -18,7 +18,7 @@ public class WorldManager {
     private HashMap<Integer, World> worlds;
     private World activeWorld;
     public static final int MC_HOUSE_1_ID = 1, MC_HOUSE_2_ID = 2, OVERWORLD_1_ID = 3, SCHOOL_1_ID = 4, CLASSROOM_1_ID = 5,
-            BATHROOM_1_ID = 6, BATHROOM_2_ID = 7, MANSION_EXTERIOR_ID = 8, MANSION_INTERIOR_1_ID = 9;
+            BATHROOM_1_ID = 6, BATHROOM_2_ID = 7, MANSION_EXTERIOR_ID = 8, MANSION_INTERIOR_1_ID = 9, MANSION_INTERIOR_2_ID = 10;
 
     public WorldManager(Handler handler, World firstWorld) {
         this.handler = handler;
@@ -33,6 +33,7 @@ public class WorldManager {
         worlds.putIfAbsent(BATHROOM_1_ID, new Bathroom1(handler, BATHROOM_1_ID, null));
         worlds.putIfAbsent(MANSION_EXTERIOR_ID, new MansionExterior(handler, MANSION_EXTERIOR_ID, null));
         worlds.putIfAbsent(MANSION_INTERIOR_1_ID, new MansionInterior1(handler, MANSION_INTERIOR_1_ID, null));
+        worlds.putIfAbsent(MANSION_INTERIOR_2_ID, new MansionInterior2(handler, MANSION_INTERIOR_2_ID, null));
         setActiveWorld(firstWorld);
     }
 
