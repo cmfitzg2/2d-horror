@@ -179,7 +179,7 @@ public class Player extends Creature {
         inventory.render(g);
         g.setColor(Color.WHITE);
         g.setFont(f);
-        g.drawString("Current (x,y): (" + x + ", " + y + ")", 16, handler.getHeight() - 16);
+        g.drawString("Current (x,y): (" + x + ", " + y + ")", 16, handler.getHeight() - 70);
         g.drawString("Current mouse (x,y): ("  + (handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset())
                 + ", " + (handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset()) + ")", 16, handler.getHeight() - 100);
     }

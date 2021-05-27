@@ -11,7 +11,7 @@ public class House extends StaticEntity {
 
     private float xScale, yScale;
     private Rectangle behindHouse;
-    public static int STYLE_DEFAULT = 0;
+    public static final int STYLE_DEFAULT = 0;
     private int style;
 
     public House(Handler handler, float x, float y, int width, int height, String uniqueName, int style) {

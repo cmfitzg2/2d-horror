@@ -46,7 +46,7 @@ public class Assets {
 			wallBorderBottom;
 	public static BufferedImage closedDoorOne, closedDoorTwo, doorStairs, doorwayArch, bathroomDoorMale, bathroomDoorFemale,
 			locker, windowOne, windowTwo, chimney, bellTower, belltowerTransparent;
-	public static BufferedImage bedOne, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
+	public static BufferedImage blueSingleBed, redSingleBed, redDoubleBed, redMasterBed, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
 	public static BufferedImage windowLight, windowDark, tableLampOff, tableLampOn;
 	public static BufferedImage yellowLight;
 	public static BufferedImage headDown, headUp, headLeft, headRight;
@@ -352,12 +352,14 @@ public class Assets {
 		closedDoorOne = staticEntities.crop(0, 44 + height + (height - height / 4) + 30, width, height + height / 2);
 		closedDoorTwo = staticEntities.crop(0, 44 + height + (height - height / 4) + 30 + height + (height / 2), width, 46);
 
-		SpriteSheet chairsBedSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/chairs-bed-sheet.png"));
-		bedOne = chairsBedSheet.crop(0, 0, 48, 81);
-		chairOneDown = chairsBedSheet.crop(48, 0, 26, 32);
-		chairOneUp = chairsBedSheet.crop(48, 32, 26, 24);
-		chairOneRight = chairsBedSheet.crop(48, 56, 26, 32);
-		chairOneLeft = chairsBedSheet.crop(48, 88, 26, 32);
+		SpriteSheet insideAccentsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/inside-accents-sheet-sharm.png"));
+		blueSingleBed = insideAccentsSheet.crop(200, 303, 48, 81);
+		chairOneDown = insideAccentsSheet.crop(227, 400, 26, height);
+		chairOneUp = insideAccentsSheet.crop(163, 488, 26, 24);
+		chairOneRight = insideAccentsSheet.crop(101, 480, 22, height);
+		chairOneLeft = insideAccentsSheet.crop(133, 480, 22, height);
+		redSingleBed = insideAccentsSheet.crop(72, 302, 48, 82);
+		redDoubleBed = insideAccentsSheet.crop(0, 302, width * 2, 82);
 
 		SpriteSheet buttonPuzzleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/buttonPuzzleSheet.png"));
 		buttonPuzzleOff = buttonPuzzleSheet.crop(0, 0, 216, 216);
