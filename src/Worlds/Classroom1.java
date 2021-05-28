@@ -27,9 +27,9 @@ public class Classroom1 extends World {
                 handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID), 6 * Tile.TILEWIDTH, (int) (10 * Tile.TILEHEIGHT),
                 Door.PLAIN_WOOD, false, GeneralConstants.levelTransitionFrames, false));
         if (handler.getFlags().isClassroomCutscene1()) {
-            entityManager.addEntity(new Chalkboard(handler, 13.0f * Tile.TILEWIDTH, 42 + Tile.TILEHEIGHT, Assets.chalkboard[0].getWidth(), Assets.chalkboard[0].getHeight(), "chalkboard-classroom1", 0));
+            entityManager.addEntity(new Chalkboard(handler, 13.0f * Tile.TILEWIDTH, 42 + Tile.TILEHEIGHT, Assets.chalkboard[0].getWidth(), Assets.chalkboard[0].getHeight(), "chalkboard-classroom1", Chalkboard.STYLE_INITIAL));
         } else {
-            entityManager.addEntity(new Chalkboard(handler, 13.0f * Tile.TILEWIDTH, 42 + Tile.TILEHEIGHT, Assets.chalkboard[1].getWidth(), Assets.chalkboard[1].getHeight(), "chalkboard-classroom1", 1));
+            entityManager.addEntity(new Chalkboard(handler, 13.0f * Tile.TILEWIDTH, 42 + Tile.TILEHEIGHT, Assets.chalkboard[1].getWidth(), Assets.chalkboard[1].getHeight(), "chalkboard-classroom1", Chalkboard.STYLE_DRAWN));
         }
         entityManager.addEntity(new TeacherDesk(handler, 570, 313, Assets.teacherDesk.getWidth() * 2, Assets.teacherDesk.getHeight() * 2, "teacherdesk-classroom1"));
         entityManager.addEntity(new StudentDesk(handler, 13.0f * Tile.TILEWIDTH - 147 - Assets.emptyDesk.getWidth(), 440, Assets.emptyDesk.getWidth() * 2, Assets.emptyDesk.getHeight() * 2, "bargainingdesk-classroom1", StudentDesk.BARGAINING, handler.getFlags().isClassroomCutscene1()));

@@ -71,6 +71,7 @@ public class Assets {
 	public static BufferedImage houseDefault, houseDefaultTransparent, mansion, mansionTransparent, school, schoolTransparent;
 	public static BufferedImage frontGateClosed, frontGateOpen, gateTop, gateBot, gateSide;
 	public static BufferedImage mansionStairsUpRight, mansionStairsDownLeft;
+	public static BufferedImage flowerVaseEmpty, flowerVaseSingle, flowerVaseBouquet;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, well, furnaceLit;
 	public static BufferedImage[] activeInventoryHeader;
@@ -360,6 +361,10 @@ public class Assets {
 		chairOneLeft = insideAccentsSheet.crop(133, 480, 22, height);
 		redSingleBed = insideAccentsSheet.crop(72, 302, 48, 82);
 		redDoubleBed = insideAccentsSheet.crop(0, 302, width * 2, 82);
+
+		flowerVaseEmpty = insideAccentsSheet.crop(147, 129, 12, 23);
+		flowerVaseSingle = insideAccentsSheet.crop(163, 129, 8, 23);
+		flowerVaseBouquet = insideAccentsSheet.crop(173, 123, 19, 29);
 
 		SpriteSheet buttonPuzzleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/buttonPuzzleSheet.png"));
 		buttonPuzzleOff = buttonPuzzleSheet.crop(0, 0, 216, 216);

@@ -9,16 +9,17 @@ import java.awt.*;
 
 public class Chalkboard extends StaticEntity {
 
-    private int type;
+    private int style;
     private TextboxHandler textboxHandler;
+    public static final int STYLE_INITIAL = 0, STYLE_DRAWN = 1;
 
-    public Chalkboard(Handler handler, float x, float y, int width, int height, String uniqueName, int type) {
+    public Chalkboard(Handler handler, float x, float y, int width, int height, String uniqueName, int style) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = width;
         bounds.height = height;
-        this.type = type;
+        this.style = style;
     }
 
     @Override
@@ -47,7 +48,7 @@ public class Chalkboard extends StaticEntity {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.chalkboard[type], (int) (x - handler.getGameCamera().getxOffset()),
+        g.drawImage(Assets.chalkboard[style], (int) (x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
     }
 
@@ -78,7 +79,7 @@ public class Chalkboard extends StaticEntity {
         return false;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setStyle(int style) {
+        this.style = style;
     }
 }

@@ -107,7 +107,7 @@ public class ClassroomCutscene1 implements Cutscene {
                     if (!handler.getGame().isFadeOut()) {
                         handler.getGame().fadeOut(255);
                     } else if (handler.getGame().isFinishedFadingOut()) {
-                        chalkboard.setType(1);
+                        chalkboard.setStyle(Chalkboard.STYLE_DRAWN);
                         teacher.setX(chalkboard.getX() + chalkboard.getWidth());
                         player.setX(playerDesk.getX() - playerDesk.getWidth());
                         player.setY(playerDesk.getY());
