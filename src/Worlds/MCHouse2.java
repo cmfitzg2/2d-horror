@@ -5,9 +5,7 @@ import Cutscenes.CutsceneManager;
 import Cutscenes.MCHouseNightCutscene2;
 import Entities.Creatures.Acceptance;
 import Entities.Creatures.Player;
-import Entities.StaticEntities.Door;
-import Entities.StaticEntities.Fireplace;
-import Entities.StaticEntities.FlowerVase;
+import Entities.StaticEntities.*;
 import Tiles.Tile;
 import Variables.GeneralConstants;
 import Variables.Handler;
@@ -87,9 +85,6 @@ public class MCHouse2 extends World {
                 handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT,
                 Door.PLAIN_WOOD, false, GeneralConstants.levelTransitionFrames, false));
 
-        entityManager.addEntity(new FlowerVase(handler, 20 * Tile.TILEWIDTH, 12 * Tile.TILEHEIGHT, Assets.flowerVaseEmpty.getWidth() * 3, Assets.flowerVaseEmpty.getHeight() * 3, null, FlowerVase.STYLE_EMPTY));
-        entityManager.addEntity(new FlowerVase(handler, 22 * Tile.TILEWIDTH, 12 * Tile.TILEHEIGHT, Assets.flowerVaseSingle.getWidth() * 3, Assets.flowerVaseSingle.getHeight() * 3, null, FlowerVase.STYLE_SINGLE));
-        entityManager.addEntity(new FlowerVase(handler, 24 * Tile.TILEWIDTH, 12 * Tile.TILEHEIGHT, Assets.flowerVaseBouquet.getWidth() * 3, Assets.flowerVaseBouquet.getHeight() * 3, null, FlowerVase.STYLE_BOUQUET));
     }
 
     @Override

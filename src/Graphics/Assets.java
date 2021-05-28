@@ -72,6 +72,8 @@ public class Assets {
 	public static BufferedImage frontGateClosed, frontGateOpen, gateTop, gateBot, gateSide;
 	public static BufferedImage mansionStairsUpRight, mansionStairsDownLeft;
 	public static BufferedImage flowerVaseEmpty, flowerVaseSingle, flowerVaseBouquet;
+	public static BufferedImage plantVasePlant1, plantVaseFlowers, plantVasePlant2;
+	public static BufferedImage barrel;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, well, furnaceLit;
 	public static BufferedImage[] activeInventoryHeader;
@@ -365,6 +367,12 @@ public class Assets {
 		flowerVaseEmpty = insideAccentsSheet.crop(147, 129, 12, 23);
 		flowerVaseSingle = insideAccentsSheet.crop(163, 129, 8, 23);
 		flowerVaseBouquet = insideAccentsSheet.crop(173, 123, 19, 29);
+
+		plantVasePlant1 = insideAccentsSheet.crop(32, 65, 30, 48);
+		plantVaseFlowers = insideAccentsSheet.crop(66, 75, 28, 38);
+		plantVasePlant2 = insideAccentsSheet.crop(98, 64, width, 48);
+
+		barrel = insideAccentsSheet.crop(386, 453, 28, 43);
 
 		SpriteSheet buttonPuzzleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/buttonPuzzleSheet.png"));
 		buttonPuzzleOff = buttonPuzzleSheet.crop(0, 0, 216, 216);
