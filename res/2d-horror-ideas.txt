@@ -54,6 +54,11 @@ denial
 		-can't be won, eventually the event will happen in spite of player's efforts
 		-autoclicker -> you can't cheat death, you'll never move on like this, etc.
 
+	area: basement
+	    -has a puzzle involving turning out all the lights
+	        -and waiting?
+	        -and navigating through a room?
+
 anger
 	name: ira? literally latin for anger
 	character:

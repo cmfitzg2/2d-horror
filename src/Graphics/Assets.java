@@ -46,7 +46,9 @@ public class Assets {
 			wallBorderBottom;
 	public static BufferedImage closedDoorOne, closedDoorTwo, doorStairs, doorwayArch, bathroomDoorMale, bathroomDoorFemale,
 			locker, windowOne, windowTwo, chimney, bellTower, belltowerTransparent;
-	public static BufferedImage blueSingleBed, redSingleBed, redDoubleBed, redMasterBed, chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
+	public static BufferedImage blueSingleBed, redSingleBed, redDoubleBed, redMasterBed;
+	public static BufferedImage chairOneDown, chairOneUp, chairOneLeft, chairOneRight;
+	public static BufferedImage couchOneDown, couchOneUp, couchOneLeft, couchOneRight;
 	public static BufferedImage windowLight, windowDark, tableLampOff, tableLampOn;
 	public static BufferedImage yellowLight;
 	public static BufferedImage headDown, headUp, headLeft, headRight;
@@ -375,6 +377,11 @@ public class Assets {
 		barrel = insideAccentsSheet.crop(386, 453, 28, 43);
 		sideTableHorizontal = insideAccentsSheet.crop(140, 239, 48, 27);
 		sideTableVertical = insideAccentsSheet.crop(108, 225, 16, 46);
+
+		couchOneUp = insideAccentsSheet.crop(0, 401, 64, 31);
+		couchOneRight = insideAccentsSheet.crop(65, 384, 28, 64);
+		couchOneLeft = insideAccentsSheet.crop(99, 384, 28, 64);
+		couchOneDown = insideAccentsSheet.crop(128, 392, 64, 44);
 
 		SpriteSheet buttonPuzzleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/buttonPuzzleSheet.png"));
 		buttonPuzzleOff = buttonPuzzleSheet.crop(0, 0, 216, 216);

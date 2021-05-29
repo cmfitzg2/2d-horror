@@ -81,9 +81,14 @@ public class MCHouse2 extends World {
         entityManager.addEntity(new Fireplace(handler, 20 * Tile.TILEWIDTH - Assets.firePlace.getWidth(),
                 Tile.TILEHEIGHT * 6 + 10 - Assets.firePlace.getHeight(), Assets.firePlace.getWidth() * 2, Assets.firePlace.getHeight() * 2, "fireplace-mchouse2"));
 
-        entityManager.addEntity(new Door(handler, 20 * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT, 64, 96, null,
+        entityManager.addEntity(new Door(handler, 20 * Tile.TILEWIDTH, 8 * Tile.TILEHEIGHT, 64, 96, null,
                 handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT,
                 Door.PLAIN_WOOD, false, GeneralConstants.levelTransitionFrames, false));
+
+        entityManager.addEntity(new Couch(handler, 13 * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT, Assets.couchOneLeft.getWidth() * 2, Assets.couchOneLeft.getHeight() * 2, null, Couch.STYLE_LEFT));
+        entityManager.addEntity(new Couch(handler, 16 * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT, Assets.couchOneRight.getWidth() * 2, Assets.couchOneRight.getHeight() * 2, null, Couch.STYLE_RIGHT));
+        entityManager.addEntity(new Couch(handler, 13 * Tile.TILEWIDTH, 13 * Tile.TILEHEIGHT, Assets.couchOneUp.getWidth() * 2, Assets.couchOneUp.getHeight() * 2, null, Couch.STYLE_UP));
+        entityManager.addEntity(new Couch(handler, 16 * Tile.TILEWIDTH, 13 * Tile.TILEHEIGHT, Assets.couchOneDown.getWidth() * 2, Assets.couchOneDown.getHeight() * 2, null, Couch.STYLE_DOWN));
     }
 
     @Override
