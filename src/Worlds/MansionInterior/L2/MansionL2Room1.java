@@ -2,6 +2,7 @@ package Worlds.MansionInterior.L2;
 
 import Entities.Creatures.*;
 import Entities.StaticEntities.MansionStairs;
+import Entities.StaticEntities.SideTable;
 import Tiles.Tile;
 import Variables.Flags;
 import Variables.Handler;
@@ -49,6 +50,10 @@ public class MansionL2Room1 extends World {
                 Assets.mansionStairsUpRight.getWidth() * 2, Assets.mansionStairsUpRight.getHeight() * 2, null,
                 handler.getWorldManager().getWorld(WorldManager.MANSION_L3_ROOM_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 15 * Tile.TILEHEIGHT,
                 MansionStairs.STYLE_UP_RIGHT));
+
+        entityManager.addEntity(new SideTable(handler, 18 * Tile.TILEWIDTH - Assets.sideTableHorizontal.getWidth(), 5 * Tile.TILEHEIGHT,
+                Assets.sideTableHorizontal.getWidth() * 2, Assets.sideTableHorizontal.getHeight() * 2,
+                "sidetable-bouquet-mansionL2Room1", SideTable.STYLE_HORIZONTAL, SideTable.ACCENT_BOUQUET));
     }
 
     @Override

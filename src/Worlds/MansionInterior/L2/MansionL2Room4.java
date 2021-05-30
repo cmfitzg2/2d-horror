@@ -50,7 +50,7 @@ public class MansionL2Room4 extends World {
                 null, Couch.STYLE_LEFT));
         entityManager.addEntity(new SideTable(handler, 18 * Tile.TILEWIDTH - Assets.sideTableHorizontal.getWidth(), 17 * Tile.TILEHEIGHT - Assets.sideTableHorizontal.getHeight() * 2,
                 Assets.sideTableHorizontal.getWidth() * 2, Assets.sideTableHorizontal.getHeight() * 2,
-                null, SideTable.STYLE_HORIZONTAL, SideTable.ACCENT_EMPTY_VASE));
+                "sidetable-vase-mansionL2Room4", SideTable.STYLE_HORIZONTAL, SideTable.ACCENT_EMPTY_VASE));
     }
 
     @Override

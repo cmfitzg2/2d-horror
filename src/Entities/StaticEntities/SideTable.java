@@ -1,6 +1,12 @@
 package Entities.StaticEntities;
 
 import Graphics.Assets;
+import Items.Bouquet;
+import Items.Inventory;
+import Items.Item;
+import Items.Painting;
+import Textboxes.TextboxHandler;
+import Variables.GeneralConstants;
 import Variables.Handler;
 
 import java.awt.*;
@@ -12,6 +18,9 @@ public class SideTable extends StaticEntity {
     public static final int STYLE_VERTICAL = 0, STYLE_HORIZONTAL = 1;
     public static final int NONE = 0, ACCENT_EMPTY_VASE = 1, ACCENT_SINGLE_FLOWER = 2, ACCENT_BOUQUET = 3;
     private float xScale, yScale;
+    private TextboxHandler textboxHandler1, textboxHandler2;
+    private Inventory inventory;
+    private boolean firstTime = true, viewingTextbox1 = false, viewingTextbox2 = false;
 
     public SideTable(Handler handler, float x, float y, int width, int height, String uniqueName, int style, int accent) {
         super(handler, x, y, width, height, uniqueName);
@@ -44,12 +53,58 @@ public class SideTable extends StaticEntity {
 
     @Override
     public void finalRender(Graphics g) {
-
+        if (null != textboxHandler1 && !textboxHandler1.isFinished()) {
+            textboxHandler1.render(g);
+        }
+        if (null != textboxHandler2 && !textboxHandler2.isFinished()) {
+            textboxHandler2.render(g);
+        }
     }
 
     @Override
     public void tick() {
+        if (firstTime) {
+            inventory = handler.getPlayer().getInventory();
+            firstTime = false;
+        }
+        if (viewingTextbox1) {
+            if (null != textboxHandler1) {
+                if (!textboxHandler1.isFinished()) {
+                    textboxHandler1.tick();
+                } else {
+                    textboxCallback1(textboxHandler1.getOptionSelected());
+                }
+            }
+        }
+        if (viewingTextbox2) {
+            if (null != textboxHandler2) {
+                if (!textboxHandler2.isFinished()) {
+                    textboxHandler2.tick();
+                } else {
+                    textboxCallback2(textboxHandler2.getOptionSelected());
+                }
+            }
+        }
+    }
 
+    private void textboxCallback1(String option) {
+        if (option.equals("Yes")) {
+            if (!inventory.contains("Bouquet") && !inventory.containsUnique("bouquet-mansionL2Room1")) {
+                inventory.addItem(new Bouquet(handler, "Bouquet", Inventory.REGULAR_ITEM, "A bouquet of flowers taken from a vase.", "bouquet-mansionL2Room1", Assets.keyInventory));
+                setAccent(ACCENT_EMPTY_VASE);
+            }
+        }
+        viewingTextbox1 = false;
+    }
+
+    private void textboxCallback2(String option) {
+        if (option.equals("Yes")) {
+            if (inventory.containsUnique("bouquet-mansionL2Room1")) {
+                inventory.removeItem("bouquet-mansionL2Room1", Inventory.REGULAR_ITEM);
+                setAccent(ACCENT_BOUQUET);
+            }
+        }
+        viewingTextbox2 = false;
     }
 
     @Override
@@ -104,7 +159,7 @@ public class SideTable extends StaticEntity {
                         yPos = (int) (-11 * yScale);
                     } else if (style == STYLE_HORIZONTAL) {
                         xPos = (int) (15 * xScale);
-                        yPos = (int) (-22 * yScale);
+                        yPos = (int) (-21 * yScale);
                     }
                     break;
             }
@@ -120,6 +175,16 @@ public class SideTable extends StaticEntity {
 
     @Override
     public boolean interactedWith() {
+        if (uniqueName != null) {
+            if (uniqueName.equals("sidetable-bouquet-mansionL2Room1") && accent == ACCENT_BOUQUET) {
+                textboxHandler1 = new TextboxHandler(handler, Assets.textboxFontDefault,
+                        "Take the bouquet?", new String[]{"Yes", "No"}, GeneralConstants.defaultTextSpeed,
+                        Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+                textboxHandler1.setActive(true);
+                viewingTextbox1 = true;
+                return true;
+            }
+        }
         return false;
     }
 
@@ -130,6 +195,34 @@ public class SideTable extends StaticEntity {
 
     @Override
     public boolean itemInteraction(String item) {
+        if (item.equals("bouquet-mansionL2Room1")) {
+            if (uniqueName != null) {
+                if (uniqueName.equals("sidetable-vase-mansionL2Room4") && accent == ACCENT_EMPTY_VASE) {
+                    textboxHandler2 = new TextboxHandler(handler, Assets.textboxFontDefault,
+                            "Place the bouquet in the vase?", new String[]{"Yes", "No"}, GeneralConstants.defaultTextSpeed,
+                            Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+                    textboxHandler2.setActive(true);
+                    viewingTextbox2 = true;
+                    return true;
+                }
+            }
+        }
         return false;
+    }
+
+    public int getStyle() {
+        return style;
+    }
+
+    public void setStyle(int style) {
+        this.style = style;
+    }
+
+    public int getAccent() {
+        return accent;
+    }
+
+    public void setAccent(int accent) {
+        this.accent = accent;
     }
 }
