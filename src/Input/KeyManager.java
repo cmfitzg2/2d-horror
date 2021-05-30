@@ -16,46 +16,47 @@ public class KeyManager implements KeyListener{
 		keys = new boolean[256];
 	}
 
-	public void tick()
-	{
-		up		= keys[KeyEvent.VK_UP];
-		down	= keys[KeyEvent.VK_DOWN];
-		left	= keys[KeyEvent.VK_LEFT];
-		right	= keys[KeyEvent.VK_RIGHT];
-		shift	= keys[KeyEvent.VK_SHIFT];
-		z		= keys[KeyEvent.VK_Z];
-		x		= keys[KeyEvent.VK_X];
-		c		= keys[KeyEvent.VK_C];
-		esc		= keys[KeyEvent.VK_ESCAPE];
+	public void tick() {
+		up = keys[KeyEvent.VK_UP];
+		down = keys[KeyEvent.VK_DOWN];
+		left = keys[KeyEvent.VK_LEFT];
+		right = keys[KeyEvent.VK_RIGHT];
+		shift = keys[KeyEvent.VK_SHIFT];
+		z = keys[KeyEvent.VK_Z];
+		x = keys[KeyEvent.VK_X];
+		c = keys[KeyEvent.VK_C];
+		esc	= keys[KeyEvent.VK_ESCAPE];
 		enter = keys[KeyEvent.VK_ENTER];
-		one		= keys[KeyEvent.VK_1];
-		two		= keys[KeyEvent.VK_2];
-		three	= keys[KeyEvent.VK_3];
-		four	= keys[KeyEvent.VK_4];
-		five	= keys[KeyEvent.VK_5];
-		six		= keys[KeyEvent.VK_6];
+		one = keys[KeyEvent.VK_1];
+		two = keys[KeyEvent.VK_2];
+		three = keys[KeyEvent.VK_3];
+		four = keys[KeyEvent.VK_4];
+		five = keys[KeyEvent.VK_5];
+		six = keys[KeyEvent.VK_6];
 
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e)
-	{
-		if(e.getKeyCode() <= 256)
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() <= 256) {
 			keys[e.getKeyCode()] = true;
+		}
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e)
-	{
-		if(e.getKeyCode() <= 256)
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() <= 256) {
 			keys[e.getKeyCode()] = false;
-		if(e.getKeyCode() == KeyEvent.VK_Z)
+		}
+		if (e.getKeyCode() == KeyEvent.VK_Z) {
 			stillHoldingZ = false;
+		}
 		if (e.getKeyCode() == KeyEvent.VK_X) {
 			stillHoldingX = false;
 		}
-		if(e.getKeyCode() == KeyEvent.VK_C)
+		if (e.getKeyCode() == KeyEvent.VK_C) {
 			stillHoldingC = false;
+		}
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			stillHoldingEsc = false;
 		}
@@ -74,33 +75,36 @@ public class KeyManager implements KeyListener{
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			stillholdingEnter = false;
 		}
-		if(e.getKeyCode() == KeyEvent.VK_1)
+		if (e.getKeyCode() == KeyEvent.VK_1) {
 			stillHolding1 = false;
-		if(e.getKeyCode() == KeyEvent.VK_2)
+		}
+		if (e.getKeyCode() == KeyEvent.VK_2) {
 			stillHolding2 = false;
-		if(e.getKeyCode() == KeyEvent.VK_3)
+		}
+		if (e.getKeyCode() == KeyEvent.VK_3) {
 			stillHolding3 = false;
-		if(e.getKeyCode() == KeyEvent.VK_4)
+		}
+		if (e.getKeyCode() == KeyEvent.VK_4) {
 			stillHolding4 = false;
-		if(e.getKeyCode() == KeyEvent.VK_5)
+		}
+		if (e.getKeyCode() == KeyEvent.VK_5) {
 			stillHolding5 = false;
-		if(e.getKeyCode() == KeyEvent.VK_6)
+		}
+		if (e.getKeyCode() == KeyEvent.VK_6) {
 			stillHolding6 = false;
+		}
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e)
-	{
+	public void keyTyped(KeyEvent e) {
 
 	}
 
-	public boolean isStillHoldingZ()
-	{
+	public boolean isStillHoldingZ() {
 		return stillHoldingZ;
 	}
 
-	public void setStillHoldingZ(boolean stillHoldingZ)
-	{
+	public void setStillHoldingZ(boolean stillHoldingZ) {
 		this.stillHoldingZ = stillHoldingZ;
 	}
 
@@ -112,13 +116,11 @@ public class KeyManager implements KeyListener{
 		this.stillHoldingX = stillHoldingX;
 	}
 
-	public boolean isStillHoldingC()
-	{
+	public boolean isStillHoldingC() {
 		return stillHoldingC;
 	}
 
-	public void setStillHoldingC(boolean stillHoldingC)
-	{
+	public void setStillHoldingC(boolean stillHoldingC) {
 		this.stillHoldingC = stillHoldingC;
 	}
 

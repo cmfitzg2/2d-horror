@@ -8,12 +8,15 @@ import java.awt.*;
 public class TableLamp extends StaticEntity {
 
     private boolean lit = false;
+    private float xScale, yScale;
 
     public TableLamp(Handler handler, float x, float y, int width, int height, String uniqueName) {
         super(handler, x, y, width, height, uniqueName);
-        bounds.x = 0;
+        xScale = (float) width / Assets.tableLampOff.getWidth();
+        yScale = (float) height / Assets.tableLampOff.getHeight();
+        bounds.x = (int) (2 * xScale);
         bounds.y = 48;
-        bounds.width = width;
+        bounds.width = (int) (width - 4 * xScale);
         bounds.height = (int) (height * (2 / 3.0f) - 28);
     }
 

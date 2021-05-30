@@ -1,10 +1,12 @@
 package Worlds.MansionInterior.L2;
 
 import Entities.Creatures.Player;
+import Entities.StaticEntities.*;
 import Tiles.Tile;
 import Variables.Handler;
 import Worlds.World;
 import Worlds.WorldManager;
+import Graphics.Assets;
 
 import java.awt.*;
 
@@ -25,7 +27,30 @@ public class MansionL2Room4 extends World {
 
     @Override
     protected void addEntities() {
-        
+        entityManager.addEntity(new Dresser(handler, 12 * Tile.TILEWIDTH, 8.5f * Tile.TILEHEIGHT,
+                Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getHeight() * 2,
+                null, Dresser.STYLE_SHELF_BOOKS_FULL));
+        entityManager.addEntity(new Dresser(handler, 12 * Tile.TILEWIDTH + Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, 8.5f * Tile.TILEHEIGHT,
+                Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getHeight() * 2,
+                null, Dresser.STYLE_SHELF_BOOKS_FULL));
+        entityManager.addEntity(new Bed(handler, 21.5f * Tile.TILEWIDTH, 9.5f * Tile.TILEHEIGHT,
+                Assets.redSingleBed.getWidth() * 2, Assets.redSingleBed.getHeight() * 2,
+                null, Bed.STYLE_RED_SINGLE));
+        entityManager.addEntity(new TableLamp(handler, 23 * Tile.TILEWIDTH, 9 * Tile.TILEHEIGHT,
+                Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2,
+                null));
+        entityManager.addEntity(new PlantVase(handler, 12 * Tile.TILEWIDTH + 2, 17 * Tile.TILEHEIGHT - Assets.plantVaseFlowers.getHeight() * 2,
+                Assets.plantVaseFlowers.getWidth() * 2, Assets.plantVaseFlowers.getHeight() * 2,
+                null, PlantVase.STYLE_FLOWERS));
+        entityManager.addEntity(new PlantVase(handler, 24 * Tile.TILEWIDTH - Assets.plantVaseFlowers.getWidth() * 2 - 2, 17 * Tile.TILEHEIGHT - Assets.plantVaseFlowers.getHeight() * 2,
+                Assets.plantVaseFlowers.getWidth() * 2, Assets.plantVaseFlowers.getHeight() * 2,
+                null, PlantVase.STYLE_FLOWERS));
+        entityManager.addEntity(new Couch(handler, 24 * Tile.TILEWIDTH - Assets.couchOneLeft.getWidth() * 2, 13 * Tile.TILEHEIGHT,
+                Assets.couchOneLeft.getWidth() * 2, Assets.couchOneLeft.getHeight() * 2,
+                null, Couch.STYLE_LEFT));
+        entityManager.addEntity(new SideTable(handler, 18 * Tile.TILEWIDTH - Assets.sideTableHorizontal.getWidth(), 17 * Tile.TILEHEIGHT - Assets.sideTableHorizontal.getHeight() * 2,
+                Assets.sideTableHorizontal.getWidth() * 2, Assets.sideTableHorizontal.getHeight() * 2,
+                null, SideTable.STYLE_HORIZONTAL, SideTable.ACCENT_EMPTY_VASE));
     }
 
     @Override

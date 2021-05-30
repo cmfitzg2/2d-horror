@@ -368,7 +368,7 @@ public class Assets {
 
 		flowerVaseEmpty = insideAccentsSheet.crop(147, 129, 12, 23);
 		flowerVaseSingle = insideAccentsSheet.crop(163, 129, 8, 23);
-		flowerVaseBouquet = insideAccentsSheet.crop(173, 123, 19, 29);
+		flowerVaseBouquet = insideAccentsSheet.crop(171, 123, 19, 29);
 
 		plantVasePlant1 = insideAccentsSheet.crop(32, 65, 30, 48);
 		plantVaseFlowers = insideAccentsSheet.crop(66, 75, 28, 38);
