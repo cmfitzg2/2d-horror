@@ -1,4 +1,4 @@
-package Worlds;
+package Worlds.Overworld;
 
 import Cutscenes.Cutscene;
 import Entities.Creatures.*;
@@ -9,6 +9,8 @@ import Variables.Flags;
 import Variables.GeneralConstants;
 import Variables.Handler;
 import Graphics.Assets;
+import Worlds.World;
+import Worlds.WorldManager;
 
 public class Overworld1 extends World {
 

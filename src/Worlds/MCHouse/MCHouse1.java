@@ -1,4 +1,4 @@
-package Worlds;
+package Worlds.MCHouse;
 
 import Cutscenes.Cutscene;
 import Cutscenes.CutsceneManager;
@@ -8,6 +8,9 @@ import Tiles.Tile;
 import Variables.Flags;
 import Variables.Handler;
 import Graphics.Assets;
+import Worlds.World;
+import Worlds.WorldManager;
+
 import java.awt.*;
 
 public class MCHouse1 extends World {

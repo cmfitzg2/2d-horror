@@ -7,6 +7,7 @@ import Variables.Handler;
 import java.awt.Graphics;
 import Graphics.ScreenOverlay;
 import Worlds.*;
+import Worlds.MCHouse.MCHouse1;
 
 public class GameState extends State {
 	private ScreenOverlay screenOverlay;

@@ -1,4 +1,4 @@
-package Worlds;
+package Worlds.School;
 
 import Entities.Creatures.*;
 import Entities.StaticEntities.Chalkboard;
@@ -9,6 +9,8 @@ import Graphics.Assets;
 import Tiles.Tile;
 import Variables.GeneralConstants;
 import Variables.Handler;
+import Worlds.World;
+import Worlds.WorldManager;
 
 public class Classroom1 extends World {
 

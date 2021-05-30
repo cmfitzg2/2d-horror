@@ -8,6 +8,11 @@ import Items.Item;
 import Items.Lighter;
 import Variables.Flags;
 import Variables.Handler;
+import Worlds.MCHouse.*;
+import Worlds.MansionInterior.L2.*;
+import Worlds.MansionInterior.L3.*;
+import Worlds.Overworld.*;
+import Worlds.School.*;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -18,7 +23,8 @@ public class WorldManager {
     private HashMap<Integer, World> worlds;
     private World activeWorld;
     public static final int MC_HOUSE_1_ID = 1, MC_HOUSE_2_ID = 2, OVERWORLD_1_ID = 3, SCHOOL_1_ID = 4, CLASSROOM_1_ID = 5,
-            BATHROOM_1_ID = 6, BATHROOM_2_ID = 7, MANSION_EXTERIOR_ID = 8, MANSION_INTERIOR_1_ID = 9, MANSION_INTERIOR_2_ID = 10;
+            BATHROOM_1_ID = 6, BATHROOM_2_ID = 7, MANSION_EXTERIOR_ID = 8, MANSION_L2_ROOM_1_ID = 9, MANSION_L3_ROOM_1_ID = 10,
+            MANSION_L2_ROOM_2_ID = 11, MANSION_L2_ROOM_3_ID = 12, MANSION_L2_ROOM_4_ID = 13;
 
     public WorldManager(Handler handler, World firstWorld) {
         this.handler = handler;
@@ -32,8 +38,11 @@ public class WorldManager {
         worlds.putIfAbsent(CLASSROOM_1_ID, new Classroom1(handler, CLASSROOM_1_ID, null));
         worlds.putIfAbsent(BATHROOM_1_ID, new Bathroom1(handler, BATHROOM_1_ID, null));
         worlds.putIfAbsent(MANSION_EXTERIOR_ID, new MansionExterior(handler, MANSION_EXTERIOR_ID, null));
-        worlds.putIfAbsent(MANSION_INTERIOR_1_ID, new MansionInterior1(handler, MANSION_INTERIOR_1_ID, null));
-        worlds.putIfAbsent(MANSION_INTERIOR_2_ID, new MansionInterior2(handler, MANSION_INTERIOR_2_ID, null));
+        worlds.putIfAbsent(MANSION_L2_ROOM_1_ID, new MansionL2Room1(handler, MANSION_L2_ROOM_1_ID, null));
+        worlds.putIfAbsent(MANSION_L3_ROOM_1_ID, new MansionL3Room1(handler, MANSION_L3_ROOM_1_ID, null));
+        worlds.putIfAbsent(MANSION_L2_ROOM_2_ID, new MansionL2Room2(handler, MANSION_L2_ROOM_2_ID, null));
+        worlds.putIfAbsent(MANSION_L2_ROOM_3_ID, new MansionL2Room3(handler, MANSION_L2_ROOM_3_ID, null));
+        worlds.putIfAbsent(MANSION_L2_ROOM_4_ID, new MansionL2Room4(handler, MANSION_L2_ROOM_4_ID, null));
         setActiveWorld(firstWorld);
     }
 

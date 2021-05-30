@@ -419,12 +419,12 @@ public class MansionExteriorCutscene1 implements Cutscene {
                         } else {
                             player.setyMove(0);
                             if (handler.getGame().isFinishedFadingOut()) {
-                                handler.getActiveWorld().transitionFrom(handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT, GeneralConstants.longLevelTransition);
+                                handler.getActiveWorld().transitionFrom(handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT, GeneralConstants.longLevelTransition);
                                 exit();
                                 GeneralUtils.levelFadeIn(handler, GeneralConstants.longLevelTransition);
                                 return;
                             }
-                            handler.getActiveWorld().transitionFrom(handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT, GeneralConstants.longLevelTransition);
+                            handler.getActiveWorld().transitionFrom(handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT, GeneralConstants.longLevelTransition);
                             if (ironGate.isOpen() && handler.getGame().getAlpha() >= 120) {
                                 ironGate.setOpen(false);
                             }

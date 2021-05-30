@@ -1,10 +1,12 @@
-package Worlds;
+package Worlds.School;
 
 import Entities.Creatures.Player;
 import Entities.StaticEntities.Toilet;
 import Tiles.Tile;
 import Variables.Handler;
 import Graphics.Assets;
+import Worlds.World;
+import Worlds.WorldManager;
 
 import java.awt.*;
 

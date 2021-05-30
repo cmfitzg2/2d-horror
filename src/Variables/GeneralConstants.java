@@ -1,7 +1,7 @@
 package Variables;
 
 public class GeneralConstants {
-    public static final int levelTransitionFrames = 20;
+    public static final int levelTransitionFrames = 10;
 
     public static final int longLevelTransition = 120;
 

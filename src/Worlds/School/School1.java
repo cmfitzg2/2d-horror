@@ -1,4 +1,4 @@
-package Worlds;
+package Worlds.School;
 
 import Cutscenes.Cutscene;
 import Cutscenes.CutsceneManager;
@@ -9,6 +9,8 @@ import Tiles.Tile;
 import Variables.GeneralConstants;
 import Variables.Handler;
 import Graphics.Assets;
+import Worlds.World;
+import Worlds.WorldManager;
 
 import java.awt.*;
 

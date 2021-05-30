@@ -1,4 +1,4 @@
-package Worlds;
+package Worlds.MCHouse;
 
 import Cutscenes.Cutscene;
 import Cutscenes.CutsceneManager;
@@ -10,6 +10,8 @@ import Tiles.Tile;
 import Variables.GeneralConstants;
 import Variables.Handler;
 import Graphics.Assets;
+import Worlds.World;
+import Worlds.WorldManager;
 
 import java.awt.*;
 
@@ -82,7 +84,7 @@ public class MCHouse2 extends World {
                 Tile.TILEHEIGHT * 6 + 10 - Assets.firePlace.getHeight(), Assets.firePlace.getWidth() * 2, Assets.firePlace.getHeight() * 2, "fireplace-mchouse2"));
 
         entityManager.addEntity(new Door(handler, 20 * Tile.TILEWIDTH, 8 * Tile.TILEHEIGHT, 64, 96, null,
-                handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT,
+                handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT,
                 Door.PLAIN_WOOD, false, GeneralConstants.levelTransitionFrames, false));
 
         entityManager.addEntity(new Couch(handler, 13 * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT, Assets.couchOneLeft.getWidth() * 2, Assets.couchOneLeft.getHeight() * 2, null, Couch.STYLE_LEFT));

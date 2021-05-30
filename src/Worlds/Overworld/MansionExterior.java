@@ -1,4 +1,4 @@
-package Worlds;
+package Worlds.Overworld;
 
 import Entities.Creatures.*;
 import Entities.StaticEntities.*;
@@ -7,6 +7,8 @@ import Tiles.Tile;
 import Utils.GeneralUtils;
 import Variables.GeneralConstants;
 import Variables.Handler;
+import Worlds.World;
+import Worlds.WorldManager;
 
 import java.awt.*;
 
@@ -25,7 +27,7 @@ public class MansionExterior extends World {
             loadzoneMansion = new Rectangle(19 * Tile.TILEWIDTH - (int) handler.getGameCamera().getxOffset(), (int) (18 * Tile.TILEHEIGHT - (int) handler.getGameCamera().getyOffset()),
                     Tile.TILEWIDTH * 2, Tile.TILEHEIGHT / 4);
             if (entityManager.getPlayer().getPlayerRec().intersects(loadzoneMansion)) {
-                transitionFrom(handler.getWorldManager().getWorld(WorldManager.MANSION_INTERIOR_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT);
+                transitionFrom(handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 17.5f * Tile.TILEHEIGHT);
             }
         }
     }
