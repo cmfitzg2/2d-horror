@@ -88,6 +88,7 @@ public class Assets {
 	public static BufferedImage[] teacherDown, teacherUp, teacherLeft, teacherRight;
 	public static BufferedImage[] ghoulDown, ghoulLeft, ghoulRight, ghoulUp;
 	public static BufferedImage[] tunnelVision;
+	public static BufferedImage[] itemSparkle;
 	public static Font sans, serif, philosopher, textboxFontDefault;
 	public static Font playerSpeakingFont, playerThinkingFont, acceptanceFont, denialFont, angerFont, bargainingFont, depressionFont, teacherFont;
 	public static AudioClip menuMove, woodBreak, openInventory, closeInventory, textTest, textTest2,
@@ -642,6 +643,14 @@ public class Assets {
 		activeInventoryHeader[0] = inventoryActiveSheet.crop(0, 0, 268, 70);
 		activeInventoryHeader[1] = inventoryActiveSheet.crop(268, 0, 268, 70);
 		activeInventoryHeader[2] = inventoryActiveSheet.crop(535, 0, 268, 70);
+
+		SpriteSheet itemSparkleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/effects/sparkle.png"));
+		itemSparkle = new BufferedImage[5];
+		itemSparkle[0] = itemSparkleSheet.crop(0, 0, width, height);
+		itemSparkle[1] = itemSparkleSheet.crop(0, height, width, height);
+		itemSparkle[2] = itemSparkleSheet.crop(0, height * 2, width, height);
+		itemSparkle[3] = itemSparkleSheet.crop(0, height * 3, width, height);
+		itemSparkle[4] = itemSparkleSheet.crop(0, height * 4, width, height);
 	}
 
 	private static void initStandaloneImages() {

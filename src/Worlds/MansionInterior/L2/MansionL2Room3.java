@@ -52,6 +52,7 @@ public class MansionL2Room3 extends World {
         entityManager.addEntity(new SideTable(handler, 18 * Tile.TILEWIDTH - Assets.sideTableHorizontal.getWidth(), 17 * Tile.TILEHEIGHT - Assets.sideTableHorizontal.getHeight() * 2,
                 Assets.sideTableHorizontal.getWidth() * 2, Assets.sideTableHorizontal.getHeight() * 2,
                 null, SideTable.STYLE_HORIZONTAL, SideTable.ACCENT_BOUQUET));
+        entityManager.addEntity(new ItemSparkle(handler, 22 * Tile.TILEWIDTH, 15 * Tile.TILEHEIGHT, Assets.itemSparkle[0].getWidth(), Assets.itemSparkle[0].getHeight(), null));
     }
 
     @Override
