@@ -76,6 +76,7 @@ public class Assets {
 	public static BufferedImage flowerVaseEmpty, flowerVaseSingle, flowerVaseBouquet;
 	public static BufferedImage plantVasePlant1, plantVaseFlowers, plantVasePlant2;
 	public static BufferedImage barrel, sideTableHorizontal, sideTableVertical;
+	public static BufferedImage denialSitLeft, denialSitBookLeft, playerSitRight, playerSitBookRight;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, well, furnaceLit;
 	public static BufferedImage[] activeInventoryHeader;
@@ -414,6 +415,10 @@ public class Assets {
 		denialRight[2] = denialSheet.crop(width*2, height*3, width, height);
 		denialRight[3] = denialSheet.crop(width*3, height*3, width, height);
 
+		SpriteSheet denialSitReadSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/denial-sit-read-sheet.png"));
+		denialSitLeft = denialSitReadSheet.crop(0, 0, width, height);
+		denialSitBookLeft = denialSitReadSheet.crop(width, 0, width, height);
+
 		SpriteSheet angerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/anger-sheet.png"));
 		angerDown = new BufferedImage[4];
 		angerUp = new BufferedImage[4];
@@ -549,11 +554,15 @@ public class Assets {
 		playerRightNormal = playerRight[0];
 		playerUpNormal = playerUp[0];
 
-		SpriteSheet headSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/player-head-sheet.png"));
-		headDown = headSheet.crop(0, 0, width, height);
-		headUp = headSheet.crop(0, height, width, height);
-		headLeft = headSheet.crop(0, height * 2, width, height);
-		headRight = headSheet.crop(0, height * 3, width, height);
+		SpriteSheet playerHeadSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/player-head-sheet.png"));
+		headDown = playerHeadSheet.crop(0, 0, width, height);
+		headUp = playerHeadSheet.crop(0, height, width, height);
+		headLeft = playerHeadSheet.crop(0, height * 2, width, height);
+		headRight = playerHeadSheet.crop(0, height * 3, width, height);
+
+		SpriteSheet mcSitReadSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/mc-sit-read-sheet.png"));
+		playerSitRight = mcSitReadSheet.crop(0, 0, width, height);
+		playerSitBookRight = mcSitReadSheet.crop(width, 0, width, height);
 
 		int deskHeight = 44;
 		SpriteSheet studentDeskSheet = new SpriteSheet(ImageLoader.loadImage("/textures/static-entities/student-desk.png"));

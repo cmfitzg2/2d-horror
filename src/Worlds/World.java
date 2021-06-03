@@ -20,8 +20,8 @@ public abstract class World {
 	public boolean transitioningTo = true, transitioningFrom = false;
 	//Entities
 	protected EntityManager entityManager;
-
 	protected int frameIndex = 1;
+	protected boolean resetEntityMessages = false;
 
 	public World(Handler handler, String path, int id, Player player) {
 		this.handler = handler;
@@ -128,10 +128,12 @@ public abstract class World {
 		}
 	}
 
-	protected void resetEntityMessages() {
-		for (Entity e : entityManager.getEntities()) {
-			if (e instanceof Creature) {
-				((Creature) e).setMessageNumber(1);
+	protected void  resetEntityMessages() {
+		if (resetEntityMessages) {
+			for (Entity e : entityManager.getEntities()) {
+				if (e instanceof Creature) {
+					((Creature) e).setMessageNumber(1);
+				}
 			}
 		}
 	}
