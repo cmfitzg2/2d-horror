@@ -5,6 +5,7 @@ import Input.KeyManager;
 import Items.Item;
 import Items.Key;
 import Items.Lighter;
+import Tiles.Tile;
 import Variables.Flags;
 import Variables.Handler;
 import Items.Inventory;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class Player extends Creature {
     private static boolean down, up, left, right;
-    private boolean interactedWith, transparent, invisible, lockX, lockY, lockZ, headOnly;
+    private boolean interactedWith, transparent, invisible, lockX, lockY, lockZ, headOnly, sitRight, sitBookRight;
     private Inventory inventory;
     public static float defaultSpeed = 4.0f, defaultRunSpeed = 16.0f;
     public float cutsceneSpeed = 3.0f;
@@ -107,6 +108,14 @@ public class Player extends Creature {
             handler.getGameCamera().centerOnEntity(this);
         }
         if (invisible) {
+            return;
+        }
+        if (sitRight) {
+            g.drawImage(Assets.playerSitRight, (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
+            return;
+        }
+        if (sitBookRight) {
+            g.drawImage(Assets.playerSitBookRight, (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
             return;
         }
         if (handler.isPlayerFrozen()) {
@@ -240,7 +249,6 @@ public class Player extends Creature {
         if (!handler.isPlayerFrozen()) {
             xMove = 0;
             yMove = 0;
-
             if (!lockY) {
                 if (keyManager.up) {
                     handler.getKeyManager().setStillHoldingUp(true);
@@ -302,6 +310,16 @@ public class Player extends Creature {
                             }
                         }
                     }
+                }
+            }
+        } else {
+            if (sitBookRight || sitRight) {
+                if (keyManager.right && !keyManager.isStillHoldingRight()) {
+                    keyManager.setStillHoldingRight(true);
+                    sitBookRight = false;
+                    sitRight = false;
+                    handler.setPlayerFrozen(false);
+                    x += Tile.TILEWIDTH;
                 }
             }
         }
@@ -489,6 +507,22 @@ public class Player extends Creature {
 
     public void setInvisible(boolean invisible) {
         this.invisible = invisible;
+    }
+
+    public boolean isSitBookRight() {
+        return sitBookRight;
+    }
+
+    public void setSitBookRight(boolean sitBookRight) {
+        this.sitBookRight = sitBookRight;
+    }
+
+    public boolean isSitRight() {
+        return sitRight;
+    }
+
+    public void setSitRight(boolean sitRight) {
+        this.sitRight = sitRight;
     }
 
     public int getAmbientLight() {

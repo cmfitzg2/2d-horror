@@ -1,5 +1,6 @@
 package Worlds.MansionInterior.L2;
 
+import Entities.Creatures.Denial;
 import Entities.Creatures.Player;
 import Entities.StaticEntities.*;
 import Tiles.Tile;
@@ -51,6 +52,11 @@ public class MansionL2Room4 extends World {
         entityManager.addEntity(new SideTable(handler, 18 * Tile.TILEWIDTH - Assets.sideTableHorizontal.getWidth(), 17 * Tile.TILEHEIGHT - Assets.sideTableHorizontal.getHeight() * 2,
                 Assets.sideTableHorizontal.getWidth() * 2, Assets.sideTableHorizontal.getHeight() * 2,
                 "sidetable-vase-mansionL2Room4", SideTable.STYLE_HORIZONTAL, SideTable.ACCENT_EMPTY_VASE));
+        if (handler.getFlags().isDenialMansionCutscene1()) {
+            entityManager.addEntity(new Denial(handler, 24 * Tile.TILEWIDTH - Assets.couchOneLeft.getWidth() * 2 - Assets.denialSitBookLeft.getWidth() / 2f,
+                    13 * Tile.TILEHEIGHT + Assets.sideTableHorizontal.getHeight() - Assets.denialSitBookLeft.getHeight() / 2f,
+                    "denial-mansionL2Room4"));
+        }
     }
 
     @Override

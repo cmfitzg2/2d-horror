@@ -48,7 +48,7 @@ public class MansionL2Room3 extends World {
                 null, PlantVase.STYLE_FLOWERS));
         entityManager.addEntity(new Couch(handler, 12 * Tile.TILEWIDTH, 13 * Tile.TILEHEIGHT,
                 Assets.couchOneRight.getWidth() * 2, Assets.couchOneRight.getHeight() * 2,
-                null, Couch.STYLE_RIGHT));
+                "couch-mansionL2Room3", Couch.STYLE_RIGHT));
         entityManager.addEntity(new SideTable(handler, 18 * Tile.TILEWIDTH - Assets.sideTableHorizontal.getWidth(), 17 * Tile.TILEHEIGHT - Assets.sideTableHorizontal.getHeight() * 2,
                 Assets.sideTableHorizontal.getWidth() * 2, Assets.sideTableHorizontal.getHeight() * 2,
                 null, SideTable.STYLE_HORIZONTAL, SideTable.ACCENT_BOUQUET));

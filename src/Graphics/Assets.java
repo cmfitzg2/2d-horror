@@ -416,8 +416,8 @@ public class Assets {
 		denialRight[3] = denialSheet.crop(width*3, height*3, width, height);
 
 		SpriteSheet denialSitReadSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/denial-sit-read-sheet.png"));
-		denialSitLeft = denialSitReadSheet.crop(0, 0, width, height);
-		denialSitBookLeft = denialSitReadSheet.crop(width, 0, width, height);
+		denialSitBookLeft = denialSitReadSheet.crop(0, 0, width, height);
+		denialSitLeft = denialSitReadSheet.crop(width, 0, width, height);
 
 		SpriteSheet angerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/anger-sheet.png"));
 		angerDown = new BufferedImage[4];

@@ -4,6 +4,7 @@ import Graphics.Animation;
 import Graphics.Assets;
 import Textboxes.TextboxHandler;
 import Variables.Handler;
+import Worlds.WorldManager;
 
 import java.awt.*;
 
@@ -51,6 +52,10 @@ public class Denial extends Creature {
 
 	@Override
 	public void render(Graphics g) {
+		if (handler.getFlags().isDenialMansionCutscene1() && handler.getActiveWorld().getId() == WorldManager.MANSION_L2_ROOM_4_ID) {
+			g.drawImage(Assets.denialSitBookLeft, (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
+			return;
+		}
 		if (yMove > 0) {
 			down = true;
 			left = false;

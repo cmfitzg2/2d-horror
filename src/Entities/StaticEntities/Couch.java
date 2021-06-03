@@ -1,6 +1,8 @@
 package Entities.StaticEntities;
 
+import Entities.Entity;
 import Graphics.Assets;
+import Tiles.Tile;
 import Variables.Handler;
 
 import java.awt.*;
@@ -88,6 +90,12 @@ public class Couch extends StaticEntity {
 
     @Override
     public boolean interactedWith() {
+        if (uniqueName != null && uniqueName.equals("couch-mansionL2Room3") && handler.getFlags().isDenialMansionCutscene1() && !handler.getPlayer().isSitRight()) {
+            handler.getPlayer().setSitRight(true);
+            handler.setPlayerFrozen(true);
+            handler.getPlayer().setX(12 * Tile.TILEWIDTH + Assets.playerSitBookRight.getWidth() / 2f);
+            handler.getPlayer().setY(13 * Tile.TILEHEIGHT + Assets.sideTableHorizontal.getHeight() - Assets.playerSitBookRight.getHeight() / 2f);
+        }
         return false;
     }
 
@@ -99,5 +107,18 @@ public class Couch extends StaticEntity {
     @Override
     public boolean itemInteraction(String item) {
         return false;
+    }
+
+    @Override
+    public int renderVsEntity(Entity e) {
+        if (e.getX() < x + width && e.getX() + e.getWidth() > x && e.getY() + e.getHeight() >= y && e.getY() <= y + height) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean customRenderVsEntity() {
+        return true;
     }
 }
