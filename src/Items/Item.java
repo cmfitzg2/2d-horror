@@ -2,6 +2,7 @@ package Items;
 
 import Variables.Handler;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Item {
@@ -64,4 +65,8 @@ public abstract class Item {
     }
 
     public abstract boolean useItem();
+
+    protected abstract void tick();
+
+    protected abstract void render(Graphics g);
 }

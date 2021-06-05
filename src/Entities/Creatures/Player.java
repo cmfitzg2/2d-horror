@@ -81,6 +81,10 @@ public class Player extends Creature {
             animRight.tick();
         }
         //Movement
+        if (keyManager.esc && !keyManager.isStillHoldingEsc()) {
+            keyManager.setStillHoldingEsc(true);
+            ignoreCollision = !ignoreCollision;
+        }
         getInput();
         move();
         if (!handler.isPlayerFrozen()) {
@@ -110,12 +114,12 @@ public class Player extends Creature {
         if (invisible) {
             return;
         }
-        if (sitRight) {
-            g.drawImage(Assets.playerSitRight, (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
-            return;
-        }
         if (sitBookRight) {
             g.drawImage(Assets.playerSitBookRight, (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
+            return;
+        }
+        if (sitRight) {
+            g.drawImage(Assets.playerSitRight, (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
             return;
         }
         if (handler.isPlayerFrozen()) {
@@ -249,6 +253,19 @@ public class Player extends Creature {
         if (!handler.isPlayerFrozen()) {
             xMove = 0;
             yMove = 0;
+
+            if (sitBookRight || sitRight) {
+                if (keyManager.right && !keyManager.isStillHoldingRight()) {
+                    keyManager.setStillHoldingRight(true);
+                    sitBookRight = false;
+                    sitRight = false;
+                    lockX = false;
+                    lockY = false;
+                    lockZ = false;
+                    x += Tile.TILEWIDTH;
+                }
+            }
+
             if (!lockY) {
                 if (keyManager.up) {
                     handler.getKeyManager().setStillHoldingUp(true);
@@ -310,16 +327,6 @@ public class Player extends Creature {
                             }
                         }
                     }
-                }
-            }
-        } else {
-            if (sitBookRight || sitRight) {
-                if (keyManager.right && !keyManager.isStillHoldingRight()) {
-                    keyManager.setStillHoldingRight(true);
-                    sitBookRight = false;
-                    sitRight = false;
-                    handler.setPlayerFrozen(false);
-                    x += Tile.TILEWIDTH;
                 }
             }
         }

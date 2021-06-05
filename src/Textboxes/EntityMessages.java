@@ -1,6 +1,7 @@
 package Textboxes;
 
 import Variables.Handler;
+import Worlds.WorldManager;
 
 /**
  * i can't decide if i want to do things this way or not
@@ -20,21 +21,16 @@ public class EntityMessages {
             case "Player":
                 return error;
             case "Acceptance":
-                switch (handler.getActiveWorld().getId()) {
-                    case 1:
-                        if (messageNumber == 1) {
-                            return "hey it's me friend 1! \r just wondering when you think we might be able to get out of here? \r hope to hear back soon! \r love, friend 1. \r P.S. ur gay";
-                        } else {
-                            return "leave me alone lmao \r lata bitch";
-                        }
-                    case 2:
-                        if (messageNumber == 1) {
-                            return "woah! didn't i already see you?";
-                        } else {
-                            return "this sucks man";
-                        }
+                return error;
+            case "denial-mansionL2Room4":
+                if (messageNumber == 1) {
+                    return "Oh hey. \r " +
+                            "All the doors here seem to be locked, so I'm just killing time while the others look around. \r " +
+                            "Seems like this place is somehow even less interesting than I expected.";
+                } else if (messageNumber == 2) {
+                    return "I found this book on the shelf over there. \r " +
+                            "It's called \"The Two Friends\".";
                 }
-
         }
         return error;
     }

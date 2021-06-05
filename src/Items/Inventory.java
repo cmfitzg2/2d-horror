@@ -125,6 +125,9 @@ public class Inventory {
                 }
             }
         }
+        for (Item item : items.values()) {
+            item.tick();
+        }
     }
 
     public boolean containsUnique(String uniqueName) {
@@ -388,6 +391,9 @@ public class Inventory {
                     showItemSelectedTextbox = false;
                 }
             }
+        }
+        for (Item item : items.values()) {
+            item.render(g);
         }
     }
 

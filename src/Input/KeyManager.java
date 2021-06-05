@@ -1,13 +1,15 @@
 package Input;
 
+import Items.Key;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyManager implements KeyListener{
 
 	private boolean[] keys;
-	public boolean up, down, left, right, z, shift, x, c, esc, enter, one, two, three, four, five, six;
-	private boolean stillHoldingZ, stillHoldingX, stillHoldingC, stillHoldingEsc, stillholdingEnter,
+	public boolean up, down, left, right, z, shift, x, c, esc, enter, alt, one, two, three, four, five, six;
+	private boolean stillHoldingZ, stillHoldingX, stillHoldingC, stillHoldingEsc, stillholdingEnter, stillHoldingAlt,
 			stillHoldingUp, stillHoldingDown, stillHoldingLeft, stillHoldingRight,
 			stillHolding1, stillHolding2, stillHolding3, stillHolding4, stillHolding5, stillHolding6;
 
@@ -27,6 +29,7 @@ public class KeyManager implements KeyListener{
 		c = keys[KeyEvent.VK_C];
 		esc	= keys[KeyEvent.VK_ESCAPE];
 		enter = keys[KeyEvent.VK_ENTER];
+		alt = keys[KeyEvent.VK_ALT];
 		one = keys[KeyEvent.VK_1];
 		two = keys[KeyEvent.VK_2];
 		three = keys[KeyEvent.VK_3];
@@ -74,6 +77,9 @@ public class KeyManager implements KeyListener{
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			stillholdingEnter = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_ALT) {
+			stillHoldingAlt = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_1) {
 			stillHolding1 = false;
@@ -233,5 +239,13 @@ public class KeyManager implements KeyListener{
 
 	public void setStillholdingEnter(boolean stillholdingEnter) {
 		this.stillholdingEnter = stillholdingEnter;
+	}
+
+	public boolean isStillHoldingAlt() {
+		return stillHoldingAlt;
+	}
+
+	public void setStillHoldingAlt(boolean stillHoldingAlt) {
+		this.stillHoldingAlt = stillHoldingAlt;
 	}
 }

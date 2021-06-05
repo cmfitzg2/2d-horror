@@ -30,10 +30,10 @@ public class MansionL2Room4 extends World {
     protected void addEntities() {
         entityManager.addEntity(new Dresser(handler, 12 * Tile.TILEWIDTH, 8.5f * Tile.TILEHEIGHT,
                 Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getHeight() * 2,
-                null, Dresser.STYLE_SHELF_BOOKS_FULL));
+                "mansionL2Room4-1", Dresser.STYLE_SHELF_BOOKS_FULL));
         entityManager.addEntity(new Dresser(handler, 12 * Tile.TILEWIDTH + Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, 8.5f * Tile.TILEHEIGHT,
                 Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getHeight() * 2,
-                null, Dresser.STYLE_SHELF_BOOKS_FULL));
+                "mansionL2Room4-2", Dresser.STYLE_SHELF_BOOKS_FULL));
         entityManager.addEntity(new Bed(handler, 21.5f * Tile.TILEWIDTH, 9.5f * Tile.TILEHEIGHT,
                 Assets.redSingleBed.getWidth() * 2, Assets.redSingleBed.getHeight() * 2,
                 null, Bed.STYLE_RED_SINGLE));

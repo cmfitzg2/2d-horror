@@ -3,6 +3,7 @@ package Items;
 import Variables.Flags;
 import Variables.Handler;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Lighter extends Item {
@@ -32,6 +33,16 @@ public class Lighter extends Item {
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected void tick() {
+
+    }
+
+    @Override
+    protected void render(Graphics g) {
+
     }
 
     public boolean isActive() {

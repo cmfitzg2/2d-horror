@@ -92,7 +92,9 @@ public class Couch extends StaticEntity {
     public boolean interactedWith() {
         if (uniqueName != null && uniqueName.equals("couch-mansionL2Room3") && handler.getFlags().isDenialMansionCutscene1() && !handler.getPlayer().isSitRight()) {
             handler.getPlayer().setSitRight(true);
-            handler.setPlayerFrozen(true);
+            handler.getPlayer().setLockX(true);
+            handler.getPlayer().setLockY(true);
+            handler.getPlayer().setLockZ(true);
             handler.getPlayer().setX(12 * Tile.TILEWIDTH + Assets.playerSitBookRight.getWidth() / 2f);
             handler.getPlayer().setY(13 * Tile.TILEHEIGHT + Assets.sideTableHorizontal.getHeight() - Assets.playerSitBookRight.getHeight() / 2f);
         }
