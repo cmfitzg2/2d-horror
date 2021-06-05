@@ -13,11 +13,11 @@ public class MansionStairs extends StaticEntity {
     public static final int STYLE_UP_RIGHT = 0, STYLE_DOWN_LEFT = 1;
     private int style;
     private float xScale, yScale;
-    private World destination;
+    private int destination;
     private float newX, newY;
 
     public MansionStairs(Handler handler, float x, float y, int width, int height, String uniqueName,
-                         World destination, float newX, float newY, int style) {
+                         int destination, float newX, float newY, int style) {
         super(handler, x, y, width, height, uniqueName);
         this.destination = destination;
         this.newX = newX;
@@ -66,7 +66,7 @@ public class MansionStairs extends StaticEntity {
         }
         if (levelTransition != null) {
             if (handler.getPlayer().getPlayerRec().intersects(levelTransition)) {
-                handler.getActiveWorld().transitionFrom(destination, newX, newY, -1);
+                handler.getActiveWorld().transitionFrom(handler.getWorldManager().getWorld(destination), newX, newY, -1);
             }
         }
     }

@@ -26,7 +26,7 @@ public class Classroom1 extends World {
     @Override
     protected void addEntities() {
         entityManager.addEntity(new Door(handler, 23 * Tile.TILEWIDTH, 2.5f * Tile.TILEHEIGHT, 64, 96, "door1-classroom1",
-                handler.getWorldManager().getWorld(WorldManager.SCHOOL_1_ID), 6 * Tile.TILEWIDTH, (int) (10 * Tile.TILEHEIGHT),
+                WorldManager.SCHOOL_1_ID, 6 * Tile.TILEWIDTH, (int) (10 * Tile.TILEHEIGHT),
                 Door.PLAIN_WOOD, false, GeneralConstants.levelTransitionFrames, false));
         if (handler.getFlags().isClassroomCutscene1()) {
             entityManager.addEntity(new Chalkboard(handler, 13.0f * Tile.TILEWIDTH, 42 + Tile.TILEHEIGHT, Assets.chalkboard[0].getWidth(), Assets.chalkboard[0].getHeight(), "chalkboard-classroom1", Chalkboard.STYLE_INITIAL));

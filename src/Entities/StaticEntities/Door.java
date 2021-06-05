@@ -15,7 +15,7 @@ public class Door extends StaticEntity {
     private int doorHeight = 96, style, transitionFrames;
     private boolean includeStairs, includeArch, locked, viewingText, transitioning, invisible;
     private Rectangle enterDoor;
-    private World destination;
+    private int destination;
     private float newX, newY;
     public static final int PLAIN_WOOD = 0, STAIRS = 1, ARCH = 2, STAIRS_ARCH = 3, BATHROOM_MALE = 4, BATHROOM_FEMALE = 5;
     public static final boolean VISIBLE = false, INVISIBLE = true;
@@ -23,7 +23,7 @@ public class Door extends StaticEntity {
     private TextboxHandler textboxHandler;
 
     public Door(Handler handler, float x, float y, int width, int height, String uniqueName,
-                World destination, float newX, float newY, int style, boolean invisible, int transitionFrames, boolean locked) {
+                int destination, float newX, float newY, int style, boolean invisible, int transitionFrames, boolean locked) {
         super(handler, x, y, width, height, uniqueName);
         bounds.x = 0;
         bounds.y = 0;
@@ -75,7 +75,7 @@ public class Door extends StaticEntity {
                 if (handler.getGame().isFinishedFadingOut()) {
                     transitioning = false;
                 }
-                handler.getActiveWorld().transitionFrom(destination, newX, newY, transitionFrames);
+                handler.getActiveWorld().transitionFrom(handler.getWorldManager().getWorld(destination), newX, newY, transitionFrames);
             }
         }
         if (null != textboxHandler) {

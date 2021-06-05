@@ -27,11 +27,6 @@ public class BellTower extends StaticEntity {
         addBoundingBox(new Rectangle(width / 2 - (int) (xScale * (stairsWidth / 2)), 6 * height / 7 - Tile.TILEHEIGHT / 2, width / 2 - (int) (xScale * (stairsWidth / 2)) + 2, 8));
         stairsX = width / 2 - (int) (xScale * (stairsWidth / 2));
         stairsY = (int) (yScale * (Assets.bellTower.getHeight() - stairsHeight));
-        handler.getActiveWorld().getEntityManager().addEntity(
-                new Door(handler, x + stairsX, y + stairsY - Assets.closedDoorOne.getHeight() * 2,
-                        Assets.closedDoorOne.getWidth() * 2, Assets.closedDoorOne.getHeight() * 2, "belltower-overworld1",
-                        handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID), 700, 600, Door.PLAIN_WOOD, true,
-                        GeneralConstants.levelTransitionFrames, true));
     }
 
     @Override

@@ -13,7 +13,7 @@ import Utils.GeneralUtils;
 
 public abstract class World {
 	protected Handler handler;
-	private int width, height, id, fadeInFrames = -1;
+	protected int width, height, id, fadeInFrames = -1;
 	private int[][] tiles;
 	private String path;
 	protected boolean firstTime = true, fadeIn = true, firstRender = true;
@@ -33,12 +33,12 @@ public abstract class World {
 		} else {
 			entityManager = new EntityManager(handler, handler.getPlayer());
 		}
+		addEntities();
 		loadWorld(path);
 	}
 
 	protected void tick() {
 		if (firstTime) {
-			addEntities();
 			if (fadeIn) {
 				GeneralUtils.levelFadeIn(handler, fadeInFrames);
 			}

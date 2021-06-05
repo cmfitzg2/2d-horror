@@ -25,11 +25,11 @@ public class MansionL3Room1 extends World {
     protected void addEntities() {
         entityManager.addEntity(new MansionStairs(handler, 15 * Tile.TILEWIDTH, 15 * Tile.TILEHEIGHT - Assets.mansionStairsDownLeft.getHeight() / 2f,
                 Assets.mansionStairsDownLeft.getWidth() * 2, Assets.mansionStairsDownLeft.getHeight() * 2, null,
-                handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_1_ID), 24 * Tile.TILEWIDTH, 6.9f * Tile.TILEHEIGHT,
+                WorldManager.MANSION_L2_ROOM_1_ID, 24 * Tile.TILEWIDTH, 6.9f * Tile.TILEHEIGHT,
                 MansionStairs.STYLE_DOWN_LEFT));
         entityManager.addEntity(new Door(handler, 19.5f * Tile.TILEWIDTH - Assets.closedDoorOne.getWidth() / 2f, 14 * Tile.TILEHEIGHT - Assets.closedDoorOne.getHeight() * 2,
                 Assets.closedDoorOne.getWidth() * 2, Assets.closedDoorOne.getHeight() * 2, null,
-                handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID), 700, 600, Door.PLAIN_WOOD, Door.VISIBLE,
+                WorldManager.MC_HOUSE_1_ID, 700, 600, Door.PLAIN_WOOD, Door.VISIBLE,
                 GeneralConstants.levelTransitionFrames, Door.LOCKED));
     }
 

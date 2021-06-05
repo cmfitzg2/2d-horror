@@ -48,7 +48,7 @@ public class MansionL2Room1 extends World {
     protected void addEntities() {
         entityManager.addEntity(new MansionStairs(handler, 25 * Tile.TILEWIDTH, 7 * Tile.TILEHEIGHT - Assets.mansionStairsUpRight.getHeight(),
                 Assets.mansionStairsUpRight.getWidth() * 2, Assets.mansionStairsUpRight.getHeight() * 2, null,
-                handler.getWorldManager().getWorld(WorldManager.MANSION_L3_ROOM_1_ID), 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 15 * Tile.TILEHEIGHT,
+                WorldManager.MANSION_L3_ROOM_1_ID, 17 * Tile.TILEWIDTH + handler.getPlayer().getWidth() / 2f, 15 * Tile.TILEHEIGHT,
                 MansionStairs.STYLE_UP_RIGHT));
 
         entityManager.addEntity(new SideTable(handler, 18 * Tile.TILEWIDTH - Assets.sideTableHorizontal.getWidth(), 5 * Tile.TILEHEIGHT,

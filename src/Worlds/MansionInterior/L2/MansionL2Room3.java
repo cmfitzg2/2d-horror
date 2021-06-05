@@ -4,6 +4,7 @@ import Entities.Creatures.Player;
 import Entities.StaticEntities.*;
 import Graphics.Assets;
 import Tiles.Tile;
+import Utils.GeneralUtils;
 import Variables.GeneralConstants;
 import Variables.Handler;
 import Worlds.World;
@@ -12,6 +13,8 @@ import Worlds.WorldManager;
 import java.awt.*;
 
 public class MansionL2Room3 extends World {
+
+    private boolean roomMatches;
 
     public MansionL2Room3(Handler handler, int id, Player player) {
         super(handler, "res/worlds/mansion-L2-room-3.txt", id, player);
@@ -53,6 +56,30 @@ public class MansionL2Room3 extends World {
                 Assets.sideTableHorizontal.getWidth() * 2, Assets.sideTableHorizontal.getHeight() * 2,
                 null, SideTable.STYLE_HORIZONTAL, SideTable.ACCENT_BOUQUET));
         entityManager.addEntity(new ItemSparkle(handler, 22 * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT, Assets.itemSparkle[0].getWidth(), Assets.itemSparkle[0].getHeight(), null));
+    }
+
+    @Override
+    protected void tick() {
+        if (firstTime) {
+            if (fadeIn) {
+                GeneralUtils.levelFadeIn(handler, fadeInFrames);
+            }
+            firstTime = false;
+        }
+        entityManager.tick();
+        if (!transitioningTo) {
+            checkLoadZones();
+        }
+        if (transitioningTo) {
+            transitionTo();
+        }
+
+        roomMatches = checkRoomMatches();
+
+    }
+
+    private boolean checkRoomMatches() {
+        return false;
     }
 
     @Override

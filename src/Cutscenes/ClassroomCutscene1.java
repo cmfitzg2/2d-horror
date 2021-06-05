@@ -113,7 +113,7 @@ public class ClassroomCutscene1 implements Cutscene {
                         player.setY(playerDesk.getY());
                         Door door = (Door) entityManager.getEntityByUid("door1-classroom1");
                         entityManager.addEntity(new Door(handler, door.getX(), door.getY(), door.getWidth(), door.getHeight(),
-                                "door2-classroom1", handler.getWorldManager().getWorld(WorldManager.MC_HOUSE_1_ID),
+                                "door2-classroom1", WorldManager.MC_HOUSE_1_ID,
                                 700, 428, Door.PLAIN_WOOD, false, GeneralConstants.longLevelTransition, false));
                         entityManager.removeEntity(door);
                         textbox2 = true;

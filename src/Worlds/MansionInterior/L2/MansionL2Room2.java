@@ -30,7 +30,7 @@ public class MansionL2Room2 extends World {
     protected void addEntities() {
         entityManager.addEntity(new Door(handler, 15 * Tile.TILEWIDTH - Assets.closedDoorOne.getWidth() / 2f, 10 * Tile.TILEHEIGHT - Assets.closedDoorOne.getHeight() * 2,
                 Assets.closedDoorOne.getWidth() * 2, Assets.closedDoorOne.getHeight() * 2, null,
-                handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_1_ID), 700, 600, Door.PLAIN_WOOD, Door.VISIBLE,
+                WorldManager.MANSION_L2_ROOM_1_ID, 700, 600, Door.PLAIN_WOOD, Door.VISIBLE,
                 GeneralConstants.levelTransitionFrames, Door.LOCKED));
     }
 
