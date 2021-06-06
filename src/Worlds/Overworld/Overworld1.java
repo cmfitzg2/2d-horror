@@ -41,8 +41,8 @@ public class Overworld1 extends World {
                 Door.STAIRS, true, GeneralConstants.levelTransitionFrames, false));
         entityManager.addEntity(new BellTower(handler, 80 * Tile.TILEWIDTH, 50 * Tile.TILEHEIGHT, Assets.bellTower.getWidth() * 2, Assets.bellTower.getHeight() * 2, true, null));
         entityManager.addEntity(new Door(handler, 80 * Tile.TILEWIDTH + Assets.bellTower.getWidth() - Assets.doorStairs.getWidth(),
-                50 * Tile.TILEHEIGHT + Assets.bellTower.getHeight() * 2 - Assets.closedDoorOne.getHeight() * 2, Assets.closedDoorOne.getWidth() * 2, Assets.closedDoorOne.getHeight() * 2,
-                "belltower-overworld1", WorldManager.MC_HOUSE_1_ID, 700, 600, Door.PLAIN_WOOD, false, GeneralConstants.levelTransitionFrames, true));
+                50 * Tile.TILEHEIGHT + Assets.bellTower.getHeight() * 2 - Assets.closedDoorOne.getHeight() * 2 - Assets.doorStairs.getHeight(), Assets.closedDoorOne.getWidth() * 2, Assets.closedDoorOne.getHeight() * 2,
+                "belltower-overworld1", WorldManager.MC_HOUSE_1_ID, 700, 600, Door.PLAIN_WOOD, true, GeneralConstants.levelTransitionFrames, true));
         entityManager.addEntity(new Well(handler, 87 * Tile.TILEWIDTH, 50 * Tile.TILEHEIGHT, Assets.well[0].getWidth() * 2, Assets.well[0].getHeight() * 2, null, Well.TYPE_NORMAL));
         entityManager.addEntity(new Well(handler, 87 * Tile.TILEWIDTH, 54 * Tile.TILEHEIGHT, Assets.well[0].getWidth() * 2, Assets.well[0].getHeight() * 2, null, Well.TYPE_COVERED));
         entityManager.addEntity(new Well(handler, 87 * Tile.TILEWIDTH, 58 * Tile.TILEHEIGHT, Assets.well[0].getWidth() * 2, Assets.well[0].getHeight() * 2, null, Well.TYPE_DAMAGED));

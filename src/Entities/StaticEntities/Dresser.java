@@ -139,7 +139,7 @@ public class Dresser extends StaticEntity {
                 textboxHandler.setActive(true);
                 viewingTextbox = true;
                 return true;
-            } else if (uniqueName.equals("mansionL2Room4-1") || uniqueName.equals("mansionL2Room4-2")) {
+            } else if (uniqueName.equals("mansionL2Room4-dresser1") || uniqueName.equals("mansionL2Room4-dresser2")) {
                 textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, "There's a variety of books here. \r There appears to be one missing.", null, 2, Color.WHITE, null, Assets.textboxDefault, null, 100, true, true);
                 textboxHandler.setActive(true);
                 viewingTextbox = true;

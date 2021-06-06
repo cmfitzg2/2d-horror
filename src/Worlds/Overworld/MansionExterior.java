@@ -45,6 +45,9 @@ public class MansionExterior extends World {
     @Override
     protected void addEntities() {
         entityManager.addEntity(new BellTower(handler, 2.5f * Tile.TILEWIDTH, 4.75f * Tile.TILEHEIGHT, Assets.bellTower.getWidth() * 2, Assets.bellTower.getHeight() * 2, true, null));
+        entityManager.addEntity(new Door(handler, 2.5f * Tile.TILEWIDTH + Assets.bellTower.getWidth() - Assets.doorStairs.getWidth(),
+                4.75f * Tile.TILEHEIGHT + Assets.bellTower.getHeight() * 2 - Assets.closedDoorOne.getHeight() * 2 - Assets.doorStairs.getHeight(), Assets.closedDoorOne.getWidth() * 2, Assets.closedDoorOne.getHeight() * 2,
+                "belltower-overworld1", WorldManager.MC_HOUSE_1_ID, 700, 600, Door.PLAIN_WOOD, true, GeneralConstants.levelTransitionFrames, true));
         entityManager.addEntity(new Mansion(handler, 20 * Tile.TILEWIDTH - Assets.mansion.getWidth(), 4 * Tile.TILEHEIGHT, Assets.mansion.getWidth() * 2, Assets.mansion.getHeight() * 2, "mansion-mansionexterior1"));
         entityManager.addEntity(new IronGate(handler, Tile.TILEWIDTH / 4f, 5, Assets.gateTop.getWidth() * 2, Assets.gateTop.getHeight() * 2, null, IronGate.TYPE_TOP));
         entityManager.addEntity(new IronGate(handler, Tile.TILEWIDTH / 4f, 5 + Assets.height * 4, Assets.gateSide.getWidth() * 2, Assets.gateSide.getHeight() * 2, null, IronGate.TYPE_SIDE));

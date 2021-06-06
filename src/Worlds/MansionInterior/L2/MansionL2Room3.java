@@ -1,8 +1,10 @@
 package Worlds.MansionInterior.L2;
 
 import Entities.Creatures.Player;
+import Entities.EntityManager;
 import Entities.StaticEntities.*;
 import Graphics.Assets;
+import Items.Book;
 import Tiles.Tile;
 import Utils.GeneralUtils;
 import Variables.GeneralConstants;
@@ -15,6 +17,7 @@ import java.awt.*;
 public class MansionL2Room3 extends World {
 
     private boolean roomMatches;
+    private TableLamp lamp;
 
     public MansionL2Room3(Handler handler, int id, Player player) {
         super(handler, "res/worlds/mansion-L2-room-3.txt", id, player);
@@ -40,9 +43,10 @@ public class MansionL2Room3 extends World {
         entityManager.addEntity(new Bed(handler, 13 * Tile.TILEWIDTH, 9.5f * Tile.TILEHEIGHT,
                 Assets.redSingleBed.getWidth() * 2, Assets.redSingleBed.getHeight() * 2,
                 null, Bed.STYLE_RED_SINGLE));
-        entityManager.addEntity(new TableLamp(handler, 12 * Tile.TILEWIDTH, 9 * Tile.TILEHEIGHT,
+        lamp = new TableLamp(handler, 12 * Tile.TILEWIDTH, 9 * Tile.TILEHEIGHT,
                 Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2,
-                null));
+                null);
+        entityManager.addEntity(lamp);
         entityManager.addEntity(new PlantVase(handler, 12 * Tile.TILEWIDTH + 2, 17 * Tile.TILEHEIGHT - Assets.plantVaseFlowers.getHeight() * 2,
                 Assets.plantVaseFlowers.getWidth() * 2, Assets.plantVaseFlowers.getHeight() * 2,
                 null, PlantVase.STYLE_FLOWERS));
@@ -75,15 +79,24 @@ public class MansionL2Room3 extends World {
         }
 
         roomMatches = checkRoomMatches();
+        System.out.println(roomMatches);
 
     }
 
     private boolean checkRoomMatches() {
-        return false;
+        EntityManager entityManagerR4 = handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_4_ID).getEntityManager();
+        SideTable bouquet = (SideTable) entityManagerR4.getEntityByUid("sidetable-vase-mansionL2Room4");
+        TableLamp lampR4 = (TableLamp) entityManagerR4.getEntityByUid("mansionL2Room4-tablelamp");
+        return bouquet.getAccent() == SideTable.ACCENT_BOUQUET && lamp.isLit() == lampR4.isLit()
+                && handler.getPlayer().isSitBookRight() && handler.getPlayer().getInventory().containsUnique(Book.BOOK_TWO_FRIENDS_NAME);
     }
 
     @Override
     protected void load() {
         firstRender = true;
+    }
+
+    public boolean isRoomMatches() {
+        return roomMatches;
     }
 }

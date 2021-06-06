@@ -30,16 +30,16 @@ public class MansionL2Room4 extends World {
     protected void addEntities() {
         entityManager.addEntity(new Dresser(handler, 12 * Tile.TILEWIDTH, 8.5f * Tile.TILEHEIGHT,
                 Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getHeight() * 2,
-                "mansionL2Room4-1", Dresser.STYLE_SHELF_BOOKS_FULL));
+                "mansionL2Room4-dresser1", Dresser.STYLE_SHELF_BOOKS_FULL));
         entityManager.addEntity(new Dresser(handler, 12 * Tile.TILEWIDTH + Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, 8.5f * Tile.TILEHEIGHT,
                 Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getHeight() * 2,
-                "mansionL2Room4-2", Dresser.STYLE_SHELF_BOOKS_FULL));
+                "mansionL2Room4-dresser2", Dresser.STYLE_SHELF_BOOKS_FULL));
         entityManager.addEntity(new Bed(handler, 21.5f * Tile.TILEWIDTH, 9.5f * Tile.TILEHEIGHT,
                 Assets.redSingleBed.getWidth() * 2, Assets.redSingleBed.getHeight() * 2,
                 null, Bed.STYLE_RED_SINGLE));
         entityManager.addEntity(new TableLamp(handler, 23 * Tile.TILEWIDTH, 9 * Tile.TILEHEIGHT,
                 Assets.tableLampOff.getWidth() * 2, Assets.tableLampOff.getHeight() * 2,
-                null));
+                "mansionL2Room4-tablelamp"));
         entityManager.addEntity(new PlantVase(handler, 12 * Tile.TILEWIDTH + 2, 17 * Tile.TILEHEIGHT - Assets.plantVaseFlowers.getHeight() * 2,
                 Assets.plantVaseFlowers.getWidth() * 2, Assets.plantVaseFlowers.getHeight() * 2,
                 null, PlantVase.STYLE_FLOWERS));
