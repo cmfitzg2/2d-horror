@@ -7,6 +7,8 @@ import Variables.Handler;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import Graphics.Assets;
+import Worlds.MansionInterior.L2.MansionL2Room3;
+import Worlds.WorldManager;
 
 public class Book extends Item {
 
@@ -27,22 +29,30 @@ public class Book extends Item {
 
     @Override
     public boolean useItem() {
-        viewingTextbox = true;
         if (uniqueName.equals(BOOK_TWO_FRIENDS_NAME) || uniqueName.equals(BOOK_1_NAME) || uniqueName.equals(BOOK_2_NAME) || uniqueName.equals(BOOK_3_NAME)) {
             if (handler.getPlayer().isSitRight()) {
                 handler.getPlayer().setSitBookRight(true);
             }
             switch (uniqueName) {
                 case BOOK_TWO_FRIENDS_NAME:
-                    textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, textTwoFriends, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+                    MansionL2Room3 mansionL2Room3 = (MansionL2Room3) handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_3_ID);
+                    if (mansionL2Room3.isRoomMatches()) {
+                        System.out.println("sadf");
+                    } else {
+                        viewingTextbox = true;
+                        textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, textTwoFriends, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
+                    }
                     return true;
                 case BOOK_1_NAME:
+                    viewingTextbox = true;
                     textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, "This is book 1.", null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
                     return true;
                 case BOOK_2_NAME:
+                    viewingTextbox = true;
                     textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, "This is book 2.", null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
                     return true;
                 case BOOK_3_NAME:
+                    viewingTextbox = true;
                     textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, "This is book 3.", null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);
                     return true;
             }
@@ -63,11 +73,13 @@ public class Book extends Item {
 
     @Override
     protected void render(Graphics g) {
-        if (null != textboxHandler && !textboxHandler.isFinished()) {
-            textboxHandler.render(g);
-        } else {
-            viewingTextbox = false;
-            handler.getPlayer().setSitBookRight(false);
+        if (viewingTextbox) {
+            if (null != textboxHandler && !textboxHandler.isFinished()) {
+                textboxHandler.render(g);
+            } else {
+                viewingTextbox = false;
+                handler.getPlayer().setSitBookRight(false);
+            }
         }
     }
 }

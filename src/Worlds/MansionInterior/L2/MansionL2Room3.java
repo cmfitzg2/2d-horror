@@ -18,6 +18,9 @@ public class MansionL2Room3 extends World {
 
     private boolean roomMatches;
     private TableLamp lamp;
+    EntityManager entityManagerR4;
+    SideTable bouquet;
+    TableLamp lampR4;
 
     public MansionL2Room3(Handler handler, int id, Player player) {
         super(handler, "res/worlds/mansion-L2-room-3.txt", id, player);
@@ -68,6 +71,9 @@ public class MansionL2Room3 extends World {
             if (fadeIn) {
                 GeneralUtils.levelFadeIn(handler, fadeInFrames);
             }
+            entityManagerR4 = handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_4_ID).getEntityManager();
+            bouquet = (SideTable) entityManagerR4.getEntityByUid("sidetable-vase-mansionL2Room4");
+            lampR4 = (TableLamp) entityManagerR4.getEntityByUid("mansionL2Room4-tablelamp");
             firstTime = false;
         }
         entityManager.tick();
@@ -77,18 +83,6 @@ public class MansionL2Room3 extends World {
         if (transitioningTo) {
             transitionTo();
         }
-
-        roomMatches = checkRoomMatches();
-        System.out.println(roomMatches);
-
-    }
-
-    private boolean checkRoomMatches() {
-        EntityManager entityManagerR4 = handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_4_ID).getEntityManager();
-        SideTable bouquet = (SideTable) entityManagerR4.getEntityByUid("sidetable-vase-mansionL2Room4");
-        TableLamp lampR4 = (TableLamp) entityManagerR4.getEntityByUid("mansionL2Room4-tablelamp");
-        return bouquet.getAccent() == SideTable.ACCENT_BOUQUET && lamp.isLit() == lampR4.isLit()
-                && handler.getPlayer().isSitBookRight() && handler.getPlayer().getInventory().containsUnique(Book.BOOK_TWO_FRIENDS_NAME);
     }
 
     @Override
@@ -97,6 +91,7 @@ public class MansionL2Room3 extends World {
     }
 
     public boolean isRoomMatches() {
-        return roomMatches;
+        return bouquet.getAccent() == SideTable.ACCENT_BOUQUET && lamp.isLit() == lampR4.isLit()
+                && handler.getPlayer().isSitBookRight() && handler.getPlayer().getInventory().containsUnique(Book.BOOK_TWO_FRIENDS_NAME);
     }
 }
