@@ -32,8 +32,6 @@ public class EntityManager {
 		return 0;
 	};
 
-	private Entity e;
-
 	public EntityManager(Handler handler, Player player) {
 		this.handler = handler;
 		this.player = player;
@@ -45,7 +43,7 @@ public class EntityManager {
 		entities.sort(renderSorter);
 		if (!handler.isGamePaused()) {
 			for (int i = 0; i < entities.size(); i++) {
-				e = entities.get(i);
+				Entity e = entities.get(i);
 				e.tick();
 				if (!e.isActive())
 					entities.remove(e);
@@ -79,8 +77,6 @@ public class EntityManager {
 	public void removeEntity(Entity e) {
 		entities.remove(e);
 	}
-
-	//GETTERS SETTERS
 
 	public Entity getEntityByUid(String uid) {
 		for (Entity e : entities) {
