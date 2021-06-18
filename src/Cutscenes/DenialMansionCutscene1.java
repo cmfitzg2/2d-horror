@@ -1,16 +1,15 @@
 package Cutscenes;
 
-import Entities.Creatures.Acceptance;
 import Entities.Creatures.Denial;
 import Entities.Creatures.Player;
 import Entities.EntityManager;
-import Graphics.Assets;
+import Entities.StaticEntities.Dresser;
 import Input.KeyManager;
 import Textboxes.TextboxHandler;
 import Tiles.Tile;
-import Variables.GeneralConstants;
 import Variables.Handler;
 import Worlds.WorldManager;
+import Graphics.Assets;
 
 import java.awt.*;
 
@@ -27,6 +26,9 @@ public class DenialMansionCutscene1 implements Cutscene {
     private final String messageOne = "????????",
             messageTwo = "????????????????????????? \r " +
                     "????????";
+    private Dresser movingDresser;
+    private float stepSize;
+    private int oscillationIndex = 0;
 
     public DenialMansionCutscene1(Handler handler) {
         this.handler = handler;
@@ -38,24 +40,24 @@ public class DenialMansionCutscene1 implements Cutscene {
         if (firstTime) {
             EntityManager entityManagerL2R4 = handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_4_ID).getEntityManager();
             entityManagerL2R4.removeEntity(entityManagerL2R4.getEntityByUid("denial-mansionL2Room4"));
+            Dresser dresserL2R4 = (Dresser) entityManagerL2R4.getEntityByUid("mansionL2Room4-dresser2");
+            dresserL2R4.setX(dresserL2R4.getX() + Tile.TILEWIDTH * 1.5f);
+            EntityManager entityManagerL2R3 = handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_3_ID).getEntityManager();
+            movingDresser = (Dresser) entityManagerL2R3.getEntityByUid("mansionL2Room3-dresser2");
             player = handler.getPlayer();
+            Assets.woodDrag.setFramePosition(0);
+            Assets.woodDrag.start();
+            stepSize = Tile.TILEWIDTH * 1.5f / (Assets.woodDrag.getMicrosecondLength() * handler.getGame().getFps() / 1000000f);
             firstTime = false;
         }
-        if (textbox1 && !textboxHandler1.isFinished()) {
-            textboxHandler1.tick();
+        if (Assets.woodDrag.isActive()) {
+            moveDresser();
         }
     }
 
     @Override
     public void render(Graphics g) {
-        if (textbox1) {
-            if (!textboxHandler1.isFinished()) {
-                textboxHandler1.render(g);
-            } else {
-                textbox2 = true;
-                textbox1 = false;
-            }
-        }
+
     }
 
     @Override
@@ -64,5 +66,18 @@ public class DenialMansionCutscene1 implements Cutscene {
         handler.getCutsceneManager().setActiveCutscene(null);
         handler.getFlags().setCutsceneActive(false);
         handler.getFlags().setDenialMansionCutscene1(false);
+    }
+
+    private void moveDresser() {
+        movingDresser.setX(movingDresser.getX() - stepSize);
+        if (oscillationIndex < 3) {
+            movingDresser.setY(movingDresser.getY() - 1);
+        } else {
+            movingDresser.setY(movingDresser.getY() + 1);
+        }
+        oscillationIndex++;
+        if (oscillationIndex > 5) {
+            oscillationIndex = 0;
+        }
     }
 }

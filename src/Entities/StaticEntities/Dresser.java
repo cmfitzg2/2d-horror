@@ -128,7 +128,8 @@ public class Dresser extends StaticEntity {
     @Override
     public boolean interactedWith() {
         if (style == STYLE_SHELF_BOOKS_FULL && uniqueName != null) {
-            if (uniqueName.equals("mansionL2Room3-1") || uniqueName.equals("mansionL2Room3-2")) {
+            if (uniqueName.equals("mansionL2Room3-dresser1") || uniqueName.equals("mansionL2Room3-dresser2")) {
+                handler.getActiveWorld().getEntityManager().removeEntity(handler.getActiveWorld().getEntityManager().getEntityByUid("mansionL2Room3-itemsparkle1"));
                 String message;
                 if (handler.getPlayer().getInventory().contains("Book")) {
                     message = "Take a different book?";

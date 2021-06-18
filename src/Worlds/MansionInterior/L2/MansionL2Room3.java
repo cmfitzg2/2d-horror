@@ -39,10 +39,10 @@ public class MansionL2Room3 extends World {
     protected void addEntities() {
         entityManager.addEntity(new Dresser(handler, 23 * Tile.TILEWIDTH, 8.5f * Tile.TILEHEIGHT,
                 Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getHeight() * 2,
-                "mansionL2Room3-1", Dresser.STYLE_SHELF_BOOKS_FULL));
+                "mansionL2Room3-dresser1", Dresser.STYLE_SHELF_BOOKS_FULL));
         entityManager.addEntity(new Dresser(handler, 23 * Tile.TILEWIDTH - Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, 8.5f * Tile.TILEHEIGHT,
                 Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getWidth() * 2, Assets.dressers[Dresser.STYLE_SHELF_BOOKS_FULL].getHeight() * 2,
-                "mansionL2Room3-2", Dresser.STYLE_SHELF_BOOKS_FULL));
+                "mansionL2Room3-dresser2", Dresser.STYLE_SHELF_BOOKS_FULL));
         entityManager.addEntity(new Bed(handler, 13 * Tile.TILEWIDTH, 9.5f * Tile.TILEHEIGHT,
                 Assets.redSingleBed.getWidth() * 2, Assets.redSingleBed.getHeight() * 2,
                 null, Bed.STYLE_RED_SINGLE));
@@ -62,7 +62,7 @@ public class MansionL2Room3 extends World {
         entityManager.addEntity(new SideTable(handler, 18 * Tile.TILEWIDTH - Assets.sideTableHorizontal.getWidth(), 17 * Tile.TILEHEIGHT - Assets.sideTableHorizontal.getHeight() * 2,
                 Assets.sideTableHorizontal.getWidth() * 2, Assets.sideTableHorizontal.getHeight() * 2,
                 null, SideTable.STYLE_HORIZONTAL, SideTable.ACCENT_BOUQUET));
-        entityManager.addEntity(new ItemSparkle(handler, 22 * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT, Assets.itemSparkle[0].getWidth(), Assets.itemSparkle[0].getHeight(), null));
+        entityManager.addEntity(new ItemSparkle(handler, 22 * Tile.TILEWIDTH, 10 * Tile.TILEHEIGHT, Assets.itemSparkle[0].getWidth(), Assets.itemSparkle[0].getHeight(), "mansionL2Room3-itemsparkle1"));
     }
 
     @Override

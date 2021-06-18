@@ -18,7 +18,7 @@ import Variables.Handler;
 public class Game implements Runnable {
 
 	private Display display;
-	private int width, height;
+	private int width, height, fps;
 	public String title;
 
 	private Thread thread;
@@ -139,7 +139,7 @@ public class Game implements Runnable {
 	public void run() {
 		init();
 
-		int fps = 60;
+		fps = 60;
 		double timePerTick = (double) 1000000000 / fps;
 		double delta = 0;
 		long now;
@@ -253,5 +253,9 @@ public class Game implements Runnable {
 
 	public float getAlpha() {
 		return alpha;
+	}
+
+	public int getFps() {
+		return fps;
 	}
 }

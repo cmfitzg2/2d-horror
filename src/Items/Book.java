@@ -1,5 +1,6 @@
 package Items;
 
+import Cutscenes.Cutscene;
 import Textboxes.TextboxHandler;
 import Variables.GeneralConstants;
 import Variables.Handler;
@@ -36,8 +37,9 @@ public class Book extends Item {
             switch (uniqueName) {
                 case BOOK_TWO_FRIENDS_NAME:
                     MansionL2Room3 mansionL2Room3 = (MansionL2Room3) handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_3_ID);
-                    if (mansionL2Room3.isRoomMatches()) {
-                        System.out.println("sadf");
+                    if (handler.getFlags().isDenialMansionCutscene1() && mansionL2Room3.isRoomMatches()) {
+                        handler.getFlags().setCutsceneActive(true);
+                        handler.getCutsceneManager().setActiveCutscene(handler.getCutsceneManager().getCutscene(Cutscene.DENIAL_MANSION_CUTSCENE_1));
                     } else {
                         viewingTextbox = true;
                         textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, textTwoFriends, null, GeneralConstants.defaultTextSpeed, Color.WHITE, null, Assets.textboxDefault, null, 50, true, true);

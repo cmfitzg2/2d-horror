@@ -25,6 +25,7 @@ public class CutsceneManager {
         cutscenes.put(Cutscene.MC_HOUSE_NIGHT_CUTSCENE_5, new MCHouseNightCutscene5(handler));
         cutscenes.put(Cutscene.OVERWORLD_CUTSCENE_1, new OverworldCutscene1(handler));
         cutscenes.put(Cutscene.MANSION_EXTERIOR_CUTSCENE_1, new MansionExteriorCutscene1(handler));
+        cutscenes.put(Cutscene.DENIAL_MANSION_CUTSCENE_1, new DenialMansionCutscene1(handler));
         setActiveCutscene(cutscenes.get(Cutscene.PROLOGUE));
     }
 

@@ -96,7 +96,7 @@ public class Assets {
 			denialText, angerText, bargainingText, depressionText, acceptanceText, playerText, teacherText,
 			lampOn, lampOff, windowHit;
 	public static Clip menuMusic;
-	public static Clip schoolBell, triKnock1, powerDown, windowKnock;
+	public static Clip schoolBell, triKnock1, powerDown, windowKnock, woodDrag;
 	public static void init() {
 		initSounds();
 		initFonts();
@@ -130,6 +130,9 @@ public class Assets {
 			windowKnock = AudioSystem.getClip();
 			AudioInputStream ais5 = AudioSystem.getAudioInputStream(new File("res/sounds/misc/window-knock.au"));
 			windowKnock.open(ais5);
+			woodDrag = AudioSystem.getClip();
+			AudioInputStream ais6 = AudioSystem.getAudioInputStream(new File("res/sounds/zapsplat/wood-drag.au"));
+			woodDrag.open(ais6);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		}
