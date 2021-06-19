@@ -52,6 +52,8 @@ public class DenialMansionCutscene1 implements Cutscene {
         }
         if (Assets.woodDrag.isActive()) {
             moveDresser();
+        } else {
+            exit();
         }
     }
 

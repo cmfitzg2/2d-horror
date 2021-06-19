@@ -21,6 +21,7 @@ public class Dresser extends StaticEntity {
     private TextboxHandler textboxHandler;
     private boolean firstTime = true, viewingTextbox = false;
     private Inventory inventory;
+    private Dresser syncedDresser;
 
     public Dresser(Handler handler, float x, float y, int width, int height, String uniqueName, int style) {
         super(handler, x, y, width, height, uniqueName);
@@ -29,8 +30,10 @@ public class Dresser extends StaticEntity {
         bounds.width = width;
         bounds.height = height / 2;
         this.style = style;
-        booksL2R3 = new ArrayList<>();
-        booksL2R3Order = new ArrayList<>();
+        if (uniqueName != null && (uniqueName.equals("mansionL2Room3-dresser1") || uniqueName.equals("mansionL2Room3-dresser2"))) {
+            booksL2R3 = new ArrayList<>();
+            booksL2R3Order = new ArrayList<>();
+        }
     }
 
     @Override
@@ -54,19 +57,26 @@ public class Dresser extends StaticEntity {
     public void tick() {
         if (firstTime) {
             inventory = handler.getPlayer().getInventory();
-            booksL2R3.add("Take \"The Two Friends\"");
-            booksL2R3.add("Take \"Book 1\"");
-            booksL2R3.add("Take \"Book 2\"");
-            booksL2R3.add("Take \"Book 3\"");
-            booksL2R3.add("Exit");
-            if (inventory.contains(Book.BOOK_GENERIC_NAME)) {
-                booksL2R3.remove(inventory.getItemByGenericName(Book.BOOK_GENERIC_NAME, Inventory.REGULAR_ITEM).getUniqueName());
+            if (uniqueName != null && (uniqueName.equals("mansionL2Room3-dresser1") || uniqueName.equals("mansionL2Room3-dresser2"))) {
+                if (uniqueName.equals("mansionL2Room3-dresser1")) {
+                    syncedDresser = (Dresser) handler.getActiveWorld().getEntityManager().getEntityByUid("mansionL2Room3-dresser2");
+                } else if (uniqueName.equals("mansionL2Room3-dresser2")) {
+                    syncedDresser = (Dresser) handler.getActiveWorld().getEntityManager().getEntityByUid("mansionL2Room3-dresser1");
+                }
+                booksL2R3.add("Take \"The Two Friends\"");
+                booksL2R3.add("Take \"Book 1\"");
+                booksL2R3.add("Take \"Book 2\"");
+                booksL2R3.add("Take \"Book 3\"");
+                booksL2R3.add("Exit");
+                if (inventory.contains(Book.BOOK_GENERIC_NAME)) {
+                    booksL2R3.remove(inventory.getItemByGenericName(Book.BOOK_GENERIC_NAME, Inventory.REGULAR_ITEM).getUniqueName());
+                }
+                booksL2R3Order.add("Take \"The Two Friends\"");
+                booksL2R3Order.add("Take \"Book 1\"");
+                booksL2R3Order.add("Take \"Book 2\"");
+                booksL2R3Order.add("Take \"Book 3\"");
+                booksL2R3Order.add("Exit");
             }
-            booksL2R3Order.add("Take \"The Two Friends\"");
-            booksL2R3Order.add("Take \"Book 1\"");
-            booksL2R3Order.add("Take \"Book 2\"");
-            booksL2R3Order.add("Take \"Book 3\"");
-            booksL2R3Order.add("Exit");
             firstTime = false;
         }
 
@@ -75,7 +85,11 @@ public class Dresser extends StaticEntity {
                 if (!textboxHandler.isFinished()) {
                     textboxHandler.tick();
                 } else {
-                    textboxCallback(textboxHandler.getOptionSelected());
+                    if (uniqueName != null && (uniqueName.equals("mansionL2Room3-dresser1") || uniqueName.equals("mansionL2Room3-dresser2"))) {
+                        textboxCallback(textboxHandler.getOptionSelected());
+                    } else {
+                        viewingTextbox = false;
+                    }
                 }
             }
         }
@@ -110,6 +124,7 @@ public class Dresser extends StaticEntity {
                 booksL2R3.remove("Take \"Book 3\"");
             }
             booksL2R3.sort(Comparator.comparingInt(booksL2R3Order::indexOf));
+            syncedDresser.setBooksL2R3(booksL2R3);
         }
         viewingTextbox = false;
     }
@@ -128,7 +143,7 @@ public class Dresser extends StaticEntity {
     @Override
     public boolean interactedWith() {
         if (style == STYLE_SHELF_BOOKS_FULL && uniqueName != null) {
-            if (uniqueName.equals("mansionL2Room3-dresser1") || uniqueName.equals("mansionL2Room3-dresser2")) {
+            if (uniqueName.equals("mansionL2Room3-dresser1") || uniqueName.equals("mansionL2Room3-dresser2") && handler.getFlags().isDenialMansionCutscene1()) {
                 handler.getActiveWorld().getEntityManager().removeEntity(handler.getActiveWorld().getEntityManager().getEntityByUid("mansionL2Room3-itemsparkle1"));
                 String message;
                 if (handler.getPlayer().getInventory().contains("Book")) {
@@ -140,7 +155,7 @@ public class Dresser extends StaticEntity {
                 textboxHandler.setActive(true);
                 viewingTextbox = true;
                 return true;
-            } else if (uniqueName.equals("mansionL2Room4-dresser1") || uniqueName.equals("mansionL2Room4-dresser2")) {
+            } else if (uniqueName.equals("mansionL2Room4-dresser1") || uniqueName.equals("mansionL2Room4-dresser2") && handler.getFlags().isDenialMansionCutscene1()) {
                 textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, "There's a variety of books here. \r There appears to be one missing.", null, 2, Color.WHITE, null, Assets.textboxDefault, null, 100, true, true);
                 textboxHandler.setActive(true);
                 viewingTextbox = true;
@@ -159,5 +174,9 @@ public class Dresser extends StaticEntity {
     @Override
     public boolean itemInteraction(String item) {
         return false;
+    }
+
+    public void setBooksL2R3(List<String> booksL2R3) {
+        this.booksL2R3 = booksL2R3;
     }
 }
