@@ -27,7 +27,7 @@ public class DenialMansionCutscene1 implements Cutscene {
             messageTwo = "????????????????????????? \r " +
                     "????????";
     private Dresser movingDresser;
-    private float stepSize;
+    private float initialX, stepSize;
     private int oscillationIndex = 0;
 
     public DenialMansionCutscene1(Handler handler) {
@@ -48,9 +48,10 @@ public class DenialMansionCutscene1 implements Cutscene {
             Assets.woodDrag.setFramePosition(0);
             Assets.woodDrag.start();
             stepSize = Tile.TILEWIDTH * 1.5f / (Assets.woodDrag.getMicrosecondLength() * handler.getGame().getFps() / 1000000f);
+            initialX = movingDresser.getX();
             firstTime = false;
         }
-        if (Assets.woodDrag.isActive()) {
+        if (movingDresser.getX() > initialX - Tile.TILEWIDTH * 1.5f) {
             moveDresser();
         } else {
             exit();

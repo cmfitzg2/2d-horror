@@ -113,8 +113,18 @@ public class Couch extends StaticEntity {
 
     @Override
     public int renderVsEntity(Entity e) {
-        if (e.getX() < x + width && e.getX() + e.getWidth() > x && e.getY() + e.getHeight() >= y && e.getY() <= y + height) {
-            return 1;
+        if (style == STYLE_LEFT || style == STYLE_RIGHT) {
+            if (e.getX() < x + width && e.getX() + e.getWidth() > x) {
+                //aligned horizontally
+                if (e.getY() + e.getHeight() <= y + bounds.y) {
+                    //above the couch
+                    return -1;
+                }
+                if (e.getY() + e.getHeight() >= y && e.getY() <= y + height) {
+                    //on the couch
+                    return 1;
+                }
+            }
         }
         return 0;
     }

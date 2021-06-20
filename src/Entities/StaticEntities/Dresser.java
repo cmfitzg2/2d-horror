@@ -143,7 +143,7 @@ public class Dresser extends StaticEntity {
     @Override
     public boolean interactedWith() {
         if (style == STYLE_SHELF_BOOKS_FULL && uniqueName != null) {
-            if (uniqueName.equals("mansionL2Room3-dresser1") || uniqueName.equals("mansionL2Room3-dresser2") && handler.getFlags().isDenialMansionCutscene1()) {
+            if ((uniqueName.equals("mansionL2Room3-dresser1") || uniqueName.equals("mansionL2Room3-dresser2")) && handler.getFlags().isDenialMansionCutscene1()) {
                 handler.getActiveWorld().getEntityManager().removeEntity(handler.getActiveWorld().getEntityManager().getEntityByUid("mansionL2Room3-itemsparkle1"));
                 String message;
                 if (handler.getPlayer().getInventory().contains("Book")) {
@@ -155,7 +155,7 @@ public class Dresser extends StaticEntity {
                 textboxHandler.setActive(true);
                 viewingTextbox = true;
                 return true;
-            } else if (uniqueName.equals("mansionL2Room4-dresser1") || uniqueName.equals("mansionL2Room4-dresser2") && handler.getFlags().isDenialMansionCutscene1()) {
+            } else if ((uniqueName.equals("mansionL2Room4-dresser1") || uniqueName.equals("mansionL2Room4-dresser2")) && handler.getFlags().isDenialMansionCutscene1()) {
                 textboxHandler = new TextboxHandler(handler, Assets.textboxFontDefault, "There's a variety of books here. \r There appears to be one missing.", null, 2, Color.WHITE, null, Assets.textboxDefault, null, 100, true, true);
                 textboxHandler.setActive(true);
                 viewingTextbox = true;
