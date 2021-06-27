@@ -11,7 +11,7 @@ import java.awt.*;
 public class Hole extends StaticEntity {
 
     private boolean intersected = false, justStartedFalling = true, broken = false;
-    private int fallFrames = 45, frameCounter = 0;
+    private int fallFrames = 60, frameCounter = 0;
     private Rectangle area;
     private World destination;
     private float newX, newY;
@@ -34,7 +34,7 @@ public class Hole extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-
+        
     }
 
     @Override
@@ -44,8 +44,8 @@ public class Hole extends StaticEntity {
 
     @Override
     public void tick() {
-        area = new Rectangle((int) x + width / 2 - width / 4 - (int) handler.getGameCamera().getxOffset(),
-                (int) y + height / 2 - height / 4 - (int) handler.getGameCamera().getyOffset(),
+        area = new Rectangle((int) x - (int) handler.getGameCamera().getxOffset(),
+                (int) y - (int) handler.getGameCamera().getyOffset(),
                 width / 2, height / 2);
         if (handler.getPlayer().getPlayerRec().intersects(area)) {
             handler.setPlayerFrozen(true);
@@ -54,10 +54,10 @@ public class Hole extends StaticEntity {
         }
         if (intersected) {
             if (justStartedFalling) {
-                GeneralUtils.levelFadeOut(handler, GeneralConstants.levelTransitionFrames);
+                GeneralUtils.levelFadeOut(handler, fallFrames);
                 justStartedFalling = false;
                 if (!broken) {
-                    //Assets.woodBreak.play();
+                    Assets.woodBreak.play();
                     broken = true;
                 }
             }
@@ -77,8 +77,7 @@ public class Hole extends StaticEntity {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.RED);
-        g.fillRect(area.x, area.y, area.width, area.height);
+
     }
 
     @Override
