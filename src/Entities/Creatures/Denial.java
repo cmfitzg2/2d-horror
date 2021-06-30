@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class Denial extends Creature {
 	private Animation animDown, animUp, animLeft, animRight;
-	private boolean down = false, up = false, left = false, right = false, interactedWith = false;
+	private boolean down = false, up = false, left = false, right = false, interactedWith = false, transparent = false;
 	private float playerX = 0, playerY = 0;
 	TextboxHandler textboxHandler;
 
@@ -82,13 +82,29 @@ public class Denial extends Creature {
 			g.drawImage(animLeft.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()),  (int) (y-handler.getGameCamera().getyOffset()), width, height, null);
 		} else if (xMove == 0 && yMove == 0) {
 			if (down) {
-				g.drawImage(animDown.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				if (transparent) {
+					g.drawImage(Assets.denialDownTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				} else {
+					g.drawImage(animDown.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				}
 			} else if (left) {
-				g.drawImage(animLeft.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				if (transparent) {
+					g.drawImage(Assets.denialLeftTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				} else {
+					g.drawImage(animLeft.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				}
 			} else if (up) {
-				g.drawImage(animUp.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				if (transparent) {
+					g.drawImage(Assets.denialUpTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				} else {
+					g.drawImage(animUp.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				}
 			} else {
-				g.drawImage(animRight.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				if (transparent) {
+					g.drawImage(Assets.denialRightTransparent, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				} else {
+					g.drawImage(animRight.getDefaultFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				}
 			}
 		}
 	}
@@ -160,5 +176,13 @@ public class Denial extends Creature {
 		if (null != textboxHandler && textboxHandler.isActive() && !textboxHandler.isFinished()) {
 			textboxHandler.render(g);
 		}
+	}
+
+	public boolean isTransparent() {
+		return transparent;
+	}
+
+	public void setTransparent(boolean transparent) {
+		this.transparent = transparent;
 	}
 }

@@ -77,6 +77,7 @@ public class Assets {
 	public static BufferedImage plantVasePlant1, plantVaseFlowers, plantVasePlant2;
 	public static BufferedImage barrel, sideTableHorizontal, sideTableVertical;
 	public static BufferedImage denialSitLeft, denialSitBookLeft, playerSitRight, playerSitBookRight;
+	public static BufferedImage denialDownTransparent, denialUpTransparent, denialLeftTransparent, denialRightTransparent;
 	public static BufferedImage[] grandfatherClock;
 	public static BufferedImage[] dressers, fire, chalkboard, windowOutsideNightHand, well, furnaceLit;
 	public static BufferedImage[] activeInventoryHeader;
@@ -421,6 +422,12 @@ public class Assets {
 		SpriteSheet denialSitReadSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/denial-sit-read-sheet.png"));
 		denialSitBookLeft = denialSitReadSheet.crop(0, 0, width, height);
 		denialSitLeft = denialSitReadSheet.crop(width, 0, width, height);
+
+		SpriteSheet denialSheetTransparent = new SpriteSheet(ImageLoader.loadImage("/textures/characters/denial-sheet-transparent.png"));
+		denialDownTransparent = denialSheetTransparent.crop(0, 0, width, height);
+		denialUpTransparent = denialSheetTransparent.crop(0, height, width, height);
+		denialLeftTransparent = denialSheetTransparent.crop(0, height * 2, width, height);
+		denialRightTransparent = denialSheetTransparent.crop(0, height * 3, width, height);
 
 		SpriteSheet angerSheet = new SpriteSheet(ImageLoader.loadImage("/textures/characters/anger-sheet.png"));
 		angerDown = new BufferedImage[4];

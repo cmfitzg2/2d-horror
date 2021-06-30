@@ -1,7 +1,7 @@
 package Entities.StaticEntities;
 
+import Entities.Creatures.Denial;
 import Utils.GeneralUtils;
-import Variables.GeneralConstants;
 import Variables.Handler;
 import Graphics.Assets;
 import Worlds.World;
@@ -14,6 +14,7 @@ public class Hole extends StaticEntity {
     private int fallFrames = 60, frameCounter = 0;
     private Rectangle area;
     private World destination;
+    private Denial denial;
     private float newX, newY;
 
     public Hole(Handler handler, float x, float y, int width, int height, String uniqueName, World destination, float newX, float newY) {
@@ -34,7 +35,7 @@ public class Hole extends StaticEntity {
 
     @Override
     public void postRender(Graphics g) {
-        
+
     }
 
     @Override
@@ -49,11 +50,18 @@ public class Hole extends StaticEntity {
                 width / 2, height / 2);
         if (handler.getPlayer().getPlayerRec().intersects(area)) {
             handler.setPlayerFrozen(true);
-            handler.getPlayer().setTransparent(true);
             intersected = true;
         }
         if (intersected) {
             if (justStartedFalling) {
+                handler.getPlayer().setTransparent(true);
+                //TODO: when it exists, check that the next cutscene flag is 1 here
+                if (uniqueName != null && uniqueName.equals("hole-L2R3")) {
+                    denial = (Denial) handler.getActiveWorld().getEntityManager().getEntityByUid("denial-l2r3-cutscene");
+                    if (denial != null) {
+                        denial.setTransparent(true);
+                    }
+                }
                 GeneralUtils.levelFadeOut(handler, fallFrames);
                 justStartedFalling = false;
                 if (!broken) {
@@ -63,10 +71,16 @@ public class Hole extends StaticEntity {
             }
             if (fallFrames - frameCounter >= 0) {
                 handler.getPlayer().setY(handler.getPlayer().getY() + 7);
+                if (denial != null) {
+                    denial.setY(denial.getY() + 7);
+                }
                 frameCounter++;
             } else {
                 intersected = false;
                 handler.getPlayer().setTransparent(false);
+                if (null != denial) {
+                    handler.getActiveWorld().getEntityManager().removeEntity(denial);
+                }
                 justStartedFalling = true;
                 frameCounter = 0;
                 GeneralUtils.stopLevelFadeOut(handler, destination, newX, newY, true);

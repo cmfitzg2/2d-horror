@@ -81,7 +81,7 @@ public class DenialMansionCutscene1 implements Cutscene {
                     timer1Added = true;
                 } else {
                     if (timerManager.timerExpired("denial-approach-timer")) {
-                        denial = new Denial(handler, 23 * Tile.TILEWIDTH, 12.75f * Tile.TILEHEIGHT, null);
+                        denial = new Denial(handler, 23 * Tile.TILEWIDTH, 12.75f * Tile.TILEHEIGHT, "denial-l2r3-cutscene");
                         denial.setDirection("left");
                         handler.getActiveWorld().getEntityManager().addEntity(denial);
                         textbox1 = true;
@@ -129,9 +129,11 @@ public class DenialMansionCutscene1 implements Cutscene {
             if (!textboxHandler8.isTextFinished()) {
                 textboxHandler8.tick();
             } else {
-                handler.getActiveWorld().getEntityManager().addEntity(new Hole(handler, denial.getX() - Assets.hole.getWidth() / 2f, denial.getY() + Assets.hole.getHeight() / 2f,
-                        Assets.hole.getWidth() * 2, Assets.hole.getHeight() * 2, null,
-                        handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_4_ID), 12 * Tile.TILEWIDTH, 12.75f * Tile.TILEHEIGHT));
+                Hole hole = new Hole(handler, denial.getX() - Assets.hole.getWidth() / 4f, denial.getY() + Assets.hole.getHeight() / 4f,
+                        Assets.hole.getWidth() * 2, Assets.hole.getHeight() * 2, "hole-L2R3",
+                        handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_4_ID), 12 * Tile.TILEWIDTH, 12.75f * Tile.TILEHEIGHT);
+
+                handler.getActiveWorld().getEntityManager().addEntity(hole);
                 exit();
             }
         }
@@ -206,7 +208,7 @@ public class DenialMansionCutscene1 implements Cutscene {
                     player.setSitRight(false);
                     player.setX(handler.getPlayer().getX() + Tile.TILEWIDTH);
                 } else {
-                    if (player.getX() < denial.getX() - player.getWidth()) {
+                    if (player.getX() < denial.getX() + 4 - player.getWidth()) {
                         player.setxMove(player.getCutsceneSpeed());
                     } else {
                         player.setxMove(0);
@@ -216,7 +218,7 @@ public class DenialMansionCutscene1 implements Cutscene {
                     } else {
                         player.setyMove(0);
                     }
-                    if (player.getX() >= denial.getX() - player.getWidth() && player.getY() <= denial.getY()) {
+                    if (player.getX() >= denial.getX() + 4 - player.getWidth() && player.getY() <= denial.getY()) {
                         textbox5 = false;
                         textbox6 = true;
                     }
