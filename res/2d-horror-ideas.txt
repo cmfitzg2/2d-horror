@@ -58,6 +58,9 @@ denial
 	    -has a puzzle involving turning out all the lights
 	        -and waiting?
 	        -and navigating through a room?
+	        -could be monsters wandering through the room and you have to turn off your light when they're close by
+	            -audio cue
+	            -at the end of the puzzle, some light turns on (on you specifically?) and the monster chases you back through the rooms until you can get in the dark again
 
 anger
 	name: ira? literally latin for anger

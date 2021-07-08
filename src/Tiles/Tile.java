@@ -54,6 +54,9 @@ public class Tile {
 	public static Tile flowerGrass2 = new FlowerGrass2(27);
 	public static Tile flowerGrass3 = new FlowerGrass3(28);
 
+	public static Tile diamondTileBlueDamaged1 = new DiamondTileBlueDamaged1(29);
+	public static Tile diamondTileBlueDamaged2 = new DiamondTileBlueDamaged2(30);
+
 	//house wall borders
 	public static Tile wallBorderBottom = new WallBorderBottom(58);
 	public static Tile wallBorderCornerBottomLeft = new WallBorderCornerBottomLeft(59);

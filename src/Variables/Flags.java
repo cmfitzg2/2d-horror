@@ -24,6 +24,7 @@ public class Flags {
     private final int overworldCutscene1Flag = 9;
     private final int mansionExteriorCutscene1Flag = 10;
     private final int denialMansionCutscene1Flag = 11;
+    private final int denialMansionCutscene2Flag = 12;
     private final int timeOfDayIndex = 0;
     public static final int TIME_OF_DAY_BRIGHT = 0, TIME_OF_DAY_SOME_DARK = 1, TIME_OF_DAY_DARK = 2, TIME_OF_DAY_VERY_DARK = 3, TIME_OF_DAY_PITCH_BLACK = 4;
 
@@ -197,6 +198,14 @@ public class Flags {
 
     public void setDenialMansionCutscene1(boolean denialMansionCutscene1) {
         flags.set(denialMansionCutscene1Flag, denialMansionCutscene1);
+    }
+
+    public boolean isDenialMansionCutscene2() {
+        return flags.get(denialMansionCutscene2Flag);
+    }
+
+    public void setDenialMansionCutscene2(boolean denialMansionCutscene2) {
+        flags.set(denialMansionCutscene2Flag, denialMansionCutscene2);
     }
 
     public boolean isCutsceneActive() {

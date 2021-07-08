@@ -131,7 +131,7 @@ public class DenialMansionCutscene1 implements Cutscene {
             } else {
                 Hole hole = new Hole(handler, denial.getX() - Assets.hole.getWidth() / 4f, denial.getY() + Assets.hole.getHeight() / 4f,
                         Assets.hole.getWidth() * 2, Assets.hole.getHeight() * 2, "hole-L2R3",
-                        handler.getWorldManager().getWorld(WorldManager.MANSION_L2_ROOM_4_ID), 12 * Tile.TILEWIDTH, 12.75f * Tile.TILEHEIGHT);
+                        handler.getWorldManager().getWorld(WorldManager.MANSION_L1_ROOM_3_ID), initialX + 4 - player.getWidth(), movingDresser.getY() + movingDresser.getHeight());
 
                 handler.getActiveWorld().getEntityManager().addEntity(hole);
                 exit();

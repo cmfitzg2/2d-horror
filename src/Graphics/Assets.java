@@ -16,8 +16,8 @@ public class Assets {
 	public static final int width = 32, height = 32, biggerWidth = 48, biggerHeight = 48;
 	public static final int paintingWidth = 815, paintingHeight = 820;
 	public static BufferedImage dirt, grass, stone, water, black, gray, darkStoneWall, woodFloor, diamondTileBlue,
-			diamondTileGreen, diamondTileWood, diamondTileDouble, bathroomTile, whiteBrickMiddle, whiteBrickBottom,
-			tiledFloorWhite, tiledFloorBlack;
+			diamondTileBlueDamaged1, diamondTileBlueDamaged2, diamondTileGreen, diamondTileWood, diamondTileDouble,
+			bathroomTile, whiteBrickMiddle, whiteBrickBottom, tiledFloorWhite, tiledFloorBlack;
 	public static BufferedImage cobblestoneLeft, cobblestoneRight, accentedGrass1, accentedGrass2, accentedGrass3,
 			accentedGrassDark1, accentedGrassDark2, accentedGrassDark3, flowerGrass1, flowerGrass2, flowerGrass3;
 	public static BufferedImage playerDownNormal, playerUpNormal, playerLeftNormal, playerRightNormal,
@@ -69,6 +69,7 @@ public class Assets {
 			revelryInventory, senescenceInventory, solaceInventory, sufferingInventory, synchronicityInventory, tormentInventory,
 			vilomahInventory;
 	public static BufferedImage hole, firePlace, fireUnlit, fireExtinguished, toilet, furnaceUnlit, shrub, shrubReflected;
+	public static BufferedImage basementKitchen;
 	public static BufferedImage teacherDesk, emptyDesk, denialDesk, angerDesk, bargainingDesk, depressionDesk, acceptanceDesk, playerDesk;
 	public static BufferedImage houseDefault, houseDefaultTransparent, mansion, mansionTransparent, school, schoolTransparent;
 	public static BufferedImage frontGateClosed, frontGateOpen, gateTop, gateBot, gateSide;
@@ -280,6 +281,8 @@ public class Assets {
 
 		SpriteSheet tilesSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile-sheets/interior/tiles-sheet.png"));
 		diamondTileBlue = tilesSheet.crop(0, 0, width, height);
+		diamondTileBlueDamaged1 = tilesSheet.crop(0, height * 3, width, height);
+		diamondTileBlueDamaged2 = tilesSheet.crop(width, height * 3, width, height);
 		diamondTileGreen = tilesSheet.crop(width, 0, width, height);
 		diamondTileWood = tilesSheet.crop(width * 2, 0, width, height);
 		diamondTileDouble = tilesSheet.crop(width * 3, 0, width, height);
@@ -786,5 +789,6 @@ public class Assets {
 		gateTop = ImageLoader.loadImage("/textures/static-entities/gate-top.png");
 		gateBot = ImageLoader.loadImage("/textures/static-entities/gate-bot.png");
 		gateSide = ImageLoader.loadImage("/textures/static-entities/gate-side.png");
+		basementKitchen = ImageLoader.loadImage("/textures/static-entities/basement-kitchen.png");
 	}
 }
