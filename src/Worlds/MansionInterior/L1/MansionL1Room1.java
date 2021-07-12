@@ -1,5 +1,7 @@
 package Worlds.MansionInterior.L1;
 
+import Entities.Creatures.Creature;
+import Entities.Creatures.Ghoul;
 import Entities.Creatures.Player;
 import Entities.StaticEntities.BasementKitchen;
 import Entities.StaticEntities.Furnace;
@@ -39,6 +41,7 @@ public class MansionL1Room1 extends World {
     protected void addEntities() {
         entityManager.addEntity(new Furnace(handler, 19 * Tile.TILEWIDTH, 4 * Tile.TILEHEIGHT,
                 Assets.furnaceUnlit.getWidth() * 2, Assets.furnaceUnlit.getHeight() * 2, null, Furnace.TYPE_UNLIT));
+        entityManager.addEntity(new Ghoul(handler, 1332, 1052, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, null, 448, 1055));
     }
 
     @Override
